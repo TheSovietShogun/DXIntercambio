@@ -43,6 +43,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Tipo Operacion:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -62,6 +63,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:text="Registrado Por:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
@@ -82,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
+                android:textSize="25dp"
                 android:text="Transportista:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText8" />
@@ -100,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Operador:"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
+                android:textSize="25dp"
                 android:text="# Unidad:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText9" />
@@ -142,6 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="No. Economico de remolque"
                 app:layout_constraintStart_toStartOf="parent"
@@ -163,6 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Linea:"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,6 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Estatus:"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,6 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Comentarios:"
                 app:layout_constraintStart_toStartOf="parent"
@@ -208,8 +217,8 @@
 
             <EditText
                 android:id="@+id/editText12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="388dp"
+                android:layout_height="158dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
@@ -219,29 +228,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
-            <GridView
-                android:id="@+id/gridView"
-                android:background="@color/griseson"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:numColumns="3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText12" />
-
-
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:text="Enviar"
+                android:text="Siguiente"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gridView" />
+                app:layout_constraintTop_toBottomOf="@+id/editText12" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

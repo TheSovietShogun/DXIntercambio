@@ -37,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private SoapPrimitive resultString;
     private int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET
     };
 
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         usu = (EditText) findViewById(R.id.usuario);
         pass = (EditText)findViewById(R.id.contraseña);
         ingre = (Button)findViewById(R.id.btnIngresar);
+
 
 
 
