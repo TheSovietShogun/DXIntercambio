@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
@@ -55,10 +56,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class envioActivity extends AppCompatActivity {
 
-    private EditText registradoPor ,operador , unidad , noRemolque , comentarios;
-    private Spinner tipoOperacion ,transportista, linea, estatus;
+    private EditText registradoPor  , unidad , noRemolque , comentarios;
+    private Spinner tipoOperacion ,transportista, linea, estatus ;
     private Button enviar;
     private String tran;
     private SoapPrimitive resultString;
@@ -73,7 +81,9 @@ public class envioActivity extends AppCompatActivity {
     private GridView gvGallery;
     private GalleryAdapter galleryAdapter;
     private String usuario ;
-
+    private DxApi dxApi;
+    private String user , password ;
+    private AutoCompleteTextView operador ;
 
 
     @Override
@@ -83,12 +93,18 @@ public class envioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_envio);
 
 
+        SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
+
+        user = preferences.getString("user","");
+        password = preferences.getString("pass","");
+
+
         usuario = getIntent().getStringExtra("idUsuario");
 
         tipoOperacion = (Spinner) findViewById(R.id.spinner2);
         registradoPor = (EditText)findViewById(R.id.editText8);
         transportista = (Spinner) findViewById(R.id.spinner);
-        operador = (EditText)findViewById(R.id.editText9);
+        operador = (AutoCompleteTextView)findViewById(R.id.spinner69);
         unidad = (EditText)findViewById(R.id.editText7);
         noRemolque = (EditText)findViewById(R.id.editText11);
         linea = (Spinner) findViewById(R.id.spinner10);
@@ -113,38 +129,82 @@ public class envioActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-       try {
 
-        tipoOpeArr = new String[]{"Llegada", "Salida"};
-        tranportistasArr = new String[]{"DX"};
-        lineaArr = new String[]{"Otro"};
-        estatusArr = new String[]{"Cargado"};
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://dxxpress.net/API/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tipoOpeArr);
-            adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            tipoOperacion.setAdapter(adapter);
+        dxApi = retrofit.create(DxApi.class);
 
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tranportistasArr);
-            adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            transportista.setAdapter(adapter1);
-
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lineaArr);
-            adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            linea.setAdapter(adapter2);
-
-            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, estatusArr);
-            adapter3.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            estatus.setAdapter(adapter3);
+        Post post = new Post(user,password);
 
 
+        Call<List<CLinea>> call = dxApi.getLinea(post);
 
-        }catch (Exception e){
-            Toast.makeText(envioActivity.this, "Error 500AD", Toast.LENGTH_LONG).show();
-        }
+        call.enqueue(new Callback<List<CLinea>>() {
+            @Override
+            public void onResponse(Call<List<CLinea>> call, Response<List<CLinea>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(envioActivity.this, "Error 404L", Toast.LENGTH_LONG).show();
+                }
+
+                List<CLinea> cLineas = response.body();
+                ArrayAdapter<CLinea> adapter = new ArrayAdapter<CLinea>(envioActivity.this ,android.R.layout.simple_spinner_item, cLineas);
+                adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                linea.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<CLinea>> call, Throwable t) {
+                Toast.makeText(envioActivity.this, "Error 404L", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 
+        Call<List<COperador>> callOpe = dxApi.getOperador(post);
 
+        callOpe.enqueue(new Callback<List<COperador>>() {
+            @Override
+            public void onResponse(Call<List<COperador>> call, Response<List<COperador>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(envioActivity.this, "Error 404O", Toast.LENGTH_LONG).show();
+                }
+
+                List<COperador> cOperadors = response.body();
+                ArrayAdapter<COperador> adapter2 = new ArrayAdapter<COperador>(envioActivity.this ,android.R.layout.simple_spinner_item, cOperadors);
+                adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                operador.setAdapter(adapter2);
+            }
+
+            @Override
+            public void onFailure(Call<List<COperador>> call, Throwable t) {
+                Toast.makeText(envioActivity.this, "Error 404O", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        Call<List<CFlota>> callFlota = dxApi.getFlota(post);
+
+        callFlota.enqueue(new Callback<List<CFlota>>() {
+            @Override
+            public void onResponse(Call<List<CFlota>> call, Response<List<CFlota>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(envioActivity.this, "Error 404F", Toast.LENGTH_LONG).show();
+                }
+
+                List<CFlota> cFlotas = response.body();
+                ArrayAdapter<CFlota> adapter3 = new ArrayAdapter<CFlota>(envioActivity.this ,android.R.layout.simple_spinner_item, cFlotas);
+                adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                transportista.setAdapter(adapter3);
+            }
+
+            @Override
+            public void onFailure(Call<List<CFlota>> call, Throwable t) {
+                Toast.makeText(envioActivity.this, "Error 404F", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -154,10 +214,4 @@ public class envioActivity extends AppCompatActivity {
     public void onBackPressed() {
 
     }
-
-
-
-
-
-
 }

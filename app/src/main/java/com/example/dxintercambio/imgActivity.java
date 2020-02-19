@@ -149,9 +149,6 @@ public class imgActivity extends AppCompatActivity {
                         {
                             // Create URI from real path
                             String path = imageFile.getPath();
-                            String nueva = path.replace("/storage/emulated/0/Android/data/com.example.dxintercambio/files/","");
-                            //Uri mFileUri = Uri.fromFile(new File(path));
-                            //java.io.File fileContent = new java.io.File(mFileUri.getPath());
 
 
                             com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();

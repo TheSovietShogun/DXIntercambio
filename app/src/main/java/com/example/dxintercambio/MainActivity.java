@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.api.client.json.gson.GsonFactory;
 import com.google.gson.Gson;
 
 import org.ksoap2.SoapEnvelope;
@@ -25,6 +26,15 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.INTERNET
     };
 
+    private DxApi dxApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +100,49 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (login.length() !=0 && password.length() !=0 ) {
 
-                    SegundoPlano tarea = new SegundoPlano();
-                    tarea.execute();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("http://dxxpress.net/API/api/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    dxApi = retrofit.create(DxApi.class);
+
+                    Post post = new Post(login,password);
+
+                    Call<ResponseBody> call = dxApi.createPost(post);
+
+                  call.enqueue(new Callback<ResponseBody>() {
+                      @Override
+                      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                          if(!response.isSuccessful()){
+                              Toast.makeText(MainActivity.this, "onResponse1" + response.code(), Toast.LENGTH_LONG).show();
+                              return;
+                          }
+
+                          //Toast.makeText(MainActivity.this, "onResponse2 : " + response.code() + "\nString : " +  response.toString() , Toast.LENGTH_SHORT).show();
+                            ResponseBody postResponse = response.body();
+
+                            String E = "";
+                          try {
+                              E += postResponse.string();
+                              if (E.contains("1")){
+                                  Intent i = new Intent(MainActivity.this, envioActivity.class);
+                                  startActivity(i);
+                              }
+                              else {
+                                  Toast.makeText(MainActivity.this, "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
+                              }
+                          } catch (IOException e) {
+                              e.printStackTrace();
+                          }
+                      }
+
+                      @Override
+                      public void onFailure(Call<ResponseBody> call, Throwable t) {
+                          Toast.makeText(MainActivity.this, "Error 404", Toast.LENGTH_LONG).show();
+                      }
+                  });
+
                 }
 
             }
@@ -109,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    ///////////////////////////////////////////////////////////////
 
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
@@ -128,106 +179,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-    private class SegundoPlano extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-
-            try {
-
-                //Respuesta de la llamada , es un json
-                tran = resultString.toString();
-
-
-                //Si el usuario no existe el servicio regresara el string {"CUsuario":[{}] }
-                if (tran.length() <= 15) {
-                    Toast.makeText(MainActivity.this, "Cuenta Equivocada", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("user", login);
-                    editor.putString("pass", password);
-                    editor.commit();
-
-                    //Libreria gson se utliza para traducir de json a string y viceversa
-                    Gson gson = new Gson();
-
-                    //Retira la palabra usuario y los corchetes para el uso de la libreria gson
-                    String reusu = tran.replace("{\"Usuario\":[{", "{");
-                    String reusu2 = reusu.replace("}] }", "}");
-
-                    //Se usa la libreria para traducir el json , el string obtenido se almacena en la libreria CUsuario
-                    CUsuario Usuario1 = gson.fromJson(reusu2, CUsuario.class);
-
-                    String nombreOperador = Usuario1.getNombreOperador();
-                    String idEmpresa = Usuario1.getIdEmpresa();
-                    String idUsuario = Usuario1.getIdUsuario();
-                    String nombreUsuario = Usuario1.getNombreUsuario();
-                    String idUnidad = Usuario1.getIdUnidad();
-                    String claveUnidad = Usuario1.getClaveUnidad();
-                    String idOperador = Usuario1.getIdOperador();
-                    String idFlota = Usuario1.getIdFlota();
-                    String idViaje = Usuario1.getIdViaje();
-
-                    //Se llama a la siguiente actividad y se envian variables
-                    Intent i = new Intent(MainActivity.this, envioActivity.class);
-                    i.putExtra("nombreOperador", nombreOperador);
-                    i.putExtra("nombreUsuario", nombreUsuario);
-                    i.putExtra("idUnidad", idUnidad);
-                    i.putExtra("idUsuario", idUsuario);
-                    i.putExtra("idOperador", idOperador);
-                    i.putExtra("idViaje", idViaje);
-                    startActivity(i);
-
-                }
-            }catch (Exception ex){
-                Toast.makeText(MainActivity.this, "Error 404", Toast.LENGTH_SHORT).show();
-            }
-
-            super.onPostExecute(aVoid);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            String SOAP_ACTION = "http://dxxpress.net/wsInspeccion/Version_20171221_1212";
-            String METHOD_NAME = "Login";
-            String NAMESPACE  = "http://dxxpress.net/wsInspeccion/";
-            String URL = "http://dxxpress.net/wsInspeccion/interfaceOperadores3.asmx";
-
-
-            try{
-
-                SoapObject Request = new SoapObject(NAMESPACE,METHOD_NAME);
-                Request.addProperty("login", login);
-                Request.addProperty("password", password);
-
-                SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
-                soapEnvelope.dotNet = true;
-                soapEnvelope.setOutputSoapObject(Request);
-
-                HttpTransportSE transport= new HttpTransportSE(URL);
-                transport.call(SOAP_ACTION, soapEnvelope);
-
-
-                resultString = (SoapPrimitive) soapEnvelope.getResponse();
-
-
-                mensaje= "OK";
-
-            }catch (Exception ex){
-
-                mensaje = "ERROR: " +ex.getMessage();
-            }
-            return null;
-        }
-    }
 
 
 }

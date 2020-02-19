@@ -10,7 +10,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="-66dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -84,14 +86,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:textSize="25dp"
                 android:text="Transportista:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText8" />
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -103,20 +105,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Operador:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
-            <EditText
-                android:id="@+id/editText9"
-                android:layout_width="wrap_content"
+
+            <AutoCompleteTextView
+                android:id="@+id/spinner69"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:completionThreshold="1"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -126,17 +131,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:textSize="25dp"
                 android:text="# Unidad:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText9" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner69" />
 
             <EditText
                 android:id="@+id/editText7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -147,11 +152,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="No. Economico de remolque"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText7" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner10" />
 
             <EditText
                 android:id="@+id/editText11"
@@ -169,18 +174,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Linea:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText11" />
+                app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
             <Spinner
                 android:id="@+id/spinner10"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -189,11 +193,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Estatus:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner10" />
+                app:layout_constraintTop_toBottomOf="@+id/editText11" />
 
             <Spinner
                 android:id="@+id/spinner3"
@@ -209,9 +213,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="25dp"
                 android:layout_marginTop="32dp"
                 android:text="Comentarios:"
+                android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner3" />
 
