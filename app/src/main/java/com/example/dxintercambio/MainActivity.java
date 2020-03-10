@@ -28,6 +28,7 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -109,39 +110,42 @@ public class MainActivity extends AppCompatActivity {
 
                     Post post = new Post(login,password);
 
-                    Call<ResponseBody> call = dxApi.createPost(post);
+                    Call<List<CUsuario>> call = dxApi.createPost(post);
 
-                  call.enqueue(new Callback<ResponseBody>() {
-                      @Override
-                      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                          if(!response.isSuccessful()){
-                              Toast.makeText(MainActivity.this, "onResponse1" + response.code(), Toast.LENGTH_LONG).show();
-                              return;
-                          }
+                    call.enqueue(new Callback<List<CUsuario>>() {
+                        @Override
+                        public void onResponse(Call<List<CUsuario>> call, Response<List<CUsuario>> response) {
+                            if(!response.isSuccessful()){
+                                Toast.makeText(MainActivity.this, "onResponse1" + response.code(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            List<CUsuario> cUsuarios = response.body();
 
-                          //Toast.makeText(MainActivity.this, "onResponse2 : " + response.code() + "\nString : " +  response.toString() , Toast.LENGTH_SHORT).show();
-                            ResponseBody postResponse = response.body();
+                            String idUsuario = cUsuarios.get(0).getIdUsuario();
+                            String res = cUsuarios.get(0).getRespuesta();
 
-                            String E = "";
-                          try {
-                              E += postResponse.string();
-                              if (E.contains("1")){
-                                  Intent i = new Intent(MainActivity.this, envioActivity.class);
-                                  startActivity(i);
-                              }
-                              else {
-                                  Toast.makeText(MainActivity.this, "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
-                              }
-                          } catch (IOException e) {
-                              e.printStackTrace();
-                          }
-                      }
+                            if (res.contains("1")){
 
-                      @Override
-                      public void onFailure(Call<ResponseBody> call, Throwable t) {
-                          Toast.makeText(MainActivity.this, "Error 404", Toast.LENGTH_LONG).show();
-                      }
-                  });
+                                SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("user", login);
+                                editor.putString("pass", password);
+                                editor.commit();
+
+                                Intent i = new Intent(MainActivity.this, envioActivity.class);
+                                i.putExtra("idUsuario", idUsuario);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Usuario Incorrecto" , Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<CUsuario>> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, "Erro 404" , Toast.LENGTH_LONG).show();
+
+                        }
+                    });
 
                 }
 

@@ -1,36 +1,22 @@
 package com.example.dxintercambio;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.service.carrier.CarrierMessagingService;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.drive.DriveApi;
-import com.google.android.gms.drive.MetadataChangeSet;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.FileContent;
@@ -39,19 +25,11 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
-
-
-
-
-
 
 public class imgActivity extends AppCompatActivity {
 
@@ -60,18 +38,43 @@ public class imgActivity extends AppCompatActivity {
             , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2;
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final String TAG = "envioActivity";
-    Drive mService;
-    Drive googleDriveService;
-
-
+    private Drive mService;
+    private Drive googleDriveService;
+    private String operacion ;
+    private String NoUnidad ;
+    private String NoCaja ;
+    private String nombreLinea ;
+    private String nombreTransportista ;
     private File imageFile ;
-    Uri photoURI;
+    private Uri photoURI;
+    private ProgressBar progressBar1 ;
+    private static final int REQUEST_TRACTOR = 200;
+    private static final int REQUEST_NoECONOMICO = 210;
+    private static final int REQUEST_IZQ_REMOLQUE_P1 = 220;
+    private static final int REQUEST_VIN = 230;
+    private static final int REQUEST_CHASIS_FRONTAL_IZQ = 240;
+    private static final int REQUEST_CHASIS_TRASERO_IZQ = 250;
+    private static final int REQUEST_LLANTAS_IZQ_EJE1= 260;
+    private static final int REQUEST__LLANTAS_IZQ_EJE2 = 270;
+    private static final int REQUEST_IZQ_REMOLQUE_P2 = 280;
+    private static final int REQUEST_PUERTAS = 290;
+    private static final int REQUEST_PLACAS = 300;
+    private static final int REQUEST_SELLO1 = 310;
+    private static final int REQUEST_SELLO2 = 320;
+    private static final int REQUEST_DER_REMOLQUE_P1 = 330;
+    private static final int REQUEST_LLANTAS_DER_EJE2 = 340;
+    private static final int REQUEST_LLANTAS_DER_EJE1 = 350;
+    private static final int REQUEST_CHASIS_TRASERO_DER = 360;
+    private static final int REQUEST_CHASIS_FRONTAL_DER = 370;
+    private static final int REQUEST_DER_REMOLQUE_P2 = 380;
+
 
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        requestSignIn();
 
     }
 
@@ -80,75 +83,91 @@ public class imgActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img);
 
+        operacion = getIntent().getStringExtra("operador");
+        NoUnidad = getIntent().getStringExtra("NoUnidad");
+        NoCaja = getIntent().getStringExtra("NoCaja");
+        nombreLinea = getIntent().getStringExtra("nombreLinea");
+        nombreTransportista = getIntent().getStringExtra("nombreTransportista");
 
         tractor = (ImageView) findViewById(R.id.imageView3);
+        noEconomico = (ImageView) findViewById(R.id.imageView4);
+        izqRemolqueP1 = (ImageView) findViewById(R.id.imageView5);
+        vin = (ImageView) findViewById(R.id.imageView11);
+        chasisFrontalIzq = (ImageView) findViewById(R.id.imageView7);
+        chasisTraseroIzq = (ImageView) findViewById(R.id.imageView2);
+        llantasIzqEje1 = (ImageView) findViewById(R.id.imageView6);
+        llantasIzqEje2 = (ImageView) findViewById(R.id.imageView8);
+        izqRemolqueP2 = (ImageView) findViewById(R.id.imageView10);
+        puertas = (ImageView) findViewById(R.id.imageView9);
+        placas = (ImageView) findViewById(R.id.imageView12);
+        sello1 = (ImageView) findViewById(R.id.imageView13);
+        sello2 = (ImageView) findViewById(R.id.imageView17);
+        derRemolqueP1 = (ImageView) findViewById(R.id.imageView16);
+        llantasDerEje2 = (ImageView) findViewById(R.id.imageView15);
+        llantasDerEje1 = (ImageView) findViewById(R.id.imageView14);
+        chasisTraseroDer = (ImageView) findViewById(R.id.imageView19);
+        chasisFrontalDER = (ImageView) findViewById(R.id.imageView20);
+        derRemolqueP2 = (ImageView) findViewById(R.id.imageView22);
+
+        progressBar1 = (ProgressBar)  findViewById(R.id.progressBar2);
+        progressBar1.setVisibility(View.INVISIBLE);
 
         tractor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                photoURI = FileProvider.getUriForFile(getBaseContext(), getBaseContext().getApplicationContext().getPackageName() + ".provider", createImageFile());
-                camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                camera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivityForResult(camera,0);
-            }
-
-            private File createImageFile() {
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageFileName = "JPEG_" + timeStamp + "_";
-                File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
-
-                try {
-                    imageFile = File.createTempFile(
-                            imageFileName,  // prefix
-                            ".jpeg",         // suffix
-                            destPath      // directory
-                    );
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return imageFile;
+                    imgClick("tractor" , REQUEST_TRACTOR);
             }
         });
 
-        requestSignIn();
-
     }
 
+    private void imgClick (String photo , int code){
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_"+photo+ "_"+operacion+"_transportista:"+nombreTransportista+"_unidad:"+NoUnidad+"_linea:"+nombreLinea+"_caja:"+NoCaja;
+        File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
+
+        try {
+            imageFile = File.createTempFile(
+                    imageFileName,  // prefix
+                    ".jpeg",         // suffix
+                    destPath      // directory
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-    private void requestSignIn() {
+        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        photoURI = FileProvider.getUriForFile(getBaseContext(), getBaseContext().getApplicationContext().getPackageName() + ".provider", imageFile);
+        camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        camera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivityForResult(camera,code);
 
-        GoogleSignInOptions signInOptions =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
-                        .build();
-        GoogleSignInClient client = GoogleSignIn.getClient(this, signInOptions);
-
-        // The result of the sign-in Intent is handled in onActivityResult.
-        startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         switch (requestCode) {
+
             case REQUEST_CODE_SIGN_IN:
                 if (resultCode == Activity.RESULT_OK && resultData != null) {
                     handleSignInResult(resultData);
                 }
                 break;
-            case 0:
-                if (resultCode == Activity.RESULT_OK && resultData != null) {
+
+            case REQUEST_TRACTOR:
+                if (resultCode == Activity.RESULT_OK ) {
                     Picasso.get().load(photoURI).into(tractor);
+
+
 
                     Thread t = new Thread(new Runnable() {
                         @Override
-                        public void run()
-                        {
+                        public void run() {
                             // Create URI from real path
                             String path = imageFile.getPath();
+                            String name = imageFile.getName();
 
 
                             com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();
@@ -170,12 +189,15 @@ public class imgActivity extends AppCompatActivity {
                     t.start();
 
 
-                    photoURI = null ;
+
+                    photoURI = null;
                 }
+
                 break;
         }
         super.onActivityResult(requestCode, resultCode, resultData);
     }
+
 
     private void handleSignInResult(Intent result) {
         GoogleSignIn.getSignedInAccountFromIntent(result)
@@ -201,5 +223,18 @@ public class imgActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(exception -> Log.e(TAG, "Unable to sign in.", exception));
 
+    }
+
+    private void requestSignIn() {
+
+        GoogleSignInOptions signInOptions =
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
+                        .build();
+        GoogleSignInClient client = GoogleSignIn.getClient(this, signInOptions);
+
+        // The result of the sign-in Intent is handled in onActivityResult.
+        startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
     }
 }
