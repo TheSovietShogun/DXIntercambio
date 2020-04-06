@@ -2,9 +2,11 @@ package com.example.dxintercambio;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -14,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,6 +29,7 @@ import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -65,6 +69,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.view.Menu;
+
 public class envioActivity extends AppCompatActivity {
 
     private EditText registradoPor  , comentarios;
@@ -90,6 +96,47 @@ public class envioActivity extends AppCompatActivity {
     private int idOperador;
     private int idUnidad;
     private int idRemolque;
+    private  AlertDialog alert ;
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true ;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.logout){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Desea cerrar sesion ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+
+                            SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("user", "");
+                            editor.putString("pass", "");
+                            editor.commit();
+
+                            Intent i = new Intent(envioActivity.this, MainActivity.class);
+                            startActivity(i);
+
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
+           return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +153,7 @@ public class envioActivity extends AppCompatActivity {
 
         usuario = getIntent().getStringExtra("idUsuario");
 
+
         tipoOperacion = (Spinner) findViewById(R.id.spinner2);
         registradoPor = (EditText)findViewById(R.id.editText8);
         transportista = (Spinner) findViewById(R.id.spinner);
@@ -115,7 +163,7 @@ public class envioActivity extends AppCompatActivity {
         linea = (Spinner) findViewById(R.id.spinner10);
         estatus = (Spinner) findViewById(R.id.spinner3);
         comentarios = (EditText)findViewById(R.id.editText12);
-        enviar = (Button) findViewById(R.id.button);
+        enviar = (Button) findViewById(R.id.btnDatos);
 
         registradoPor.setText(user);
         registradoPor.setEnabled(false);
@@ -191,56 +239,84 @@ public class envioActivity extends AppCompatActivity {
                 CLinea cLinea = (CLinea)linea.getSelectedItem();
                 int idLinea = Integer.parseInt(cLinea.getId());
 
-                int sadas = idOperador;
-                int asd = idUnidad;
-                int sadaas = idRemolque;
+
 
                 String comentario = comentarios.getText().toString();
 
                 int idUsuario = Integer.parseInt(usuario);
 
+                String SDS = "THE GAME ";
 
                 Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario);
 
-                Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
+                if (idOperador == 0 || idUnidad == 0 || idRemolque == 0){
+                    Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
+                }else {
 
-                callEnvio.enqueue(new Callback<List<CEnvio>>() {
-                    @Override
-                    public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
+                    builder.setMessage("Favor de revisar la informacion antes de ser enviada !")
+                            .setCancelable(false)
+                            .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
 
-                        if(!response.isSuccessful()){
-                            Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
-                        }
-                        List<CEnvio> cEnvios = response.body();
+                                    callEnvio.enqueue(new Callback<List<CEnvio>>() {
+                                        @Override
+                                        public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
-                        String mensaje = cEnvios.get(0).getMensaje();
+                                            if(!response.isSuccessful()){
+                                                Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                            }
+                                            List<CEnvio> cEnvios = response.body();
 
-                        Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
+                                            String mensaje = cEnvios.get(0).getMensaje();
 
-                         enviar();
+                                            Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
 
-                    }
+                                            enviar();
 
-                    @Override
-                    public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                        Toast.makeText(envioActivity.this, "Error 404E "+ t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                                            Toast.makeText(envioActivity.this, "Error 404E "+ t.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            })
+                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    alert = builder.create();
+                    alert.show();
+
+
+                }
+
+
+
 
 
             }
         });
 
+
         tipoOpeArr = new String[]{"Entrada", "Salida"};
         estatusArr = new String[]{"Cargado", "Vacio","Racks"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, tipoOpeArr);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
+       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoOperacion.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, estatusArr);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, estatusArr);
+
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         estatus.setAdapter(adapter2);
 
@@ -431,6 +507,7 @@ public class envioActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
     }
 
 
