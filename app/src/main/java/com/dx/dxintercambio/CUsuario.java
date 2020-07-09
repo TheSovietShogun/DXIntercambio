@@ -1,4 +1,4 @@
-package com.example.dxintercambio;
+package com.dx.dxintercambio;
 
 public class CUsuario {
 

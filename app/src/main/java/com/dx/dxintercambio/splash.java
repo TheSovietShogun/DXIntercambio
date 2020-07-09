@@ -1,4 +1,4 @@
-package com.example.dxintercambio;
+package com.dx.dxintercambio;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,10 +10,8 @@ import android.widget.Toast;
 
 import org.ksoap2.serialization.SoapPrimitive;
 
-import java.io.IOException;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -1,4 +1,4 @@
-package com.example.dxintercambio;
+package com.dx.dxintercambio;
 
 public class CLinea {
     public CLinea(String id, String nombreLinea) {

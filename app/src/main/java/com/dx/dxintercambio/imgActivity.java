@@ -1,4 +1,4 @@
-package com.example.dxintercambio;
+package com.dx.dxintercambio;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -9,9 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,11 +30,9 @@ import com.google.api.client.http.FileContent;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -775,7 +770,7 @@ public class imgActivity extends AppCompatActivity {
                                     AndroidHttp.newCompatibleTransport(),
                                     new GsonFactory(),
                                     credential)
-                                    .setApplicationName("Drive API Migration")
+                                    .setApplicationName("DXIntercambio")
                                     .build();
 
                     // The DriveServiceHelper encapsulates all REST API and SAF functionality.
@@ -798,4 +793,7 @@ public class imgActivity extends AppCompatActivity {
         // The result of the sign-in Intent is handled in onActivityResult.
         startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
     }
+
+
+
 }

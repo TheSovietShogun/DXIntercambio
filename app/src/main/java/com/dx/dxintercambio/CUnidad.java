@@ -1,6 +1,4 @@
-package com.example.dxintercambio;
-
-import com.google.gson.annotations.SerializedName;
+package com.dx.dxintercambio;
 
 public class CUnidad {
 

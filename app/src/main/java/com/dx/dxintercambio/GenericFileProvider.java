@@ -1,8 +1,6 @@
-package com.example.dxintercambio;
+package com.dx.dxintercambio;
 
 import androidx.core.content.FileProvider;
-
-import java.io.File;
 
 public class GenericFileProvider extends FileProvider {
 }
