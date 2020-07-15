@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:layout_marginTop="100dp"
-                android:background="@color/griseson"
+                android:background="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText11" />

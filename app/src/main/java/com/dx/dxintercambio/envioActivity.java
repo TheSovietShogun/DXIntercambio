@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,7 @@ import androidx.core.app.ActivityCompat;
 
 import org.ksoap2.serialization.SoapPrimitive;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -77,7 +79,7 @@ public class envioActivity extends AppCompatActivity {
             android.Manifest.permission.FOREGROUND_SERVICE
     };
     int PERMISSION_ALL = 1;
-
+    int azul = Color.parseColor("#074EAB");
 
 
 
@@ -249,7 +251,7 @@ public class envioActivity extends AppCompatActivity {
                         if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() ){
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
                         }else {
-                            Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
                              AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                     builder.setMessage("Favor de revisar la informacion antes de ser enviada \n¡¡En el campo comentario deberan ir los datos faltantes!!")
                             .setCancelable(false)
@@ -301,7 +303,7 @@ public class envioActivity extends AppCompatActivity {
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else {
                             //SI
-                            Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
                               AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                     builder.setMessage("Favor de revisar la informacion antes de ser enviada !")
                             .setCancelable(false)
@@ -420,14 +422,18 @@ public class envioActivity extends AppCompatActivity {
 
                 if(nombreS == "Otro" || nombreS == "Sin Seleccionar"){
                     operador.setEnabled(false);
+                    operador.setBackgroundColor(azul);
                     unidad.setEnabled(false);
+                    unidad.setBackgroundColor(azul);
                     if(nombreS == "Otro" ){
                         Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : \n-Nombre del Transportista\n-Nombre Completo de Operador\n-Numero Economico de la Unidad", Toast.LENGTH_LONG).show();
                     }
 
                 }else {
                     operador.setEnabled(true);
+                    operador.setBackgroundColor(0);
                     unidad.setEnabled(true);
+                    unidad.setBackgroundColor(0);
                     Post2 post2 = new Post2(user,password,idFlota);
 
                     Call<List<CUnidad>> callUni = dxApi.getUnidad(post2);
@@ -508,13 +514,14 @@ public class envioActivity extends AppCompatActivity {
 
                 if(nombreS == "Otro" || nombreS == "Sin Seleccionar"){
                     noRemolque.setEnabled(false);
+                    noRemolque.setBackgroundColor(azul);
                     if(nombreS == "Otro" ){
                         Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : \n-Nombre de la Linea\n-Numero Economico del Remolque", Toast.LENGTH_LONG).show();
                     }
 
                 }else {
                     noRemolque.setEnabled(true);
-
+                    noRemolque.setBackgroundColor(0);
 
 
                     Post3 post3 = new Post3(user, password, idLinea);
@@ -592,13 +599,15 @@ public class envioActivity extends AppCompatActivity {
          String NoCaja = noRemolque.getText().toString();
          String nombreLinea = linea.getSelectedItem().toString();
          String nombreTransportista = transportista.getSelectedItem().toString();
+         String folio =  new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
            Intent i = new Intent(envioActivity.this, imgActivity.class);
-            i.putExtra("operador", operacion);
+            i.putExtra("operacion", operacion);
             i.putExtra("NoUnidad", NoUnidad);
             i.putExtra("NoCaja", NoCaja);
             i.putExtra("nombreLinea", nombreLinea);
             i.putExtra("nombreTransportista", nombreTransportista);
+            i.putExtra("folio", folio);
            startActivity(i);
 
     }

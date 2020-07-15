@@ -9,8 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -51,6 +53,7 @@ public class imgActivity extends AppCompatActivity {
     private String NoCaja ;
     private String nombreLinea ;
     private String nombreTransportista ;
+    private String folio ;
     private File imageFile ;
     private Uri photoURI;
     private ProgressBar progressBar1 ;
@@ -78,9 +81,33 @@ public class imgActivity extends AppCompatActivity {
     private static final int DAMAGE2 = 501;
     private static final int DAMAGE3 = 502;
     private static final int DAMAGE4 = 503;
-    private int descarga;
+    private Boolean resk;
     final int THUMBSIZE = 128;
+    int res = 0 ;
+    private String tractorImg ;
+    private String noEconomicoImg;
+    private String izqRemolqueP1Img;
+    private String vinImg;
+    private String chasisFrontalIzqImg;
+    private String chasisTraseroIzqImg;
+    private  String llantasIzqEje1Img;
+    private String llantasIzqEje2Img;
+    private String izqRemolqueP2Img;
+    private  String puertasImg;
+    private  String placasImg;
+    private String sello1Img;
+    private String sello2Img;
+    private String derRemolqueP1Img;
+    private String llantasDerEje2Img;
+    private String llantasDerEje1Img;
+    private String chasisTraseroDerImg;
+    private  String chasisFrontalDERImg;
+    private String derRemolqueP2Img ;
 
+    private String damage1Img ;
+    private String damage2Img ;
+    private String damage3Img;
+    private String damage4Img ;
 
     @Override
     protected void onStart() {
@@ -95,11 +122,12 @@ public class imgActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img);
 
-        operacion = getIntent().getStringExtra("operador");
+        operacion = getIntent().getStringExtra("operacion");
         NoUnidad = getIntent().getStringExtra("NoUnidad");
         NoCaja = getIntent().getStringExtra("NoCaja");
         nombreLinea = getIntent().getStringExtra("nombreLinea");
         nombreTransportista = getIntent().getStringExtra("nombreTransportista");
+        folio = getIntent().getStringExtra("folio");
 
         tractor = (ImageView) findViewById(R.id.imageView3);
         noEconomico = (ImageView) findViewById(R.id.imageView4);
@@ -128,40 +156,34 @@ public class imgActivity extends AppCompatActivity {
 
         btnImg = (Button) findViewById(R.id.btnImg);
 
+        tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
+        noEconomicoImg = String.valueOf(noEconomico.getDrawable().getBounds());
+        izqRemolqueP1Img = String.valueOf(izqRemolqueP1.getDrawable().getBounds());
+        vinImg = String.valueOf(vin.getDrawable().getBounds());
+        chasisFrontalIzqImg = String.valueOf(chasisFrontalIzq.getDrawable().getBounds());
+        chasisTraseroIzqImg = String.valueOf(chasisTraseroIzq.getDrawable().getBounds());
+        llantasIzqEje1Img = String.valueOf(llantasIzqEje1.getDrawable().getBounds());
+        llantasIzqEje2Img = String.valueOf(llantasIzqEje2.getDrawable().getBounds());
+        izqRemolqueP2Img = String.valueOf(izqRemolqueP2.getDrawable().getBounds());
+        puertasImg = String.valueOf(puertas.getDrawable().getBounds());
+        placasImg = String.valueOf(placas.getDrawable().getBounds());
+        sello1Img = String.valueOf(sello1.getDrawable().getBounds());
+        sello2Img = String.valueOf(sello2.getDrawable().getBounds());
+        derRemolqueP1Img = String.valueOf(derRemolqueP1.getDrawable().getBounds());
+        llantasDerEje2Img = String.valueOf(llantasDerEje2.getDrawable().getBounds());
+        llantasDerEje1Img = String.valueOf(llantasDerEje1.getDrawable().getBounds());
+        chasisTraseroDerImg = String.valueOf(chasisTraseroDer.getDrawable().getBounds());
+        chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
+        derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
+
+        damage1Img = String.valueOf(damage1.getDrawable().getBounds());
+        damage2Img = String.valueOf(damage2.getDrawable().getBounds());
+        damage3Img = String.valueOf(damage3.getDrawable().getBounds());
+        damage4Img = String.valueOf(damage4.getDrawable().getBounds());
 
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                tractor.getDrawable();
-
-                String tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
-                String noEconomicoImg = String.valueOf(noEconomico.getDrawable().getBounds());
-                String izqRemolqueP1Img = String.valueOf(izqRemolqueP1.getDrawable().getBounds());
-                String vinImg = String.valueOf(vin.getDrawable().getBounds());
-                String chasisFrontalIzqImg = String.valueOf(chasisFrontalIzq.getDrawable().getBounds());
-                String chasisTraseroIzqImg = String.valueOf(chasisTraseroIzq.getDrawable().getBounds());
-                String llantasIzqEje1Img = String.valueOf(llantasIzqEje1.getDrawable().getBounds());
-                String llantasIzqEje2Img = String.valueOf(llantasIzqEje2.getDrawable().getBounds());
-                String izqRemolqueP2Img = String.valueOf(izqRemolqueP2.getDrawable().getBounds());
-                String puertasImg = String.valueOf(puertas.getDrawable().getBounds());
-                String placasImg = String.valueOf(placas.getDrawable().getBounds());
-                String sello1Img = String.valueOf(sello1.getDrawable().getBounds());
-                String sello2Img = String.valueOf(sello2.getDrawable().getBounds());
-                String derRemolqueP1Img = String.valueOf(derRemolqueP1.getDrawable().getBounds());
-                String llantasDerEje2Img = String.valueOf(llantasDerEje2.getDrawable().getBounds());
-                String llantasDerEje1Img = String.valueOf(llantasDerEje1.getDrawable().getBounds());
-                String chasisTraseroDerImg = String.valueOf(chasisTraseroDer.getDrawable().getBounds());
-                String chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
-                String derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
-
-                String damage1Img = String.valueOf(damage1.getDrawable().getBounds());
-                String damage2Img = String.valueOf(damage2.getDrawable().getBounds());
-                String damage3Img = String.valueOf(damage3.getDrawable().getBounds());
-                String damage4Img = String.valueOf(damage4.getDrawable().getBounds());
-
-
 
                 if (tractorImg.contains("128") ||
                         noEconomicoImg.contains("128") ||
@@ -224,139 +246,165 @@ public class imgActivity extends AppCompatActivity {
         tractor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    imgClick("tractor" , REQUEST_TRACTOR);
+
+                tractor.setEnabled(false);
+                imgClick("tractor" , REQUEST_TRACTOR);
+
+
             }
         });
-
         noEconomico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                noEconomico.setEnabled(false);
                 imgClick("noEconomico" , REQUEST_NoECONOMICO);
             }
         });
         izqRemolqueP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                izqRemolqueP1.setEnabled(false);
                 imgClick("izqRemolqueP1" , REQUEST_IZQ_REMOLQUE_P1);
             }
         });
         vin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vin.setEnabled(false);
                 imgClick("vin" , REQUEST_VIN);
             }
         });
         chasisFrontalIzq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chasisFrontalIzq.setEnabled(false);
                 imgClick("chasisFrontalIzq" , REQUEST_CHASIS_FRONTAL_IZQ);
             }
         });
         chasisTraseroIzq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chasisTraseroIzq.setEnabled(false);
                 imgClick("chasisTraseroIzq" , REQUEST_CHASIS_TRASERO_IZQ);
             }
         });
         llantasIzqEje1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                llantasIzqEje1.setEnabled(false);
                 imgClick("llantasIzqEje1" , REQUEST_LLANTAS_IZQ_EJE1);
             }
         });
         llantasIzqEje2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                llantasIzqEje2.setEnabled(false);
                 imgClick("llantasIzqEje2" , REQUEST__LLANTAS_IZQ_EJE2);
             }
         });
         izqRemolqueP2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                izqRemolqueP2.setEnabled(false);
                 imgClick("izqRemolqueP2" , REQUEST_IZQ_REMOLQUE_P2);
             }
         });
         puertas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                puertas.setEnabled(false);
                 imgClick("puertas" , REQUEST_PUERTAS);
             }
         });
         placas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                placas.setEnabled(false);
                 imgClick("placas" , REQUEST_PLACAS);
             }
         });
         sello1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sello1.setEnabled(false);
                 imgClick("sello1" , REQUEST_SELLO1);
             }
         });
         sello2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sello2.setEnabled(false);
                 imgClick("sello2" , REQUEST_SELLO2);
             }
         });
         derRemolqueP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                derRemolqueP1.setEnabled(false);
                 imgClick("derRemolqueP1" , REQUEST_DER_REMOLQUE_P1);
             }
         });
         llantasDerEje2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                llantasDerEje2.setEnabled(false);
                 imgClick("llantasDerEje2" , REQUEST_LLANTAS_DER_EJE2);
             }
         });
         llantasDerEje1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                llantasDerEje1.setEnabled(false);
                 imgClick("llantasDerEje1" , REQUEST_LLANTAS_DER_EJE1);
             }
         });
         chasisTraseroDer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chasisTraseroDer.setEnabled(false);
                 imgClick("chasisTraseroDer" , REQUEST_CHASIS_TRASERO_DER);
             }
         });
         chasisFrontalDER.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chasisFrontalDER.setEnabled(false);
                 imgClick("chasisFrontalDER" , REQUEST_CHASIS_FRONTAL_DER);
             }
         });
         derRemolqueP2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                derRemolqueP2.setEnabled(false);
                 imgClick("derRemolqueP2" , REQUEST_DER_REMOLQUE_P2);
             }
         });
         damage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                damage1.setEnabled(false);
                 imgClick("damage1" , DAMAGE1);
             }
         });
         damage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                damage2.setEnabled(false);
                 imgClick("damage2" , DAMAGE2);
             }
         });
         damage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                damage3.setEnabled(false);
                 imgClick("damage3" , DAMAGE3);
             }
         });
         damage4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                damage4.setEnabled(false);
                 imgClick("damage4" , DAMAGE4);
             }
         });
@@ -365,7 +413,7 @@ public class imgActivity extends AppCompatActivity {
     private void imgClick (String photo , int code){
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_hora:" + timeStamp + "_foto:"+photo+ "_tipoOperacion:"+operacion+"_transportista:"+nombreTransportista+"_unidad:"+NoUnidad+"_linea:"+nombreLinea+"_caja:"+NoCaja;
+        String imageFileName = "JPEG_hora:" + timeStamp + "_foto:"+photo+ "_tipoOperacion:"+operacion+"_transportista:"+nombreTransportista+"_unidad:"+NoUnidad+"_linea:"+nombreLinea+"_caja:"+NoCaja+"_folio:"+folio;
         File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
         imageFile = null ;
         photoURI = null;
@@ -402,218 +450,254 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTOR:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_TRACTOR);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
-                   tractor.setImageBitmap(thumbImage);
-                   //Picasso.get().load(String.valueOf(thumbImage)).into(tractor);
-                    uploadDrive();
+                    tractor.setImageBitmap(thumbImage);
+                }else {
+                tractor.setEnabled(true);
                 }
+
                 break;
             case REQUEST_NoECONOMICO:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+
+                    uploadDrive3(REQUEST_NoECONOMICO);
+                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     noEconomico.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(noEconomico);
-                    uploadDrive();
+                } else {
+                    noEconomico.setEnabled(true);
                 }
                 break;
             case REQUEST_IZQ_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-
+                    uploadDrive3(REQUEST_IZQ_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
-
                     izqRemolqueP1.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(izqRemolqueP1);
-                    uploadDrive();
+
+
+                }else {
+                    izqRemolqueP1.setEnabled(true);
                 }
                 break;
+
             case REQUEST_VIN:
                 if (resultCode == Activity.RESULT_OK ) {
 
-
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(REQUEST_VIN);
+                  Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     vin.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(vin);
-                    uploadDrive();
+
+
+                }else {
+                    vin.setEnabled(true);
                 }
                 break;
+
             case REQUEST_CHASIS_FRONTAL_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(REQUEST_CHASIS_FRONTAL_IZQ);
+                    Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     chasisFrontalIzq.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(chasisFrontalIzq);
-                    uploadDrive();
+
+
+                }else {
+                    chasisFrontalIzq.setEnabled(true);
                 }
                 break;
+
             case REQUEST_CHASIS_TRASERO_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(REQUEST_CHASIS_TRASERO_IZQ);
+                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     chasisTraseroIzq.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(chasisTraseroIzq);
-                    uploadDrive();
+
+                }else {
+                    chasisTraseroIzq.setEnabled(true);
                 }
                 break;
             case REQUEST_LLANTAS_IZQ_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-
+                    uploadDrive3(REQUEST_LLANTAS_IZQ_EJE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     llantasIzqEje1.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(llantasIzqEje1);
-                    uploadDrive();
+
+
+
+                }else {
+                    llantasIzqEje1.setEnabled(true);
                 }
                 break;
             case REQUEST__LLANTAS_IZQ_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(REQUEST__LLANTAS_IZQ_EJE2);
+                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     llantasIzqEje2.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(llantasIzqEje2);
-                    uploadDrive();
+
+                }else {
+                    llantasIzqEje2.setEnabled(true);
                 }
                 break;
             case REQUEST_IZQ_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(REQUEST_IZQ_REMOLQUE_P2);
+                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     izqRemolqueP2.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(izqRemolqueP2);
-                    uploadDrive();
+
+                }else {
+                    izqRemolqueP2.setEnabled(true);
                 }
                 break;
                 case REQUEST_PUERTAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_PUERTAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     puertas.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(puertas);
-                    uploadDrive();
+
+                }else {
+                    puertas.setEnabled(true);
                 }
                 break;
                 case REQUEST_PLACAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_PLACAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     placas.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(placas);
-                    uploadDrive();
+
+                }else {
+                    placas.setEnabled(true);
                 }
                 break;
             case REQUEST_SELLO1:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_SELLO1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     sello1.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(sello1);
-                    uploadDrive();
+
+                }else {
+                    sello1.setEnabled(true);
                 }
                break;
                 case REQUEST_SELLO2:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_SELLO2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     sello2.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(sello2);
-                    uploadDrive();
+
+                }else {
+                    sello2.setEnabled(true);
                 }
                  break;
                 case REQUEST_DER_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_DER_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     derRemolqueP1.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(derRemolqueP1);
-                    uploadDrive();
+
+                }else {
+                    derRemolqueP1.setEnabled(true);
                 }
                 break;
                 case REQUEST_LLANTAS_DER_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(REQUEST_LLANTAS_DER_EJE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     llantasDerEje2.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(llantasDerEje2);
-                    uploadDrive();
+
+                }else {
+                    llantasDerEje2.setEnabled(true);
                 }
                 break;
             case REQUEST_LLANTAS_DER_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(REQUEST_LLANTAS_DER_EJE1);
+                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     llantasDerEje1.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(llantasDerEje1);
-                    uploadDrive();
+
+                }else {
+                    llantasDerEje1.setEnabled(true);
                 }
                 break;
             case REQUEST_CHASIS_TRASERO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadDrive3(REQUEST_CHASIS_TRASERO_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -621,12 +705,13 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     chasisTraseroDer.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(chasisTraseroDer);
-                    uploadDrive();
+                }else {
+                    chasisTraseroDer.setEnabled(true);
                 }
                 break;
             case REQUEST_CHASIS_FRONTAL_DER:
                 if (resultCode == Activity.RESULT_OK ) {
+                    uploadDrive3(REQUEST_CHASIS_FRONTAL_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -634,12 +719,14 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     chasisFrontalDER.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(chasisFrontalDER);
-                    uploadDrive();
+
+                }else {
+                    chasisFrontalDER.setEnabled(true);
                 }
                 break;
             case REQUEST_DER_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
+                    uploadDrive3(REQUEST_DER_REMOLQUE_P2);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -647,60 +734,69 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     derRemolqueP2.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(derRemolqueP2);
-                    uploadDrive();
+
+                }else {
+                    derRemolqueP2.setEnabled(true);
                 }
                 break;
             case DAMAGE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    uploadDrive3(DAMAGE1);
+                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     damage1.setImageBitmap(thumbImage);
-                    //Picasso.get().load(photoURI).into(damage1);
-                    uploadDrive();
+
+                }else {
+                    damage1.setEnabled(true);
                 }
                 break;
             case DAMAGE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(DAMAGE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     damage2.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(damage2);
-                    uploadDrive();
+
+                }else {
+                    damage2.setEnabled(true);
                 }
                 break;
             case DAMAGE3:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(DAMAGE3);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     damage3.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(damage3);
-                    uploadDrive();
+
+                }else {
+                    damage3.setEnabled(true);
                 }
                 break;
             case DAMAGE4:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadDrive3(DAMAGE4);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     damage4.setImageBitmap(thumbImage);
-                   // Picasso.get().load(photoURI).into(damage4);
-                    uploadDrive();
+
+                }else {
+                    damage4.setEnabled(true);
                 }
                 break;
 
@@ -712,48 +808,7 @@ public class imgActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, resultData);
     }
 
-        private void uploadDrive () {
 
-         descarga = 0 ;
-
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    // Create URI from real path
-                    String path = imageFile.getPath();
-                    String name = imageFile.getName();
-                    Boolean res ;
-
-
-
-                    com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();
-                    metadata.setName(name);
-
-                    java.io.File filePath = new java.io.File(path);
-                    FileContent mediaContent = new FileContent("image/jpeg", filePath);
-
-                    try {
-                        com.google.api.services.drive.model.File file = googleDriveService.files().create(metadata, mediaContent)
-                                .setFields("id")
-                                .execute();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                Toast.makeText(getBaseContext(),"Error al enviar imagen",Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    }
-
-                }
-            });
-            t.start();
-
-
-        }
 
     private void handleSignInResult(Intent result) {
         GoogleSignIn.getSignedInAccountFromIntent(result)
@@ -794,6 +849,251 @@ public class imgActivity extends AppCompatActivity {
         startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
 
 
+
+    private void uploadDrive3 (int codigo) {
+
+
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Create URI from real path
+                String path = imageFile.getPath();
+                String name = imageFile.getName();
+
+
+                com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();
+                metadata.setName(name);
+
+                java.io.File filePath = new java.io.File(path);
+                FileContent mediaContent = new FileContent("image/jpeg", filePath);
+
+                try {
+                    com.google.api.services.drive.model.File file = googleDriveService.files().create(metadata, mediaContent)
+                            .setFields("id")
+                            .execute();
+
+
+
+                } catch (IOException e) {
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getBaseContext(),"Error al enviar imagen",Toast.LENGTH_SHORT).show();
+
+
+                            switch (codigo){
+                                case REQUEST_TRACTOR:
+
+                                    tractor.setImageBitmap(null);
+                                    tractor.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractor.setEnabled(true);
+
+                                    break;
+
+                                case REQUEST_NoECONOMICO:
+
+                                    noEconomico.setImageBitmap(null);
+                                    noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    noEconomico.setEnabled(true);
+
+                                    break;
+                                case REQUEST_IZQ_REMOLQUE_P1:
+
+
+                                    izqRemolqueP1.setImageBitmap(null);
+                                    izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    izqRemolqueP1.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST_VIN:
+
+                                    vin.setImageBitmap(null);
+                                    vin.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    vin.setEnabled(true);
+
+
+                                    break;
+                                case REQUEST_CHASIS_FRONTAL_IZQ:
+
+
+                                    chasisFrontalIzq.setImageBitmap(null);
+                                    chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisFrontalIzq.setEnabled(true);
+
+                                    break;
+                                case REQUEST_CHASIS_TRASERO_IZQ:
+
+
+                                    chasisTraseroIzq.setImageBitmap(null);
+                                    chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisTraseroIzq.setEnabled(true);
+
+                                    break;
+                                case REQUEST_LLANTAS_IZQ_EJE1:
+
+
+                                    llantasIzqEje1.setImageBitmap(null);
+                                    llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasIzqEje1.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST__LLANTAS_IZQ_EJE2:
+
+                                    llantasIzqEje2.setImageBitmap(null);
+                                    llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasIzqEje2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_IZQ_REMOLQUE_P2:
+
+
+                                    izqRemolqueP2.setImageBitmap(null);
+                                    izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    izqRemolqueP2.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST_PUERTAS:
+
+
+                                    puertas.setImageBitmap(null);
+                                    puertas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    puertas.setEnabled(true);
+
+                                    break;
+                                case REQUEST_PLACAS:
+
+                                    placas.setImageBitmap(null);
+                                    placas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    placas.setEnabled(true);
+
+                                    break;
+                                case REQUEST_SELLO1:
+
+
+                                    sello1.setImageBitmap(null);
+                                    sello1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    sello1.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST_SELLO2:
+
+
+                                    sello2.setImageBitmap(null);
+                                    sello2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    sello2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_DER_REMOLQUE_P1:
+
+
+
+                                    derRemolqueP1.setImageBitmap(null);
+                                    derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    derRemolqueP1.setEnabled(true);
+
+                                    break;
+                                case REQUEST_LLANTAS_DER_EJE2:
+
+
+                                    llantasDerEje2.setImageBitmap(null);
+                                    llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasDerEje2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_LLANTAS_DER_EJE1:
+
+
+                                    llantasDerEje1.setImageBitmap(null);
+                                    llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasDerEje1.setEnabled(true);
+
+                                    break;
+                                case REQUEST_CHASIS_TRASERO_DER:
+
+
+                                    chasisTraseroDer.setImageBitmap(null);
+                                    chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisTraseroDer.setEnabled(true);
+
+                                    break;
+                                case REQUEST_CHASIS_FRONTAL_DER:
+
+
+                                    chasisFrontalDER.setImageBitmap(null);
+                                    chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisFrontalDER.setEnabled(true);
+
+                                    break;
+                                case REQUEST_DER_REMOLQUE_P2:
+
+
+                                    derRemolqueP2.setImageBitmap(null);
+                                    derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    derRemolqueP2.setEnabled(true);
+
+                                    break;
+                                case DAMAGE1:
+
+
+                                    damage1.setImageBitmap(null);
+                                    damage1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage1.setEnabled(true);
+
+                                    break;
+                                case DAMAGE2:
+
+
+                                    damage2.setImageBitmap(null);
+                                    damage2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage2.setEnabled(true);
+
+                                    break;
+                                case DAMAGE3:
+
+
+                                    damage3.setImageBitmap(null);
+                                    damage3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage3.setEnabled(true);
+
+                                    break;
+                                case DAMAGE4:
+
+
+                                    damage4.setImageBitmap(null);
+                                    damage4.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage4.setEnabled(true);
+
+                                    break;
+
+
+
+                            }
+
+
+                        }
+                    });
+                }
+
+
+
+            }
+        });
+        t.start();
+
+
+    }
 }
