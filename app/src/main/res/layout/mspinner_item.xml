@@ -7,7 +7,7 @@
     android:maxLines="1"
     android:textSize="28sp"
     android:textColor="@color/negrotle"
-android:background="@color/grisesito"
+android:background="@color/griksito"
     >
 
 </TextView>

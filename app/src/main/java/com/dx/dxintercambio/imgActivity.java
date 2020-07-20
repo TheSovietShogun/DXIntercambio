@@ -1,21 +1,29 @@
 package com.dx.dxintercambio;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
+import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,8 +90,8 @@ public class imgActivity extends AppCompatActivity {
     private static final int DAMAGE3 = 502;
     private static final int DAMAGE4 = 503;
     private Boolean resk;
-    final int THUMBSIZE = 128;
-    int res = 0 ;
+    private final int THUMBSIZE = 128;
+    private int res = 0 ;
     private String tractorImg ;
     private String noEconomicoImg;
     private String izqRemolqueP1Img;
@@ -108,6 +116,7 @@ public class imgActivity extends AppCompatActivity {
     private String damage2Img ;
     private String damage3Img;
     private String damage4Img ;
+    private Object Network;
 
     @Override
     protected void onStart() {
@@ -115,6 +124,42 @@ public class imgActivity extends AppCompatActivity {
 
         requestSignIn();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu2,menu);
+        return true ;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.cancelar){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Desea cancelar este Intercambio ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+
+                            Intent i = new Intent(imgActivity.this, cancelarActivity.class);
+                            i.putExtra("folio", folio);
+                            startActivity(i);
+
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     @Override
@@ -156,57 +201,88 @@ public class imgActivity extends AppCompatActivity {
 
         btnImg = (Button) findViewById(R.id.btnImg);
 
-        tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
-        noEconomicoImg = String.valueOf(noEconomico.getDrawable().getBounds());
-        izqRemolqueP1Img = String.valueOf(izqRemolqueP1.getDrawable().getBounds());
-        vinImg = String.valueOf(vin.getDrawable().getBounds());
-        chasisFrontalIzqImg = String.valueOf(chasisFrontalIzq.getDrawable().getBounds());
-        chasisTraseroIzqImg = String.valueOf(chasisTraseroIzq.getDrawable().getBounds());
-        llantasIzqEje1Img = String.valueOf(llantasIzqEje1.getDrawable().getBounds());
-        llantasIzqEje2Img = String.valueOf(llantasIzqEje2.getDrawable().getBounds());
-        izqRemolqueP2Img = String.valueOf(izqRemolqueP2.getDrawable().getBounds());
-        puertasImg = String.valueOf(puertas.getDrawable().getBounds());
-        placasImg = String.valueOf(placas.getDrawable().getBounds());
-        sello1Img = String.valueOf(sello1.getDrawable().getBounds());
-        sello2Img = String.valueOf(sello2.getDrawable().getBounds());
-        derRemolqueP1Img = String.valueOf(derRemolqueP1.getDrawable().getBounds());
-        llantasDerEje2Img = String.valueOf(llantasDerEje2.getDrawable().getBounds());
-        llantasDerEje1Img = String.valueOf(llantasDerEje1.getDrawable().getBounds());
-        chasisTraseroDerImg = String.valueOf(chasisTraseroDer.getDrawable().getBounds());
-        chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
-        derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
 
-        damage1Img = String.valueOf(damage1.getDrawable().getBounds());
-        damage2Img = String.valueOf(damage2.getDrawable().getBounds());
-        damage3Img = String.valueOf(damage3.getDrawable().getBounds());
-        damage4Img = String.valueOf(damage4.getDrawable().getBounds());
 
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (tractorImg.contains("128") ||
-                        noEconomicoImg.contains("128") ||
-                        izqRemolqueP1Img.contains("128") ||
-                        vinImg.contains("128") ||
-                        chasisFrontalIzqImg.contains("128") ||
-                        chasisTraseroIzqImg.contains("128") ||
-                        llantasIzqEje1Img.contains("128") ||
-                        llantasIzqEje2Img.contains("128") ||
-                        izqRemolqueP2Img.contains("128") ||
-                        puertasImg.contains("128") ||
-                        placasImg.contains("128") ||
-                        sello1Img.contains("128") ||
-                        sello2Img.contains("128") ||
-                        derRemolqueP1Img.contains("128") ||
-                        llantasDerEje2Img.contains("128") ||
-                        llantasDerEje1Img.contains("128") ||
-                        chasisTraseroDerImg.contains("128") ||
-                        chasisFrontalDERImg.contains("128") ||
-                        derRemolqueP2Img.contains("128")
+
+                //300 VACIO
+                //128 IMAGFN
+
+
+                tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
+                noEconomicoImg = String.valueOf(noEconomico.getDrawable().getBounds());
+                izqRemolqueP1Img = String.valueOf(izqRemolqueP1.getDrawable().getBounds());
+                vinImg = String.valueOf(vin.getDrawable().getBounds());
+                chasisFrontalIzqImg = String.valueOf(chasisFrontalIzq.getDrawable().getBounds());
+                chasisTraseroIzqImg = String.valueOf(chasisTraseroIzq.getDrawable().getBounds());
+                llantasIzqEje1Img = String.valueOf(llantasIzqEje1.getDrawable().getBounds());
+                llantasIzqEje2Img = String.valueOf(llantasIzqEje2.getDrawable().getBounds());
+                izqRemolqueP2Img = String.valueOf(izqRemolqueP2.getDrawable().getBounds());
+                puertasImg = String.valueOf(puertas.getDrawable().getBounds());
+                placasImg = String.valueOf(placas.getDrawable().getBounds());
+                sello1Img = String.valueOf(sello1.getDrawable().getBounds());
+                sello2Img = String.valueOf(sello2.getDrawable().getBounds());
+                derRemolqueP1Img = String.valueOf(derRemolqueP1.getDrawable().getBounds());
+                llantasDerEje2Img = String.valueOf(llantasDerEje2.getDrawable().getBounds());
+                llantasDerEje1Img = String.valueOf(llantasDerEje1.getDrawable().getBounds());
+                chasisTraseroDerImg = String.valueOf(chasisTraseroDer.getDrawable().getBounds());
+                chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
+                derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
+
+                damage1Img = String.valueOf(damage1.getDrawable().getBounds());
+                damage2Img = String.valueOf(damage2.getDrawable().getBounds());
+                damage3Img = String.valueOf(damage3.getDrawable().getBounds());
+                damage4Img = String.valueOf(damage4.getDrawable().getBounds());
+
+
+                if (tractorImg.contains("300") ||
+                        noEconomicoImg.contains("300") ||
+                        izqRemolqueP1Img.contains("300") ||
+                        vinImg.contains("300") ||
+                        chasisFrontalIzqImg.contains("300") ||
+                        chasisTraseroIzqImg.contains("300") ||
+                        llantasIzqEje1Img.contains("300") ||
+                        llantasIzqEje2Img.contains("300") ||
+                        izqRemolqueP2Img.contains("300") ||
+                        puertasImg.contains("300") ||
+                        placasImg.contains("300") ||
+                        sello1Img.contains("300") ||
+                        sello2Img.contains("300") ||
+                        derRemolqueP1Img.contains("300") ||
+                        llantasDerEje2Img.contains("300") ||
+                        llantasDerEje1Img.contains("300") ||
+                        chasisTraseroDerImg.contains("300") ||
+                        chasisFrontalDERImg.contains("300") ||
+                        derRemolqueP2Img.contains("300")
                 ){
 
-                    if (damage1Img.contains("300") &&
+                    Toast.makeText(getBaseContext(),"Faltan imagenes por tomar",Toast.LENGTH_SHORT).show();
+
+
+                }else if (tractorImg.contains("128") &&
+                        noEconomicoImg.contains("128") &&
+                        izqRemolqueP1Img.contains("128") &&
+                        vinImg.contains("128") &&
+                        chasisFrontalIzqImg.contains("128") &&
+                        chasisTraseroIzqImg.contains("128") &&
+                        llantasIzqEje1Img.contains("128") &&
+                        llantasIzqEje2Img.contains("128") &&
+                        izqRemolqueP2Img.contains("128") &&
+                        puertasImg.contains("128") &&
+                        placasImg.contains("128") &&
+                        sello1Img.contains("128") &&
+                        sello2Img.contains("128") &&
+                        derRemolqueP1Img.contains("128") &&
+                        llantasDerEje2Img.contains("128") &&
+                        llantasDerEje1Img.contains("128") &&
+                        chasisTraseroDerImg.contains("128") &&
+                        chasisFrontalDERImg.contains("128") &&
+                        derRemolqueP2Img.contains("128")
+                ){
+                     if (damage1Img.contains("300") &&
                             damage2Img.contains("300") &&
                             damage3Img.contains("300") &&
                             damage4Img.contains("300") ){
@@ -229,16 +305,11 @@ public class imgActivity extends AppCompatActivity {
                                 });
                         AlertDialog alert = builder.create();
                         alert.show();
+                    }else {
+                        Intent i = new Intent(imgActivity.this, splash.class);
+                        startActivity(i);
                     }
-
-
-
-                }else {
-                    Toast.makeText(getBaseContext(),"Faltan imagenes por tomar",Toast.LENGTH_SHORT).show();
                 }
-
-
-
 
             }
         });
@@ -866,22 +937,27 @@ public class imgActivity extends AppCompatActivity {
                 // Create URI from real path
                 String path = imageFile.getPath();
                 String name = imageFile.getName();
-
+                String folderID = "1v-fzq4cv1UkEWfzK4pUEUcupugqYwYjB";
 
                 com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();
+
                 metadata.setName(name);
+                metadata.setParents(Collections.singletonList(folderID));
 
                 java.io.File filePath = new java.io.File(path);
                 FileContent mediaContent = new FileContent("image/jpeg", filePath);
 
                 try {
                     com.google.api.services.drive.model.File file = googleDriveService.files().create(metadata, mediaContent)
-                            .setFields("id")
+                            .setFields("id, parents")
                             .execute();
 
 
 
                 } catch (IOException e) {
+
+                    e.getMessage();
+
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(getBaseContext(),"Error al enviar imagen",Toast.LENGTH_SHORT).show();

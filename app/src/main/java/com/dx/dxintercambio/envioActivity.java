@@ -42,7 +42,7 @@ import android.view.Menu;
 public class envioActivity extends AppCompatActivity {
 
     private EditText registradoPor  , comentarios;
-    private Spinner tipoOperacion ,transportista, linea, estatus ;
+    private Spinner tipoOperacionSP ,transportista, linea, estatusCaja ;
     private Button enviar;
     private String tran;
     private SoapPrimitive resultString;
@@ -52,8 +52,8 @@ public class envioActivity extends AppCompatActivity {
     private String [] lineaArr ;
     private String [] estatusArr ;
     int PICK_IMAGE_MULTIPLE = 1;
-    String imageEncoded;
-    List<String> imagesEncodedList;
+    private String imageEncoded;
+    private List<String> imagesEncodedList;
     private GridView gvGallery;
     private GalleryAdapter galleryAdapter;
     private String usuario ;
@@ -65,7 +65,8 @@ public class envioActivity extends AppCompatActivity {
     private int idUnidad;
     private int idRemolque;
     private  AlertDialog alert ;
-    String[] PERMISSIONS = {
+    private String hora;
+    private String[] PERMISSIONS = {
             android.Manifest.permission.ACCESS_FINE_LOCATION,
             android.Manifest.permission.INTERNET,
             android.Manifest.permission.WAKE_LOCK,
@@ -78,9 +79,9 @@ public class envioActivity extends AppCompatActivity {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.FOREGROUND_SERVICE
     };
-    int PERMISSION_ALL = 1;
-    int azul = Color.parseColor("#074EAB");
-
+    private int PERMISSION_ALL = 1;
+    private int azul = Color.parseColor("#074EAB");
+    private String folio;
 
 
     @Override
@@ -138,14 +139,14 @@ public class envioActivity extends AppCompatActivity {
         usuario = getIntent().getStringExtra("idUsuario");
 
 
-        tipoOperacion = (Spinner) findViewById(R.id.spinner2);
+        tipoOperacionSP = (Spinner) findViewById(R.id.spinner2);
         registradoPor = (EditText)findViewById(R.id.editText8);
         transportista = (Spinner) findViewById(R.id.spinner);
         operador = (AutoCompleteTextView)findViewById(R.id.spinner69);
         unidad = (AutoCompleteTextView)findViewById(R.id.editText7);
         noRemolque = (AutoCompleteTextView)findViewById(R.id.editText11);
         linea = (Spinner) findViewById(R.id.spinner10);
-        estatus = (Spinner) findViewById(R.id.spinner3);
+        estatusCaja = (Spinner) findViewById(R.id.spinner3);
         comentarios = (EditText)findViewById(R.id.editText12);
         enviar = (Button) findViewById(R.id.btnDatos);
 
@@ -183,10 +184,6 @@ public class envioActivity extends AppCompatActivity {
 
 
 
-
-
-
-
                 //ENVIAR
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("http://dxxpress.net/API/api/")
@@ -197,8 +194,8 @@ public class envioActivity extends AppCompatActivity {
 
                 fechaHora = (String) android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new Date());
 
-                String tipoOpe = tipoOperacion.getSelectedItem().toString();
-                String status  =  estatus.getSelectedItem().toString();
+                String tipoOpe = tipoOperacionSP.getSelectedItem().toString();
+                String status  =  estatusCaja.getSelectedItem().toString();
                 int tipoOperacion = 3;
                 int estatus =3;
 
@@ -229,19 +226,32 @@ public class envioActivity extends AppCompatActivity {
                         break;
                 }
 
+
+
+
+                //GET FLOTA
                 CFlota cFlota = (CFlota) transportista.getSelectedItem();
                 int idTransportista = Integer.parseInt(cFlota.getId());
 
+                //GET LINEA
                 CLinea cLinea = (CLinea)linea.getSelectedItem();
                 int idLinea = Integer.parseInt(cLinea.getId());
 
-
+                //GET COMENTARIO
                 String comentario = comentarios.getText().toString();
 
+                //GET OPERADOR
+                int loco  = operador.getId();
+
+                //GET USUARIO
                 int idUsuario = Integer.parseInt(usuario);
 
+                //SET GET FOLIO
+                hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
+               folio = (hora+"_"+idRemolque);
+               String comentarioCancel = "";
 
-                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario);
+                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario,folio,comentarioCancel);
 
 
 
@@ -300,6 +310,23 @@ public class envioActivity extends AppCompatActivity {
                         //ESTA COMPLETO ?
                         if(idOperador == 0 || idUnidad == 0 || idRemolque == 0 || estatus == 3 || tipoOperacion == 3){
                             //NO
+                            if(idOperador== 0){
+                                operador.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
+                            if(idUnidad== 0){
+                                unidad.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
+                            if(idRemolque== 0){
+                                noRemolque.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
+                            if(estatus== 0){
+                                estatusCaja.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
+                            if(tipoOperacion== 0){
+                                tipoOperacionSP.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
+
+
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else {
                             //SI
@@ -361,11 +388,11 @@ public class envioActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipoOperacion.setAdapter(adapter);
+        tipoOperacionSP.setAdapter(adapter);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusArr);
        // adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        estatus.setAdapter(adapter2);
+        estatusCaja.setAdapter(adapter2);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -431,9 +458,9 @@ public class envioActivity extends AppCompatActivity {
 
                 }else {
                     operador.setEnabled(true);
-                    operador.setBackgroundColor(0);
+                    operador.setBackgroundColor(Color.parseColor("#D6D9D6"));
                     unidad.setEnabled(true);
-                    unidad.setBackgroundColor(0);
+                    unidad.setBackgroundColor(Color.parseColor("#D6D9D6"));
                     Post2 post2 = new Post2(user,password,idFlota);
 
                     Call<List<CUnidad>> callUni = dxApi.getUnidad(post2);
@@ -521,7 +548,7 @@ public class envioActivity extends AppCompatActivity {
 
                 }else {
                     noRemolque.setEnabled(true);
-                    noRemolque.setBackgroundColor(0);
+                    noRemolque.setBackgroundColor(Color.parseColor("#D6D9D6"));
 
 
                     Post3 post3 = new Post3(user, password, idLinea);
@@ -594,12 +621,12 @@ public class envioActivity extends AppCompatActivity {
 
     public void enviar () {
 
-         String operacion = tipoOperacion.getSelectedItem().toString();
+         String operacion = tipoOperacionSP.getSelectedItem().toString();
          String NoUnidad = unidad.getText().toString();
          String NoCaja = noRemolque.getText().toString();
          String nombreLinea = linea.getSelectedItem().toString();
          String nombreTransportista = transportista.getSelectedItem().toString();
-         String folio =  new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
 
            Intent i = new Intent(envioActivity.this, imgActivity.class);
             i.putExtra("operacion", operacion);

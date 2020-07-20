@@ -12,10 +12,13 @@ public class Post4 {
     private int idUnidad;
     private int idRemolque;
     private int idLinea;
-    private int estatus;
+    private int estatusRemolque;
     private String comentario;
+    private String folio ;
+    private String comentarioCancel;
 
-    public Post4(String user, String password, String fechaHora, int tipoOperacion, int idUsuario, int idTransportista, int idOperador, int idUnidad, int idRemolque, int idLinea, int estatus, String comentario) {
+    public Post4(String user, String password, String fechaHora, int tipoOperacion, int idUsuario, int idTransportista,
+                 int idOperador, int idUnidad, int idRemolque, int idLinea, int estatusRemolque, String comentario , String folio , String comentarioCancel) {
         this.user = user;
         this.password = password;
         this.fechaHora = fechaHora;
@@ -26,8 +29,10 @@ public class Post4 {
         this.idUnidad = idUnidad;
         this.idRemolque = idRemolque;
         this.idLinea = idLinea;
-        this.estatus = estatus;
+        this.estatusRemolque = estatusRemolque;
         this.comentario = comentario;
+        this.folio = folio;
+        this.comentarioCancel = comentarioCancel;
     }
 
     public String getComentario() {
@@ -75,6 +80,10 @@ public class Post4 {
     }
 
     public int getEstatus() {
-        return estatus;
+        return estatusRemolque;
     }
+
+    public String getFolio() { return folio; }
+
+    public String getComentarioCancel() { return comentarioCancel; }
 }
