@@ -16,9 +16,10 @@ public class Post4 {
     private String comentario;
     private String folio ;
     private String comentarioCancel;
+    private int idIntercambio;
 
     public Post4(String user, String password, String fechaHora, int tipoOperacion, int idUsuario, int idTransportista,
-                 int idOperador, int idUnidad, int idRemolque, int idLinea, int estatusRemolque, String comentario , String folio , String comentarioCancel) {
+                 int idOperador, int idUnidad, int idRemolque, int idLinea, int estatusRemolque, String comentario , String folio , String comentarioCancel , int idIntercambio) {
         this.user = user;
         this.password = password;
         this.fechaHora = fechaHora;
@@ -33,6 +34,7 @@ public class Post4 {
         this.comentario = comentario;
         this.folio = folio;
         this.comentarioCancel = comentarioCancel;
+        this.idIntercambio = idIntercambio;
     }
 
     public String getComentario() {
@@ -59,9 +61,7 @@ public class Post4 {
         return idUsuario;
     }
 
-    public int getIdTransportista() {
-        return idTransportista;
-    }
+    public int getIdTransportista() { return idTransportista; }
 
     public int getIdOperador() {
         return idOperador;
@@ -79,11 +79,11 @@ public class Post4 {
         return idLinea;
     }
 
-    public int getEstatus() {
-        return estatusRemolque;
-    }
-
     public String getFolio() { return folio; }
 
     public String getComentarioCancel() { return comentarioCancel; }
+
+    public int getEstatusRemolque() { return estatusRemolque; }
+
+    public int getIdIntercambio() { return idIntercambio; }
 }

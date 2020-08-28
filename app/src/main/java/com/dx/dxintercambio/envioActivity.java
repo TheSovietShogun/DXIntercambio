@@ -8,7 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +32,7 @@ import androidx.core.app.ActivityCompat;
 
 import org.ksoap2.serialization.SoapPrimitive;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -82,6 +89,10 @@ public class envioActivity extends AppCompatActivity {
     private int PERMISSION_ALL = 1;
     private int azul = Color.parseColor("#074EAB");
     private String folio;
+    private ConnectivityManager cm;
+    private ConnectivityManager.NetworkCallback callback;
+    private NetworkRequest networkRequest;
+    int mensaje ;
 
 
     @Override
@@ -129,15 +140,12 @@ public class envioActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_envio);
 
-
         SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
 
         user = preferences.getString("user","");
         password = preferences.getString("pass","");
 
-
         usuario = getIntent().getStringExtra("idUsuario");
-
 
         tipoOperacionSP = (Spinner) findViewById(R.id.spinner2);
         registradoPor = (EditText)findViewById(R.id.editText8);
@@ -152,6 +160,23 @@ public class envioActivity extends AppCompatActivity {
 
         registradoPor.setText(user);
         registradoPor.setEnabled(false);
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
+        String path = destPath.toString();
+        File directory = new File(path);
+        File[] files = directory.listFiles();
+
+        for (int i = 0; i < files.length; i++)
+        {
+            Log.d("Files", "FileName:" + files[i].getName());
+            getApplicationContext().deleteFile(files[i].getName());
+            //String nombre = files[i].getName();
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         operador.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -186,7 +211,7 @@ public class envioActivity extends AppCompatActivity {
 
                 //ENVIAR
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://dxxpress.net/API/api/")
+                        .baseUrl("http://192.168.4.87:80/api/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -227,8 +252,6 @@ public class envioActivity extends AppCompatActivity {
                 }
 
 
-
-
                 //GET FLOTA
                 CFlota cFlota = (CFlota) transportista.getSelectedItem();
                 int idTransportista = Integer.parseInt(cFlota.getId());
@@ -250,9 +273,9 @@ public class envioActivity extends AppCompatActivity {
                 hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
                folio = (hora+"_"+idRemolque);
                String comentarioCancel = "";
+               int idIntercambio =0 ;
 
-                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario,folio,comentarioCancel);
-
+                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,idIntercambio);
 
 
                 //REVISA POR OPCION "OTRO"
@@ -270,6 +293,7 @@ public class envioActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
 
+
                                     callEnvio.enqueue(new Callback<List<CEnvio>>() {
                                         @Override
                                         public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
@@ -279,11 +303,15 @@ public class envioActivity extends AppCompatActivity {
                                             }
                                             List<CEnvio> cEnvios = response.body();
 
-                                            String mensaje = cEnvios.get(0).getMensaje();
+                                             mensaje = cEnvios.get(0).getReturn_value();
 
-                                            Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
+                                            if (mensaje == 0){
+                                                Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                                            }else {
+                                                Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
+                                                enviar();
+                                            }
 
-                                            enviar();
 
                                         }
 
@@ -339,6 +367,10 @@ public class envioActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
 
+
+
+
+
                                     callEnvio.enqueue(new Callback<List<CEnvio>>() {
                                         @Override
                                         public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
@@ -348,11 +380,14 @@ public class envioActivity extends AppCompatActivity {
                                             }
                                             List<CEnvio> cEnvios = response.body();
 
-                                            String mensaje = cEnvios.get(0).getMensaje();
+                                            mensaje = cEnvios.get(0).getReturn_value();
 
-                                            Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
-
-                                            enviar();
+                                            if (mensaje == 0){
+                                                Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                                            }else {
+                                                Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
+                                                enviar();
+                                            }
 
                                         }
 
@@ -396,14 +431,14 @@ public class envioActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://dxxpress.net/API/api/")
+                .baseUrl("http://192.168.4.87:80/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         dxApi = retrofit.create(DxApi.class);
         Post post = new Post(user,password);
 
-        //FLOTA
+        //FLOTA(Transportista)
         Call<List<CFlota>> callFlota = dxApi.getFlota(post);
 
         callFlota.enqueue(new Callback<List<CFlota>>() {
@@ -635,6 +670,7 @@ public class envioActivity extends AppCompatActivity {
             i.putExtra("nombreLinea", nombreLinea);
             i.putExtra("nombreTransportista", nombreTransportista);
             i.putExtra("folio", folio);
+            i.putExtra("mensaje", mensaje);
            startActivity(i);
 
     }
@@ -668,4 +704,41 @@ public class envioActivity extends AppCompatActivity {
         return true;
     }
 
+       /* private void checkInternet (Context context){
+
+             cm = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+            
+             networkRequest = new NetworkRequest.Builder()
+                    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                    .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                    .build();
+             callback = new ConnectivityManager.NetworkCallback(){
+
+                @Override
+                public void onAvailable(@NonNull Network network) {
+                    super.onAvailable(network);
+                }
+
+                @Override
+                public void onLost(@NonNull Network network) {
+                    super.onLost(network);
+                }
+
+            };
+        }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        cm.registerNetworkCallback(networkRequest, callback);
+
+    }
+
+    @Override
+    protected void onPause() {
+
+        cm.unregisterNetworkCallback(callback);
+        super.onPause();
+    }*/
 }

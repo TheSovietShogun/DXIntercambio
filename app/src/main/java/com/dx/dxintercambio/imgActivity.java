@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,17 +42,25 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class imgActivity extends AppCompatActivity {
 
     private ImageView tractor , noEconomico, izqRemolqueP1 , vin , chasisFrontalIzq , chasisTraseroIzq , llantasIzqEje1
             ,llantasIzqEje2 , izqRemolqueP2 , puertas , placas , sello1 , sello2 , derRemolqueP1 , llantasDerEje2
-            , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4;
+            , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4, tarjeta;
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final String TAG = "envioActivity";
     private Drive mService;
@@ -85,6 +94,7 @@ public class imgActivity extends AppCompatActivity {
     private static final int REQUEST_CHASIS_TRASERO_DER = 360;
     private static final int REQUEST_CHASIS_FRONTAL_DER = 370;
     private static final int REQUEST_DER_REMOLQUE_P2 = 380;
+    private static final int REQUEST_TARJETA = 390;
     private static final int DAMAGE1= 500;
     private static final int DAMAGE2 = 501;
     private static final int DAMAGE3 = 502;
@@ -101,8 +111,8 @@ public class imgActivity extends AppCompatActivity {
     private  String llantasIzqEje1Img;
     private String llantasIzqEje2Img;
     private String izqRemolqueP2Img;
-    private  String puertasImg;
-    private  String placasImg;
+    private String puertasImg;
+    private String placasImg;
     private String sello1Img;
     private String sello2Img;
     private String derRemolqueP1Img;
@@ -110,19 +120,23 @@ public class imgActivity extends AppCompatActivity {
     private String llantasDerEje1Img;
     private String chasisTraseroDerImg;
     private  String chasisFrontalDERImg;
-    private String derRemolqueP2Img ;
-
+    private String derRemolqueP2Img, tarjertaImg ;
+     DxApi dxApi;
     private String damage1Img ;
     private String damage2Img ;
     private String damage3Img;
     private String damage4Img ;
     private Object Network;
+    String user ;
+    String password ;
+    int mensaje;
+    String imageFileName ;
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        requestSignIn();
+       // requestSignIn();
 
     }
 
@@ -144,7 +158,7 @@ public class imgActivity extends AppCompatActivity {
                         public void onClick(final DialogInterface dialog, final int id) {
 
                             Intent i = new Intent(imgActivity.this, cancelarActivity.class);
-                            i.putExtra("folio", folio);
+                            i.putExtra("mensaje", mensaje);
                             startActivity(i);
 
                         }
@@ -167,12 +181,18 @@ public class imgActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img);
 
+        SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
+
+        user = preferences.getString("user","");
+        password = preferences.getString("pass","");
+
         operacion = getIntent().getStringExtra("operacion");
         NoUnidad = getIntent().getStringExtra("NoUnidad");
         NoCaja = getIntent().getStringExtra("NoCaja");
         nombreLinea = getIntent().getStringExtra("nombreLinea");
         nombreTransportista = getIntent().getStringExtra("nombreTransportista");
         folio = getIntent().getStringExtra("folio");
+        mensaje = getIntent().getIntExtra("mensaje",0);
 
         tractor = (ImageView) findViewById(R.id.imageView3);
         noEconomico = (ImageView) findViewById(R.id.imageView4);
@@ -193,6 +213,8 @@ public class imgActivity extends AppCompatActivity {
         chasisTraseroDer = (ImageView) findViewById(R.id.imageView19);
         chasisFrontalDER = (ImageView) findViewById(R.id.imageView20);
         derRemolqueP2 = (ImageView) findViewById(R.id.imageView22);
+        tarjeta = (ImageView) findViewById(R.id.imageView420);
+
 
         damage1 = (ImageView) findViewById(R.id.imageView18);
         damage2 = (ImageView) findViewById(R.id.imageView21);
@@ -231,6 +253,7 @@ public class imgActivity extends AppCompatActivity {
                 chasisTraseroDerImg = String.valueOf(chasisTraseroDer.getDrawable().getBounds());
                 chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
                 derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
+                tarjertaImg = String.valueOf(tarjeta.getDrawable().getBounds());
 
                 damage1Img = String.valueOf(damage1.getDrawable().getBounds());
                 damage2Img = String.valueOf(damage2.getDrawable().getBounds());
@@ -256,7 +279,8 @@ public class imgActivity extends AppCompatActivity {
                         llantasDerEje1Img.contains("300") ||
                         chasisTraseroDerImg.contains("300") ||
                         chasisFrontalDERImg.contains("300") ||
-                        derRemolqueP2Img.contains("300")
+                        derRemolqueP2Img.contains("300") ||
+                        tarjertaImg.contains("300")
                 ){
 
                     Toast.makeText(getBaseContext(),"Faltan imagenes por tomar",Toast.LENGTH_SHORT).show();
@@ -280,7 +304,8 @@ public class imgActivity extends AppCompatActivity {
                         llantasDerEje1Img.contains("128") &&
                         chasisTraseroDerImg.contains("128") &&
                         chasisFrontalDERImg.contains("128") &&
-                        derRemolqueP2Img.contains("128")
+                        derRemolqueP2Img.contains("128") &&
+                        tarjertaImg.contains("128")
                 ){
                      if (damage1Img.contains("300") &&
                             damage2Img.contains("300") &&
@@ -479,15 +504,25 @@ public class imgActivity extends AppCompatActivity {
                 imgClick("damage4" , DAMAGE4);
             }
         });
+        tarjeta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tarjeta.setEnabled(false);
+                imgClick("tarjeta" , REQUEST_TARJETA);
+            }
+        });
     }
 
     private void imgClick (String photo , int code){
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_hora:" + timeStamp + "_foto:"+photo+ "_tipoOperacion:"+operacion+"_transportista:"+nombreTransportista+"_unidad:"+NoUnidad+"_linea:"+nombreLinea+"_caja:"+NoCaja+"_folio:"+folio;
+
         File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
+        //File destPath = new File(String.valueOf(getBaseContext().getCacheDir()));
+        imageFileName = null ;
         imageFile = null ;
         photoURI = null;
+        imageFileName = photo+ "-Folio"+folio ;
 
         try {
             imageFile = File.createTempFile(
@@ -521,7 +556,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTOR:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_TRACTOR);
+                    uploadServer(REQUEST_TRACTOR);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -537,7 +572,7 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
 
-                    uploadDrive3(REQUEST_NoECONOMICO);
+                    uploadServer(REQUEST_NoECONOMICO);
                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -551,7 +586,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_IZQ_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_IZQ_REMOLQUE_P1);
+                    uploadServer(REQUEST_IZQ_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -567,7 +602,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_VIN:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_VIN);
+                    uploadServer(REQUEST_VIN);
                   Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -584,7 +619,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_FRONTAL_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_CHASIS_FRONTAL_IZQ);
+                    uploadServer(REQUEST_CHASIS_FRONTAL_IZQ);
                     Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -601,7 +636,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_TRASERO_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_CHASIS_TRASERO_IZQ);
+                    uploadServer(REQUEST_CHASIS_TRASERO_IZQ);
                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -616,7 +651,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_IZQ_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_LLANTAS_IZQ_EJE1);
+                    uploadServer(REQUEST_LLANTAS_IZQ_EJE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -633,7 +668,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST__LLANTAS_IZQ_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST__LLANTAS_IZQ_EJE2);
+                    uploadServer(REQUEST__LLANTAS_IZQ_EJE2);
                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -648,7 +683,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_IZQ_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_IZQ_REMOLQUE_P2);
+                    uploadServer(REQUEST_IZQ_REMOLQUE_P2);
                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -663,7 +698,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_PUERTAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_PUERTAS);
+                    uploadServer(REQUEST_PUERTAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -678,7 +713,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_PLACAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_PLACAS);
+                    uploadServer(REQUEST_PLACAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -693,7 +728,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_SELLO1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_SELLO1);
+                    uploadServer(REQUEST_SELLO1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -708,7 +743,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_SELLO2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_SELLO2);
+                    uploadServer(REQUEST_SELLO2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -723,7 +758,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_DER_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_DER_REMOLQUE_P1);
+                    uploadServer(REQUEST_DER_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -738,7 +773,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_LLANTAS_DER_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_LLANTAS_DER_EJE2);
+                    uploadServer(REQUEST_LLANTAS_DER_EJE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -753,7 +788,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_DER_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_LLANTAS_DER_EJE1);
+                    uploadServer(REQUEST_LLANTAS_DER_EJE1);
                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -768,7 +803,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_TRASERO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(REQUEST_CHASIS_TRASERO_DER);
+                    uploadServer(REQUEST_CHASIS_TRASERO_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -782,7 +817,7 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_CHASIS_FRONTAL_DER:
                 if (resultCode == Activity.RESULT_OK ) {
-                    uploadDrive3(REQUEST_CHASIS_FRONTAL_DER);
+                    uploadServer(REQUEST_CHASIS_FRONTAL_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -797,7 +832,7 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_DER_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
-                    uploadDrive3(REQUEST_DER_REMOLQUE_P2);
+                    uploadServer(REQUEST_DER_REMOLQUE_P2);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -810,10 +845,25 @@ public class imgActivity extends AppCompatActivity {
                     derRemolqueP2.setEnabled(true);
                 }
                 break;
+            case REQUEST_TARJETA:
+                if (resultCode == Activity.RESULT_OK ) {
+                    uploadServer(REQUEST_TARJETA);
+
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    tarjeta.setImageBitmap(thumbImage);
+
+                }else {
+                    tarjeta.setEnabled(true);
+                }
+                break;
             case DAMAGE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(DAMAGE1);
+                    uploadServer(DAMAGE1);
                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -828,7 +878,7 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(DAMAGE2);
+                    uploadServer(DAMAGE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -843,7 +893,7 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE3:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(DAMAGE3);
+                    uploadServer(DAMAGE3);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -858,7 +908,7 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE4:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadDrive3(DAMAGE4);
+                    uploadServer(DAMAGE4);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -880,9 +930,8 @@ public class imgActivity extends AppCompatActivity {
     }
 
 
-
     private void handleSignInResult(Intent result) {
-        GoogleSignIn.getSignedInAccountFromIntent(result)
+        /*GoogleSignIn.getSignedInAccountFromIntent(result)
                 .addOnSuccessListener(googleAccount -> {
                     Log.d(TAG, "Signed in as " + googleAccount.getEmail());
 
@@ -903,7 +952,7 @@ public class imgActivity extends AppCompatActivity {
                     // Its instantiation is required before handling any onClick actions.
                     //mDriveServiceHelper = new DriveServiceHelper(googleDriveService);
                 })
-                .addOnFailureListener(exception -> Log.e(TAG, "Unable to sign in.", exception));
+                .addOnFailureListener(exception -> Log.e(TAG, "Unable to sign in.", exception));*/
 
     }
 
@@ -925,36 +974,50 @@ public class imgActivity extends AppCompatActivity {
 
     }
 
-
-
-    private void uploadDrive3 (int codigo) {
-
+    private void uploadServer (int codigo){
 
 
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                // Create URI from real path
-                String path = imageFile.getPath();
-                String name = imageFile.getName();
-                String folderID = "1v-fzq4cv1UkEWfzK4pUEUcupugqYwYjB";
-
-                com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();
-
-                metadata.setName(name);
-                metadata.setParents(Collections.singletonList(folderID));
-
-                java.io.File filePath = new java.io.File(path);
-                FileContent mediaContent = new FileContent("image/jpeg", filePath);
 
                 try {
-                    com.google.api.services.drive.model.File file = googleDriveService.files().create(metadata, mediaContent)
-                            .setFields("id, parents")
-                            .execute();
+                    String path = imageFile.getPath();
+                    Bitmap bm = BitmapFactory.decodeFile(path);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bm.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+                    String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("http://192.168.4.87:80/api/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    dxApi = retrofit.create(DxApi.class);
+
+                    Post5 post5 = new Post5(user,password,imageFileName,encodedImage,folio);
+                    Call<String> callImg = dxApi.getImg(post5);
+
+                    callImg.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+
+                            String cEnvios = String.valueOf(response);
+
+                         //   String men  = cEnvios.get(0).getMensaje();
+
+                            Toast.makeText(getBaseContext(),"Funciono :V",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
 
 
+                            Toast.makeText(getBaseContext(),"NO Funciono >:V    "+ t.getMessage() ,Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                } catch (IOException e) {
+                } catch (Exception e) {
 
                     e.getMessage();
 
@@ -1122,6 +1185,14 @@ public class imgActivity extends AppCompatActivity {
                                     derRemolqueP2.setEnabled(true);
 
                                     break;
+                                case REQUEST_TARJETA:
+
+
+                                    tarjeta.setImageBitmap(null);
+                                    tarjeta.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tarjeta.setEnabled(true);
+
+                                    break;
                                 case DAMAGE1:
 
 
@@ -1169,6 +1240,7 @@ public class imgActivity extends AppCompatActivity {
             }
         });
         t.start();
+
 
 
     }

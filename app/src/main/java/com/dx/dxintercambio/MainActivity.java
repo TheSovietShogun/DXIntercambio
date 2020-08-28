@@ -50,10 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         usu = (EditText) findViewById(R.id.usuario);
-        pass = (EditText)findViewById(R.id.contraseña);
-        ingre = (Button)findViewById(R.id.btnIngresar);
-
-
+        pass = (EditText) findViewById(R.id.contraseña);
+        ingre = (Button) findViewById(R.id.btnIngresar);
 
 
         if (!isTaskRoot()
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
-
+try{
         ingre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,34 +73,30 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //Filtros del login
-                if (login.length()==0 && password.length()==0){
+                if (login.length() == 0 && password.length() == 0) {
                     Toast.makeText(MainActivity.this, "Campos vacios", Toast.LENGTH_SHORT).show();
-                }
-                else if (login.length()==0 ){
+                } else if (login.length() == 0) {
                     Toast.makeText(MainActivity.this, "Debes Ingresar un Usuario", Toast.LENGTH_SHORT).show();
 
-                }
-                else if (password.length()==0){
+                } else if (password.length() == 0) {
                     Toast.makeText(MainActivity.this, "Debes Ingresar una Contraseña ", Toast.LENGTH_SHORT).show();
 
-                }
-                else if (login.length() !=0 && password.length() !=0 ) {
+                } else if (login.length() != 0 && password.length() != 0) {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://dxxpress.net/API/api/")
+                            .baseUrl("http://192.168.4.87:80/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
                     dxApi = retrofit.create(DxApi.class);
 
-                    Post post = new Post(login,password);
+                    Post post = new Post(login, password);
 
                     Call<List<CUsuario>> call = dxApi.createPost(post);
-
                     call.enqueue(new Callback<List<CUsuario>>() {
                         @Override
                         public void onResponse(Call<List<CUsuario>> call, Response<List<CUsuario>> response) {
-                            if(!response.isSuccessful()){
+                            if (!response.isSuccessful()) {
                                 Toast.makeText(MainActivity.this, "onResponse1" + response.code(), Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -111,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
                             String idUsuario = cUsuarios.get(0).getIdUsuario();
                             String res = cUsuarios.get(0).getRespuesta();
 
-                            if (res.contains("1")){
+                            if (res.contains("1")) {
 
-                                SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
+                                SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putString("user", login);
                                 editor.putString("pass", password);
@@ -123,13 +117,13 @@ public class MainActivity extends AppCompatActivity {
                                 i.putExtra("idUsuario", idUsuario);
                                 startActivity(i);
                             } else {
-                                Toast.makeText(MainActivity.this, "Usuario Incorrecto" , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<List<CUsuario>> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "Erro 404" , Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Erro 404", Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -139,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+    }catch(Exception e){
+    Toast.makeText(MainActivity.this, "Erro : "+  e , Toast.LENGTH_LONG).show();
+}
     }
 
     @Override

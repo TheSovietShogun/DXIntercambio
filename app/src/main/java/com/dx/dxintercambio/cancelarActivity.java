@@ -25,7 +25,8 @@ public class cancelarActivity extends AppCompatActivity {
 
     private EditText comentarioCancel;
     private Button btnCancelar ;
-    private String folio ;
+     int mensaje ;
+     String res ;
     private DxApi dxApi;
     private String user , password ;
 
@@ -34,7 +35,7 @@ public class cancelarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancelar);
 
-        folio = getIntent().getStringExtra("folio");
+        mensaje = getIntent().getIntExtra("mensaje",0);
 
         btnCancelar = (Button) findViewById(R.id.btnCancelar);
         comentarioCancel = (EditText) findViewById(R.id.comentarioCancel);
@@ -51,7 +52,7 @@ public class cancelarActivity extends AppCompatActivity {
                 }else {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://dxxpress.net/API/api/")
+                            .baseUrl("http://192.168.4.87:80/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -72,26 +73,42 @@ public class cancelarActivity extends AppCompatActivity {
                     int idLinea = 0;
                     int estatusRemolque = 0;
                     String comentario = "";
+                    String folio = "";
 
 
-                    Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatusRemolque,comentario,folio,comen);
+                    Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatusRemolque,comentario,folio,comen,mensaje);
 
                     Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
+
+                    Toast.makeText(getBaseContext(),"Cancelado",Toast.LENGTH_SHORT).show();
+
+                    Intent i = new Intent(cancelarActivity.this, envioActivity.class);
+                    startActivity(i);
 
                     callEnvio.enqueue(new Callback<List<CEnvio>>() {
                         @Override
                         public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
-                            Toast.makeText(getBaseContext(),"Enviado Correctamente\nRedirigiendo...",Toast.LENGTH_SHORT).show();
+                            List<CEnvio> cEnvios = response.body();
 
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                public void run() {
-                                    // Actions to do after 10 seconds
-                                    Intent i = new Intent(cancelarActivity.this, envioActivity.class);
-                                    startActivity(i);
-                                }
-                            }, 5000);
+                            res = cEnvios.get(0).getMensaje();
+
+                            if (mensaje == 0){
+                                Toast.makeText(cancelarActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                            }else {
+                                Toast.makeText(getBaseContext(),"Enviado Correctamente\nRedirigiendo...",Toast.LENGTH_SHORT).show();
+
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        // Actions to do after 10 seconds
+                                        Intent i = new Intent(cancelarActivity.this, envioActivity.class);
+                                        startActivity(i);
+                                    }
+                                }, 5000);
+                            }
+
+
 
                         }
 
@@ -109,6 +126,8 @@ public class cancelarActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
 
-
+    }
 }
