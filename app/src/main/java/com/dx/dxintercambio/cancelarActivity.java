@@ -28,7 +28,7 @@ public class cancelarActivity extends AppCompatActivity {
      int mensaje ;
      String res ;
     private DxApi dxApi;
-    private String user , password ;
+    private String user , password , idUsuario2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class cancelarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cancelar);
 
         mensaje = getIntent().getIntExtra("mensaje",0);
+        idUsuario2 = getIntent().getStringExtra("idUsuario");
 
         btnCancelar = (Button) findViewById(R.id.btnCancelar);
         comentarioCancel = (EditText) findViewById(R.id.comentarioCancel);
@@ -82,8 +83,6 @@ public class cancelarActivity extends AppCompatActivity {
 
                     Toast.makeText(getBaseContext(),"Cancelado",Toast.LENGTH_SHORT).show();
 
-                    Intent i = new Intent(cancelarActivity.this, envioActivity.class);
-                    startActivity(i);
 
                     callEnvio.enqueue(new Callback<List<CEnvio>>() {
                         @Override
@@ -103,6 +102,7 @@ public class cancelarActivity extends AppCompatActivity {
                                     public void run() {
                                         // Actions to do after 10 seconds
                                         Intent i = new Intent(cancelarActivity.this, envioActivity.class);
+                                        i.putExtra("idUsuario", idUsuario2);
                                         startActivity(i);
                                     }
                                 }, 5000);

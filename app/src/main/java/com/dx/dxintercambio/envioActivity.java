@@ -49,24 +49,16 @@ import android.view.Menu;
 public class envioActivity extends AppCompatActivity {
 
     private EditText registradoPor  , comentarios;
-    private Spinner tipoOperacionSP ,transportista, linea, estatusCaja ;
+    private Spinner tipoOperacionSP ,transportista, linea, estatusCaja ,unidad ,noRemolque;
     private Button enviar;
-    private String tran;
-    private SoapPrimitive resultString;
-    private GridView gridView;
     private String [] tipoOpeArr ;
-    private String [] tranportistasArr ;
-    private String [] lineaArr ;
     private String [] estatusArr ;
-    int PICK_IMAGE_MULTIPLE = 1;
-    private String imageEncoded;
-    private List<String> imagesEncodedList;
-    private GridView gvGallery;
-    private GalleryAdapter galleryAdapter;
+    private String [] vacioArr ;
+    private String [] vacioArr2 ;
     private String usuario ;
     private DxApi dxApi;
     private String user , password ;
-    private AutoCompleteTextView operador , unidad,noRemolque ;
+    private AutoCompleteTextView operador  ;
     private String fechaHora ;
     private int idOperador;
     private int idUnidad;
@@ -89,10 +81,15 @@ public class envioActivity extends AppCompatActivity {
     private int PERMISSION_ALL = 1;
     private int azul = Color.parseColor("#074EAB");
     private String folio;
-    private ConnectivityManager cm;
-    private ConnectivityManager.NetworkCallback callback;
-    private NetworkRequest networkRequest;
     int mensaje ;
+
+    int alfa ;
+    int bravo ;
+    int charlie ;
+    int delta;
+    int foxtrop;
+    String nombreOpeBTN , nombreCajaBTN , nombreUnidadBTN;
+    String nombreOpe , nombreCaja , nombreUnidad;
 
 
     @Override
@@ -151,8 +148,8 @@ public class envioActivity extends AppCompatActivity {
         registradoPor = (EditText)findViewById(R.id.editText8);
         transportista = (Spinner) findViewById(R.id.spinner);
         operador = (AutoCompleteTextView)findViewById(R.id.spinner69);
-        unidad = (AutoCompleteTextView)findViewById(R.id.editText7);
-        noRemolque = (AutoCompleteTextView)findViewById(R.id.editText11);
+        unidad = (Spinner)findViewById(R.id.spinner7);
+        noRemolque = (Spinner)findViewById(R.id.editText11);
         linea = (Spinner) findViewById(R.id.spinner10);
         estatusCaja = (Spinner) findViewById(R.id.spinner3);
         comentarios = (EditText)findViewById(R.id.editText12);
@@ -160,6 +157,23 @@ public class envioActivity extends AppCompatActivity {
 
         registradoPor.setText(user);
         registradoPor.setEnabled(false);
+
+        vacioArr = new String[]{"Sin Seleccionar"};
+        vacioArr2 = new String[]{"Sin Seleccionar"};
+        tipoOpeArr = new String[]{"Sin Seleccionar","Entrada", "Salida"};
+        estatusArr = new String[]{"Sin Seleccionar","Cargado", "Vacio","Racks"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
+        tipoOperacionSP.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusArr);
+        estatusCaja.setAdapter(adapter2);
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr);
+        unidad.setAdapter(adapter3);
+
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr2);
+        noRemolque.setAdapter(adapter4);
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -183,25 +197,10 @@ public class envioActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 COperador cOperador = (COperador) operador.getAdapter().getItem(i);
                 idOperador = Integer.parseInt(cOperador.getIdOperador());
+                nombreOpeBTN = String.valueOf(cOperador.getNombreCompleto());
+
             }
         });
-
-        unidad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CUnidad cUnidad = (CUnidad) unidad.getAdapter().getItem(i);
-                idUnidad =  (cUnidad.getId());
-            }
-        });
-
-        noRemolque.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CRemolque cRemolque = (CRemolque) noRemolque.getAdapter().getItem(i);
-                idRemolque =  (cRemolque.getId());
-            }
-        });
-
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,11 +259,16 @@ public class envioActivity extends AppCompatActivity {
                 CLinea cLinea = (CLinea)linea.getSelectedItem();
                 int idLinea = Integer.parseInt(cLinea.getId());
 
+                //GET UNIDAD
+                CUnidad cUnidad = (CUnidad)unidad.getSelectedItem();
+                idUnidad = cUnidad.getId();
+
                 //GET COMENTARIO
                 String comentario = comentarios.getText().toString();
 
-                //GET OPERADOR
-                int loco  = operador.getId();
+                //GET REMOLQUE
+                CRemolque cRemolque = (CRemolque)noRemolque.getSelectedItem();
+                idRemolque = cRemolque.getId();
 
                 //GET USUARIO
                 int idUsuario = Integer.parseInt(usuario);
@@ -278,61 +282,63 @@ public class envioActivity extends AppCompatActivity {
                 Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,idIntercambio);
 
 
+
                 //REVISA POR OPCION "OTRO"
-                    if (idTransportista == 42069 || idLinea == 42069 ){
+                     if (idTransportista == 42069 && idLinea == 42069 ){
                         //CAMPOS QUE FORZOSOS
                         if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() ){
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
-                        }else {
-                           // Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
-                             AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
-                    builder.setMessage("Favor de revisar la informacion antes de ser enviada \n¡¡En el campo comentario deberan ir los datos faltantes!!")
-                            .setCancelable(false)
-                            .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
+                        } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
+                                builder.setMessage("Favor de revisar la informacion antes de ser enviada \n¡¡En el campo comentario deberan ir los datos faltantes!!")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
 
 
-                                    callEnvio.enqueue(new Callback<List<CEnvio>>() {
-                                        @Override
-                                        public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+                                                callEnvio.enqueue(new Callback<List<CEnvio>>() {
+                                                    @Override
+                                                    public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
-                                            if(!response.isSuccessful()){
-                                                Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                                        if (!response.isSuccessful()) {
+                                                            Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                                        }
+                                                        List<CEnvio> cEnvios = response.body();
+
+                                                        mensaje = cEnvios.get(0).getReturn_value();
+
+                                                        if (mensaje == 0) {
+                                                            Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
+                                                            enviar();
+                                                        }
+
+
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                                                        Toast.makeText(envioActivity.this, "Error 404E " + t.getMessage(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
                                             }
-                                            List<CEnvio> cEnvios = response.body();
-
-                                             mensaje = cEnvios.get(0).getReturn_value();
-
-                                            if (mensaje == 0){
-                                                Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
-                                            }else {
-                                                Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
-                                                enviar();
+                                        })
+                                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
                                             }
+                                        });
+
+                                alert = builder.create();
+                                alert.show();
 
 
-                                        }
+                            }
 
-                                        @Override
-                                        public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                            Toast.makeText(envioActivity.this, "Error 404E "+ t.getMessage(), Toast.LENGTH_LONG).show();
-                                        }
-                                    });
-                                }
-                            })
-                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                    alert = builder.create();
-                    alert.show();
-
-                        }
                         //SI NO SON NULOS LOS CAMPOS FORZOSOS
                     } else if (idTransportista != 42069 && idLinea != 42069 ){
                         //ESTA COMPLETO ?
@@ -341,7 +347,7 @@ public class envioActivity extends AppCompatActivity {
                             if(idOperador== 0){
                                 operador.setBackgroundColor(Color.parseColor("#D32929"));
                             }
-                            if(idUnidad== 0){
+                            if(idUnidad== 0 || idUnidad == 69420){
                                 unidad.setBackgroundColor(Color.parseColor("#D32929"));
                             }
                             if(idRemolque== 0){
@@ -366,9 +372,6 @@ public class envioActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
-
-
-
 
 
                                     callEnvio.enqueue(new Callback<List<CEnvio>>() {
@@ -409,25 +412,100 @@ public class envioActivity extends AppCompatActivity {
                     alert.show();
                         }
 
+                    }else {
+
+                        alfa = 0;
+                        bravo = 0;
+                        charlie = 0;
+                        delta = 0;
+                        foxtrop = 0;
+
+
+                        if (idTransportista != 42069) {
+                            if (idOperador == 0) {
+                                operador.setBackgroundColor(Color.parseColor("#D32929"));
+                                alfa = 400;
+                            }
+                            if (idUnidad == 0) {
+                                unidad.setBackgroundColor(Color.parseColor("#D32929"));
+                                bravo = 400;
+                            }
+                        }
+
+                        if (idLinea != 42069) {
+                            if (idRemolque == 0) {
+                                noRemolque.setBackgroundColor(Color.parseColor("#D32929"));
+                                charlie = 400;
+                            }
+                        }
+
+
+                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty()) {
+                            Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
+                            delta = 400;
+                        }
+
+
+                        if(alfa == 400 || bravo == 400 || charlie == 400 || delta == 400 || foxtrop == 400 ){
+                            Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
+                        }else if(alfa == 0 || bravo == 0 || charlie == 0 || delta == 0 || foxtrop == 0){
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
+                            builder.setMessage("Favor de revisar la informacion antes de ser enviada \n" +
+                                    "¡¡En el campo comentario deberan ir los datos faltantes!!")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
+
+
+                                            callEnvio.enqueue(new Callback<List<CEnvio>>() {
+                                                @Override
+                                                public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+
+                                                    if (!response.isSuccessful()) {
+                                                        Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                                    }
+                                                    List<CEnvio> cEnvios = response.body();
+
+                                                    mensaje = cEnvios.get(0).getReturn_value();
+
+                                                    if (mensaje == 0) {
+                                                        Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                                                    } else {
+                                                        Toast.makeText(envioActivity.this, "Enviado Correctamente", Toast.LENGTH_LONG).show();
+                                                        enviar();
+                                                    }
+
+
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                                                    Toast.makeText(envioActivity.this, "Error 404E " + t.getMessage(), Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }
+                                    })
+                                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            alert = builder.create();
+                            alert.show();
+
+                        }
+
+
                     }
 
 
             }
         });
-
-
-        tipoOpeArr = new String[]{"Sin Seleccionar","Entrada", "Salida"};
-        estatusArr = new String[]{"Sin Seleccionar","Cargado", "Vacio","Racks"};
-
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
-       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipoOperacionSP.setAdapter(adapter);
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusArr);
-       // adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        estatusCaja.setAdapter(adapter2);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -437,6 +515,11 @@ public class envioActivity extends AppCompatActivity {
 
         dxApi = retrofit.create(DxApi.class);
         Post post = new Post(user,password);
+
+
+
+
+
 
         //FLOTA(Transportista)
         Call<List<CFlota>> callFlota = dxApi.getFlota(post);
@@ -452,15 +535,17 @@ public class envioActivity extends AppCompatActivity {
 
 
                 CFlota cFlota12 = new CFlota("42069","Otro");
-                CFlota cFlota11 = new CFlota("42069","Sin Seleccionar");
+                CFlota cFlota11 = new CFlota("69420","Sin Seleccionar");
 
 
-                cFlotas.add(0,cFlota12);
                 cFlotas.add(0,cFlota11);
+                cFlotas.add(1,cFlota12);
+
 
                 ArrayAdapter<CFlota> adapter3 = new ArrayAdapter<CFlota>(envioActivity.this , R.layout.mspinner_item, cFlotas);
-                //adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
                 transportista.setAdapter(adapter3);
+
+
             }
 
             @Override
@@ -486,16 +571,19 @@ public class envioActivity extends AppCompatActivity {
                     operador.setEnabled(false);
                     operador.setBackgroundColor(azul);
                     unidad.setEnabled(false);
-                    unidad.setBackgroundColor(azul);
+
                     if(nombreS == "Otro" ){
-                        Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : \n-Nombre del Transportista\n-Nombre Completo de Operador\n-Numero Economico de la Unidad", Toast.LENGTH_LONG).show();
+                        Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : " +
+                                "\n-Nombre del Transportista" +
+                                "\n-Nombre Completo de Operador" +
+                                "\n-Numero Economico de la Unidad", Toast.LENGTH_LONG).show();
                     }
 
                 }else {
                     operador.setEnabled(true);
                     operador.setBackgroundColor(Color.parseColor("#D6D9D6"));
                     unidad.setEnabled(true);
-                    unidad.setBackgroundColor(Color.parseColor("#D6D9D6"));
+
                     Post2 post2 = new Post2(user,password,idFlota);
 
                     Call<List<CUnidad>> callUni = dxApi.getUnidad(post2);
@@ -508,11 +596,12 @@ public class envioActivity extends AppCompatActivity {
                             }
                             List<CUnidad> cUnidads = response.body();
 
+                            CUnidad cUnidad11 = new CUnidad(69420,"Sin Seleccionar");
+                            cUnidads.add(0,cUnidad11);
 
                             ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item, cUnidads);
-                            //adapterU.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
                             unidad.setAdapter(adapterU);
-                            unidad.setText(null);
+
                         }
 
                         @Override
@@ -545,12 +634,10 @@ public class envioActivity extends AppCompatActivity {
                 List<CLinea> cLineas = response.body();
 
                 CLinea cLinea12 = new CLinea("42069","Otro");
-                CLinea cLinea1 = new CLinea("42069","Sin Seleccionar");
+                CLinea cLinea1 = new CLinea("69420","Sin Seleccionar");
 
-
-                cLineas.add(0,cLinea12);
                 cLineas.add(0,cLinea1);
-
+                cLineas.add(1,cLinea12);
 
                 ArrayAdapter<CLinea> adapter = new ArrayAdapter<CLinea>(envioActivity.this , R.layout.mspinner_item, cLineas);
                // adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
@@ -565,7 +652,7 @@ public class envioActivity extends AppCompatActivity {
 
 
 
-        //CAJA
+        //REMOLQUE
         linea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -576,15 +663,12 @@ public class envioActivity extends AppCompatActivity {
 
                 if(nombreS == "Otro" || nombreS == "Sin Seleccionar"){
                     noRemolque.setEnabled(false);
-                    noRemolque.setBackgroundColor(azul);
                     if(nombreS == "Otro" ){
                         Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : \n-Nombre de la Linea\n-Numero Economico del Remolque", Toast.LENGTH_LONG).show();
                     }
 
                 }else {
                     noRemolque.setEnabled(true);
-                    noRemolque.setBackgroundColor(Color.parseColor("#D6D9D6"));
-
 
                     Post3 post3 = new Post3(user, password, idLinea);
 
@@ -598,12 +682,14 @@ public class envioActivity extends AppCompatActivity {
                             }
 
                             List<CRemolque> cRemolques = response.body();
-                            int sad = cRemolques.size();
+                            CRemolque cRemolque = new CRemolque(69420,"Sin Seleccionar");
+
+                            cRemolques.add(0,cRemolque);
 
                             ArrayAdapter<CRemolque> adapterR = new ArrayAdapter<CRemolque>(envioActivity.this, R.layout.mspinner_item, cRemolques);
                             // adapterR.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
                             noRemolque.setAdapter(adapterR);
-                            noRemolque.setText(null);
+                            //noRemolque.setText(null);
 
                         }
 
@@ -637,7 +723,6 @@ public class envioActivity extends AppCompatActivity {
                 List<COperador> cOperadors = response.body();
 
                 ArrayAdapter<COperador> adapter2 = new ArrayAdapter<COperador>(envioActivity.this , R.layout.mspinner_item, cOperadors);
-               // adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
                 operador.setAdapter(adapter2);
             }
 
@@ -651,14 +736,15 @@ public class envioActivity extends AppCompatActivity {
 
 
 
+
     }
 
 
     public void enviar () {
 
          String operacion = tipoOperacionSP.getSelectedItem().toString();
-         String NoUnidad = unidad.getText().toString();
-         String NoCaja = noRemolque.getText().toString();
+         String NoUnidad = unidad.getSelectedItem().toString();
+         String NoCaja = noRemolque.getSelectedItem().toString();
          String nombreLinea = linea.getSelectedItem().toString();
          String nombreTransportista = transportista.getSelectedItem().toString();
 
@@ -669,6 +755,7 @@ public class envioActivity extends AppCompatActivity {
             i.putExtra("NoCaja", NoCaja);
             i.putExtra("nombreLinea", nombreLinea);
             i.putExtra("nombreTransportista", nombreTransportista);
+            i.putExtra("idUsuario", usuario);
             i.putExtra("folio", folio);
             i.putExtra("mensaje", mensaje);
            startActivity(i);

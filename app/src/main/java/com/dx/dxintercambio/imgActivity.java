@@ -126,6 +126,7 @@ public class imgActivity extends AppCompatActivity {
     private String damage2Img ;
     private String damage3Img;
     private String damage4Img ;
+    private String idUsuario;
     private Object Network;
     String user ;
     String password ;
@@ -159,6 +160,7 @@ public class imgActivity extends AppCompatActivity {
 
                             Intent i = new Intent(imgActivity.this, cancelarActivity.class);
                             i.putExtra("mensaje", mensaje);
+                            i.putExtra("idUsuario", idUsuario);
                             startActivity(i);
 
                         }
@@ -193,6 +195,7 @@ public class imgActivity extends AppCompatActivity {
         nombreTransportista = getIntent().getStringExtra("nombreTransportista");
         folio = getIntent().getStringExtra("folio");
         mensaje = getIntent().getIntExtra("mensaje",0);
+        idUsuario = getIntent().getStringExtra("idUsuario");
 
         tractor = (ImageView) findViewById(R.id.imageView3);
         noEconomico = (ImageView) findViewById(R.id.imageView4);
@@ -985,7 +988,7 @@ public class imgActivity extends AppCompatActivity {
                     String path = imageFile.getPath();
                     Bitmap bm = BitmapFactory.decodeFile(path);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bm.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+                    bm.compress(Bitmap.CompressFormat.JPEG, 80, baos);
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
@@ -1006,14 +1009,14 @@ public class imgActivity extends AppCompatActivity {
 
                          //   String men  = cEnvios.get(0).getMensaje();
 
-                            Toast.makeText(getBaseContext(),"Funciono :V",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Enviado",Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onFailure(Call<String> call, Throwable t) {
 
 
-                            Toast.makeText(getBaseContext(),"NO Funciono >:V    "+ t.getMessage() ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Eror 400P5"+ t.getMessage() ,Toast.LENGTH_SHORT).show();
                         }
                     });
 
