@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".cancelarActivity"></activity>
+        <activity android:name=".incidenciaActivity"></activity>
+        <activity android:name=".cancelarActivity" />
 
         <provider
             android:name=".GenericFileProvider"
@@ -37,11 +38,11 @@
         <activity
             android:name=".imgActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".envioActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

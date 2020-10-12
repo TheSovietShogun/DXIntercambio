@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".incidenciaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="50dp"
+                android:text="Cancelar Incidencia"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/button"
+                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+            <TextView
+                android:id="@+id/textView70"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Sello 3 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView68" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Sello Extra :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView69" />
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Sello Extra :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Lllantas Jumbo :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Sello1:"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
+            <TextView
+                android:id="@+id/textView57"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 6 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+            <TextView
+                android:id="@+id/textView46"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 3 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+            <TextView
+                android:id="@+id/textView55"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Sello2:"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 1 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+            <TextView
+                android:id="@+id/textView63"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Sello 3  :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView71" />
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 4 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+            <TextView
+                android:id="@+id/textView61"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 8 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+            <TextView
+                android:id="@+id/textView58"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 6 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="32dp"
+                android:textSize="25sp"
+                android:background="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+            <TextView
+                android:id="@+id/textView54"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 7 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 8 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 1 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView55" />
+
+            <TextView
+                android:id="@+id/textView51"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 3 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+            <TextView
+                android:id="@+id/textView64"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 4 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Sello1:"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 2 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Lllantas Jumbo :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 5 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Sello2:"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+            <TextView
+                android:id="@+id/textView56"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 5 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView64" />
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta 2 :"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:text="Incidencia encontrada con el registro anterior"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="121dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="250dp"
+                android:text="Llanta 7 :"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="50dp"
+                android:text="Enviar"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="596dp"
+                android:layout_height="227dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Comentario"
+                android:inputType="textMultiLine"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+            <TextView
+                android:id="@+id/textView66"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="250dp"
+                android:text="Intercambio \nActual"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="50dp"
+                android:text="Intercambio \nPasado"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,36 +11,77 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-227dp"
-        tools:layout_editor_absoluteY="-39dp">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="53dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView35"
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Estatus del Remolque:"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+
+            <Spinner
+                android:id="@+id/spinner4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
-                android:text="Tracto"
-                android:textColor="@color/azul_chingon"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Operador"
                 android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/editText12" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/azul_chingon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Tracto"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView26" />
 
             <TextView
                 android:id="@+id/textView34"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
                 android:text="Intercambio de Remolque "
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
@@ -53,51 +94,39 @@
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/azul_chingon"
-                app:layout_constraintTop_toBottomOf="@+id/textView35"
-                tools:layout_editor_absoluteX="8dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="10dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/azul_chingon"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
             <View
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="10dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/azul_chingon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewRemolque" />
 
-            <View
-                android:id="@+id/view5"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="100dp"
-                android:background="@color/azul_chingon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText11" />
-
             <TextView
                 android:id="@+id/textViewRemolque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
                 android:text="Remolque"
-                android:textColor="@color/azul_chingon"
                 android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +172,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +186,7 @@
                 android:text="Transportista:"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -166,7 +194,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +205,6 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -190,10 +216,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="Operador:"
+                android:text="Nombre Operador:"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
             <AutoCompleteTextView
@@ -202,7 +228,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -218,8 +243,7 @@
                 android:text="# Unidad:"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner69" />
-
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 
             <TextView
@@ -240,7 +264,6 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/azul_chingon"
-                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -261,8 +284,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginTop="7dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -274,10 +296,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="Estatus:"
+                android:text="Tipo Movimiento:"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view5" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
             <Spinner
                 android:id="@+id/spinner3"
@@ -285,11 +307,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -307,12 +328,14 @@
                 android:layout_width="734dp"
                 android:layout_height="198dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/azul_chingon"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
                 android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -321,13 +344,37 @@
                 android:id="@+id/btnDatos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="100dp"
                 android:text="Siguiente"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText12" />
+                app:layout_constraintTop_toBottomOf="@+id/editText11" />
+
+            <ImageView
+                android:id="@+id/imageView26"
+                android:layout_width="320dp"
+                android:layout_height="196dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner69"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Licencia de Manejo  "
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView26"
+                app:layout_constraintEnd_toEndOf="@+id/imageView26"
+                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintStart_toStartOf="@+id/imageView26"
+                app:layout_constraintTop_toTopOf="@+id/imageView26" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

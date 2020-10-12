@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
-try{
+        try{
         ingre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,15 +72,13 @@ try{
                 password = pass.getText().toString();
 
 
-                //Filtros del login
+                //Filtros del login the game
                 if (login.length() == 0 && password.length() == 0) {
                     Toast.makeText(MainActivity.this, "Campos vacios", Toast.LENGTH_SHORT).show();
                 } else if (login.length() == 0) {
                     Toast.makeText(MainActivity.this, "Debes Ingresar un Usuario", Toast.LENGTH_SHORT).show();
-
                 } else if (password.length() == 0) {
                     Toast.makeText(MainActivity.this, "Debes Ingresar una Contraseña ", Toast.LENGTH_SHORT).show();
-
                 } else if (login.length() != 0 && password.length() != 0) {
 
                     Retrofit retrofit = new Retrofit.Builder()
@@ -123,7 +121,7 @@ try{
 
                         @Override
                         public void onFailure(Call<List<CUsuario>> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "Erro 404", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Erro 404 " + t.getMessage(), Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -134,7 +132,7 @@ try{
         });
 
     }catch(Exception e){
-    Toast.makeText(MainActivity.this, "Erro : "+  e , Toast.LENGTH_LONG).show();
+    Toast.makeText(MainActivity.this, "Error : "+  e , Toast.LENGTH_LONG).show();
 }
     }
 

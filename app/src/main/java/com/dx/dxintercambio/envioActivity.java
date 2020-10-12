@@ -1,19 +1,26 @@
 package com.dx.dxintercambio;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.ThumbnailUtils;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,16 +30,20 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import org.ksoap2.serialization.SoapPrimitive;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -49,12 +60,14 @@ import android.view.Menu;
 public class envioActivity extends AppCompatActivity {
 
     private EditText registradoPor  , comentarios;
-    private Spinner tipoOperacionSP ,transportista, linea, estatusCaja ,unidad ,noRemolque;
+    private Spinner tipoOperacionSP ,transportista, linea, estatusCaja ,unidad ,noRemolque, tipoMovimiento;
+    private ImageView licencia;
     private Button enviar;
     private String [] tipoOpeArr ;
     private String [] estatusArr ;
     private String [] vacioArr ;
     private String [] vacioArr2 ;
+    private String [] tipoMovArr;
     private String usuario ;
     private DxApi dxApi;
     private String user , password ;
@@ -64,7 +77,12 @@ public class envioActivity extends AppCompatActivity {
     private int idUnidad;
     private int idRemolque;
     private  AlertDialog alert ;
+    private File imageFile ;
+    private Uri photoURI;
+    String imageFileName ;
+    private static final int REQUEST_LICENCIA = 888;
     private String hora;
+    private final int THUMBSIZE = 128;
     private String[] PERMISSIONS = {
             android.Manifest.permission.ACCESS_FINE_LOCATION,
             android.Manifest.permission.INTERNET,
@@ -81,8 +99,9 @@ public class envioActivity extends AppCompatActivity {
     private int PERMISSION_ALL = 1;
     private int azul = Color.parseColor("#074EAB");
     private String folio;
+    private String licenciaImg;
     int mensaje ;
-
+    String encodedImage;
     int alfa ;
     int bravo ;
     int charlie ;
@@ -154,6 +173,8 @@ public class envioActivity extends AppCompatActivity {
         estatusCaja = (Spinner) findViewById(R.id.spinner3);
         comentarios = (EditText)findViewById(R.id.editText12);
         enviar = (Button) findViewById(R.id.btnDatos);
+        licencia = (ImageView) findViewById(R.id.imageView26);
+        tipoMovimiento = (Spinner) findViewById(R.id.spinner4);
 
         registradoPor.setText(user);
         registradoPor.setEnabled(false);
@@ -162,6 +183,7 @@ public class envioActivity extends AppCompatActivity {
         vacioArr2 = new String[]{"Sin Seleccionar"};
         tipoOpeArr = new String[]{"Sin Seleccionar","Entrada", "Salida"};
         estatusArr = new String[]{"Sin Seleccionar","Cargado", "Vacio","Racks"};
+        tipoMovArr = new String[]{"Sin Seleccionar","Importacion","Exportacion"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
         tipoOperacionSP.setAdapter(adapter);
@@ -175,9 +197,13 @@ public class envioActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr2);
         noRemolque.setAdapter(adapter4);
 
+        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoMovArr);
+        tipoMovimiento.setAdapter(adapter5);
+
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-
+        //BORRA TODAS LAS IMAGENES GUARDADAS
         File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
         String path = destPath.toString();
         File directory = new File(path);
@@ -192,6 +218,8 @@ public class envioActivity extends AppCompatActivity {
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
         operador.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -201,6 +229,17 @@ public class envioActivity extends AppCompatActivity {
 
             }
         });
+
+
+        licencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                licencia.setEnabled(false);
+                imgClick("tractor" , REQUEST_LICENCIA);
+            }
+        });
+
+
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,11 +256,13 @@ public class envioActivity extends AppCompatActivity {
                 dxApi = retrofit.create(DxApi.class);
 
                 fechaHora = (String) android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new Date());
-
+                licenciaImg =  String.valueOf(licencia.getDrawable().getBounds());
                 String tipoOpe = tipoOperacionSP.getSelectedItem().toString();
                 String status  =  estatusCaja.getSelectedItem().toString();
+                String tipmov = tipoMovimiento.getSelectedItem().toString();
                 int tipoOperacion = 3;
                 int estatus =3;
+                int movimiento = 3;
 
                 switch (tipoOpe){
                     case "Salida" :
@@ -235,7 +276,7 @@ public class envioActivity extends AppCompatActivity {
                         break;
                 }
 
-                switch (status){
+                               switch (status){
                     case "Cargado" :
                         estatus = 1;
                         break;
@@ -247,6 +288,18 @@ public class envioActivity extends AppCompatActivity {
                         break;
                     case "Sin Seleccionar" :
                         estatus = 3;
+                        break;
+                }
+
+                switch (tipmov){
+                    case "Importacion" :
+                        movimiento = 1;
+                        break;
+                    case "Exportacion" :
+                        movimiento = 0;
+                        break;
+                    case "Sin Seleccionar" :
+                        movimiento = 3;
                         break;
                 }
 
@@ -279,14 +332,15 @@ public class envioActivity extends AppCompatActivity {
                String comentarioCancel = "";
                int idIntercambio =0 ;
 
-                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,idIntercambio);
+                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
+                        idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,imageFileName);
 
 
 
                 //REVISA POR OPCION "OTRO"
                      if (idTransportista == 42069 && idLinea == 42069 ){
                         //CAMPOS QUE FORZOSOS
-                        if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() ){
+                        if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg == "300"){
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
                         } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
@@ -342,7 +396,7 @@ public class envioActivity extends AppCompatActivity {
                         //SI NO SON NULOS LOS CAMPOS FORZOSOS
                     } else if (idTransportista != 42069 && idLinea != 42069 ){
                         //ESTA COMPLETO ?
-                        if(idOperador == 0 || idUnidad == 0 || idRemolque == 0 || estatus == 3 || tipoOperacion == 3){
+                        if(idOperador == 0 || idUnidad == 0 || idRemolque == 0 || estatus == 3 || tipoOperacion == 3 || movimiento == 3 || licenciaImg == "300"){
                             //NO
                             if(idOperador== 0){
                                 operador.setBackgroundColor(Color.parseColor("#D32929"));
@@ -359,14 +413,19 @@ public class envioActivity extends AppCompatActivity {
                             if(tipoOperacion== 0){
                                 tipoOperacionSP.setBackgroundColor(Color.parseColor("#D32929"));
                             }
-
+                            if(movimiento== 0){
+                                tipoMovimiento.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
+                            if(licenciaImg== "300"){
+                                licencia.setBackgroundColor(Color.parseColor("#D32929"));
+                            }
 
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else {
                             //SI
                            // Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
                               AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
-                    builder.setMessage("Favor de revisar la informacion antes de ser enviada !")
+                            builder.setMessage("Favor de revisar la informacion antes de ser enviada !")
                             .setCancelable(false)
                             .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                                 @Override
@@ -422,10 +481,6 @@ public class envioActivity extends AppCompatActivity {
 
 
                         if (idTransportista != 42069) {
-                            if (idOperador == 0) {
-                                operador.setBackgroundColor(Color.parseColor("#D32929"));
-                                alfa = 400;
-                            }
                             if (idUnidad == 0) {
                                 unidad.setBackgroundColor(Color.parseColor("#D32929"));
                                 bravo = 400;
@@ -440,7 +495,7 @@ public class envioActivity extends AppCompatActivity {
                         }
 
 
-                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty()) {
+                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg == "300" ) {
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                             delta = 400;
                         }
@@ -517,10 +572,6 @@ public class envioActivity extends AppCompatActivity {
         Post post = new Post(user,password);
 
 
-
-
-
-
         //FLOTA(Transportista)
         Call<List<CFlota>> callFlota = dxApi.getFlota(post);
 
@@ -568,9 +619,8 @@ public class envioActivity extends AppCompatActivity {
 
 
                 if(nombreS == "Otro" || nombreS == "Sin Seleccionar"){
-                    operador.setEnabled(false);
-                    operador.setBackgroundColor(azul);
                     unidad.setEnabled(false);
+                  //
 
                     if(nombreS == "Otro" ){
                         Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : " +
@@ -580,8 +630,6 @@ public class envioActivity extends AppCompatActivity {
                     }
 
                 }else {
-                    operador.setEnabled(true);
-                    operador.setBackgroundColor(Color.parseColor("#D6D9D6"));
                     unidad.setEnabled(true);
 
                     Post2 post2 = new Post2(user,password,idFlota);
@@ -638,6 +686,8 @@ public class envioActivity extends AppCompatActivity {
 
                 cLineas.add(0,cLinea1);
                 cLineas.add(1,cLinea12);
+
+
 
                 ArrayAdapter<CLinea> adapter = new ArrayAdapter<CLinea>(envioActivity.this , R.layout.mspinner_item, cLineas);
                // adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
@@ -747,7 +797,8 @@ public class envioActivity extends AppCompatActivity {
          String NoCaja = noRemolque.getSelectedItem().toString();
          String nombreLinea = linea.getSelectedItem().toString();
          String nombreTransportista = transportista.getSelectedItem().toString();
-
+        CRemolque cremolque = (CRemolque) noRemolque.getSelectedItem();
+        int boladenieve =  cremolque.getId();
 
            Intent i = new Intent(envioActivity.this, imgActivity.class);
             i.putExtra("operacion", operacion);
@@ -758,6 +809,7 @@ public class envioActivity extends AppCompatActivity {
             i.putExtra("idUsuario", usuario);
             i.putExtra("folio", folio);
             i.putExtra("mensaje", mensaje);
+        i.putExtra("idRemolque", boladenieve);
            startActivity(i);
 
     }
@@ -772,8 +824,6 @@ public class envioActivity extends AppCompatActivity {
         super.onStart();
 
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -791,41 +841,59 @@ public class envioActivity extends AppCompatActivity {
         return true;
     }
 
-       /* private void checkInternet (Context context){
+    private void imgClick (String photo , int code){
 
-             cm = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
-            
-             networkRequest = new NetworkRequest.Builder()
-                    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                    .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                    .build();
-             callback = new ConnectivityManager.NetworkCallback(){
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-                @Override
-                public void onAvailable(@NonNull Network network) {
-                    super.onAvailable(network);
-                }
+        File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
+        imageFileName = null ;
+        imageFile = null ;
+        photoURI = null;
+        imageFileName = photo+ "-Folio"+folio ;
 
-                @Override
-                public void onLost(@NonNull Network network) {
-                    super.onLost(network);
-                }
-
-            };
+        try {
+            imageFile = File.createTempFile(
+                    imageFileName,  // prefix
+                    ".jpeg",         // suffix
+                    destPath      // directory
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        cm.registerNetworkCallback(networkRequest, callback);
+        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        photoURI = FileProvider.getUriForFile(getBaseContext(), getBaseContext().getApplicationContext().getPackageName() + ".provider", imageFile);
+        camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        camera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivityForResult(camera,code);
 
     }
 
     @Override
-    protected void onPause() {
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
 
-        cm.unregisterNetworkCallback(callback);
-        super.onPause();
-    }*/
+
+                if (resultCode == Activity.RESULT_OK ) {
+
+
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    licencia.setImageBitmap(thumbImage);
+                }else {
+                    licencia.setEnabled(true);
+                }
+
+
+
+
+        super.onActivityResult(requestCode, resultCode, resultData);
+    }
+
+
+
+
 }

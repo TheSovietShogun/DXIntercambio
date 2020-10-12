@@ -26,9 +26,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -60,9 +65,12 @@ public class imgActivity extends AppCompatActivity {
 
     private ImageView tractor , noEconomico, izqRemolqueP1 , vin , chasisFrontalIzq , chasisTraseroIzq , llantasIzqEje1
             ,llantasIzqEje2 , izqRemolqueP2 , puertas , placas , sello1 , sello2 , derRemolqueP1 , llantasDerEje2
-            , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4, tarjeta;
+            , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4, sello3;
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final String TAG = "envioActivity";
+    private Spinner llanta1SP, llanta2SP , llanta3SP ,llanta4SP,llanta5SP ,llanta6SP ,llanta7SP,llanta8SP;
+    private CheckBox jumboRB1 , jumboRB2;
+    private EditText sello1ET ,sello2ET, sello3ET;
     private Drive mService;
     private Drive googleDriveService;
     private String operacion ;
@@ -95,6 +103,7 @@ public class imgActivity extends AppCompatActivity {
     private static final int REQUEST_CHASIS_FRONTAL_DER = 370;
     private static final int REQUEST_DER_REMOLQUE_P2 = 380;
     private static final int REQUEST_TARJETA = 390;
+    private static final int REQUEST_SELLO3 = 400;
     private static final int DAMAGE1= 500;
     private static final int DAMAGE2 = 501;
     private static final int DAMAGE3 = 502;
@@ -109,11 +118,14 @@ public class imgActivity extends AppCompatActivity {
     private String chasisFrontalIzqImg;
     private String chasisTraseroIzqImg;
     private  String llantasIzqEje1Img;
+    private String [] Llantas ;
     private String llantasIzqEje2Img;
     private String izqRemolqueP2Img;
     private String puertasImg;
     private String placasImg;
+    private String sello3Img;
     private String sello1Img;
+    private int idRemolque;
     private String sello2Img;
     private String derRemolqueP1Img;
     private String llantasDerEje2Img;
@@ -127,6 +139,10 @@ public class imgActivity extends AppCompatActivity {
     private String damage3Img;
     private String damage4Img ;
     private String idUsuario;
+    boolean checked1;
+    boolean checked2;
+    private int lljumbo ;
+    private int lljumbo2 ;
     private Object Network;
     String user ;
     String password ;
@@ -185,17 +201,21 @@ public class imgActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
 
+
+
         user = preferences.getString("user","");
         password = preferences.getString("pass","");
 
         operacion = getIntent().getStringExtra("operacion");
         NoUnidad = getIntent().getStringExtra("NoUnidad");
         NoCaja = getIntent().getStringExtra("NoCaja");
+        idRemolque = getIntent().getIntExtra("idRemolque",0);
         nombreLinea = getIntent().getStringExtra("nombreLinea");
         nombreTransportista = getIntent().getStringExtra("nombreTransportista");
         folio = getIntent().getStringExtra("folio");
         mensaje = getIntent().getIntExtra("mensaje",0);
         idUsuario = getIntent().getStringExtra("idUsuario");
+
 
         tractor = (ImageView) findViewById(R.id.imageView3);
         noEconomico = (ImageView) findViewById(R.id.imageView4);
@@ -216,7 +236,22 @@ public class imgActivity extends AppCompatActivity {
         chasisTraseroDer = (ImageView) findViewById(R.id.imageView19);
         chasisFrontalDER = (ImageView) findViewById(R.id.imageView20);
         derRemolqueP2 = (ImageView) findViewById(R.id.imageView22);
-        tarjeta = (ImageView) findViewById(R.id.imageView420);
+        sello3 = (ImageView) findViewById(R.id.imageView30);
+
+
+        //tarjeta = (ImageView) findViewById(R.id.imageView420);
+        jumboRB1 = (CheckBox) findViewById(R.id.radioButton2);
+        llanta1SP = (Spinner) findViewById(R.id.spinner6);
+        llanta2SP = (Spinner) findViewById(R.id.spinner9);
+        llanta3SP = (Spinner) findViewById(R.id.spinner5);
+        llanta4SP = (Spinner) findViewById(R.id.spinner8);
+        llanta5SP = (Spinner) findViewById(R.id.spinner12);
+        llanta6SP = (Spinner) findViewById(R.id.spinner13);
+        llanta7SP = (Spinner) findViewById(R.id.spinner14);
+        llanta8SP = (Spinner) findViewById(R.id.spinner11);
+        sello1ET = (EditText) findViewById(R.id.editText);
+        sello2ET = (EditText) findViewById(R.id.editText2);
+
 
 
         damage1 = (ImageView) findViewById(R.id.imageView18);
@@ -225,6 +260,46 @@ public class imgActivity extends AppCompatActivity {
         damage4 = (ImageView) findViewById(R.id.imageView24);
 
         btnImg = (Button) findViewById(R.id.btnImg);
+
+        Llantas = new String[]{"Sin Seleccionar","Hanck","Goodyear", "Michelin", "Yokohama"};
+
+        ArrayAdapter<String> adapterll1 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta1SP.setAdapter(adapterll1);
+        ArrayAdapter<String> adapterll2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta2SP.setAdapter(adapterll2);
+        ArrayAdapter<String> adapterll3 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta3SP.setAdapter(adapterll3);
+        ArrayAdapter<String> adapterll4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta4SP.setAdapter(adapterll4);
+        ArrayAdapter<String> adapterll5 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta5SP.setAdapter(adapterll5);
+        ArrayAdapter<String> adapterll6 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta6SP.setAdapter(adapterll6);
+        ArrayAdapter<String> adapterll7 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta7SP.setAdapter(adapterll7);
+        ArrayAdapter<String> adapterll8 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
+        llanta8SP.setAdapter(adapterll8);
+
+
+        jumboRB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                 checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    llanta3SP.setVisibility(View.INVISIBLE);
+                    llanta4SP.setVisibility(View.INVISIBLE);
+                    llanta7SP.setVisibility(View.INVISIBLE);
+                    llanta8SP.setVisibility(View.INVISIBLE);
+                }else{
+                    llanta3SP.setVisibility(View.VISIBLE);
+                    llanta4SP.setVisibility(View.VISIBLE);
+                    llanta7SP.setVisibility(View.VISIBLE);
+                    llanta8SP.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
 
 
@@ -235,7 +310,6 @@ public class imgActivity extends AppCompatActivity {
 
                 //300 VACIO
                 //128 IMAGFN
-
 
                 tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
                 noEconomicoImg = String.valueOf(noEconomico.getDrawable().getBounds());
@@ -256,89 +330,275 @@ public class imgActivity extends AppCompatActivity {
                 chasisTraseroDerImg = String.valueOf(chasisTraseroDer.getDrawable().getBounds());
                 chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
                 derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
-                tarjertaImg = String.valueOf(tarjeta.getDrawable().getBounds());
+                sello3Img = String.valueOf(sello3.getDrawable().getBounds());
 
                 damage1Img = String.valueOf(damage1.getDrawable().getBounds());
                 damage2Img = String.valueOf(damage2.getDrawable().getBounds());
                 damage3Img = String.valueOf(damage3.getDrawable().getBounds());
                 damage4Img = String.valueOf(damage4.getDrawable().getBounds());
 
+                String ll1 =  llanta1SP.getSelectedItem().toString();
+                String ll2 =  llanta2SP.getSelectedItem().toString();
+                String ll3 =  llanta3SP.getSelectedItem().toString();
+                String ll4 =  llanta4SP.getSelectedItem().toString();
+                String ll5 =  llanta5SP.getSelectedItem().toString();
+                String ll6 =  llanta6SP.getSelectedItem().toString();
+                String ll7 =  llanta7SP.getSelectedItem().toString();
+                String ll8 =  llanta8SP.getSelectedItem().toString();
 
-                if (tractorImg.contains("300") ||
-                        noEconomicoImg.contains("300") ||
-                        izqRemolqueP1Img.contains("300") ||
-                        vinImg.contains("300") ||
-                        chasisFrontalIzqImg.contains("300") ||
-                        chasisTraseroIzqImg.contains("300") ||
-                        llantasIzqEje1Img.contains("300") ||
-                        llantasIzqEje2Img.contains("300") ||
-                        izqRemolqueP2Img.contains("300") ||
-                        puertasImg.contains("300") ||
-                        placasImg.contains("300") ||
-                        sello1Img.contains("300") ||
-                        sello2Img.contains("300") ||
-                        derRemolqueP1Img.contains("300") ||
-                        llantasDerEje2Img.contains("300") ||
-                        llantasDerEje1Img.contains("300") ||
-                        chasisTraseroDerImg.contains("300") ||
-                        chasisFrontalDERImg.contains("300") ||
-                        derRemolqueP2Img.contains("300") ||
-                        tarjertaImg.contains("300")
-                ){
+                String sello1S = sello1ET.getText().toString();
+                String sello2S = sello2ET.getText().toString();
+                String sello3S = sello3ET.getText().toString();
 
-                    Toast.makeText(getBaseContext(),"Faltan imagenes por tomar",Toast.LENGTH_SHORT).show();
+                 lljumbo =0;
 
 
-                }else if (tractorImg.contains("128") &&
-                        noEconomicoImg.contains("128") &&
-                        izqRemolqueP1Img.contains("128") &&
-                        vinImg.contains("128") &&
-                        chasisFrontalIzqImg.contains("128") &&
-                        chasisTraseroIzqImg.contains("128") &&
-                        llantasIzqEje1Img.contains("128") &&
-                        llantasIzqEje2Img.contains("128") &&
-                        izqRemolqueP2Img.contains("128") &&
-                        puertasImg.contains("128") &&
-                        placasImg.contains("128") &&
-                        sello1Img.contains("128") &&
-                        sello2Img.contains("128") &&
-                        derRemolqueP1Img.contains("128") &&
-                        llantasDerEje2Img.contains("128") &&
-                        llantasDerEje1Img.contains("128") &&
-                        chasisTraseroDerImg.contains("128") &&
-                        chasisFrontalDERImg.contains("128") &&
-                        derRemolqueP2Img.contains("128") &&
-                        tarjertaImg.contains("128")
-                ){
-                     if (damage1Img.contains("300") &&
-                            damage2Img.contains("300") &&
-                            damage3Img.contains("300") &&
-                            damage4Img.contains("300") ){
+                int selloExtra ;
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(imgActivity.this);
-                        builder.setMessage("Ninguna imagen de daños fue tomada , desea continuar ?")
-                                .setCancelable(false)
-                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                    public void onClick(final DialogInterface dialog, final int id) {
-
-                                        Intent i = new Intent(imgActivity.this, splash.class);
-                                        startActivity(i);
-
-                                    }
-                                })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                    public void onClick(final DialogInterface dialog, final int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }else {
-                        Intent i = new Intent(imgActivity.this, splash.class);
-                        startActivity(i);
-                    }
+                if(checked1){
+                    lljumbo = 1;
                 }
 
+
+                if(sello3Img.contains("128") && sello3S.length() > 0){
+                    selloExtra = 1;
+                }else {
+                    selloExtra = 0;
+                }
+
+
+                // SI LAS LLANTAS SON JUMBO SOLO REVISA 4
+                if(lljumbo == 1 ) {
+                    if (tractorImg.contains("300") ||
+                            noEconomicoImg.contains("300") ||
+                            izqRemolqueP1Img.contains("300") ||
+                            vinImg.contains("300") ||
+                            chasisFrontalIzqImg.contains("300") ||
+                            chasisTraseroIzqImg.contains("300") ||
+                            llantasIzqEje1Img.contains("300") ||
+                            llantasIzqEje2Img.contains("300") ||
+                            izqRemolqueP2Img.contains("300") ||
+                            puertasImg.contains("300") ||
+                            placasImg.contains("300") ||
+                            sello1Img.contains("300") ||
+                            sello2Img.contains("300") ||
+                            derRemolqueP1Img.contains("300") ||
+                            llantasDerEje2Img.contains("300") ||
+                            llantasDerEje1Img.contains("300") ||
+                            chasisTraseroDerImg.contains("300") ||
+                            chasisFrontalDERImg.contains("300") ||
+                            derRemolqueP2Img.contains(" 300") ||
+                            sello1S.length() == 0 ||
+                            sello2S.length() == 0 ||
+                            ll1 == "Sin Seleccionar" ||
+                            ll2 == "Sin Seleccionar" ||
+                            ll6 == "Sin Seleccionar" ||
+                            ll5 == "Sin Seleccionar"
+
+                    ) {
+                        Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
+                    } else if (tractorImg.contains("128") &&
+                            noEconomicoImg.contains("128") &&
+                            izqRemolqueP1Img.contains("128") &&
+                            vinImg.contains("128") &&
+                            chasisFrontalIzqImg.contains("128") &&
+                            chasisTraseroIzqImg.contains("128") &&
+                            llantasIzqEje1Img.contains("128") &&
+                            llantasIzqEje2Img.contains("128") &&
+                            izqRemolqueP2Img.contains("128") &&
+                            puertasImg.contains("128") &&
+                            placasImg.contains("128") &&
+                            sello1Img.contains("128") &&
+                            sello2Img.contains("128") &&
+                            derRemolqueP1Img.contains("128") &&
+                            llantasDerEje2Img.contains("128") &&
+                            llantasDerEje1Img.contains("128") &&
+                            chasisTraseroDerImg.contains("128") &&
+                            chasisFrontalDERImg.contains("128") &&
+                            derRemolqueP2Img.contains("128") &&
+                            sello1S.length() >= 0 &&
+                            sello2S.length() >= 0 &&
+                            ll1 != "Sin Seleccionar" &&
+                            ll2 != "Sin Seleccionar" &&
+                            ll6 != "Sin Seleccionar" &&
+                            ll5 != "Sin Seleccionar") {
+
+
+                        if (damage1Img.contains("300") &&
+                                damage2Img.contains("300") &&
+                                damage3Img.contains("300") &&
+                                damage4Img.contains("300") &&
+                                sello3Img.contains("300") &&
+                                sello3S.length() == 0
+                        ) {
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(imgActivity.this);
+                            builder.setMessage("Ningun daño o sello extra fue agregado , desea continuar ?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, final int id) {
+
+                                            Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
+                                                    ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "");
+
+
+                                            Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
+
+                                            callenvio2.enqueue(new Callback<List<CEnvio2>>() {
+                                                @Override
+                                                public void onResponse(Call<List<CEnvio2>> call, Response<List<CEnvio2>> response) {
+
+                                                    if (!response.isSuccessful()) {
+                                                        Toast.makeText(imgActivity.this, "Error 404R", Toast.LENGTH_LONG).show();
+                                                    }
+
+                                                   List<CEnvio2> cEnvio2s = response.body();
+
+
+
+
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<List<CEnvio2>> call, Throwable t) {
+
+                                                }
+                                            });
+
+                                        }
+                                    })
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        public void onClick(final DialogInterface dialog, final int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+
+                        }
+
+
+                    } else if (lljumbo == 0) {
+                        if (tractorImg.contains("300") ||
+                                noEconomicoImg.contains("300") ||
+                                izqRemolqueP1Img.contains("300") ||
+                                vinImg.contains("300") ||
+                                chasisFrontalIzqImg.contains("300") ||
+                                chasisTraseroIzqImg.contains("300") ||
+                                llantasIzqEje1Img.contains("300") ||
+                                llantasIzqEje2Img.contains("300") ||
+                                izqRemolqueP2Img.contains("300") ||
+                                puertasImg.contains("300") ||
+                                placasImg.contains("300") ||
+                                sello1Img.contains("300") ||
+                                sello2Img.contains("300") ||
+                                derRemolqueP1Img.contains("300") ||
+                                llantasDerEje2Img.contains("300") ||
+                                llantasDerEje1Img.contains("300") ||
+                                chasisTraseroDerImg.contains("300") ||
+                                chasisFrontalDERImg.contains("300") ||
+                                derRemolqueP2Img.contains(" 300") ||
+                                sello1S.length() == 0 ||
+                                sello2S.length() == 0 ||
+                                ll1 == "Sin Seleccionar" ||
+                                ll2 == "Sin Seleccionar" ||
+                                ll3 == "Sin Seleccionar" ||
+                                ll4 == "Sin Seleccionar" ||
+                                ll5 == "Sin Seleccionar" ||
+                                ll6 == "Sin Seleccionar" ||
+                                ll7 == "Sin Seleccionar" ||
+                                ll8 == "Sin Seleccionar"
+
+                        ) {
+                            Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
+                        }   else if (tractorImg.contains("128") &&
+                                noEconomicoImg.contains("128") &&
+                                izqRemolqueP1Img.contains("128") &&
+                                vinImg.contains("128") &&
+                                chasisFrontalIzqImg.contains("128") &&
+                                chasisTraseroIzqImg.contains("128") &&
+                                llantasIzqEje1Img.contains("128") &&
+                                llantasIzqEje2Img.contains("128") &&
+                                izqRemolqueP2Img.contains("128") &&
+                                puertasImg.contains("128") &&
+                                placasImg.contains("128") &&
+                                sello1Img.contains("128") &&
+                                sello2Img.contains("128") &&
+                                derRemolqueP1Img.contains("128") &&
+                                llantasDerEje2Img.contains("128") &&
+                                llantasDerEje1Img.contains("128") &&
+                                chasisTraseroDerImg.contains("128") &&
+                                chasisFrontalDERImg.contains("128") &&
+                                derRemolqueP2Img.contains("128") &&
+                                sello1S.length() >= 0 &&
+                                sello2S.length() >= 0 &&
+                                 ll1 != "Sin Seleccionar" &&
+                                ll2 != "Sin Seleccionar" &&
+                                ll3 != "Sin Seleccionar" &&
+                                ll4 != "Sin Seleccionar" &&
+                                ll5 != "Sin Seleccionar" &&
+                                ll6 != "Sin Seleccionar" &&
+                                ll7 != "Sin Seleccionar" &&
+                                ll8 != "Sin Seleccionar"
+
+                        ) {
+                            if (damage1Img.contains("300") &&
+                                    damage2Img.contains("300") &&
+                                    damage3Img.contains("300") &&
+                                    damage4Img.contains("300") &&
+                                    sello3Img.contains("300") &&
+                                    sello3S.length() == 0
+                            ) {
+
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(imgActivity.this);
+                                builder.setMessage("Ningun daño o sello extra fue agregado , desea continuar ?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, final int id) {
+
+                                                Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
+                                                        ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "");
+
+
+                                                Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
+
+                                                callenvio2.enqueue(new Callback<List<CEnvio2>>() {
+                                                    @Override
+                                                    public void onResponse(Call<List<CEnvio2>> call, Response<List<CEnvio2>> response) {
+
+                                                        if (!response.isSuccessful()) {
+                                                            Toast.makeText(imgActivity.this, "Error 404R", Toast.LENGTH_LONG).show();
+                                                        }
+
+                                                        //List<CRemolque> cRemolques = response.body();
+
+
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<List<CEnvio2>> call, Throwable t) {
+
+                                                    }
+                                                });
+
+                                            }
+                                        })
+                                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, final int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
+
+                            } else {
+                                Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
             }
         });
 
@@ -437,6 +697,13 @@ public class imgActivity extends AppCompatActivity {
                 imgClick("sello2" , REQUEST_SELLO2);
             }
         });
+        sello3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sello3.setEnabled(false);
+                imgClick("sello3" , REQUEST_SELLO3);
+            }
+        });
         derRemolqueP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -507,13 +774,14 @@ public class imgActivity extends AppCompatActivity {
                 imgClick("damage4" , DAMAGE4);
             }
         });
-        tarjeta.setOnClickListener(new View.OnClickListener() {
+
+        /*tarjeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tarjeta.setEnabled(false);
                 imgClick("tarjeta" , REQUEST_TARJETA);
             }
-        });
+        });*/
     }
 
     private void imgClick (String photo , int code){
@@ -546,6 +814,7 @@ public class imgActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         switch (requestCode) {
@@ -567,7 +836,7 @@ public class imgActivity extends AppCompatActivity {
 
                     tractor.setImageBitmap(thumbImage);
                 }else {
-                tractor.setEnabled(true);
+                    tractor.setEnabled(true);
                 }
 
                 break;
@@ -576,7 +845,7 @@ public class imgActivity extends AppCompatActivity {
 
 
                     uploadServer(REQUEST_NoECONOMICO);
-                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -606,7 +875,7 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_VIN);
-                  Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -640,7 +909,7 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_CHASIS_TRASERO_IZQ);
-                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -672,7 +941,7 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST__LLANTAS_IZQ_EJE2);
-                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -687,7 +956,7 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_IZQ_REMOLQUE_P2);
-                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -698,7 +967,7 @@ public class imgActivity extends AppCompatActivity {
                     izqRemolqueP2.setEnabled(true);
                 }
                 break;
-                case REQUEST_PUERTAS:
+            case REQUEST_PUERTAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_PUERTAS);
@@ -713,7 +982,7 @@ public class imgActivity extends AppCompatActivity {
                     puertas.setEnabled(true);
                 }
                 break;
-                case REQUEST_PLACAS:
+            case REQUEST_PLACAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_PLACAS);
@@ -742,8 +1011,8 @@ public class imgActivity extends AppCompatActivity {
                 }else {
                     sello1.setEnabled(true);
                 }
-               break;
-                case REQUEST_SELLO2:
+                break;
+            case REQUEST_SELLO2:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_SELLO2);
@@ -757,8 +1026,8 @@ public class imgActivity extends AppCompatActivity {
                 }else {
                     sello2.setEnabled(true);
                 }
-                 break;
-                case REQUEST_DER_REMOLQUE_P1:
+                break;
+            case REQUEST_DER_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_DER_REMOLQUE_P1);
@@ -773,7 +1042,7 @@ public class imgActivity extends AppCompatActivity {
                     derRemolqueP1.setEnabled(true);
                 }
                 break;
-                case REQUEST_LLANTAS_DER_EJE2:
+            case REQUEST_LLANTAS_DER_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_LLANTAS_DER_EJE2);
@@ -792,7 +1061,7 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_LLANTAS_DER_EJE1);
-                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -848,26 +1117,26 @@ public class imgActivity extends AppCompatActivity {
                     derRemolqueP2.setEnabled(true);
                 }
                 break;
-            case REQUEST_TARJETA:
+            case REQUEST_SELLO3:
                 if (resultCode == Activity.RESULT_OK ) {
-                    uploadServer(REQUEST_TARJETA);
+                    uploadServer(REQUEST_SELLO3);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
-                    tarjeta.setImageBitmap(thumbImage);
+                    sello3.setImageBitmap(thumbImage);
 
                 }else {
-                    tarjeta.setEnabled(true);
+                    sello3.setEnabled(true);
                 }
                 break;
             case DAMAGE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(DAMAGE1);
-                   Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -931,7 +1200,6 @@ public class imgActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, resultData);
     }
-
 
     private void handleSignInResult(Intent result) {
         /*GoogleSignIn.getSignedInAccountFromIntent(result)
@@ -1188,12 +1456,12 @@ public class imgActivity extends AppCompatActivity {
                                     derRemolqueP2.setEnabled(true);
 
                                     break;
-                                case REQUEST_TARJETA:
+                                case REQUEST_SELLO3:
 
 
-                                    tarjeta.setImageBitmap(null);
-                                    tarjeta.setBackgroundColor(Color.parseColor("#074EAB"));
-                                    tarjeta.setEnabled(true);
+                                    sello3.setImageBitmap(null);
+                                    sello3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    sello3.setEnabled(true);
 
                                     break;
                                 case DAMAGE1:

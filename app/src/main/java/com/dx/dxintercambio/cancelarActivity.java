@@ -77,7 +77,7 @@ public class cancelarActivity extends AppCompatActivity {
                     String folio = "";
 
 
-                    Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,idTransportista,idOperador,idUnidad,idRemolque,idLinea,estatusRemolque,comentario,folio,comen,mensaje);
+                    Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,1,idTransportista,idOperador,idUnidad,idRemolque,idLinea,0,comentario,folio,comen,mensaje,0,"","","");
 
                     Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
 
