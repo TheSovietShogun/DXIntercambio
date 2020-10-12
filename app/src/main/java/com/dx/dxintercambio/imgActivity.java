@@ -432,6 +432,7 @@ public class imgActivity extends AppCompatActivity {
                                 sello3S.length() == 0
                         ) {
 
+
                             AlertDialog.Builder builder = new AlertDialog.Builder(imgActivity.this);
                             builder.setMessage("Ningun daño o sello extra fue agregado , desea continuar ?")
                                     .setCancelable(false)
