@@ -49,7 +49,7 @@ public class cancelarActivity extends AppCompatActivity {
                 String comen  = String.valueOf(comentarioCancel.getText());
 
                 if(comen.isEmpty()){
-                    Toast.makeText(getBaseContext(),"Nada escrito en motivo de cancelacion",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Motivo de cancelacion vacio",Toast.LENGTH_SHORT).show();
                 }else {
 
                     Retrofit retrofit = new Retrofit.Builder()
@@ -93,7 +93,7 @@ public class cancelarActivity extends AppCompatActivity {
                             res = cEnvios.get(0).getMensaje();
 
                             if (mensaje == 0){
-                                Toast.makeText(cancelarActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                                Toast.makeText(cancelarActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }else {
                                 Toast.makeText(getBaseContext(),"Enviado Correctamente\nRedirigiendo...",Toast.LENGTH_SHORT).show();
 

@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".incidenciaActivity"></activity>
+        <activity android:name=".firmasActivity"></activity>
+        <activity android:name=".incidenciaActivity" />
         <activity android:name=".cancelarActivity" />
 
         <provider

@@ -45,6 +45,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +80,7 @@ public class envioActivity extends AppCompatActivity {
     private  AlertDialog alert ;
     private File imageFile ;
     private Uri photoURI;
-    String imageFileName ;
+    private String imageFileName ;
     private static final int REQUEST_LICENCIA = 888;
     private String hora;
     private final int THUMBSIZE = 128;
@@ -100,15 +101,15 @@ public class envioActivity extends AppCompatActivity {
     private int azul = Color.parseColor("#074EAB");
     private String folio;
     private String licenciaImg;
-    int mensaje ;
-    String encodedImage;
-    int alfa ;
-    int bravo ;
-    int charlie ;
-    int delta;
-    int foxtrop;
-    String nombreOpeBTN , nombreCajaBTN , nombreUnidadBTN;
-    String nombreOpe , nombreCaja , nombreUnidad;
+    private int mensaje ;
+    private String encodedImage;
+    private int alfa ;
+    private int bravo ;
+    private int charlie ;
+    private int delta;
+    private int foxtrop;
+    private String nombreOpeBTN , nombreCajaBTN , nombreUnidadBTN;
+    private String nombreOpe , nombreCaja , nombreUnidad;
 
 
     @Override
@@ -160,7 +161,6 @@ public class envioActivity extends AppCompatActivity {
 
         user = preferences.getString("user","");
         password = preferences.getString("pass","");
-
         usuario = getIntent().getStringExtra("idUsuario");
 
         tipoOperacionSP = (Spinner) findViewById(R.id.spinner2);
@@ -184,6 +184,7 @@ public class envioActivity extends AppCompatActivity {
         tipoOpeArr = new String[]{"Sin Seleccionar","Entrada", "Salida"};
         estatusArr = new String[]{"Sin Seleccionar","Cargado", "Vacio","Racks"};
         tipoMovArr = new String[]{"Sin Seleccionar","Importacion","Exportacion"};
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
         tipoOperacionSP.setAdapter(adapter);
@@ -314,7 +315,10 @@ public class envioActivity extends AppCompatActivity {
 
                 //GET UNIDAD
                 CUnidad cUnidad = (CUnidad)unidad.getSelectedItem();
-                idUnidad = cUnidad.getId();
+
+                String loco ;
+                 idUnidad = cUnidad.getId();
+
 
                 //GET COMENTARIO
                 String comentario = comentarios.getText().toString();
@@ -328,7 +332,7 @@ public class envioActivity extends AppCompatActivity {
 
                 //SET GET FOLIO
                 hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-               folio = (hora+"_"+idRemolque);
+               folio = (hora+idRemolque);
                String comentarioCancel = "";
                int idIntercambio =0 ;
 
@@ -340,7 +344,8 @@ public class envioActivity extends AppCompatActivity {
                 //REVISA POR OPCION "OTRO"
                      if (idTransportista == 42069 && idLinea == 42069 ){
                         //CAMPOS QUE FORZOSOS
-                        if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg == "300"){
+                        if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg.contains("480")
+                                || idTransportista == 69420 || idLinea == 69420 || idUnidad == 69420 || idRemolque == 69420){
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
                         } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
@@ -357,7 +362,7 @@ public class envioActivity extends AppCompatActivity {
                                                     public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
                                                         if (!response.isSuccessful()) {
-                                                            Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                                                         }
                                                         List<CEnvio> cEnvios = response.body();
 
@@ -375,7 +380,7 @@ public class envioActivity extends AppCompatActivity {
 
                                                     @Override
                                                     public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                                        Toast.makeText(envioActivity.this, "Error 404E " + t.getMessage(), Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(envioActivity.this, "Error 404 " + t.getMessage(), Toast.LENGTH_LONG).show();
                                                     }
                                                 });
                                             }
@@ -396,30 +401,9 @@ public class envioActivity extends AppCompatActivity {
                         //SI NO SON NULOS LOS CAMPOS FORZOSOS
                     } else if (idTransportista != 42069 && idLinea != 42069 ){
                         //ESTA COMPLETO ?
-                        if(idOperador == 0 || idUnidad == 0 || idRemolque == 0 || estatus == 3 || tipoOperacion == 3 || movimiento == 3 || licenciaImg == "300"){
+                        if(idOperador == 0 || idUnidad == 0 || idRemolque == 0 || estatus == 3 || tipoOperacion == 3
+                                || movimiento == 3 || licenciaImg.contains("480") || idTransportista == 69420 || idLinea == 69420 || idUnidad == 69420 || idRemolque == 69420){
                             //NO
-                            if(idOperador== 0){
-                                operador.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-                            if(idUnidad== 0 || idUnidad == 69420){
-                                unidad.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-                            if(idRemolque== 0){
-                                noRemolque.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-                            if(estatus== 0){
-                                estatusCaja.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-                            if(tipoOperacion== 0){
-                                tipoOperacionSP.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-                            if(movimiento== 0){
-                                tipoMovimiento.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-                            if(licenciaImg== "300"){
-                                licencia.setBackgroundColor(Color.parseColor("#D32929"));
-                            }
-
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else {
                             //SI
@@ -438,7 +422,7 @@ public class envioActivity extends AppCompatActivity {
                                         public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
                                             if(!response.isSuccessful()){
-                                                Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                                             }
                                             List<CEnvio> cEnvios = response.body();
 
@@ -455,7 +439,7 @@ public class envioActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                            Toast.makeText(envioActivity.this, "Error 404E "+ t.getMessage(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(envioActivity.this, "Error 404 "+ t.getMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
@@ -495,8 +479,9 @@ public class envioActivity extends AppCompatActivity {
                         }
 
 
-                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg == "300" ) {
-                            Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
+                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg.contains("480") || idTransportista == 69420 || idLinea == 69420) {
+
+                           // Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                             delta = 400;
                         }
 
@@ -520,7 +505,7 @@ public class envioActivity extends AppCompatActivity {
                                                 public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
                                                     if (!response.isSuccessful()) {
-                                                        Toast.makeText(envioActivity.this, "Error 404E", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                                                     }
                                                     List<CEnvio> cEnvios = response.body();
 
@@ -538,7 +523,7 @@ public class envioActivity extends AppCompatActivity {
 
                                                 @Override
                                                 public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                                    Toast.makeText(envioActivity.this, "Error 404E " + t.getMessage(), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(envioActivity.this, "Error 404 " + t.getMessage(), Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                         }
@@ -579,10 +564,16 @@ public class envioActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<CFlota>> call, Response<List<CFlota>> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(envioActivity.this, "Error 404F", Toast.LENGTH_LONG).show();
+                    Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                 }
 
                 List<CFlota> cFlotas = response.body();
+
+                CUnidad cUnidad11 = new CUnidad(69420,"Sin Seleccionar");
+                List<CUnidad> cUnidads =  new ArrayList<CUnidad>();
+                cUnidads.add(0,cUnidad11);
+                ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item, cUnidads);
+                unidad.setAdapter(adapterU);
 
 
                 CFlota cFlota12 = new CFlota("42069","Otro");
@@ -620,6 +611,7 @@ public class envioActivity extends AppCompatActivity {
 
                 if(nombreS == "Otro" || nombreS == "Sin Seleccionar"){
                     unidad.setEnabled(false);
+                    unidad.setSelection(0);
                   //
 
                     if(nombreS == "Otro" ){
@@ -640,7 +632,7 @@ public class envioActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<List<CUnidad>> call, Response<List<CUnidad>> response) {
                             if(!response.isSuccessful()){
-                                Toast.makeText(envioActivity.this, "Error 404U", Toast.LENGTH_LONG).show();
+                                Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }
                             List<CUnidad> cUnidads = response.body();
 
@@ -676,10 +668,16 @@ public class envioActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<CLinea>> call, Response<List<CLinea>> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(envioActivity.this, "Error 404L", Toast.LENGTH_LONG).show();
+                    Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                 }
 
                 List<CLinea> cLineas = response.body();
+
+                CRemolque cRemolque = new CRemolque(69420,"Sin Seleccionar");
+                List<CRemolque> cRemolques =  new ArrayList<CRemolque>();
+                cRemolques.add(0,cRemolque);
+                ArrayAdapter<CRemolque> adapterU = new ArrayAdapter<CRemolque>(envioActivity.this , R.layout.mspinner_item, cRemolques);
+                noRemolque.setAdapter(adapterU);
 
                 CLinea cLinea12 = new CLinea("42069","Otro");
                 CLinea cLinea1 = new CLinea("69420","Sin Seleccionar");
@@ -713,6 +711,7 @@ public class envioActivity extends AppCompatActivity {
 
                 if(nombreS == "Otro" || nombreS == "Sin Seleccionar"){
                     noRemolque.setEnabled(false);
+                    noRemolque.setSelection(0);
                     if(nombreS == "Otro" ){
                         Toast.makeText(envioActivity.this, "ESCRIBIR EN COMENTARIO : \n-Nombre de la Linea\n-Numero Economico del Remolque", Toast.LENGTH_LONG).show();
                     }
@@ -728,7 +727,7 @@ public class envioActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<List<CRemolque>> call, Response<List<CRemolque>> response) {
                             if (!response.isSuccessful()) {
-                                Toast.makeText(envioActivity.this, "Error 404R", Toast.LENGTH_LONG).show();
+                                Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }
 
                             List<CRemolque> cRemolques = response.body();
@@ -767,7 +766,7 @@ public class envioActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<COperador>> call, Response<List<COperador>> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(envioActivity.this, "Error 404O", Toast.LENGTH_LONG).show();
+                    Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                 }
 
                 List<COperador> cOperadors = response.body();
@@ -778,7 +777,7 @@ public class envioActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<COperador>> call, Throwable t) {
-                Toast.makeText(envioActivity.this, "Error 404O", Toast.LENGTH_LONG).show();
+                Toast.makeText(envioActivity.this, "Error 404Op", Toast.LENGTH_LONG).show();
             }
         });
 

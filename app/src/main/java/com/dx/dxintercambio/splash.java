@@ -61,7 +61,7 @@ public class splash extends Activity {
                         @Override
                         public void onResponse(Call<List<CUsuario>> call, Response<List<CUsuario>> response) {
                             if(!response.isSuccessful()){
-                                Toast.makeText(splash.this, "onResponse1" + response.code(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(splash.this, "Error 500" + response.code(), Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             List<CUsuario> cUsuarios = response.body();

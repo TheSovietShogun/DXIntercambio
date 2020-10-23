@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<List<CUsuario>> call, Response<List<CUsuario>> response) {
                             if (!response.isSuccessful()) {
-                                Toast.makeText(MainActivity.this, "onResponse1" + response.code(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Error 500" , Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             List<CUsuario> cUsuarios = response.body();
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<List<CUsuario>> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "Erro 404 " + t.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Error 404", Toast.LENGTH_LONG).show();
 
                         }
                     });

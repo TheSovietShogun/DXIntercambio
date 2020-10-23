@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".incidenciaActivity">
 
+    <HorizontalScrollView
+        android:id="@+id/horizontal_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:scrollbars="horizontal">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,160 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="50dp"
-                android:text="Cancelar Incidencia"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/button"
-                app:layout_constraintTop_toBottomOf="@+id/editText3" />
-
-            <TextView
-                android:id="@+id/textView70"
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Sello 3 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView68" />
-
-            <TextView
-                android:id="@+id/textView71"
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Sello Extra :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView69" />
-
-            <TextView
-                android:id="@+id/textView68"
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Sello Extra :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView60" />
-
-            <TextView
-                android:id="@+id/textView69"
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Lllantas Jumbo :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView61" />
-
-            <TextView
-                android:id="@+id/textView47"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Sello1:"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView66" />
-
-            <TextView
-                android:id="@+id/textView57"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 6 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView53" />
-
-            <TextView
-                android:id="@+id/textView46"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 3 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView50" />
-
-            <TextView
-                android:id="@+id/textView55"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Sello2:"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView47" />
-
-            <TextView
-                android:id="@+id/textView48"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 1 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView52" />
-
-            <TextView
-                android:id="@+id/textView63"
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Sello 3  :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView71" />
-
-            <TextView
-                android:id="@+id/textView65"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 4 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView51" />
-
-            <TextView
-                android:id="@+id/textView61"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 8 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView59" />
-
-            <TextView
-                android:id="@+id/textView58"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 6 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView56" />
-
             <View
                 android:id="@+id/view9"
                 android:layout_width="match_parent"
@@ -182,138 +35,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView41" />
-
-            <TextView
-                android:id="@+id/textView54"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 7 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView58" />
-
-            <TextView
-                android:id="@+id/textView62"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 8 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView54" />
-
-            <TextView
-                android:id="@+id/textView45"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 1 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView55" />
-
-            <TextView
-                android:id="@+id/textView51"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 3 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView49" />
-
-            <TextView
-                android:id="@+id/textView64"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 4 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView46" />
-
-            <TextView
-                android:id="@+id/textView44"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Sello1:"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView67" />
-
-            <TextView
-                android:id="@+id/textView49"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 2 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-            <TextView
-                android:id="@+id/textView60"
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Lllantas Jumbo :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView62" />
-
-            <TextView
-                android:id="@+id/textView53"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 5 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView65" />
-
-            <TextView
-                android:id="@+id/textView52"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Sello2:"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView44" />
-
-            <TextView
-                android:id="@+id/textView56"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 5 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView64" />
-
-            <TextView
-                android:id="@+id/textView50"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
-                android:text="Llanta 2 :"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
             <TextView
                 android:id="@+id/textView41"
@@ -330,26 +51,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView59"
-                android:layout_width="121dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="250dp"
-                android:text="Llanta 7 :"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView57" />
-
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
-                android:text="Enviar"
+                android:text="Cancelar"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button"
                 app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
             <EditText
@@ -357,7 +67,7 @@
                 android:layout_width="596dp"
                 android:layout_height="227dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:gravity="start|top"
@@ -366,35 +76,1243 @@
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView63" />
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
-            <TextView
-                android:id="@+id/textView66"
+            <Button
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginStart="230dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="250dp"
-                android:text="Intercambio \nActual"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-            <TextView
-                android:id="@+id/textView67"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="50dp"
-                android:text="Intercambio \nPasado"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:text="Confirmar"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view9" />
+                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view9">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/Columna1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Datos"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/Columna4"
+                        android:layout_width="265dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Intercambio Anterior"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/Columna7"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Intercambio Actual"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/fecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Fecha"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/fecha_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/fecha_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/usuario2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Usuario"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/usuario_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/usuario_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/patio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Patio"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/patio_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/patio_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/transportista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Transportista"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/transportista_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/transportista_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/unidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Unidad"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/unidad_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/unidad_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/Operador"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Operador"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/operador_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/operador_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tipoMovimiento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="TipoMovimiento"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/tipoMovimiento_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/tipoMovimiento_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tipoOperacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Tipo Operacion"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/tipoOperacion_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/tipoOperacion_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/estatusRemolque"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Estatus\ndel Remolque"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/estatusRemolque_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/estatusRemolque_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/comentario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Comentario"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/comentario_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/comentario_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/selloExtra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Sello Extra"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/selloExtra_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/selloExtra_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llantasJumbo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llantas Jumbo"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llantasJumbo_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llantasJumbo_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sello1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Sello 1"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/sello1_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/sello1_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sello2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Sello 2"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/sello2_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/sello2_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/selloExtra3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Sello 3"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/selloExtra3_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/selloExtra3_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 1 Eje 1\nIzquierdo"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta1_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta1_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 2 Eje 1\nIzquierdo"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta3_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta3_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 1 Eje 2\nIzquierdo"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta2_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta2_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 2 Eje 2\nIzquierdo"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta4_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta4_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 1 Eje 2\nDerecho"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta5_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta5_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 2 Eje 2\nDerecho"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta7_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta7_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 1 Eje 1\nDerecho"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta6_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta6_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="5px"
+                        android:layout_span="6"
+                        android:background="@color/azul_chingon"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/llanta8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text="Llanta 2 Eje 1\nDerecho"
+                        android:textColor="@color/azul_chingon"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta8_Pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+
+
+                    <TextView
+                        android:id="@+id/llanta8_Actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5px"
+                        android:text=""
+                        android:textColor="@color/negrotle"
+                        android:textSize="26sp" />
+                </TableRow>
+            </TableLayout>
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
