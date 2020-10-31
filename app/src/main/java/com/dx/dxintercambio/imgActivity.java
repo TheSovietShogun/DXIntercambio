@@ -303,8 +303,6 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     tractor.setImageBitmap(thumbImage);
-
-
                     noEconomico.setImageBitmap(thumbImage);
                     izqRemolqueP1.setImageBitmap(thumbImage);
                     vin.setImageBitmap(thumbImage);

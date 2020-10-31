@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -102,7 +103,6 @@ public class envioActivity extends AppCompatActivity {
     private String folio;
     private String licenciaImg;
     private int mensaje ;
-    private String encodedImage;
     private int alfa ;
     private int bravo ;
     private int charlie ;
@@ -332,12 +332,12 @@ public class envioActivity extends AppCompatActivity {
 
                 //SET GET FOLIO
                 hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-               folio = (hora+idRemolque);
+               folio = ("NL"+hora+idRemolque);
                String comentarioCancel = "";
                int idIntercambio =0 ;
 
-                Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
-                        idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,imageFileName);
+
+
 
 
 
@@ -348,10 +348,22 @@ public class envioActivity extends AppCompatActivity {
                                 || idTransportista == 69420 || idLinea == 69420 || idUnidad == 69420 || idRemolque == 69420){
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
                         } else {
+
+
+                            Bitmap bitmap = ((BitmapDrawable)licencia.getDrawable()).getBitmap();
+
+                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                            String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+
+                            Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
+                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                                 builder.setMessage("Favor de revisar la informacion antes de ser enviada \n¡¡En el campo comentario deberan ir los datos faltantes!!")
                                         .setCancelable(false)
                                         .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
@@ -407,7 +419,16 @@ public class envioActivity extends AppCompatActivity {
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else {
                             //SI
-                           // Toast.makeText(envioActivity.this, "SE ENVIIO", Toast.LENGTH_LONG).show();
+
+                            Bitmap bitmap = ((BitmapDrawable)licencia.getDrawable()).getBitmap();
+
+                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                            String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+
+                            Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
+                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
+
                               AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                             builder.setMessage("Favor de revisar la informacion antes de ser enviada !")
                             .setCancelable(false)
@@ -489,6 +510,15 @@ public class envioActivity extends AppCompatActivity {
                         if(alfa == 400 || bravo == 400 || charlie == 400 || delta == 400 || foxtrop == 400 ){
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else if(alfa == 0 || bravo == 0 || charlie == 0 || delta == 0 || foxtrop == 0){
+
+                            Bitmap bitmap = ((BitmapDrawable)licencia.getDrawable()).getBitmap();
+
+                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                            String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+
+                            Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
+                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                             builder.setMessage("Favor de revisar la informacion antes de ser enviada \n" +

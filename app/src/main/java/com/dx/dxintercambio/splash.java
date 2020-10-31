@@ -102,7 +102,7 @@ public class splash extends Activity {
                 }
 
             }
-        },2000);
+        },3000);
 
         }catch (Exception e ){
 

@@ -38,5 +38,8 @@ public interface DxApi {
     @POST("img")
     Call<String> getImg(@Body Post5 post5);
 
+    @POST("img2")
+    Call<String> getImg2(@Body Post7 post7);
+
 
 }

@@ -6,111 +6,133 @@
     android:layout_height="match_parent"
     tools:context=".firmasActivity">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/imageView32"
+            android:layout_width="67dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signature_view2"
+            app:srcCompat="@drawable/ic_delete_forever_black_24dp" />
+
+        <View
+            android:id="@+id/view10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="10dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/azul_chingon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
-            <View
-                android:id="@+id/view10"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/azul_chingon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Firma del Operador de la Unidad  "
+            android:textAlignment="center"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view10" />
 
-            <TextView
-                android:id="@+id/textView45"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="8dp"
-                android:text="Firma del Operador de la Unidad  "
-                android:textAlignment="center"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view10" />
+        <com.kyanogen.signatureview.SignatureView
+            android:id="@+id/signature_view2"
+            android:layout_width="500dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:backgroundColor="@color/griksito"
+            app:enableSignature="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView45"
+            app:penColor="#000000"
+            app:penSize="5dp" />
 
-            <com.kyanogen.signatureview.SignatureView
-                android:id="@+id/signature_view2"
-                android:layout_width="711dp"
-                android:layout_height="383dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                app:backgroundColor="@color/griksito"
-                app:enableSignature="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView45"
-                app:penColor="#000000"
-                app:penSize="5dp" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Finalizar Intercambio "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView31" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="8dp"
-                android:text="Finalizar Intercambio "
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/signature_view" />
+        <com.kyanogen.signatureview.SignatureView
+            android:id="@+id/signature_view"
+            android:layout_width="500dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:backgroundColor="@color/griksito"
+            app:enableSignature="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView46"
+            app:penColor="#000000"
+            app:penSize="5dp" />
 
-            <com.kyanogen.signatureview.SignatureView
-                android:id="@+id/signature_view"
-                android:layout_width="711dp"
-                android:layout_height="383dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                app:backgroundColor="@color/griksito"
-                app:enableSignature="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView46"
-                app:penColor="#000000"
-                app:penSize="5dp" />
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:text="Firma del Intercambista  "
+            android:textAlignment="center"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView32" />
 
-            <TextView
-                android:id="@+id/textView46"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="8dp"
-                android:text="Firma del Intercambista  "
-                android:textAlignment="center"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/signature_view2" />
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Firmas"
+            android:textAlignment="center"
+            android:textColor="@color/azul_chingon"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView44"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Firmas"
-                android:textAlignment="center"
-                android:textColor="@color/azul_chingon"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <ImageView
+            android:id="@+id/imageView31"
+            android:layout_width="67dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signature_view"
+            app:srcCompat="@drawable/ic_delete_forever_black_24dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,6 +105,8 @@ public class incidenciaActivity extends AppCompatActivity {
     private Button btnCancelar ;
     private Button btnConfirmar ;
 
+    private EditText comen ;
+
     private String user ;
     private String comentario ;
     private String password ;
@@ -122,6 +125,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
         user = preferences.getString("user","");
         password = preferences.getString("pass","");
+
 
         String A_sello1= getIntent().getStringExtra("A_sello1");
         String A_sello2 = getIntent().getStringExtra("A_sello2");
@@ -258,6 +262,8 @@ public class incidenciaActivity extends AppCompatActivity {
         TWPestatusRemolque  = (TextView) findViewById(R.id.estatusRemolque_Pasado);
         TWPcomentario  = (TextView) findViewById(R.id.comentario_Pasado);
 
+        comen = (EditText) findViewById(R.id.editText3);
+
         TWAsello1.setText(A_sello1);
         TWAsello2.setText(A_sello2);
         TWAllanta1.setText(A_llanta1);
@@ -313,9 +319,9 @@ public class incidenciaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                comentario = btnConfirmar.getText().toString();
+                comentario = comen.getText().toString();
 
-                if(comentario.isEmpty()){
+                if(comentario.length()>0){
 
 
                     Post6 post6 = new Post6(user, password, 0, "1", idIntercambio, "", "", "",
@@ -359,9 +365,9 @@ public class incidenciaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                comentario = btnConfirmar.getText().toString();
+                comentario = comen.getText().toString();
 
-                if(comentario.isEmpty()){
+                if(comentario.length() >0){
                     Post6 post6 = new Post6(user, password, 0, "1", idIntercambio, "", "", "",
                             "", "", "", "", "", "", "", 0, 0, 0, "", 1, comentario);
 
@@ -381,8 +387,8 @@ public class incidenciaActivity extends AppCompatActivity {
                             if(!response.isSuccessful()){
                                 Toast.makeText(incidenciaActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }
-                            Toast.makeText(incidenciaActivity.this, "Intercambio Cancelado", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(incidenciaActivity.this, envioActivity.class);
+                            Toast.makeText(incidenciaActivity.this, "Intercambio Confirmado", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(incidenciaActivity.this, splash.class);
                             startActivity(i);
 
                         }
@@ -399,6 +405,11 @@ public class incidenciaActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }

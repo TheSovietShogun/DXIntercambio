@@ -69,5 +69,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
 
    //indian dude libs
-    implementation 'com.kyanogen.signatureview:signature-view:1.0'
+    implementation 'com.kyanogen.signatureview:signature-view:1.2'
 }
