@@ -297,31 +297,6 @@ public class imgActivity extends AppCompatActivity {
                     llanta7SP.setVisibility(View.INVISIBLE);
                     llanta8SP.setVisibility(View.INVISIBLE);
 
-                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                            THUMBSIZE,
-                            THUMBSIZE);
-
-                    tractor.setImageBitmap(thumbImage);
-                    noEconomico.setImageBitmap(thumbImage);
-                    izqRemolqueP1.setImageBitmap(thumbImage);
-                    vin.setImageBitmap(thumbImage);
-                    chasisFrontalIzq.setImageBitmap(thumbImage);
-                    chasisTraseroIzq.setImageBitmap(thumbImage);
-                    llantasIzqEje1.setImageBitmap(thumbImage);
-                    llantasIzqEje2.setImageBitmap(thumbImage);
-                    izqRemolqueP2.setImageBitmap(thumbImage);
-                    puertas.setImageBitmap(thumbImage);
-                    placas.setImageBitmap(thumbImage);
-                    sello1.setImageBitmap(thumbImage);
-                    sello2.setImageBitmap(thumbImage);
-                    derRemolqueP1.setImageBitmap(thumbImage);
-                    llantasDerEje2.setImageBitmap(thumbImage);
-                    llantasDerEje1.setImageBitmap(thumbImage);
-                    chasisTraseroDer.setImageBitmap(thumbImage);
-                    chasisFrontalDER.setImageBitmap(thumbImage);
-                    derRemolqueP2.setImageBitmap(thumbImage);
-
                 }else{
                     llanta3SP.setVisibility(View.VISIBLE);
                     llanta4SP.setVisibility(View.VISIBLE);
@@ -1497,7 +1472,7 @@ public class imgActivity extends AppCompatActivity {
                     String path = imageFile.getPath();
                     Bitmap bm = BitmapFactory.decodeFile(path);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bm.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+                    bm.compress(Bitmap.CompressFormat.JPEG, 70, baos);
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
@@ -1517,6 +1492,7 @@ public class imgActivity extends AppCompatActivity {
                             if(!response.isSuccessful()){
                                 Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }
+
                             String cEnvios = String.valueOf(response);
 
 
@@ -1526,7 +1502,7 @@ public class imgActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<String> call, Throwable t) {
 
-                            Toast.makeText(getBaseContext(),"Error 400Img"+ t.getMessage() ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Error 400Img : "+ t.getMessage() ,Toast.LENGTH_SHORT).show();
                         }
                     });
 

@@ -349,8 +349,9 @@ public class envioActivity extends AppCompatActivity {
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
                         } else {
 
+                            String imageFilePath = imageFile.getPath();
 
-                            Bitmap bitmap = ((BitmapDrawable)licencia.getDrawable()).getBitmap();
+                            Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
 
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
@@ -420,7 +421,9 @@ public class envioActivity extends AppCompatActivity {
                         }else {
                             //SI
 
-                            Bitmap bitmap = ((BitmapDrawable)licencia.getDrawable()).getBitmap();
+                            String imageFilePath = imageFile.getPath();
+
+                            Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
 
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
@@ -511,7 +514,11 @@ public class envioActivity extends AppCompatActivity {
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else if(alfa == 0 || bravo == 0 || charlie == 0 || delta == 0 || foxtrop == 0){
 
-                            Bitmap bitmap = ((BitmapDrawable)licencia.getDrawable()).getBitmap();
+
+
+                            String imageFilePath = imageFile.getPath();
+
+                            Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
 
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
@@ -877,7 +884,7 @@ public class envioActivity extends AppCompatActivity {
         File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
         imageFileName = null ;
         imageFile = null ;
-        photoURI = null;
+        photoURI = null ;
         imageFileName = photo+ "-Folio"+folio ;
 
         try {

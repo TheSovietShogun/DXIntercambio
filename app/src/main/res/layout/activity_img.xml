@@ -19,6 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <CheckBox
+                android:id="@+id/checkBox9"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="135dp"
+                android:layout_marginTop="24dp"
+                android:text="7) Cabina"
+                app:layout_constraintStart_toEndOf="@+id/checkBox2"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+
             <Spinner
                 android:id="@+id/spinner13"
                 android:layout_width="256dp"
@@ -44,16 +55,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="Parte Izquierda del Remolque "
+                android:text="Parte Izquierda"
                 android:textAlignment="center"
-                android:textColor="@color/azul_chingon"
+                android:textColor="@color/griseson"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -62,9 +73,9 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="Parte Trasera del Remolque  "
+                android:text="Parte Trasera"
                 android:textAlignment="center"
-                android:textColor="@color/azul_chingon"
+                android:textColor="@color/griseson"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +91,7 @@
                 android:layout_marginEnd="32dp"
                 android:text="Parte Derecha del Remolque  "
                 android:textAlignment="center"
-                android:textColor="@color/azul_chingon"
+                android:textColor="@color/griseson"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +155,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Favor de Tomar las Fotografias Solicitadas"
+                android:text="Captura la Informacion Solicitada"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,18 +166,29 @@
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="200dp"
                 android:background="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <View
+                android:id="@+id/view11"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="300dp"
+                android:background="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView29" />
 
             <View
                 android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:layout_marginTop="32dp"
-                android:background="@color/azul_chingon"
+                android:background="@color/griseson"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,12 +198,12 @@
                 android:id="@+id/view8"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="61dp"
-                android:background="@color/azul_chingon"
+                android:layout_marginTop="100dp"
+                android:background="@color/griseson"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox17" />
 
             <View
                 android:id="@+id/view4"
@@ -314,7 +336,7 @@
                 android:layout_marginStart="150dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
@@ -324,7 +346,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView12"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
@@ -566,7 +588,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Placas"
+                android:text="Placa"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView12"
@@ -863,8 +885,8 @@
                 android:id="@+id/radioButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="26dp"
                 android:text="Llantas Jumbo ? "
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -963,10 +985,273 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="280dp"
+                android:layout_marginEnd="296dp"
                 android:text="Eje 2\nIzquierdo "
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+            <ImageView
+                android:id="@+id/imageView29"
+                android:layout_width="247dp"
+                android:layout_height="244dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:srcCompat="@drawable/nlogo" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="100dp"
+                android:textSize="20dp"
+                android:text="1) Defensa"
+                app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:textSize="20dp"
+                android:layout_marginTop="24dp"
+                android:text="2) Motor"
+                app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="3) Piso"
+                app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="4) Tanque de\nCombustible"
+                app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="5) Llantas"
+                app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+
+            <CheckBox
+                android:id="@+id/checkBox7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="116dp"
+                android:layout_marginTop="40dp"
+                android:text="10) Quinta Rueda"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@+id/checkBox5"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
+
+            <CheckBox
+                android:id="@+id/checkBox8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="100dp"
+                android:text="6) Diferencial"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+            <CheckBox
+                android:id="@+id/checkBox10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginStart="145dp"
+                android:layout_marginTop="24dp"
+                android:text="8) Cilindros de Aire"
+                app:layout_constraintStart_toEndOf="@+id/checkBox3"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
+
+            <CheckBox
+                android:id="@+id/checkBox11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="24dp"
+                android:text="9) Mofle/Escape"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@+id/checkBox4"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="Tractor"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+            <CheckBox
+                android:id="@+id/checkBox13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="50dp"
+                android:text="Puertas Traseras"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+            <CheckBox
+                android:id="@+id/checkBox14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="16dp"
+                android:text="Sellos"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox13" />
+
+            <CheckBox
+                android:id="@+id/checkBox15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="16dp"
+                android:text="Luces Traseras"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox14" />
+
+            <CheckBox
+                android:id="@+id/checkBox16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="16dp"
+                android:text="Cuartos Rojos"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox15" />
+
+            <CheckBox
+                android:id="@+id/checkBox17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="16dp"
+                android:text="Luces de Alta Traseras"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox16" />
+
+            <CheckBox
+                android:id="@+id/checkBox18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="212dp"
+                android:text="Luz de Placa"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+            <CheckBox
+                android:id="@+id/checkBox19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="276dp"
+                android:text="Placa"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox18" />
+
+            <CheckBox
+                android:id="@+id/checkBox20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="224dp"
+                android:text="Zoqueteras"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox19" />
+
+            <CheckBox
+                android:id="@+id/checkBox21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="196dp"
+                android:text="Guarda Polvos"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox20" />
+
+            <CheckBox
+                android:id="@+id/checkBox22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="252dp"
+                android:text="Loderas"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox21" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="144dp"
+                android:ems="10"
+                android:hint="Numero de Placa"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="Remolque"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view11" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
