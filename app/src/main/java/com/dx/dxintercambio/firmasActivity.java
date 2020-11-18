@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -100,16 +101,16 @@ public class firmasActivity extends AppCompatActivity {
 
 
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
                     String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
 
                     ByteArrayOutputStream bytes2 = new ByteArrayOutputStream();
-                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 80, bytes2);
+                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 70, bytes2);
                     String encodedImage2 = Base64.encodeToString(bytes2.toByteArray(), Base64.NO_WRAP);
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.87:80/api/")
+                            .baseUrl("http://192.168.4.92/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -130,8 +131,48 @@ public class firmasActivity extends AppCompatActivity {
                             if(cEnvios.contains("200")){
                                 Toast.makeText(getBaseContext(),"Enviado",Toast.LENGTH_SHORT).show();
 
-                                Intent i = new Intent(firmasActivity.this, splash.class);
-                                startActivity(i);
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl("http://192.168.4.92/api/")
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+
+                                dxApi = retrofit.create(DxApi.class);
+
+                                Post post = new Post(user,password);
+                                Call<List<CEnvio>> callTerminado = dxApi.getTerminado(post);
+
+                                callTerminado.enqueue(new Callback<List<CEnvio>>() {
+                                    @Override
+                                    public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+                                        if (!response.isSuccessful()) {
+                                            Toast.makeText(firmasActivity.this, "Error 500", Toast.LENGTH_LONG).show();
+                                        }else {
+
+                                            List<CEnvio> cEnvios = response.body();
+
+                                            String mensaje = cEnvios.get(0).getMensaje();
+
+                                            if (mensaje.contains("Enviado con exito")){
+
+                                                Intent i = new Intent(firmasActivity.this, splash.class);
+                                                startActivity(i);
+
+                                            }else{
+                                                Toast.makeText(firmasActivity.this, "Error al Enviar", Toast.LENGTH_LONG).show();
+                                            }
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                                        Toast.makeText(firmasActivity.this, "Error 404U", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+
+
                             }else {
                                 Toast.makeText(getBaseContext(),"Error Al Enviar",Toast.LENGTH_SHORT).show();
                             }
@@ -141,7 +182,7 @@ public class firmasActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<String> call, Throwable t) {
-
+                            Toast.makeText(firmasActivity.this, "Error 404U", Toast.LENGTH_LONG).show();
                         }
                     });
 

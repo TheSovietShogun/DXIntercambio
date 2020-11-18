@@ -72,8 +72,10 @@ public class imgActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final String TAG = "envioActivity";
     private Spinner llanta1SP, llanta2SP , llanta3SP ,llanta4SP,llanta5SP ,llanta6SP ,llanta7SP,llanta8SP;
-    private CheckBox jumboRB1 , jumboRB2;
-    private EditText sello1ET ,sello2ET, sello3ET;
+    private CheckBox jumboRB1 , defensa , motor, piso ,tanquedeComb , llantas, quintaRueda, diferencial , cabina
+    , cilindrosDeAire,mofleEscape , manivela ,puertasTraseras, sellos, lucesTraseras, cuartosRojos, lucesDeAltaTraseras, luzDePlace,
+    placa, zoqueteras, guardaPolvo, loderas , remolque , lucesLateralesAmbar, chasis , lucesdeFrentem ,paredes , llantaDeRefaccion , cuartosAmbar;
+    private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca;
     private Drive mService;
     private Drive googleDriveService;
     private String operacion ;
@@ -135,6 +137,9 @@ public class imgActivity extends AppCompatActivity {
     private String llantasDerEje1Img;
     private String chasisTraseroDerImg;
     private  String chasisFrontalDERImg;
+    private String defensaCh , motorCh, pisoCh, tanqueDeCombCh, llantasCh , diferencialCh , cabinaCh, cilindrosDeAireCh,mofleEscapeCh
+            ,quintaRuedaCh, manivelaCh, puertasTraserasCh, sellosCh , lucesTraserasCh ,cuartosRojosCh , lucesDeAltaTraseraCh, luzDePlacaCh ,
+    placaCh, zoqueterasCh, guardaPolvoCh, loderasCh, remolqueCh, chasisCh , paredesCh, lucesLateralesAmbarCh, lucesFrenteCh, llantaDeRefaccionCh , cuartosAmbarCh;
     private String derRemolqueP2Img, tarjertaImg ;
     private DxApi dxApi;
     private String damage1Img ;
@@ -253,6 +258,7 @@ public class imgActivity extends AppCompatActivity {
         llanta6SP = (Spinner) findViewById(R.id.spinner13);
         llanta7SP = (Spinner) findViewById(R.id.spinner14);
         llanta8SP = (Spinner) findViewById(R.id.spinner11);
+
         sello1ET = (EditText) findViewById(R.id.editText);
         sello2ET = (EditText) findViewById(R.id.editText2);
         sello3ET = (EditText) findViewById(R.id.editText4);
@@ -265,7 +271,38 @@ public class imgActivity extends AppCompatActivity {
 
         btnImg = (Button) findViewById(R.id.btnImg);
 
-        Llantas = new String[]{"Sin Seleccionar","Hanck","Goodyear", "Michelin", "Yokohama"};
+        defensa = (CheckBox) findViewById(R.id.checkBox);
+        motor = (CheckBox) findViewById(R.id.checkBox2);
+        piso = (CheckBox) findViewById(R.id.checkBox3);
+        tanquedeComb = (CheckBox) findViewById(R.id.checkBox4);
+        llantas = (CheckBox) findViewById(R.id.checkBox5);
+        diferencial = (CheckBox) findViewById(R.id.checkBox8);
+        cabina = (CheckBox) findViewById(R.id.checkBox9);
+        cilindrosDeAire = (CheckBox) findViewById(R.id.checkBox10);
+        mofleEscape = (CheckBox) findViewById(R.id.checkBox11);
+        quintaRueda = (CheckBox) findViewById(R.id.checkBox7);
+        manivela = (CheckBox) findViewById(R.id.checkBox27);
+        puertasTraseras = (CheckBox) findViewById(R.id.checkBox13);
+        sellos = (CheckBox) findViewById(R.id.checkBox14);
+        lucesTraseras = (CheckBox) findViewById(R.id.checkBox15);
+        cuartosRojos = (CheckBox) findViewById(R.id.checkBox16);
+        lucesDeAltaTraseras = (CheckBox) findViewById(R.id.checkBox17);
+        luzDePlace = (CheckBox) findViewById(R.id.checkBox18);
+        placa = (CheckBox) findViewById(R.id.checkBox19);
+        zoqueteras = (CheckBox) findViewById(R.id.checkBox20);
+        guardaPolvo = (CheckBox) findViewById(R.id.checkBox21);
+        loderas = (CheckBox) findViewById(R.id.checkBox22);
+        remolque = (CheckBox) findViewById(R.id.checkBox6);
+        chasis = (CheckBox) findViewById(R.id.checkBox12);
+        paredes = (CheckBox) findViewById(R.id.checkBox23);
+        lucesLateralesAmbar = (CheckBox) findViewById(R.id.checkBox24);
+        lucesdeFrentem = (CheckBox) findViewById(R.id.checkBox25);
+        llantaDeRefaccion = (CheckBox) findViewById(R.id.checkBox26);
+        cuartosAmbar = (CheckBox) findViewById(R.id.checkBox28);
+        numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName) ;
+
+
+       /* Llantas = new String[]{"Sin Seleccionar","Hanck","Goodyear", "Michelin", "Yokohama"};
 
         ArrayAdapter<String> adapterll1 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
         llanta1SP.setAdapter(adapterll1);
@@ -282,7 +319,47 @@ public class imgActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterll7 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
         llanta7SP.setAdapter(adapterll7);
         ArrayAdapter<String> adapterll8 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta8SP.setAdapter(adapterll8);
+        llanta8SP.setAdapter(adapterll8);*/
+
+        Post post =  new Post(user,password);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.4.92:80/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        dxApi = retrofit.create(DxApi.class);
+
+        Call<List<CLlanta>> callLlanta = dxApi.getLlanta(post);
+
+        callLlanta.enqueue(new Callback<List<CLlanta>>() {
+            @Override
+            public void onResponse(Call<List<CLlanta>> call, Response<List<CLlanta>> response) {
+
+                if (!response.isSuccessful()) {
+                    Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
+                }
+                List<CLlanta> CLlantas = response.body();
+
+
+                ArrayAdapter<CLlanta> adapter2 = new ArrayAdapter<CLlanta>(imgActivity.this , R.layout.mspinner_item, CLlantas);
+                llanta1SP .setAdapter(adapter2);
+                llanta2SP .setAdapter(adapter2);
+                llanta3SP  .setAdapter(adapter2);
+                llanta4SP .setAdapter(adapter2);
+                llanta5SP  .setAdapter(adapter2);
+                llanta6SP .setAdapter(adapter2);
+                llanta7SP  .setAdapter(adapter2);
+                llanta8SP  .setAdapter(adapter2);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<CLlanta>> call, Throwable t) {
+
+            }
+        });
 
 
         jumboRB1.setOnClickListener(new View.OnClickListener() {
@@ -292,6 +369,34 @@ public class imgActivity extends AppCompatActivity {
                  checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
+
+                  /*  Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    tractor.setImageBitmap(thumbImage);
+
+
+                    noEconomico.setImageBitmap(thumbImage);
+                    izqRemolqueP1.setImageBitmap(thumbImage);
+                    vin.setImageBitmap(thumbImage);
+                    chasisFrontalIzq.setImageBitmap(thumbImage);
+                    chasisTraseroIzq.setImageBitmap(thumbImage);
+                    llantasIzqEje1.setImageBitmap(thumbImage);
+                    llantasIzqEje2.setImageBitmap(thumbImage);
+                    izqRemolqueP2.setImageBitmap(thumbImage);
+                    puertas.setImageBitmap(thumbImage);
+                    placas.setImageBitmap(thumbImage);
+                    sello1.setImageBitmap(thumbImage);
+                    sello2.setImageBitmap(thumbImage);
+                    derRemolqueP1.setImageBitmap(thumbImage);
+                    llantasDerEje2.setImageBitmap(thumbImage);
+                    llantasDerEje1.setImageBitmap(thumbImage);
+                    chasisTraseroDer.setImageBitmap(thumbImage);
+                    chasisFrontalDER.setImageBitmap(thumbImage);
+                    derRemolqueP2.setImageBitmap(thumbImage);*/
+
                     llanta3SP.setVisibility(View.INVISIBLE);
                     llanta4SP.setVisibility(View.INVISIBLE);
                     llanta7SP.setVisibility(View.INVISIBLE);
@@ -306,6 +411,428 @@ public class imgActivity extends AppCompatActivity {
             }
         });
 
+          defensaCh ="1" ;
+         motorCh ="1" ;
+                  pisoCh ="1" ;
+                  tanqueDeCombCh ="1" ;
+                  llantasCh ="1" ;
+                  diferencialCh  ="1" ;
+                  cabinaCh ="1" ;
+                  cilindrosDeAireCh ="1" ;
+                          mofleEscapeCh ="1" ;
+                quintaRuedaCh ="1" ;
+                  manivelaCh ="1" ;
+                  puertasTraserasCh ="1" ;
+                  sellosCh  ="1" ;
+                  lucesTraserasCh  ="1" ;
+                  cuartosRojosCh  ="1" ;
+                  lucesDeAltaTraseraCh ="1" ;
+                  luzDePlacaCh  ="1" ;
+                placaCh ="1" ;
+                  zoqueterasCh ="1" ;
+                  guardaPolvoCh ="1" ;
+                  loderasCh ="1" ;
+                  remolqueCh ="1" ;
+                  chasisCh  ="1" ;
+                  paredesCh ="1" ;
+                  lucesLateralesAmbarCh ="1" ;
+                  lucesFrenteCh ="1" ;
+                  llantaDeRefaccionCh  ="1" ;
+                  cuartosAmbarCh ="1" ;
+
+        defensa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                   defensaCh = "0";
+
+                }else{
+                    defensaCh = "1";
+                }
+            }
+        });
+
+        cuartosAmbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    cuartosAmbarCh = "0";
+
+                }else{
+                    cuartosAmbarCh = "1";
+                }
+            }
+        });
+        motor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    motorCh = "0";
+
+                }else{
+                    motorCh = "1";
+                }
+            }
+        });
+        piso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    pisoCh = "0";
+
+                }else{
+                    pisoCh = "1";
+                }
+            }
+        });
+        tanquedeComb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    tanqueDeCombCh = "0";
+
+                }else{
+                    tanqueDeCombCh = "1";
+                }
+            }
+        });
+        llantas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    llantasCh = "0";
+
+                }else{
+                    llantasCh = "1";
+                }
+            }
+        });
+        diferencial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    diferencialCh = "0";
+
+                }else{
+                    diferencialCh = "1";
+                }
+            }
+        });
+        cabina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    cabinaCh = "0";
+
+                }else{
+                    cabinaCh = "1";
+                }
+            }
+        });
+        cilindrosDeAire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    cilindrosDeAireCh = "0";
+
+                }else{
+                    cilindrosDeAireCh = "1";
+                }
+            }
+        });
+        mofleEscape.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    mofleEscapeCh = "0";
+
+                }else{
+                    mofleEscapeCh = "1";
+                }
+            }
+        });
+        quintaRueda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    quintaRuedaCh = "0";
+
+                }else{
+                    quintaRuedaCh = "1";
+                }
+            }
+        });
+        manivela.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    manivelaCh = "0";
+
+                }else{
+                    manivelaCh = "1";
+                }
+            }
+        });
+        puertasTraseras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    puertasTraserasCh = "0";
+
+                }else{
+                    puertasTraserasCh = "1";
+                }
+            }
+        });
+        sellos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    sellosCh = "0";
+
+                }else{
+                    sellosCh = "1";
+                }
+            }
+        });
+        lucesTraseras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    lucesTraserasCh = "0";
+
+                }else{
+                    lucesTraserasCh = "1";
+                }
+            }
+        });
+        cuartosRojos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    cuartosRojosCh = "0";
+
+                }else{
+                    cuartosRojosCh = "1";
+                }
+            }
+        });
+        lucesDeAltaTraseras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    lucesDeAltaTraseraCh = "0";
+
+                }else{
+                    lucesDeAltaTraseraCh = "1";
+                }
+            }
+        });
+        luzDePlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    luzDePlacaCh = "0";
+
+                }else{
+                    luzDePlacaCh = "1";
+                }
+            }
+        });
+        placa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    placaCh = "0";
+
+                }else{
+                    placaCh = "1";
+                }
+            }
+        });
+        zoqueteras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    zoqueterasCh = "0";
+
+                }else{
+                    zoqueterasCh = "1";
+                }
+            }
+        });
+        guardaPolvo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    guardaPolvoCh = "0";
+
+                }else{
+                    guardaPolvoCh = "1";
+                }
+            }
+        });
+        loderas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    loderasCh = "0";
+
+                }else{
+                    loderasCh = "1";
+                }
+            }
+        });
+        remolque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    remolqueCh = "0";
+
+                }else{
+                    remolqueCh = "1";
+                }
+            }
+        });
+        chasis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    chasisCh = "0";
+
+                }else{
+                    chasisCh = "1";
+                }
+            }
+        });
+        paredes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    paredesCh = "0";
+
+                }else{
+                    paredesCh = "1";
+                }
+            }
+        });
+        lucesLateralesAmbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    lucesLateralesAmbarCh = "0";
+
+                }else{
+                    lucesLateralesAmbarCh = "1";
+                }
+            }
+        });
+        lucesdeFrentem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    lucesFrenteCh = "0";
+
+                }else{
+                    lucesFrenteCh = "1";
+                }
+            }
+        });
+        llantaDeRefaccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    llantaDeRefaccionCh = "0";
+
+                }else{
+                    llantaDeRefaccionCh = "1";
+                }
+            }
+        });
 
 
         btnImg.setOnClickListener(new View.OnClickListener() {
@@ -371,6 +898,7 @@ public class imgActivity extends AppCompatActivity {
                     selloExtra = 0;
                 }
 
+                String placasDatosD = numeroDePlaca.getText().toString();
 
                 // SI LAS LLANTAS SON JUMBO SOLO REVISA 4
                 if(lljumbo == 1 ) {
@@ -395,6 +923,7 @@ public class imgActivity extends AppCompatActivity {
                             derRemolqueP2Img.contains(" 300") ||
                             sello1S.length() == 0 ||
                             sello2S.length() == 0 ||
+                            placasDatosD.length() == 0 ||
                             ll1 == "Sin Seleccionar" ||
                             ll2 == "Sin Seleccionar" ||
                             ll6 == "Sin Seleccionar" ||
@@ -421,8 +950,9 @@ public class imgActivity extends AppCompatActivity {
                             chasisTraseroDerImg.contains("128") &&
                             chasisFrontalDERImg.contains("128") &&
                             derRemolqueP2Img.contains("128") &&
-                            sello1S.length() >= 0 &&
-                            sello2S.length() >= 0 &&
+                            sello1S.length() > 0 &&
+                            sello2S.length() > 0 &&
+                            placasDatosD.length() > 0 ||
                             ll1 != "Sin Seleccionar" &&
                             ll2 != "Sin Seleccionar" &&
                             ll6 != "Sin Seleccionar" &&
@@ -431,7 +961,38 @@ public class imgActivity extends AppCompatActivity {
 
                         try {
                             Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
-                                    ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "");
+                                    ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
+                                    defensaCh,
+                                    motorCh,
+                                    pisoCh,
+                                    tanqueDeCombCh,
+                                    llantasCh,
+                                    diferencialCh,
+                                    cabinaCh,
+                                    cilindrosDeAireCh,
+                                    mofleEscapeCh,
+                                    quintaRuedaCh,
+                                    remolqueCh,
+                                    chasisCh,
+                                    puertasTraserasCh,
+                                    paredesCh,
+                                    sellosCh,
+                                    lucesLateralesAmbarCh,
+                                    lucesFrenteCh,
+                                    cuartosAmbarCh,
+                                    lucesTraserasCh,
+                                    cuartosRojosCh,
+                                    lucesDeAltaTraseraCh,
+                                    luzDePlacaCh,
+                                    zoqueterasCh,
+                                    manivelaCh,
+                                    guardaPolvoCh,
+                                    loderasCh,
+                                    llantaDeRefaccionCh,
+                                    placaCh,
+                                    placasDatosD
+
+                                    );
 
 
                             Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
@@ -481,6 +1042,36 @@ public class imgActivity extends AppCompatActivity {
                                         String A_remolque = cEnvio2s.get(0).getA_remolque();
                                         String A_usuario = cEnvio2s.get(0).getA_usuario();
 
+                                        String A_defensa = cEnvio2s.get(0).getA_defensa();
+                                        String A_motor = cEnvio2s.get(0).getA_motor();
+                                        String A_piso = cEnvio2s.get(0).getA_piso();
+                                        String A_tanqueDeComb = cEnvio2s.get(0).getA_tanqueDeComb();
+                                        String A_llantas = cEnvio2s.get(0).getA_llantas();
+                                        String A_diferencial = cEnvio2s.get(0).getA_diferencial();
+                                        String A_cabina = cEnvio2s.get(0).getA_cabina();
+                                        String A_cilindrosDeAire = cEnvio2s.get(0).getA_cilindrosDeAire();
+                                        String A_mofleEscape = cEnvio2s.get(0).getA_mofleEscape();
+                                        String A_quintaRueda = cEnvio2s.get(0).getA_quintaRueda();
+                                        String A_remolqueC = cEnvio2s.get(0).getA_remolqueC();
+                                        String A_chasis = cEnvio2s.get(0).getA_chasis();
+                                        String A_puertasTraseras = cEnvio2s.get(0).getA_puertasTraseras();
+                                        String A_paredes = cEnvio2s.get(0).getA_paredes();
+                                        String A_sellos = cEnvio2s.get(0).getA_sellos();
+                                        String A_lucesLatAmbar = cEnvio2s.get(0).getA_lucesLatAmbar();
+                                        String A_lucesDeFrente = cEnvio2s.get(0).getA_lucesDeFrente();
+                                        String A_cuartosAmbar = cEnvio2s.get(0).getA_cuartosAmbar();
+                                        String A_lucesTraseras = cEnvio2s.get(0).getA_lucesTraseras();
+                                        String A_cuartosRojos = cEnvio2s.get(0).getA_cuartosRojos();
+                                        String A_lucesDeAltoTraseroas = cEnvio2s.get(0).getA_lucesDeAltoTraseros();
+                                        String A_luzDePlaca = cEnvio2s.get(0).getA_luzDePlaca();
+                                        String A_zoqueteras = cEnvio2s.get(0).getA_zoqueteras();
+                                        String A_manivela = cEnvio2s.get(0).getA_manivela();
+                                        String A_guardaPolvos = cEnvio2s.get(0).getA_guardaPolvos();
+                                        String A_loderas = cEnvio2s.get(0).getA_loderas();
+                                        String A_llantaDeRefaccion = cEnvio2s.get(0).getA_llantaDeRefaccion();
+                                        String A_placas = cEnvio2s.get(0).getA_placas();
+                                        String A_placasDatos =  cEnvio2s.get(0).getA_placasDatos();
+
 
                                          String P_sello1 = cEnvio2s.get(0).getP_sello1();
                                          String P_sello2 = cEnvio2s.get(0).getP_sello2();
@@ -507,6 +1098,36 @@ public class imgActivity extends AppCompatActivity {
                                         String P_linea = cEnvio2s.get(0).getP_linea();
                                         String P_remolque = cEnvio2s.get(0).getP_remolque();
                                         String P_usuario = cEnvio2s.get(0).getP_usuario();
+
+                                        String P_defensa = cEnvio2s.get(0).getP_defensa();
+                                        String P_motor = cEnvio2s.get(0).getP_motor();
+                                        String P_piso = cEnvio2s.get(0).getP_piso();
+                                        String P_tanqueDeComb = cEnvio2s.get(0).getP_tanqueDeComb();
+                                        String P_llantas = cEnvio2s.get(0).getP_llantas();
+                                        String P_diferencial = cEnvio2s.get(0).getP_diferencial();
+                                        String P_cabina = cEnvio2s.get(0).getP_cabina();
+                                        String P_cilindrosDeAire = cEnvio2s.get(0).getP_cilindrosDeAire();
+                                        String P_mofleEscape = cEnvio2s.get(0).getP_mofleEscape();
+                                        String P_quintaRueda = cEnvio2s.get(0).getP_quintaRueda();
+                                        String P_remolqueC = cEnvio2s.get(0).getP_remolqueC();
+                                        String P_chasis = cEnvio2s.get(0).getP_chasis();
+                                        String P_puertasTraseras = cEnvio2s.get(0).getP_puertasTraseras();
+                                        String P_paredes = cEnvio2s.get(0).getP_paredes();
+                                        String P_sellos = cEnvio2s.get(0).getP_sellos();
+                                        String P_lucesLatAmbar = cEnvio2s.get(0).getP_lucesLatAmbar();
+                                        String P_lucesDeFrente = cEnvio2s.get(0).getP_lucesDeFrente();
+                                        String P_cuartosAmbar = cEnvio2s.get(0).getP_cuartosAmbar();
+                                        String P_lucesTraseras = cEnvio2s.get(0).getP_lucesTraseras();
+                                        String P_cuartosRojos = cEnvio2s.get(0).getP_cuartosRojos();
+                                        String P_lucesDeAltoTraseroas = cEnvio2s.get(0).getP_lucesDeAltoTraseros();
+                                        String P_luzDePlaca = cEnvio2s.get(0).getP_luzDePlaca();
+                                        String P_zoqueteras = cEnvio2s.get(0).getP_zoqueteras();
+                                        String P_manivela = cEnvio2s.get(0).getP_manivela();
+                                        String P_guardaPolvos = cEnvio2s.get(0).getP_guardaPolvos();
+                                        String P_loderas = cEnvio2s.get(0).getP_loderas();
+                                        String P_llantaDeRefaccion = cEnvio2s.get(0).getP_llantaDeRefaccion();
+                                        String P_placas = cEnvio2s.get(0).getP_placas();
+                                        String P_placasDatos =  cEnvio2s.get(0).getP_placasDatos();
 
                                         if(incidencia.contains("SIUUU")){
                                             Intent i = new Intent(imgActivity.this, incidenciaActivity.class);
@@ -536,6 +1157,36 @@ public class imgActivity extends AppCompatActivity {
                                             i.putExtra("A_remolque", A_remolque);
                                             i.putExtra("A_usuario", A_usuario);
 
+                                            i.putExtra("A_defensa", A_defensa);
+                                            i.putExtra("A_motor", A_motor);
+                                            i.putExtra("A_piso", A_piso);
+                                            i.putExtra("A_tanqueDeComb", A_tanqueDeComb);
+                                            i.putExtra("A_llantas", A_llantas);
+                                            i.putExtra("A_diferencial", A_diferencial);
+                                            i.putExtra("A_cabina", A_cabina);
+                                            i.putExtra("A_cilindrosDeAire", A_cilindrosDeAire);
+                                            i.putExtra("A_mofleEscape", A_mofleEscape);
+                                            i.putExtra("A_quintaRueda", A_quintaRueda);
+                                            i.putExtra("A_remolqueC", A_remolqueC);
+                                            i.putExtra("A_chasis", A_chasis);
+                                            i.putExtra("A_puertasTraseras", A_puertasTraseras);
+                                            i.putExtra("A_paredes", A_paredes);
+                                            i.putExtra("A_sellos", A_sellos);
+                                            i.putExtra("A_lucesLatAmbar", A_lucesLatAmbar);
+                                            i.putExtra("A_lucesDeFrente", A_lucesDeFrente);
+                                            i.putExtra("A_cuartosAmbar", A_cuartosAmbar);
+                                            i.putExtra("A_lucesTraseras", A_lucesTraseras);
+                                            i.putExtra("A_cuartosRojos", A_cuartosRojos);
+                                            i.putExtra("A_lucesDeAltoTraseros", A_lucesDeAltoTraseroas);
+                                            i.putExtra("A_luzDePlaca", A_luzDePlaca);
+                                            i.putExtra("A_zoqueteras", A_zoqueteras);
+                                            i.putExtra("A_manivela", A_manivela);
+                                            i.putExtra("A_guardaPolvos", A_guardaPolvos);
+                                            i.putExtra("A_loderas", A_loderas);
+                                            i.putExtra("A_llantaDeRefaccion", A_llantaDeRefaccion);
+                                            i.putExtra("A_placas", A_placas);
+                                            i.putExtra("A_placasDatos", A_placasDatos);
+
 
                                             i.putExtra("P_sello1", P_sello1);
                                             i.putExtra("P_sello2", P_sello2);
@@ -562,6 +1213,38 @@ public class imgActivity extends AppCompatActivity {
                                             i.putExtra("P_linea", P_linea);
                                             i.putExtra("P_remolque", P_remolque);
                                             i.putExtra("P_usuario", P_usuario);
+
+                                            i.putExtra("P_defensa", P_defensa);
+                                            i.putExtra("P_motor",P_motor);
+                                            i.putExtra("P_piso", P_piso);
+                                            i.putExtra("P_tanqueDeComb", P_tanqueDeComb);
+                                            i.putExtra("P_llantas", P_llantas);
+                                            i.putExtra("P_diferencial", P_diferencial);
+                                            i.putExtra("P_cabina", P_cabina);
+                                            i.putExtra("P_cilindrosDeAire", P_cilindrosDeAire);
+                                            i.putExtra("P_mofleEscape", P_mofleEscape);
+                                            i.putExtra("P_quintaRueda", P_quintaRueda);
+                                            i.putExtra("P_remolqueC", P_remolqueC);
+                                            i.putExtra("P_chasis", P_chasis);
+                                            i.putExtra("P_puertasTraseras", P_puertasTraseras);
+                                            i.putExtra("P_paredes", P_paredes);
+                                            i.putExtra("P_sellos", P_sellos);
+                                            i.putExtra("P_lucesLatAmbar", P_lucesLatAmbar);
+                                            i.putExtra("P_lucesDeFrente", P_lucesDeFrente);
+                                            i.putExtra("P_cuartosAmbar", P_cuartosAmbar);
+                                            i.putExtra("P_lucesTraseras", P_lucesTraseras);
+                                            i.putExtra("P_cuartosRojos", P_cuartosRojos);
+                                            i.putExtra("P_lucesDeAltoTraseros", P_lucesDeAltoTraseroas);
+                                            i.putExtra("P_luzDePlaca", P_luzDePlaca);
+                                            i.putExtra("P_zoqueteras", P_zoqueteras);
+                                            i.putExtra("P_manivela", P_manivela);
+                                            i.putExtra("P_guardaPolvos", P_guardaPolvos);
+                                            i.putExtra("P_loderas", P_loderas);
+                                            i.putExtra("P_llantaDeRefaccion", P_llantaDeRefaccion);
+                                            i.putExtra("P_placas", P_placas);
+                                            i.putExtra("P_placasDatos", P_placasDatos);
+
+
 
                                             i.putExtra("idIntercambio", mensaje);
                                             i.putExtra("folio", folio);
@@ -610,6 +1293,7 @@ public class imgActivity extends AppCompatActivity {
                                 derRemolqueP2Img.contains(" 300") ||
                                 sello1S.length() == 0 ||
                                 sello2S.length() == 0 ||
+                                placasDatosD.length() == 0 ||
                                 ll1 == "Sin Seleccionar" ||
                                 ll2 == "Sin Seleccionar" ||
                                 ll3 == "Sin Seleccionar" ||
@@ -640,8 +1324,9 @@ public class imgActivity extends AppCompatActivity {
                                 chasisTraseroDerImg.contains("128") &&
                                 chasisFrontalDERImg.contains("128") &&
                                 derRemolqueP2Img.contains("128") &&
-                                sello1S.length() >= 0 &&
-                                sello2S.length() >= 0 &&
+                                sello1S.length() > 0 &&
+                                sello2S.length() > 0 &&
+                                placasDatosD.length() > 0 ||
                                  ll1 != "Sin Seleccionar" &&
                                 ll2 != "Sin Seleccionar" &&
                                 ll3 != "Sin Seleccionar" &&
@@ -655,7 +1340,36 @@ public class imgActivity extends AppCompatActivity {
 
 
                                 Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
-                                        ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "");
+                                        ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
+                                        defensaCh,
+                                        motorCh,
+                                        pisoCh,
+                                        tanqueDeCombCh,
+                                        llantasCh,
+                                        diferencialCh,
+                                        cabinaCh,
+                                        cilindrosDeAireCh,
+                                        mofleEscapeCh,
+                                        quintaRuedaCh,
+                                        remolqueCh,
+                                        chasisCh,
+                                        puertasTraserasCh,
+                                        paredesCh,
+                                        sellosCh,
+                                        lucesLateralesAmbarCh,
+                                        lucesFrenteCh,
+                                        cuartosAmbarCh,
+                                        lucesTraserasCh,
+                                        cuartosRojosCh,
+                                        lucesDeAltaTraseraCh,
+                                        luzDePlacaCh,
+                                        zoqueterasCh,
+                                        manivelaCh,
+                                        guardaPolvoCh,
+                                        loderasCh,
+                                        llantaDeRefaccionCh,
+                                        placaCh,
+                                        placasDatosD);
 
                                                 String loko = "dfasfsdg";
                                                 Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
@@ -1476,7 +2190,7 @@ public class imgActivity extends AppCompatActivity {
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.87:80/api/")
+                            .baseUrl("http://192.168.4.92/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -1503,6 +2217,212 @@ public class imgActivity extends AppCompatActivity {
                         public void onFailure(Call<String> call, Throwable t) {
 
                             Toast.makeText(getBaseContext(),"Error 400Img : "+ t.getMessage() ,Toast.LENGTH_SHORT).show();
+
+
+                            switch (codigo){
+                                case REQUEST_TRACTOR:
+
+                                    tractor.setImageBitmap(null);
+                                    tractor.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractor.setEnabled(true);
+
+                                    break;
+
+                                case REQUEST_NoECONOMICO:
+
+                                    noEconomico.setImageBitmap(null);
+                                    noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    noEconomico.setEnabled(true);
+
+                                    break;
+                                case REQUEST_IZQ_REMOLQUE_P1:
+
+
+                                    izqRemolqueP1.setImageBitmap(null);
+                                    izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    izqRemolqueP1.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST_VIN:
+
+                                    vin.setImageBitmap(null);
+                                    vin.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    vin.setEnabled(true);
+
+
+                                    break;
+                                case REQUEST_CHASIS_FRONTAL_IZQ:
+
+
+                                    chasisFrontalIzq.setImageBitmap(null);
+                                    chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisFrontalIzq.setEnabled(true);
+
+                                    break;
+                                case REQUEST_CHASIS_TRASERO_IZQ:
+
+
+                                    chasisTraseroIzq.setImageBitmap(null);
+                                    chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisTraseroIzq.setEnabled(true);
+
+                                    break;
+                                case REQUEST_LLANTAS_IZQ_EJE1:
+
+
+                                    llantasIzqEje1.setImageBitmap(null);
+                                    llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasIzqEje1.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST__LLANTAS_IZQ_EJE2:
+
+                                    llantasIzqEje2.setImageBitmap(null);
+                                    llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasIzqEje2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_IZQ_REMOLQUE_P2:
+
+
+                                    izqRemolqueP2.setImageBitmap(null);
+                                    izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    izqRemolqueP2.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST_PUERTAS:
+
+
+                                    puertas.setImageBitmap(null);
+                                    puertas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    puertas.setEnabled(true);
+
+                                    break;
+                                case REQUEST_PLACAS:
+
+                                    placas.setImageBitmap(null);
+                                    placas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    placas.setEnabled(true);
+
+                                    break;
+                                case REQUEST_SELLO1:
+
+
+                                    sello1.setImageBitmap(null);
+                                    sello1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    sello1.setEnabled(true);
+
+
+
+                                    break;
+                                case REQUEST_SELLO2:
+
+
+                                    sello2.setImageBitmap(null);
+                                    sello2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    sello2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_DER_REMOLQUE_P1:
+
+
+
+                                    derRemolqueP1.setImageBitmap(null);
+                                    derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    derRemolqueP1.setEnabled(true);
+
+                                    break;
+                                case REQUEST_LLANTAS_DER_EJE2:
+
+
+                                    llantasDerEje2.setImageBitmap(null);
+                                    llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasDerEje2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_LLANTAS_DER_EJE1:
+
+
+                                    llantasDerEje1.setImageBitmap(null);
+                                    llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    llantasDerEje1.setEnabled(true);
+
+                                    break;
+                                case REQUEST_CHASIS_TRASERO_DER:
+
+
+                                    chasisTraseroDer.setImageBitmap(null);
+                                    chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisTraseroDer.setEnabled(true);
+
+                                    break;
+                                case REQUEST_CHASIS_FRONTAL_DER:
+
+
+                                    chasisFrontalDER.setImageBitmap(null);
+                                    chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    chasisFrontalDER.setEnabled(true);
+
+                                    break;
+                                case REQUEST_DER_REMOLQUE_P2:
+
+
+                                    derRemolqueP2.setImageBitmap(null);
+                                    derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    derRemolqueP2.setEnabled(true);
+
+                                    break;
+                                case REQUEST_SELLO3:
+
+
+                                    sello3.setImageBitmap(null);
+                                    sello3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    sello3.setEnabled(true);
+
+                                    break;
+                                case DAMAGE1:
+
+
+                                    damage1.setImageBitmap(null);
+                                    damage1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage1.setEnabled(true);
+
+                                    break;
+                                case DAMAGE2:
+
+
+                                    damage2.setImageBitmap(null);
+                                    damage2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage2.setEnabled(true);
+
+                                    break;
+                                case DAMAGE3:
+
+
+                                    damage3.setImageBitmap(null);
+                                    damage3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage3.setEnabled(true);
+
+                                    break;
+                                case DAMAGE4:
+
+
+                                    damage4.setImageBitmap(null);
+                                    damage4.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage4.setEnabled(true);
+
+                                    break;
+
+
+
+                            }
+
                         }
                     });
 

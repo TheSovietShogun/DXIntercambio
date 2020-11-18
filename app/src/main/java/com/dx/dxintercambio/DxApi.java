@@ -41,5 +41,10 @@ public interface DxApi {
     @POST("img2")
     Call<String> getImg2(@Body Post7 post7);
 
+    @POST("llanta")
+    Call<List<CLlanta>> getLlanta(@Body Post post);
+
+    @POST("llanta")
+    Call<List<CEnvio>> getTerminado(@Body Post post);
 
 }
