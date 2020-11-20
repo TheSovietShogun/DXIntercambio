@@ -370,7 +370,7 @@ public class imgActivity extends AppCompatActivity {
 
                 if (checked1) {
 
-                  /*  Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                    /*Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
@@ -1012,6 +1012,7 @@ public class imgActivity extends AppCompatActivity {
                                         Toast.makeText(imgActivity.this, "Unidad Nueva !!", Toast.LENGTH_LONG).show();
                                         Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                         i.putExtra("folio", folio);
+                                        i.putExtra("mensaje", mensaje);
                                         startActivity(i);
                                     }else{
                                         String incidencia  = cEnvio2s.get(0).getIncidencia();
@@ -1246,13 +1247,14 @@ public class imgActivity extends AppCompatActivity {
 
 
 
-                                            i.putExtra("idIntercambio", mensaje);
+                                            i.putExtra("mensaje", mensaje);
                                             i.putExtra("folio", folio);
                                             startActivity(i);
 
                                         }else if (incidencia.contains("NO")){
                                             Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                             i.putExtra("folio", folio);
+                                            i.putExtra("mensaje", mensaje);
                                             startActivity(i);
 
                                         }
@@ -1389,6 +1391,7 @@ public class imgActivity extends AppCompatActivity {
                                                             Toast.makeText(imgActivity.this, "Unidad Nueva !!", Toast.LENGTH_LONG).show();
                                                             Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                                             i.putExtra("folio", folio);
+                                                            i.putExtra("mensaje", mensaje);
                                                             startActivity(i);
                                                         }else{
                                                             String incidencia  = cEnvio2s.get(0).getIncidencia();
@@ -1501,7 +1504,7 @@ public class imgActivity extends AppCompatActivity {
                                                                 i.putExtra("P_remolque", P_remolque);
                                                                 i.putExtra("P_usuario", P_usuario);
 
-                                                                i.putExtra("idIntercambio", mensaje);
+                                                                i.putExtra("mensaje", mensaje);
                                                                 i.putExtra("folio", folio);
 
                                                                 startActivity(i);
@@ -1509,6 +1512,7 @@ public class imgActivity extends AppCompatActivity {
                                                             }else if (incidencia.contains("NO")){
                                                                 Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                                                 i.putExtra("folio", folio);
+                                                                i.putExtra("mensaje", mensaje);
                                                                 startActivity(i);
                                                             }
                                                         }

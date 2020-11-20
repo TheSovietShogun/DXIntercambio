@@ -173,6 +173,7 @@ public class incidenciaActivity extends AppCompatActivity {
     private String password ;
     private DxApi dxApi;
     private String folio;
+    private int mensaje;
 
 
     @Override
@@ -304,7 +305,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
 
         folio = getIntent().getStringExtra("folio");
-
+        mensaje = getIntent().getIntExtra("mensaje",0);
 
         int idIntercambio = getIntent().getIntExtra("idIntercambio",0);
 
@@ -910,6 +911,7 @@ public class incidenciaActivity extends AppCompatActivity {
                             Toast.makeText(incidenciaActivity.this, "Incidencia Cancelada", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(incidenciaActivity.this, firmasActivity.class);
                             i.putExtra("folio", folio);
+                            i.putExtra("mensaje", mensaje);
                             startActivity(i);
                         }
 

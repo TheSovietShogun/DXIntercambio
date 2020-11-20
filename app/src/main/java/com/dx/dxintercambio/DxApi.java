@@ -44,7 +44,7 @@ public interface DxApi {
     @POST("llanta")
     Call<List<CLlanta>> getLlanta(@Body Post post);
 
-    @POST("llanta")
-    Call<List<CEnvio>> getTerminado(@Body Post post);
+    @POST("IntercambioRemolque3")
+    Call<List<CEnvio>> getTerminado(@Body Post8 post8);
 
 }

@@ -37,7 +37,8 @@ public class firmasActivity extends AppCompatActivity {
     Bitmap bitmap1;
     Bitmap bitmap2;
     DxApi dxApi;
-    String folio ;
+    String folio ,id;
+    int mensaje;
     private String user , password ;
 
     Bitmap emptyBitmap;
@@ -57,6 +58,8 @@ public class firmasActivity extends AppCompatActivity {
         btnEnvio = (Button) findViewById(R.id.button2);
 
         folio = getIntent().getStringExtra("folio");
+        mensaje = getIntent().getIntExtra("mensaje",0);
+        id = String.valueOf(mensaje);
 
 
         SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
@@ -138,8 +141,8 @@ public class firmasActivity extends AppCompatActivity {
 
                                 dxApi = retrofit.create(DxApi.class);
 
-                                Post post = new Post(user,password);
-                                Call<List<CEnvio>> callTerminado = dxApi.getTerminado(post);
+                                Post8 post8 = new Post8(user,password,id);
+                                Call<List<CEnvio>> callTerminado = dxApi.getTerminado(post8);
 
                                 callTerminado.enqueue(new Callback<List<CEnvio>>() {
                                     @Override
