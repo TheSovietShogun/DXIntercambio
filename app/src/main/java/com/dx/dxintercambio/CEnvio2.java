@@ -58,6 +58,7 @@ public class CEnvio2 {
     private String A_llantaDeRefaccion;
     private String A_placas;
     private String A_placasDatos;
+    private String A_comentario2;
 
 
 
@@ -118,10 +119,11 @@ public class CEnvio2 {
     private String P_llantaDeRefaccion;
     private String P_placas;
     private String P_placasDatos;
+    private String P_comentario2;
 
     private String incidencia;
 
-    public CEnvio2(String a_sello1, String a_sello2, String a_llanta1, String a_llanta2, String a_llanta3, String a_llanta4, String a_llanta5, String a_llanta6, String a_llanta7, String a_llanta8, String a_llantajumbo, String a_selloExtra, String a_sello3, String a_tipoOperacion, String a_estatusRemolque, String a_tipoMovimiento, String a_comentario, String a_patio, String a_fechaServidor, String a_operador, String a_unidad, String a_transportista, String a_linea, String a_remolque, String a_usuario, String a_defensa, String a_motor, String a_piso, String a_tanqueDeComb, String a_llantas, String a_diferencial, String a_cabina, String a_cilindrosDeAire, String a_mofleEscape, String a_quintaRueda, String a_remolqueC, String a_chasis, String a_puertasTraseras, String a_paredes, String a_sellos, String a_lucesLatAmbar, String a_lucesDeFrente, String a_cuartosAmbar, String a_lucesTraseras, String a_cuartosRojos, String a_lucesDeAltoTraseros, String a_luzDePlaca, String a_zoqueteras, String a_manivela, String a_guardaPolvos, String a_loderas, String a_llantaDeRefaccion, String a_placas, String a_placasDatos, String p_sello1, String p_sello2, String p_llanta1, String p_llanta2, String p_llanta3, String p_llanta4, String p_llanta5, String p_llanta6, String p_llanta7, String p_llanta8, String p_llantajumbo, String p_selloExtra, String p_sello3, String p_tipoOperacion, String p_estatusRemolque, String p_tipoMovimiento, String p_comentario, String p_patio, String p_fechaServidor, String p_operador, String p_unidad, String p_transportista, String p_linea, String p_remolque, String p_usuario, String p_defensa, String p_motor, String p_piso, String p_tanqueDeComb, String p_llantas, String p_diferencial, String p_cabina, String p_cilindrosDeAire, String p_mofleEscape, String p_quintaRueda, String p_remolqueC, String p_chasis, String p_puertasTraseras, String p_paredes, String p_sellos, String p_lucesLatAmbar, String p_lucesDeFrente, String p_cuartosAmbar, String p_lucesTraseras, String p_cuartosRojos, String p_lucesDeAltoTraseros, String p_luzDePlaca, String p_zoqueteras, String p_manivela, String p_guardaPolvos, String p_loderas, String p_llantaDeRefaccion, String p_placas, String p_placasDatos, String incidencia) {
+    public CEnvio2(String a_sello1, String a_sello2, String a_llanta1, String a_llanta2, String a_llanta3, String a_llanta4, String a_llanta5, String a_llanta6, String a_llanta7, String a_llanta8, String a_llantajumbo, String a_selloExtra, String a_sello3, String a_tipoOperacion, String a_estatusRemolque, String a_tipoMovimiento, String a_comentario, String a_patio, String a_fechaServidor, String a_operador, String a_unidad, String a_transportista, String a_linea, String a_remolque, String a_usuario, String a_defensa, String a_motor, String a_piso, String a_tanqueDeComb, String a_llantas, String a_diferencial, String a_cabina, String a_cilindrosDeAire, String a_mofleEscape, String a_quintaRueda, String a_remolqueC, String a_chasis, String a_puertasTraseras, String a_paredes, String a_sellos, String a_lucesLatAmbar, String a_lucesDeFrente, String a_cuartosAmbar, String a_lucesTraseras, String a_cuartosRojos, String a_lucesDeAltoTraseros, String a_luzDePlaca, String a_zoqueteras, String a_manivela, String a_guardaPolvos, String a_loderas, String a_llantaDeRefaccion, String a_placas, String a_placasDatos, String a_comentario2, String p_sello1, String p_sello2, String p_llanta1, String p_llanta2, String p_llanta3, String p_llanta4, String p_llanta5, String p_llanta6, String p_llanta7, String p_llanta8, String p_llantajumbo, String p_selloExtra, String p_sello3, String p_tipoOperacion, String p_estatusRemolque, String p_tipoMovimiento, String p_comentario, String p_patio, String p_fechaServidor, String p_operador, String p_unidad, String p_transportista, String p_linea, String p_remolque, String p_usuario, String p_defensa, String p_motor, String p_piso, String p_tanqueDeComb, String p_llantas, String p_diferencial, String p_cabina, String p_cilindrosDeAire, String p_mofleEscape, String p_quintaRueda, String p_remolqueC, String p_chasis, String p_puertasTraseras, String p_paredes, String p_sellos, String p_lucesLatAmbar, String p_lucesDeFrente, String p_cuartosAmbar, String p_lucesTraseras, String p_cuartosRojos, String p_lucesDeAltoTraseros, String p_luzDePlaca, String p_zoqueteras, String p_manivela, String p_guardaPolvos, String p_loderas, String p_llantaDeRefaccion, String p_placas, String p_placasDatos, String p_comentario2, String incidencia) {
         A_sello1 = a_sello1;
         A_sello2 = a_sello2;
         A_llanta1 = a_llanta1;
@@ -176,6 +178,7 @@ public class CEnvio2 {
         A_llantaDeRefaccion = a_llantaDeRefaccion;
         A_placas = a_placas;
         A_placasDatos = a_placasDatos;
+        A_comentario2 = a_comentario2;
         P_sello1 = p_sello1;
         P_sello2 = p_sello2;
         P_llanta1 = p_llanta1;
@@ -230,6 +233,7 @@ public class CEnvio2 {
         P_llantaDeRefaccion = p_llantaDeRefaccion;
         P_placas = p_placas;
         P_placasDatos = p_placasDatos;
+        P_comentario2 = p_comentario2;
         this.incidencia = incidencia;
     }
 
@@ -449,6 +453,10 @@ public class CEnvio2 {
         return A_placasDatos;
     }
 
+    public String getA_comentario2() {
+        return A_comentario2;
+    }
+
     public String getP_sello1() {
         return P_sello1;
     }
@@ -663,6 +671,10 @@ public class CEnvio2 {
 
     public String getP_placasDatos() {
         return P_placasDatos;
+    }
+
+    public String getP_comentario2() {
+        return P_comentario2;
     }
 
     public String getIncidencia() {

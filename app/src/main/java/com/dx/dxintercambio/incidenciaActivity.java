@@ -106,6 +106,8 @@ public class incidenciaActivity extends AppCompatActivity {
     private TextView TWAllantaDeRefaccion ;
     private TextView TWAplacas ;
     private TextView TWAplacasDatos ;
+    private EditText TWAcomentario2 ;
+
 
     private TextView TWPsello1 ;
     private TextView TWPsello2 ;
@@ -161,7 +163,7 @@ public class incidenciaActivity extends AppCompatActivity {
     private TextView TWPllantaDeRefaccion ;
     private TextView TWPplacas ;
     private TextView TWPplacasDatos ;
-
+    private EditText  TWPcomentario2;
 
     private Button btnCancelar ;
     private Button btnConfirmar ;
@@ -244,7 +246,7 @@ public class incidenciaActivity extends AppCompatActivity {
         String A_llantaDeRefaccion = getIntent().getStringExtra("A_llantaDeRefaccion");
         String A_placas = getIntent().getStringExtra("A_placas");
         String A_placasDatos = getIntent().getStringExtra("A_placasDatos");
-
+        String A_comentario2 = getIntent().getStringExtra("A_comentario2");
 
         String P_sello1 = getIntent().getStringExtra("P_sello1");
         String P_sello2 = getIntent().getStringExtra("P_sello2");
@@ -301,7 +303,7 @@ public class incidenciaActivity extends AppCompatActivity {
         String P_llantaDeRefaccion = getIntent().getStringExtra("P_llantaDeRefaccion");
         String P_placas = getIntent().getStringExtra("P_placas");
         String P_placasDatos = getIntent().getStringExtra("P_placasDatos");
-
+        String P_comentario2 = getIntent().getStringExtra("P_comentario2");
 
 
         folio = getIntent().getStringExtra("folio");
@@ -693,7 +695,7 @@ public class incidenciaActivity extends AppCompatActivity {
           TWAllantaDeRefaccion = (TextView) findViewById(R.id.llantaDeRefaccion_Actual) ;
           TWAplacas  = (TextView) findViewById(R.id.placas_Actual);
           TWAplacasDatos  = (TextView) findViewById(R.id.placasDatos_Actual);
-
+        TWAcomentario2  = (EditText) findViewById(R.id.comentario2_Actual);
 
 
 
@@ -753,7 +755,7 @@ public class incidenciaActivity extends AppCompatActivity {
         TWPllantaDeRefaccion = (TextView) findViewById(R.id.llantaDeRefaccion_Pasado) ;
         TWPplacas  = (TextView) findViewById(R.id.placas_Pasado);
         TWPplacasDatos  = (TextView) findViewById(R.id.placasDatos_Pasado);
-
+        TWPcomentario2  = (EditText) findViewById(R.id.comentario2_Pasado);
 
         comen = (EditText) findViewById(R.id.editText3);
 
@@ -810,7 +812,7 @@ public class incidenciaActivity extends AppCompatActivity {
         TWAllantaDeRefaccion.setText(A_llantaDeRefaccion);
         TWAplacas.setText(A_placas);
         TWAplacasDatos.setText(A_placasDatos);
-
+        TWAcomentario2.setText(A_comentario2);
 
         TWPsello1.setText(P_sello1);
         TWPsello2.setText(P_sello2);
@@ -865,6 +867,8 @@ public class incidenciaActivity extends AppCompatActivity {
         TWPllantaDeRefaccion.setText(P_llantaDeRefaccion);
         TWPplacas.setText(P_placas);
         TWPplacasDatos.setText(P_placasDatos);
+        TWPcomentario2.setText(P_comentario2);
+
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -887,7 +891,7 @@ public class incidenciaActivity extends AppCompatActivity {
                             "",
                             "",
                             "","","","","","","","","","","","",
-                            "","","","","","","","");
+                            "","","","","","","","","");
 
 
 
@@ -947,7 +951,7 @@ public class incidenciaActivity extends AppCompatActivity {
                             "",
                             "",
                             "","","","","","","","","","","","",
-                            "","","","","","","","");
+                            "","","","","","","","","");
 
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://192.168.4.92:80/api/")

@@ -211,12 +211,12 @@
                 android:id="@+id/view4"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="50dp"
                 android:background="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox23" />
+                app:layout_constraintTop_toBottomOf="@+id/comentario2" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -458,7 +458,7 @@
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
-                android:layout_height="21dp"
+                android:layout_height="wrap_content"
                 android:text="Foto del Tractor"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20dp"
@@ -1332,6 +1332,23 @@
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox17" />
+
+            <EditText
+                android:id="@+id/comentario2"
+                android:layout_width="548dp"
+                android:layout_height="338dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="Observaciones"
+                android:gravity="start|top"
+                android:backgroundTint="@color/azul_chingon"
+                android:textColor="@color/azul_chingon"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox23" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

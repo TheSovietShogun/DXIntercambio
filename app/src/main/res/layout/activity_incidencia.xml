@@ -31,9 +31,11 @@
 
                 <View
                     android:id="@+id/view9"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@color/azul_chingon"
                     android:textSize="25sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +108,7 @@
                     android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView41">
+                    app:layout_constraintTop_toBottomOf="@+id/view9">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -1264,6 +1266,7 @@
                             android:text=""
                             android:textColor="@color/negrotle"
                             android:textSize="20sp" />
+
                     </TableRow>
 
                     <TableRow
@@ -2590,6 +2593,7 @@
                             android:text=""
                             android:textColor="@color/negrotle"
                             android:textSize="20sp" />
+
                     </TableRow>
 
                     <TableRow
@@ -2796,8 +2800,80 @@
                             android:textSize="20sp" />
                     </TableRow>
 
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="5px"
+                            android:layout_span="6"
+                            android:background="@color/azul_chingon"></FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="5px"
+                            android:layout_span="6"
+                            android:background="@color/azul_chingon"></FrameLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/comentario2in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5px"
+                            android:text="Observaciones"
+                            android:textColor="@color/azul_chingon"
+                            android:textSize="20sp" />
+
+
+                        <EditText
+                            android:id="@+id/comentario2_Pasado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5px"
+                            android:text=""
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            android:textColor="@color/negrotle"
+                            android:textSize="20sp" />
+
+
+                        <EditText
+                            android:id="@+id/comentario2_Actual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5px"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            android:text=""
+                            android:textColor="@color/negrotle"
+                            android:textSize="20sp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="5px"
+                            android:layout_span="6"
+                            android:background="@color/azul_chingon"></FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="5px"
+                            android:layout_span="6"
+                            android:background="@color/azul_chingon"></FrameLayout>
+                    </TableRow>
                 </TableLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </HorizontalScrollView>

@@ -55,8 +55,9 @@ public class Post6 {
     private String llantaDeRefaccion ;
     private String placas ;
     private String  placasDatos ;
+    private String comentario2;
 
-    public Post6(String user, String password, int idRemolque, String idSQL, int idIntercambio, String sello1, String sello2, String llanta1, String llanta2, String llanta3, String llanta4, String llanta5, String llanta6, String llanta7, String llanta8, int llantajumbo, int llantajumbo2, int selloExtra, String sello3, int incidencia, String incidenciaCancel, String defensa, String motor, String piso, String tanqueDeComb, String llantas, String diferencial, String cabina, String cilindrosDeAire, String mofleEscape, String quintaRueda, String remolque, String chasis, String puertasTraseras, String paredes, String sellos, String lucesLatAmbar, String lucesDeFrente, String cuartosAmbar, String lucesTraseras, String cuartosRojos, String lucesDeAltoTraseros, String luzDePlaca, String zoqueteras, String manivela, String guardaPolvos, String loderas, String llantaDeRefaccion, String placas, String placasDatos) {
+    public Post6(String user, String password, int idRemolque, String idSQL, int idIntercambio, String sello1, String sello2, String llanta1, String llanta2, String llanta3, String llanta4, String llanta5, String llanta6, String llanta7, String llanta8, int llantajumbo, int llantajumbo2, int selloExtra, String sello3, int incidencia, String incidenciaCancel, String defensa, String motor, String piso, String tanqueDeComb, String llantas, String diferencial, String cabina, String cilindrosDeAire, String mofleEscape, String quintaRueda, String remolque, String chasis, String puertasTraseras, String paredes, String sellos, String lucesLatAmbar, String lucesDeFrente, String cuartosAmbar, String lucesTraseras, String cuartosRojos, String lucesDeAltoTraseros, String luzDePlaca, String zoqueteras, String manivela, String guardaPolvos, String loderas, String llantaDeRefaccion, String placas, String placasDatos, String comentario2) {
         this.user = user;
         this.password = password;
         this.idRemolque = idRemolque;
@@ -107,6 +108,7 @@ public class Post6 {
         this.llantaDeRefaccion = llantaDeRefaccion;
         this.placas = placas;
         this.placasDatos = placasDatos;
+        this.comentario2 = comentario2;
     }
 
     public String getUser() {
@@ -307,5 +309,9 @@ public class Post6 {
 
     public String getPlacasDatos() {
         return placasDatos;
+    }
+
+    public String getComentario2() {
+        return comentario2;
     }
 }

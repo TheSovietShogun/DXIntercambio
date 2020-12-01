@@ -75,7 +75,7 @@ public class imgActivity extends AppCompatActivity {
     private CheckBox jumboRB1 , defensa , motor, piso ,tanquedeComb , llantas, quintaRueda, diferencial , cabina
     , cilindrosDeAire,mofleEscape , manivela ,puertasTraseras, sellos, lucesTraseras, cuartosRojos, lucesDeAltaTraseras, luzDePlace,
     placa, zoqueteras, guardaPolvo, loderas , remolque , lucesLateralesAmbar, chasis , lucesdeFrentem ,paredes , llantaDeRefaccion , cuartosAmbar;
-    private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca;
+    private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca , comentario2;
     private Drive mService;
     private Drive googleDriveService;
     private String operacion ;
@@ -268,6 +268,8 @@ public class imgActivity extends AppCompatActivity {
         damage2 = (ImageView) findViewById(R.id.imageView21);
         damage3 = (ImageView) findViewById(R.id.imageView23);
         damage4 = (ImageView) findViewById(R.id.imageView24);
+
+        comentario2 = (EditText) findViewById(R.id.comentario2);
 
         btnImg = (Button) findViewById(R.id.btnImg);
 
@@ -882,6 +884,8 @@ public class imgActivity extends AppCompatActivity {
                 String sello2S = sello2ET.getText().toString();
                 String sello3S = sello3ET.getText().toString();
 
+                String comen2 = comentario2.getText().toString();
+
                  lljumbo =0;
 
 
@@ -924,6 +928,7 @@ public class imgActivity extends AppCompatActivity {
                             sello1S.length() == 0 ||
                             sello2S.length() == 0 ||
                             placasDatosD.length() == 0 ||
+                            comen2.length() == 0 ||
                             ll1 == "Sin Seleccionar" ||
                             ll2 == "Sin Seleccionar" ||
                             ll6 == "Sin Seleccionar" ||
@@ -952,7 +957,8 @@ public class imgActivity extends AppCompatActivity {
                             derRemolqueP2Img.contains("128") &&
                             sello1S.length() > 0 &&
                             sello2S.length() > 0 &&
-                            placasDatosD.length() > 0 ||
+                            placasDatosD.length() > 0 &&
+                            comen2.length() >0 &&
                             ll1 != "Sin Seleccionar" &&
                             ll2 != "Sin Seleccionar" &&
                             ll6 != "Sin Seleccionar" &&
@@ -990,8 +996,8 @@ public class imgActivity extends AppCompatActivity {
                                     loderasCh,
                                     llantaDeRefaccionCh,
                                     placaCh,
-                                    placasDatosD
-
+                                    placasDatosD,
+                                    comen2
                                     );
 
 
@@ -1072,7 +1078,7 @@ public class imgActivity extends AppCompatActivity {
                                         String A_llantaDeRefaccion = cEnvio2s.get(0).getA_llantaDeRefaccion();
                                         String A_placas = cEnvio2s.get(0).getA_placas();
                                         String A_placasDatos =  cEnvio2s.get(0).getA_placasDatos();
-
+                                        String A_comentario2 =  cEnvio2s.get(0).getA_comentario2();
 
                                          String P_sello1 = cEnvio2s.get(0).getP_sello1();
                                          String P_sello2 = cEnvio2s.get(0).getP_sello2();
@@ -1129,6 +1135,8 @@ public class imgActivity extends AppCompatActivity {
                                         String P_llantaDeRefaccion = cEnvio2s.get(0).getP_llantaDeRefaccion();
                                         String P_placas = cEnvio2s.get(0).getP_placas();
                                         String P_placasDatos =  cEnvio2s.get(0).getP_placasDatos();
+                                        String P_comentario2 =  cEnvio2s.get(0).getP_comentario2();
+
 
                                         if(incidencia.contains("SIUUU")){
                                             Intent i = new Intent(imgActivity.this, incidenciaActivity.class);
@@ -1187,7 +1195,7 @@ public class imgActivity extends AppCompatActivity {
                                             i.putExtra("A_llantaDeRefaccion", A_llantaDeRefaccion);
                                             i.putExtra("A_placas", A_placas);
                                             i.putExtra("A_placasDatos", A_placasDatos);
-
+                                            i.putExtra("A_comentario2", A_comentario2);
 
                                             i.putExtra("P_sello1", P_sello1);
                                             i.putExtra("P_sello2", P_sello2);
@@ -1244,7 +1252,7 @@ public class imgActivity extends AppCompatActivity {
                                             i.putExtra("P_llantaDeRefaccion", P_llantaDeRefaccion);
                                             i.putExtra("P_placas", P_placas);
                                             i.putExtra("P_placasDatos", P_placasDatos);
-
+                                            i.putExtra("P_comentario2", P_comentario2);
 
 
                                             i.putExtra("mensaje", mensaje);
@@ -1296,6 +1304,7 @@ public class imgActivity extends AppCompatActivity {
                                 sello1S.length() == 0 ||
                                 sello2S.length() == 0 ||
                                 placasDatosD.length() == 0 ||
+                                comen2.length() == 0 ||
                                 ll1 == "Sin Seleccionar" ||
                                 ll2 == "Sin Seleccionar" ||
                                 ll3 == "Sin Seleccionar" ||
@@ -1328,7 +1337,8 @@ public class imgActivity extends AppCompatActivity {
                                 derRemolqueP2Img.contains("128") &&
                                 sello1S.length() > 0 &&
                                 sello2S.length() > 0 &&
-                                placasDatosD.length() > 0 ||
+                                placasDatosD.length() > 0 &&
+                                comen2.length() > 0 &&
                                  ll1 != "Sin Seleccionar" &&
                                 ll2 != "Sin Seleccionar" &&
                                 ll3 != "Sin Seleccionar" &&
@@ -1371,7 +1381,8 @@ public class imgActivity extends AppCompatActivity {
                                         loderasCh,
                                         llantaDeRefaccionCh,
                                         placaCh,
-                                        placasDatosD);
+                                        placasDatosD,
+                                        comen2);
 
                                                 String loko = "dfasfsdg";
                                                 Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
