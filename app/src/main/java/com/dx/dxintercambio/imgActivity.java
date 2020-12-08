@@ -13,17 +13,11 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
-import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +27,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -41,20 +34,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Scope;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.http.FileContent;
-import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -68,14 +54,230 @@ public class imgActivity extends AppCompatActivity {
 
     private ImageView tractor , noEconomico, izqRemolqueP1 , vin , chasisFrontalIzq , chasisTraseroIzq , llantasIzqEje1
             ,llantasIzqEje2 , izqRemolqueP2 , puertas , placas , sello1 , sello2 , derRemolqueP1 , llantasDerEje2
-            , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4, sello3;
+            , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4, sello3
+            ,tractoFrente,tractoIzq,tractoDer;
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final String TAG = "envioActivity";
     private Spinner llanta1SP, llanta2SP , llanta3SP ,llanta4SP,llanta5SP ,llanta6SP ,llanta7SP,llanta8SP;
-    private CheckBox jumboRB1 , defensa , motor, piso ,tanquedeComb , llantas, quintaRueda, diferencial , cabina
+    private CheckBox jumboRB1  , piso ,tanquedeComb , diferencial , cabina
     , cilindrosDeAire,mofleEscape , manivela ,puertasTraseras, sellos, lucesTraseras, cuartosRojos, lucesDeAltaTraseras, luzDePlace,
     placa, zoqueteras, guardaPolvo, loderas , remolque , lucesLateralesAmbar, chasis , lucesdeFrentem ,paredes , llantaDeRefaccion , cuartosAmbar;
     private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca , comentario2;
+    private String S_defensa = "1";
+    private String S_llantas = "1";
+    private String S_pisoTractor = "1";
+    private String S_tanqueDiesel = "1";
+    private String S_cabinaCompartimientos= "1" ;
+    private String S_tanqueAire = "1";
+    private String S_quintaRueda = "1";
+    private String S_ejesTransmision= "1" ;
+    private String S_tuboEscape = "1";
+    private String S_motor = "1";
+    private String S_baseRemolque = "1";
+    private String S_puerta = "1";
+    private String S_paredLateralDerecha = "1";
+    private String S_techos = "1";
+    private String S_paredFrontal= "1" ;
+    private String S_paredLateralIzquierda = "1";
+    private String S_pisoInterno = "1";
+    private String S_vvtt= "1" ;
+    private String S_IRP1_inspeccionMecanica = "1";
+    private String S_IRP1_lucesCheck= "1" ;
+    private String S_IRP1_luzGaliboIzqFrontalSup = "1";
+    private String S_IRP1_manitas = "1";
+    private String S_IRP1_manivela= "1" ;
+    private String S_IRP1_patinIzq = "1";
+    private String S_IRP2_cuartoLadoIzq = "1";
+    private String S_IRP2_loderaIzq= "1" ;
+    private String S_IRP2_lucesCheck= "1" ;
+    private String S_IRP2_luzABS = "1";
+    private String S_IRP2_luzBarcoIzq= "1" ;
+    private String S_IRP2_rompevientosIzq = "1";
+    private String S_LlIE1_birlosPivote = "1";
+    private String S_LlIE1_llantasPos1 = "1";
+    private String S_LlIE1_llantasPos2 = "1";
+    private String S_LlIE1_masaYoyo = "1";
+    private String S_LlIE1_rin = "1";
+    private String S_LlIE1_tieneLodera = "1";
+    private String S_Pu_bisagrasPuertas = "1";
+    private String S_Pu_defensa = "1";
+    private String S_Pu_luzGaliboSupTraseras = "1";
+    private String S_Pu_plafonesDer = "1";
+    private String S_Pu_plafonesIzq = "1";
+    private String S_Pl_luzPlaca = "1";
+    private String S_Pl_placa = "1";
+    private String S_S1_sello1= "1" ;
+    private String S_S1_altaSeguridad= "1" ;
+    private String S_LlDE1_birlosPivote= "1" ;
+    private String S_LlDE1_llantasPos5 = "1";
+    private String S_LlDE1_llantasPos6 = "1";
+    private String S_LlDE1_masaYoyo= "1" ;
+    private String S_LlDE1_rin = "1";
+    private String S_LlDE1_tieneLodera = "1";
+    private String S_DRP1_fondoPlaga = "1";
+    private String S_DRP1_pisoPlaga = "1";
+    private String S_DRP1_techoPlaga = "1";
+    private String S_DRP1_lucesCheck = "1";
+    private String S_DRP1_luzGaliboDerFrontalSup= "1" ;
+    private String S_DRP1_derPlaga = "1";
+    private String S_DRP1_izqPlaga = "1";
+    private String S_DRP1_patinDer = "1";
+    private String S_DRP2_cuartoLadoDer = "1";
+    private String S_DRP2_loderaDer = "1";
+    private String S_DRP2_lucesCheck = "1";
+    private String S_DRP2_luzBarcoDer = "1";
+    private String S_DRP2_rompevientosDer= "1" ;
+    private String S_S2_escotilla = "1";
+    private String S_S2_sello2= "1" ;
+    private String S_S2_altaSeguridad = "1";
+    private String S_LlIE2_birlosPivote = "1";
+    private String S_LlIE2_llantasPos3 = "1";
+    private String S_LlIE2_llantasPos4 = "1";
+    private String S_LlIE2_masaYoyo = "1";
+    private String S_LlIE2_rin = "1";
+    private String S_LlIE2_tieneLodera= "1" ;
+    private String S_LlDE2_birlosPivote = "1";
+    private String S_LlDE2_llantasPos7 = "1";
+    private String S_LlDE2_llantasPos8 = "1";
+    private String S_LlDE2_masaYoyo = "1";
+    private String S_LlDE2_rin = "1";
+    private String S_LlDE2_tieneLodera = "1";
+    private String S_CFD_amortiguador= "1" ;
+    private String S_CFD_bolsaAire= "1" ;
+    private String S_CFD_gavilan= "1" ;
+    private String S_CFD_muelle = "1";
+    private String S_CFD_rotachamber= "1" ;
+    private String S_CTD_amortiguador = "1";
+    private String S_CTD_bolsaAire = "1";
+    private String S_CTD_matraca = "1";
+    private String S_CTD_muelle= "1" ;
+    private String S_CTD_rotachamber= "1";
+    private String S_CFI_amortiguador= "1" ;
+    private String S_CFI_bolsaAire = "1";
+    private String S_CFI_gavilan= "1" ;
+    private String S_CFI_muelle= "1" ;
+    private String S_CFI_rotachamber= "1" ;
+    private String S_CTI_amortiguador = "1";
+    private String S_CTI_bolsaAire = "1";
+    private String S_CTI_matraca= "1" ;
+    private String S_CTI_muelle= "1" ;
+    private String S_CTI_rotachamber= "1" ;
+    private CheckBox defensa ;
+    private CheckBox llantas ;
+    private CheckBox pisoTractor ;
+    private CheckBox tanqueDiesel ;
+    private CheckBox cabinaCompartimientos ;
+    private CheckBox tanqueAire ;
+    private CheckBox quintaRueda ;
+    private CheckBox ejesTransmision ;
+    private CheckBox tuboEscape ;
+    private CheckBox motor ;
+    private CheckBox baseRemolque ;
+    private CheckBox puerta ;
+    private CheckBox paredLateralDerecha ;
+    private CheckBox techos ;
+    private CheckBox paredFrontal ;
+    private CheckBox paredLateralIzquierda ;
+    private CheckBox pisoInterno ;
+    private CheckBox vvtt ;
+
+    private CheckBox IRP1_inspeccionMecanica ;
+    private CheckBox IRP1_lucesCheck ;
+    private CheckBox IRP1_luzGaliboIzqFrontalSup ;
+    private CheckBox IRP1_manitas ;
+    private CheckBox IRP1_manivela ;
+    private CheckBox IRP1_patinIzq ;
+
+    private CheckBox IRP2_cuartoLadoIzq ;
+    private CheckBox IRP2_loderaIzq ;
+    private CheckBox IRP2_lucesCheck ;
+    private CheckBox IRP2_luzABS ;
+    private CheckBox IRP2_luzBarcoIzq ;
+    private CheckBox IRP2_rompevientosIzq ;
+
+    private CheckBox LlIE1_birlosPivote ;
+    private CheckBox LlIE1_llantasPos1 ;
+    private CheckBox LlIE1_llantasPos2 ;
+    private CheckBox LlIE1_masaYoyo ;
+    private CheckBox LlIE1_rin ;
+    private CheckBox LlIE1_tieneLodera ;
+
+    private CheckBox Pu_bisagrasPuertas ;
+    private CheckBox Pu_defensa ;
+    private CheckBox Pu_luzGaliboSupTraseras ;
+    private CheckBox Pu_plafonesDer ;
+    private CheckBox Pu_plafonesIzq ;
+
+    private CheckBox Pl_luzPlaca ;
+    private CheckBox Pl_placa ;
+
+    private CheckBox S1_sello1 ;
+    private CheckBox S1_altaSeguridad ;
+
+    private CheckBox LlDE1_birlosPivote ;
+    private CheckBox LlDE1_llantasPos5 ;
+    private CheckBox LlDE1_llantasPos6 ;
+    private CheckBox LlDE1_masaYoyo ;
+    private CheckBox LlDE1_rin ;
+    private CheckBox LlDE1_tieneLodera ;
+
+    private CheckBox DRP1_fondoPlaga ;
+    private CheckBox DRP1_pisoPlaga ;
+    private CheckBox DRP1_techoPlaga ;
+    private CheckBox DRP1_lucesCheck ;
+    private CheckBox DRP1_luzGaliboDerFrontalSup ;
+    private CheckBox DRP1_derPlaga ;
+    private CheckBox DRP1_izqPlaga ;
+    private CheckBox DRP1_patinDer ;
+
+    private CheckBox DRP2_cuartoLadoDer ;
+    private CheckBox DRP2_loderaDer ;
+    private CheckBox DRP2_lucesCheck ;
+    private CheckBox DRP2_luzBarcoDer ;
+    private CheckBox DRP2_rompevientosDer ;
+
+    private CheckBox S2_escotilla ;
+    private CheckBox S2_sello2 ;
+    private CheckBox S2_altaSeguridad ;
+
+    private CheckBox LlIE2_birlosPivote ;
+    private CheckBox LlIE2_llantasPos3 ;
+    private CheckBox LlIE2_llantasPos4 ;
+    private CheckBox LlIE2_masaYoyo ;
+    private CheckBox LlIE2_rin ;
+    private CheckBox LlIE2_tieneLodera ;
+
+    private CheckBox LlDE2_birlosPivote ;
+    private CheckBox LlDE2_llantasPos7 ;
+    private CheckBox LlDE2_llantasPos8 ;
+    private CheckBox LlDE2_masaYoyo ;
+    private CheckBox LlDE2_rin ;
+    private CheckBox LlDE2_tieneLodera ;
+
+    private CheckBox CFD_amortiguador ;
+    private CheckBox CFD_bolsaAire ;
+    private CheckBox CFD_gavilan ;
+    private CheckBox CFD_muelle ;
+    private CheckBox CFD_rotachamber ;
+
+    private CheckBox CTD_amortiguador ;
+    private CheckBox CTD_bolsaAire ;
+    private CheckBox CTD_matraca ;
+    private CheckBox CTD_muelle ;
+    private CheckBox CTD_rotachamber ;
+
+    private CheckBox CFI_amortiguador ;
+    private CheckBox CFI_bolsaAire ;
+    private CheckBox CFI_gavilan ;
+    private CheckBox CFI_muelle ;
+    private CheckBox CFI_rotachamber ;
+
+    private CheckBox CTI_amortiguador ;
+    private CheckBox CTI_bolsaAire ;
+    private CheckBox CTI_matraca ;
+    private CheckBox CTI_muelle ;
+    private CheckBox CTI_rotachamber ;
+
     private Drive mService;
     private Drive googleDriveService;
     private String operacion ;
@@ -107,7 +309,9 @@ public class imgActivity extends AppCompatActivity {
     private static final int REQUEST_CHASIS_TRASERO_DER = 360;
     private static final int REQUEST_CHASIS_FRONTAL_DER = 370;
     private static final int REQUEST_DER_REMOLQUE_P2 = 380;
-    private static final int REQUEST_TARJETA = 390;
+    private static final int REQUEST_TRACTO_FRENTE = 800;
+    private static final int REQUEST_TRACTO_DER = 810;
+    private static final int REQUEST_TRACTO_IZQ = 820;
     private static final int REQUEST_SELLO3 = 400;
     private static final int DAMAGE1= 500;
     private static final int DAMAGE2 = 501;
@@ -117,6 +321,9 @@ public class imgActivity extends AppCompatActivity {
     private final int THUMBSIZE = 128;
     private int res = 0 ;
     private String tractorImg ;
+    private String tractorDerImg ;
+    private String tractorFrenteImg ;
+    private String tractorIzqImg ;
     private String noEconomicoImg;
     private String izqRemolqueP1Img;
     private String vinImg;
@@ -244,7 +451,7 @@ public class imgActivity extends AppCompatActivity {
         chasisTraseroDer = (ImageView) findViewById(R.id.imageView19);
         chasisFrontalDER = (ImageView) findViewById(R.id.imageView20);
         derRemolqueP2 = (ImageView) findViewById(R.id.imageView22);
-
+numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
         sello3 = (ImageView) findViewById(R.id.imageView30);
 
 
@@ -269,39 +476,132 @@ public class imgActivity extends AppCompatActivity {
         damage3 = (ImageView) findViewById(R.id.imageView23);
         damage4 = (ImageView) findViewById(R.id.imageView24);
 
+        tractoFrente= (ImageView) findViewById(R.id.imageView33);
+        tractoDer= (ImageView) findViewById(R.id.imageView34);
+        tractoIzq= (ImageView) findViewById(R.id.imageView29);
+
         comentario2 = (EditText) findViewById(R.id.comentario2);
 
         btnImg = (Button) findViewById(R.id.btnImg);
 
         defensa = (CheckBox) findViewById(R.id.checkBox);
-        motor = (CheckBox) findViewById(R.id.checkBox2);
-        piso = (CheckBox) findViewById(R.id.checkBox3);
-        tanquedeComb = (CheckBox) findViewById(R.id.checkBox4);
-        llantas = (CheckBox) findViewById(R.id.checkBox5);
-        diferencial = (CheckBox) findViewById(R.id.checkBox8);
-        cabina = (CheckBox) findViewById(R.id.checkBox9);
-        cilindrosDeAire = (CheckBox) findViewById(R.id.checkBox10);
-        mofleEscape = (CheckBox) findViewById(R.id.checkBox11);
-        quintaRueda = (CheckBox) findViewById(R.id.checkBox7);
-        manivela = (CheckBox) findViewById(R.id.checkBox27);
-        puertasTraseras = (CheckBox) findViewById(R.id.checkBox13);
-        sellos = (CheckBox) findViewById(R.id.checkBox14);
-        lucesTraseras = (CheckBox) findViewById(R.id.checkBox15);
-        cuartosRojos = (CheckBox) findViewById(R.id.checkBox16);
-        lucesDeAltaTraseras = (CheckBox) findViewById(R.id.checkBox17);
-        luzDePlace = (CheckBox) findViewById(R.id.checkBox18);
-        placa = (CheckBox) findViewById(R.id.checkBox19);
-        zoqueteras = (CheckBox) findViewById(R.id.checkBox20);
-        guardaPolvo = (CheckBox) findViewById(R.id.checkBox21);
-        loderas = (CheckBox) findViewById(R.id.checkBox22);
-        remolque = (CheckBox) findViewById(R.id.checkBox6);
-        chasis = (CheckBox) findViewById(R.id.checkBox12);
-        paredes = (CheckBox) findViewById(R.id.checkBox23);
-        lucesLateralesAmbar = (CheckBox) findViewById(R.id.checkBox24);
-        lucesdeFrentem = (CheckBox) findViewById(R.id.checkBox25);
-        llantaDeRefaccion = (CheckBox) findViewById(R.id.checkBox26);
-        cuartosAmbar = (CheckBox) findViewById(R.id.checkBox28);
-        numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName) ;
+        llantas = (CheckBox) findViewById(R.id.checkBox8);
+         pisoTractor = (CheckBox) findViewById(R.id.checkBox2);
+        tanqueDiesel = (CheckBox) findViewById(R.id.checkBox9);
+        cabinaCompartimientos = (CheckBox) findViewById(R.id.checkBox3);
+        tanqueAire = (CheckBox) findViewById(R.id.checkBox10);
+        quintaRueda = (CheckBox) findViewById(R.id.checkBox4);
+        ejesTransmision = (CheckBox) findViewById(R.id.checkBox11);
+        tuboEscape = (CheckBox) findViewById(R.id.checkBox5);
+        motor = (CheckBox) findViewById(R.id.checkBox7);
+        baseRemolque = (CheckBox) findViewById(R.id.checkBox29);
+        paredLateralDerecha = (CheckBox) findViewById(R.id.checkBox31);
+        paredFrontal = (CheckBox) findViewById(R.id.checkBox33);
+        pisoInterno = (CheckBox) findViewById(R.id.checkBox35);
+        puerta = (CheckBox) findViewById(R.id.checkBox30);
+        techos = (CheckBox) findViewById(R.id.checkBox32);
+        paredLateralIzquierda = (CheckBox) findViewById(R.id.checkBox34);
+        vvtt = (CheckBox) findViewById(R.id.checkBox36);
+
+        IRP1_inspeccionMecanica = (CheckBox) findViewById(R.id.cb_inspeccion);
+        IRP1_lucesCheck = (CheckBox) findViewById(R.id.cb_lucesCheck);
+        IRP1_luzGaliboIzqFrontalSup = (CheckBox) findViewById(R.id.checkBox13);
+        IRP1_manitas = (CheckBox) findViewById(R.id.checkBox14);
+        IRP1_manivela = (CheckBox) findViewById(R.id.checkBox15);
+        IRP1_patinIzq = (CheckBox) findViewById(R.id.checkBox16);
+
+        IRP2_cuartoLadoIzq = (CheckBox) findViewById(R.id.checkBox17);
+        IRP2_loderaIzq = (CheckBox) findViewById(R.id.checkBox18);
+        IRP2_lucesCheck = (CheckBox) findViewById(R.id.checkBox19);
+        IRP2_luzABS = (CheckBox) findViewById(R.id.checkBox20);
+        IRP2_luzBarcoIzq = (CheckBox) findViewById(R.id.checkBox21);
+        IRP2_rompevientosIzq = (CheckBox) findViewById(R.id.checkBox22);
+
+
+        LlIE1_birlosPivote = (CheckBox) findViewById(R.id.checkBox23);
+        LlIE1_llantasPos1 = (CheckBox) findViewById(R.id.checkBox24);
+        LlIE1_llantasPos2 = (CheckBox) findViewById(R.id.checkBox25);
+        LlIE1_masaYoyo = (CheckBox) findViewById(R.id.checkBox26);
+        LlIE1_rin = (CheckBox) findViewById(R.id.checkBox27);
+        LlIE1_tieneLodera = (CheckBox) findViewById(R.id.checkBox28);
+
+        LlIE2_birlosPivote = (CheckBox) findViewById(R.id.checkBox37);
+        LlIE2_llantasPos3 = (CheckBox) findViewById(R.id.checkBox38);
+        LlIE2_llantasPos4 = (CheckBox) findViewById(R.id.checkBox39);
+        LlIE2_masaYoyo = (CheckBox) findViewById(R.id.checkBox40);
+        LlIE2_rin = (CheckBox) findViewById(R.id.checkBox41);
+        LlIE2_tieneLodera = (CheckBox) findViewById(R.id.checkBox42);
+
+        CFI_amortiguador = (CheckBox) findViewById(R.id.checkBox44);
+        CFI_bolsaAire = (CheckBox) findViewById(R.id.checkBox47);
+        CFI_gavilan = (CheckBox) findViewById(R.id.checkBox43);
+        CFI_muelle = (CheckBox) findViewById(R.id.checkBox45);
+        CFI_rotachamber = (CheckBox) findViewById(R.id.checkBox46);
+
+        CTI_amortiguador = (CheckBox) findViewById(R.id.checkBox48);
+        CTI_bolsaAire = (CheckBox) findViewById(R.id.checkBox49);
+        CTI_matraca = (CheckBox) findViewById(R.id.checkBox52);
+        CTI_muelle = (CheckBox) findViewById(R.id.checkBox51);
+        CTI_rotachamber = (CheckBox) findViewById(R.id.checkBox50);
+
+        Pu_bisagrasPuertas = (CheckBox) findViewById(R.id.checkBox53);
+        Pu_defensa = (CheckBox) findViewById(R.id.checkBox54);
+        Pu_luzGaliboSupTraseras = (CheckBox) findViewById(R.id.checkBox55);
+        Pu_plafonesDer = (CheckBox) findViewById(R.id.checkBox56);
+        Pu_plafonesIzq = (CheckBox) findViewById(R.id.checkBox57);
+
+        Pl_luzPlaca = (CheckBox) findViewById(R.id.checkBox59);
+        Pl_placa = (CheckBox) findViewById(R.id.checkBox58);
+
+        S1_sello1 = (CheckBox) findViewById(R.id.checkBox61);
+        S1_altaSeguridad = (CheckBox) findViewById(R.id.checkBox60);
+
+        S2_escotilla = (CheckBox) findViewById(R.id.checkBox62);
+        S2_sello2 = (CheckBox) findViewById(R.id.checkBox64);
+        S2_altaSeguridad = (CheckBox) findViewById(R.id.checkBox63);
+
+        LlDE1_birlosPivote = (CheckBox) findViewById(R.id.checkBox66);
+        LlDE1_llantasPos5 = (CheckBox) findViewById(R.id.checkBox67);
+        LlDE1_llantasPos6 = (CheckBox) findViewById(R.id.checkBox68);
+        LlDE1_masaYoyo = (CheckBox) findViewById(R.id.checkBox69);
+        LlDE1_rin = (CheckBox) findViewById(R.id.checkBox70);
+        LlDE1_tieneLodera = (CheckBox) findViewById(R.id.checkBox400);
+
+        DRP1_fondoPlaga = (CheckBox) findViewById(R.id.checkBox71);
+        DRP1_pisoPlaga = (CheckBox) findViewById(R.id.checkBox72);
+        DRP1_techoPlaga = (CheckBox) findViewById(R.id.checkBox73);
+        DRP1_lucesCheck = (CheckBox) findViewById(R.id.checkBox74);
+        DRP1_luzGaliboDerFrontalSup = (CheckBox) findViewById(R.id.checkBox75);
+        DRP1_derPlaga = (CheckBox) findViewById(R.id.checkBox76);
+        DRP1_izqPlaga = (CheckBox) findViewById(R.id.checkBox77);
+        DRP1_patinDer = (CheckBox) findViewById(R.id.checkBox78);
+
+        DRP2_cuartoLadoDer = (CheckBox) findViewById(R.id.checkBox80);
+        DRP2_loderaDer = (CheckBox) findViewById(R.id.checkBox81);
+        DRP2_lucesCheck = (CheckBox) findViewById(R.id.checkBox82);
+        DRP2_luzBarcoDer = (CheckBox) findViewById(R.id.checkBox83);
+        DRP2_rompevientosDer = (CheckBox) findViewById(R.id.checkBox84);
+
+        LlDE2_birlosPivote = (CheckBox) findViewById(R.id.checkBox85);
+        LlDE2_llantasPos7 = (CheckBox) findViewById(R.id.checkBox86);
+        LlDE2_llantasPos8 = (CheckBox) findViewById(R.id.checkBox87);
+        LlDE2_masaYoyo = (CheckBox) findViewById(R.id.checkBox88);
+        LlDE2_rin = (CheckBox) findViewById(R.id.checkBox89);
+        LlDE2_tieneLodera = (CheckBox) findViewById(R.id.checkBox90);
+
+        CFD_amortiguador = (CheckBox) findViewById(R.id.checkBox91);
+        CFD_bolsaAire = (CheckBox) findViewById(R.id.checkBox92);
+        CFD_gavilan = (CheckBox) findViewById(R.id.checkBox93);
+        CFD_muelle = (CheckBox) findViewById(R.id.checkBox94);
+        CFD_rotachamber = (CheckBox) findViewById(R.id.checkBox95);
+
+        CTD_amortiguador = (CheckBox) findViewById(R.id.checkBox96);
+        CTD_bolsaAire = (CheckBox) findViewById(R.id.checkBox97);
+        CTD_matraca = (CheckBox) findViewById(R.id.checkBox98);
+        CTD_muelle = (CheckBox) findViewById(R.id.checkBox99);
+        CTD_rotachamber = (CheckBox) findViewById(R.id.checkBox100);
+
+
 
 
        /* Llantas = new String[]{"Sin Seleccionar","Hanck","Goodyear", "Michelin", "Yokohama"};
@@ -372,13 +672,15 @@ public class imgActivity extends AppCompatActivity {
 
                 if (checked1) {
 
-                    /*Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+               /* Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     tractor.setImageBitmap(thumbImage);
-
+                    tractoFrente.setImageBitmap(thumbImage);
+                    tractoDer.setImageBitmap(thumbImage);
+                    tractoIzq.setImageBitmap(thumbImage);
 
                     noEconomico.setImageBitmap(thumbImage);
                     izqRemolqueP1.setImageBitmap(thumbImage);
@@ -399,6 +701,7 @@ public class imgActivity extends AppCompatActivity {
                     chasisFrontalDER.setImageBitmap(thumbImage);
                     derRemolqueP2.setImageBitmap(thumbImage);*/
 
+
                     llanta3SP.setVisibility(View.INVISIBLE);
                     llanta4SP.setVisibility(View.INVISIBLE);
                     llanta7SP.setVisibility(View.INVISIBLE);
@@ -413,34 +716,7 @@ public class imgActivity extends AppCompatActivity {
             }
         });
 
-          defensaCh ="1" ;
-         motorCh ="1" ;
-                  pisoCh ="1" ;
-                  tanqueDeCombCh ="1" ;
-                  llantasCh ="1" ;
-                  diferencialCh  ="1" ;
-                  cabinaCh ="1" ;
-                  cilindrosDeAireCh ="1" ;
-                          mofleEscapeCh ="1" ;
-                quintaRuedaCh ="1" ;
-                  manivelaCh ="1" ;
-                  puertasTraserasCh ="1" ;
-                  sellosCh  ="1" ;
-                  lucesTraserasCh  ="1" ;
-                  cuartosRojosCh  ="1" ;
-                  lucesDeAltaTraseraCh ="1" ;
-                  luzDePlacaCh  ="1" ;
-                placaCh ="1" ;
-                  zoqueterasCh ="1" ;
-                  guardaPolvoCh ="1" ;
-                  loderasCh ="1" ;
-                  remolqueCh ="1" ;
-                  chasisCh  ="1" ;
-                  paredesCh ="1" ;
-                  lucesLateralesAmbarCh ="1" ;
-                  lucesFrenteCh ="1" ;
-                  llantaDeRefaccionCh  ="1" ;
-                  cuartosAmbarCh ="1" ;
+
 
         defensa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -449,67 +725,10 @@ public class imgActivity extends AppCompatActivity {
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                   defensaCh = "0";
+                    S_defensa = "0";
 
                 }else{
-                    defensaCh = "1";
-                }
-            }
-        });
-
-        cuartosAmbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    cuartosAmbarCh = "0";
-
-                }else{
-                    cuartosAmbarCh = "1";
-                }
-            }
-        });
-        motor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    motorCh = "0";
-
-                }else{
-                    motorCh = "1";
-                }
-            }
-        });
-        piso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    pisoCh = "0";
-
-                }else{
-                    pisoCh = "1";
-                }
-            }
-        });
-        tanquedeComb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    tanqueDeCombCh = "0";
-
-                }else{
-                    tanqueDeCombCh = "1";
+                    S_defensa = "1";
                 }
             }
         });
@@ -520,66 +739,66 @@ public class imgActivity extends AppCompatActivity {
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    llantasCh = "0";
+                    S_llantas = "0";
 
                 }else{
-                    llantasCh = "1";
+                    S_llantas = "1";
                 }
             }
         });
-        diferencial.setOnClickListener(new View.OnClickListener() {
+        pisoTractor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    diferencialCh = "0";
+                    S_pisoTractor = "0";
 
                 }else{
-                    diferencialCh = "1";
+                    S_pisoTractor = "1";
                 }
             }
         });
-        cabina.setOnClickListener(new View.OnClickListener() {
+        tanqueDiesel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    cabinaCh = "0";
+                    S_tanqueDiesel = "0";
 
                 }else{
-                    cabinaCh = "1";
+                    S_tanqueDiesel = "1";
                 }
             }
         });
-        cilindrosDeAire.setOnClickListener(new View.OnClickListener() {
+        cabinaCompartimientos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    cilindrosDeAireCh = "0";
+                    S_cabinaCompartimientos = "0";
 
                 }else{
-                    cilindrosDeAireCh = "1";
+                    S_cabinaCompartimientos = "1";
                 }
             }
         });
-        mofleEscape.setOnClickListener(new View.OnClickListener() {
+        tanqueAire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    mofleEscapeCh = "0";
+                    S_tanqueAire = "0";
 
                 }else{
-                    mofleEscapeCh = "1";
+                    S_tanqueAire = "1";
                 }
             }
         });
@@ -590,251 +809,1303 @@ public class imgActivity extends AppCompatActivity {
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    quintaRuedaCh = "0";
+                    S_quintaRueda = "0";
 
                 }else{
-                    quintaRuedaCh = "1";
+                    S_quintaRueda = "1";
                 }
             }
         });
-        manivela.setOnClickListener(new View.OnClickListener() {
+        ejesTransmision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    manivelaCh = "0";
+                    S_ejesTransmision = "0";
 
                 }else{
-                    manivelaCh = "1";
+                    S_ejesTransmision = "1";
                 }
             }
         });
-        puertasTraseras.setOnClickListener(new View.OnClickListener() {
+        tuboEscape.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    puertasTraserasCh = "0";
+                    S_tuboEscape = "0";
 
                 }else{
-                    puertasTraserasCh = "1";
+                    S_tuboEscape = "1";
                 }
             }
         });
-        sellos.setOnClickListener(new View.OnClickListener() {
+        motor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    sellosCh = "0";
+                    S_motor = "0";
 
                 }else{
-                    sellosCh = "1";
+                    S_motor = "1";
                 }
             }
         });
-        lucesTraseras.setOnClickListener(new View.OnClickListener() {
+        baseRemolque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    lucesTraserasCh = "0";
+                    S_baseRemolque = "0";
 
                 }else{
-                    lucesTraserasCh = "1";
+                    S_baseRemolque = "1";
                 }
             }
         });
-        cuartosRojos.setOnClickListener(new View.OnClickListener() {
+        puerta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    cuartosRojosCh = "0";
+                    S_puerta = "0";
 
                 }else{
-                    cuartosRojosCh = "1";
+                    S_puerta = "1";
                 }
             }
         });
-        lucesDeAltaTraseras.setOnClickListener(new View.OnClickListener() {
+        paredLateralDerecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    lucesDeAltaTraseraCh = "0";
+                    S_paredLateralDerecha = "0";
 
                 }else{
-                    lucesDeAltaTraseraCh = "1";
+                    S_paredLateralDerecha = "1";
                 }
             }
         });
-        luzDePlace.setOnClickListener(new View.OnClickListener() {
+        techos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    luzDePlacaCh = "0";
+                    S_techos = "0";
 
                 }else{
-                    luzDePlacaCh = "1";
+                    S_techos = "1";
                 }
             }
         });
-        placa.setOnClickListener(new View.OnClickListener() {
+        paredFrontal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    placaCh = "0";
+                    S_paredFrontal = "0";
 
                 }else{
-                    placaCh = "1";
+                    S_paredFrontal = "1";
                 }
             }
         });
-        zoqueteras.setOnClickListener(new View.OnClickListener() {
+        paredLateralIzquierda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    zoqueterasCh = "0";
+                    S_paredLateralIzquierda = "0";
 
                 }else{
-                    zoqueterasCh = "1";
+                    S_paredLateralIzquierda = "1";
                 }
             }
         });
-        guardaPolvo.setOnClickListener(new View.OnClickListener() {
+        pisoInterno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    guardaPolvoCh = "0";
+                    S_pisoInterno = "0";
 
                 }else{
-                    guardaPolvoCh = "1";
+                    S_pisoInterno = "1";
                 }
             }
         });
-        loderas.setOnClickListener(new View.OnClickListener() {
+        vvtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    loderasCh = "0";
+                    S_vvtt = "0";
 
                 }else{
-                    loderasCh = "1";
+                    S_vvtt = "1";
                 }
             }
         });
-        remolque.setOnClickListener(new View.OnClickListener() {
+        IRP1_inspeccionMecanica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    remolqueCh = "0";
+                    S_IRP1_inspeccionMecanica = "0";
 
                 }else{
-                    remolqueCh = "1";
+                    S_IRP1_inspeccionMecanica = "1";
                 }
             }
         });
-        chasis.setOnClickListener(new View.OnClickListener() {
+        IRP1_lucesCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    chasisCh = "0";
+                    S_IRP1_lucesCheck = "0";
 
                 }else{
-                    chasisCh = "1";
+                    S_IRP1_lucesCheck = "1";
                 }
             }
         });
-        paredes.setOnClickListener(new View.OnClickListener() {
+        IRP1_luzGaliboIzqFrontalSup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    paredesCh = "0";
+                    S_IRP1_luzGaliboIzqFrontalSup = "0";
 
                 }else{
-                    paredesCh = "1";
+                    S_IRP1_luzGaliboIzqFrontalSup = "1";
                 }
             }
         });
-        lucesLateralesAmbar.setOnClickListener(new View.OnClickListener() {
+        IRP1_manitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    lucesLateralesAmbarCh = "0";
+                    S_IRP1_manitas = "0";
 
                 }else{
-                    lucesLateralesAmbarCh = "1";
+                    S_IRP1_manitas = "1";
                 }
             }
         });
-        lucesdeFrentem.setOnClickListener(new View.OnClickListener() {
+        IRP1_manivela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    lucesFrenteCh = "0";
+                    S_IRP1_manivela = "0";
 
                 }else{
-                    lucesFrenteCh = "1";
+                    S_IRP1_manivela = "1";
                 }
             }
         });
-        llantaDeRefaccion.setOnClickListener(new View.OnClickListener() {
+        IRP1_patinIzq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Is the button now checked?
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
-                    llantaDeRefaccionCh = "0";
+                    S_IRP1_patinIzq = "0";
 
                 }else{
-                    llantaDeRefaccionCh = "1";
+                    S_IRP1_patinIzq = "1";
                 }
             }
         });
+        IRP2_cuartoLadoIzq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_IRP2_cuartoLadoIzq = "0";
+
+                }else{
+                    S_IRP2_cuartoLadoIzq = "1";
+                }
+            }
+        });
+        IRP2_loderaIzq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_IRP2_loderaIzq = "0";
+
+                }else{
+                    S_IRP2_loderaIzq = "1";
+                }
+            }
+        });
+        IRP2_lucesCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_IRP2_lucesCheck = "0";
+
+                }else{
+                    S_IRP2_lucesCheck = "1";
+                }
+            }
+        });
+        IRP2_luzABS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_IRP2_luzABS = "0";
+
+                }else{
+                    S_IRP2_luzABS = "1";
+                }
+            }
+        });
+        IRP2_luzBarcoIzq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_IRP2_luzBarcoIzq = "0";
+
+                }else{
+                    S_IRP2_luzBarcoIzq = "1";
+                }
+            }
+        });
+        IRP2_rompevientosIzq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_IRP2_rompevientosIzq = "0";
+
+                }else{
+                    S_IRP2_rompevientosIzq = "1";
+                }
+            }
+        });
+        LlIE1_birlosPivote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE1_birlosPivote = "0";
+
+                }else{
+                    S_LlIE1_birlosPivote = "1";
+                }
+            }
+        });
+        LlIE1_llantasPos1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE1_llantasPos1 = "0";
+
+                }else{
+                    S_LlIE1_llantasPos1 = "1";
+                }
+            }
+        });
+        LlIE1_llantasPos2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE1_llantasPos2 = "0";
+
+                }else{
+                    S_LlIE1_llantasPos2 = "1";
+                }
+            }
+        });
+        LlIE1_masaYoyo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE1_masaYoyo = "0";
+
+                }else{
+                    S_LlIE1_masaYoyo = "1";
+                }
+            }
+        });
+        LlIE1_rin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE1_rin = "0";
+
+                }else{
+                    S_LlIE1_rin = "1";
+                }
+            }
+        });
+        LlIE1_tieneLodera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE1_tieneLodera = "0";
+
+                }else{
+                    S_LlIE1_tieneLodera = "1";
+                }
+            }
+        });
+        Pu_bisagrasPuertas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pu_bisagrasPuertas = "0";
+
+                }else{
+                    S_Pu_bisagrasPuertas = "1";
+                }
+            }
+        });
+        Pu_defensa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pu_defensa = "0";
+
+                }else{
+                    S_Pu_defensa = "1";
+                }
+            }
+        });
+        Pu_luzGaliboSupTraseras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pu_luzGaliboSupTraseras = "0";
+
+                }else{
+                    S_Pu_luzGaliboSupTraseras = "1";
+                }
+            }
+        });
+        Pu_plafonesDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pu_plafonesDer = "0";
+
+                }else{
+                    S_Pu_plafonesDer = "1";
+                }
+            }
+        });
+        Pu_plafonesIzq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pu_plafonesIzq = "0";
+
+                }else{
+                    S_Pu_plafonesIzq = "1";
+                }
+            }
+        });
+        Pl_luzPlaca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pl_luzPlaca = "0";
+
+                }else{
+                    S_Pl_luzPlaca = "1";
+                }
+            }
+        });
+        Pl_placa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_Pl_placa = "0";
+
+                }else{
+                    S_Pl_placa = "1";
+                }
+            }
+        });
+        S1_sello1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_S1_sello1 = "0";
+
+                }else{
+                    S_S1_sello1 = "1";
+                }
+            }
+        });
+        S1_altaSeguridad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_S1_altaSeguridad = "0";
+
+                }else{
+                    S_S1_altaSeguridad = "1";
+                }
+            }
+        });
+        LlDE1_birlosPivote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE1_birlosPivote = "0";
+
+                }else{
+                    S_LlDE1_birlosPivote = "1";
+                }
+            }
+        });
+        LlDE1_llantasPos5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE1_llantasPos5 = "0";
+
+                }else{
+                    S_LlDE1_llantasPos5 = "1";
+                }
+            }
+        });
+        LlDE1_llantasPos6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE1_llantasPos6 = "0";
+
+                }else{
+                    S_LlDE1_llantasPos6 = "1";
+                }
+            }
+        });
+        LlDE1_masaYoyo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE1_masaYoyo = "0";
+
+                }else{
+                    S_LlDE1_masaYoyo = "1";
+                }
+            }
+        });
+        LlDE1_rin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE1_rin = "0";
+
+                }else{
+                    S_LlDE1_rin = "1";
+                }
+            }
+        });
+        LlDE1_tieneLodera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE1_tieneLodera = "0";
+
+                }else{
+                    S_LlDE1_tieneLodera = "1";
+                }
+            }
+        });
+        DRP1_fondoPlaga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_fondoPlaga = "0";
+
+                }else{
+                    S_DRP1_fondoPlaga = "1";
+                }
+            }
+        });
+        DRP1_pisoPlaga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_pisoPlaga = "0";
+
+                }else{
+                    S_DRP1_pisoPlaga = "1";
+                }
+            }
+        });
+        DRP1_techoPlaga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_techoPlaga = "0";
+
+                }else{
+                    S_DRP1_techoPlaga = "1";
+                }
+            }
+        });
+        DRP1_lucesCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_lucesCheck = "0";
+
+                }else{
+                    S_DRP1_lucesCheck = "1";
+                }
+            }
+        });
+        DRP1_luzGaliboDerFrontalSup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_luzGaliboDerFrontalSup = "0";
+
+                }else{
+                    S_DRP1_luzGaliboDerFrontalSup = "1";
+                }
+            }
+        });
+        DRP1_derPlaga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_derPlaga = "0";
+
+                }else{
+                    S_DRP1_derPlaga = "1";
+                }
+            }
+        });
+        DRP1_izqPlaga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_izqPlaga = "0";
+
+                }else{
+                    S_DRP1_izqPlaga = "1";
+                }
+            }
+        });
+        DRP1_patinDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP1_patinDer = "0";
+
+                }else{
+                    S_DRP1_patinDer = "1";
+                }
+            }
+        });
+        DRP2_cuartoLadoDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP2_cuartoLadoDer = "0";
+
+                }else{
+                    S_DRP2_cuartoLadoDer = "1";
+                }
+            }
+        });
+        DRP2_loderaDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP2_loderaDer = "0";
+
+                }else{
+                    S_DRP2_loderaDer = "1";
+                }
+            }
+        });
+        DRP2_lucesCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP2_lucesCheck = "0";
+
+                }else{
+                    S_DRP2_lucesCheck = "1";
+                }
+            }
+        });
+        DRP2_luzBarcoDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP2_luzBarcoDer = "0";
+
+                }else{
+                    S_DRP2_luzBarcoDer = "1";
+                }
+            }
+        });
+        DRP2_rompevientosDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_DRP2_rompevientosDer = "0";
+
+                }else{
+                    S_DRP2_rompevientosDer = "1";
+                }
+            }
+        });
+        S2_escotilla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_S2_escotilla = "0";
+
+                }else{
+                    S_S2_escotilla = "1";
+                }
+            }
+        });
+        S2_sello2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_S2_sello2 = "0";
+
+                }else{
+                    S_S2_sello2 = "1";
+                }
+            }
+        });
+        S2_altaSeguridad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_S2_altaSeguridad = "0";
+
+                }else{
+                    S_S2_altaSeguridad = "1";
+                }
+            }
+        });
+        LlIE2_birlosPivote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE2_birlosPivote = "0";
+
+                }else{
+                    S_LlIE2_birlosPivote = "1";
+                }
+            }
+        });
+        LlIE2_llantasPos3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE2_llantasPos3 = "0";
+
+                }else{
+                    S_LlIE2_llantasPos3 = "1";
+                }
+            }
+        });
+        LlIE2_llantasPos4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE2_llantasPos4 = "0";
+
+                }else{
+                    S_LlIE2_llantasPos4 = "1";
+                }
+            }
+        });
+        LlIE2_masaYoyo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE2_masaYoyo = "0";
+
+                }else{
+                    S_LlIE2_masaYoyo = "1";
+                }
+            }
+        });
+        LlIE2_rin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE2_rin = "0";
+
+                }else{
+                    S_LlIE2_rin = "1";
+                }
+            }
+        });
+        LlIE2_tieneLodera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlIE2_tieneLodera = "0";
+
+                }else{
+                    S_LlIE2_tieneLodera = "1";
+                }
+            }
+        });
+        LlDE2_birlosPivote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE2_birlosPivote = "0";
+
+                }else{
+                    S_LlDE2_birlosPivote = "1";
+                }
+            }
+        });
+        LlDE2_llantasPos7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE2_llantasPos7 = "0";
+
+                }else{
+                    S_LlDE2_llantasPos7 = "1";
+                }
+            }
+        });
+        LlDE2_llantasPos8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE2_llantasPos8 = "0";
+
+                }else{
+                    S_LlDE2_llantasPos8 = "1";
+                }
+            }
+        });
+        LlDE2_masaYoyo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE2_masaYoyo = "0";
+
+                }else{
+                    S_LlDE2_masaYoyo = "1";
+                }
+            }
+        });
+        LlDE2_rin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE2_rin = "0";
+
+                }else{
+                    S_LlDE2_rin = "1";
+                }
+            }
+        });
+        LlDE2_tieneLodera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_LlDE2_tieneLodera = "0";
+
+                }else{
+                    S_LlDE2_tieneLodera = "1";
+                }
+            }
+        });
+        CFD_amortiguador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFD_amortiguador = "0";
+
+                }else{
+                    S_CFD_amortiguador = "1";
+                }
+            }
+        });
+        CFD_bolsaAire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFD_bolsaAire = "0";
+
+                }else{
+                    S_CFD_bolsaAire = "1";
+                }
+            }
+        });
+        CFD_gavilan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFD_gavilan = "0";
+
+                }else{
+                    S_CFD_gavilan = "1";
+                }
+            }
+        });
+        CFD_muelle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFD_muelle = "0";
+
+                }else{
+                    S_CFD_muelle = "1";
+                }
+            }
+        });
+        CFD_rotachamber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFD_rotachamber = "0";
+
+                }else{
+                    S_CFD_rotachamber = "1";
+                }
+            }
+        });
+        CTD_amortiguador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTD_amortiguador = "0";
+
+                }else{
+                    S_CTD_amortiguador = "1";
+                }
+            }
+        });
+        CTD_bolsaAire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTD_bolsaAire = "0";
+
+                }else{
+                    S_CTD_bolsaAire = "1";
+                }
+            }
+        });
+        CTD_matraca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTD_matraca = "0";
+
+                }else{
+                    S_CTD_matraca = "1";
+                }
+            }
+        });
+        CTD_muelle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTD_muelle = "0";
+
+                }else{
+                    S_CTD_muelle = "1";
+                }
+            }
+        });
+        CTD_rotachamber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTD_rotachamber = "0";
+
+                }else{
+                    S_CTD_rotachamber = "1";
+                }
+            }
+        });
+        CFI_amortiguador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFI_amortiguador = "0";
+
+                }else{
+                    S_CFI_amortiguador = "1";
+                }
+            }
+        });
+        CFI_bolsaAire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFI_bolsaAire = "0";
+
+                }else{
+                    S_CFI_bolsaAire = "1";
+                }
+            }
+        });
+        CFI_gavilan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFI_gavilan = "0";
+
+                }else{
+                    S_CFI_gavilan = "1";
+                }
+            }
+        });
+        CFI_muelle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFI_muelle = "0";
+
+                }else{
+                    S_CFI_muelle = "1";
+                }
+            }
+        });
+        CFI_rotachamber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CFI_rotachamber = "0";
+
+                }else{
+                    S_CFI_rotachamber = "1";
+                }
+            }
+        });
+        CTI_amortiguador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTI_amortiguador = "0";
+
+                }else{
+                    S_CTI_amortiguador = "1";
+                }
+            }
+        });
+        CTI_bolsaAire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTI_bolsaAire = "0";
+
+                }else{
+                    S_CTI_bolsaAire = "1";
+                }
+            }
+        });
+        CTI_matraca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTI_matraca = "0";
+
+                }else{
+                    S_CTI_matraca = "1";
+                }
+            }
+        });
+        CTI_muelle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTI_muelle = "0";
+
+                }else{
+                    S_CTI_muelle = "1";
+                }
+            }
+        });
+        CTI_rotachamber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Is the button now checked?
+                checked1 = ((CheckBox) view).isChecked();
+
+                if (checked1) {
+                    S_CTI_rotachamber = "0";
+
+                }else{
+                    S_CTI_rotachamber = "1";
+                }
+            }
+        });
+
+
 
 
         btnImg.setOnClickListener(new View.OnClickListener() {
@@ -846,6 +2117,9 @@ public class imgActivity extends AppCompatActivity {
                 //128 IMAGFN
 
                 tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
+                tractorDerImg =  String.valueOf(tractoDer.getDrawable().getBounds());
+                tractorIzqImg =  String.valueOf(tractoIzq.getDrawable().getBounds());
+                tractorFrenteImg =  String.valueOf(tractoFrente.getDrawable().getBounds());
                 noEconomicoImg = String.valueOf(noEconomico.getDrawable().getBounds());
                 izqRemolqueP1Img = String.valueOf(izqRemolqueP1.getDrawable().getBounds());
                 vinImg = String.valueOf(vin.getDrawable().getBounds());
@@ -906,25 +2180,28 @@ public class imgActivity extends AppCompatActivity {
 
                 // SI LAS LLANTAS SON JUMBO SOLO REVISA 4
                 if(lljumbo == 1 ) {
-                    if (tractorImg.contains("300") ||
-                            noEconomicoImg.contains("300") ||
-                            izqRemolqueP1Img.contains("300") ||
-                            vinImg.contains("300") ||
-                            chasisFrontalIzqImg.contains("300") ||
-                            chasisTraseroIzqImg.contains("300") ||
-                            llantasIzqEje1Img.contains("300") ||
-                            llantasIzqEje2Img.contains("300") ||
-                            izqRemolqueP2Img.contains("300") ||
-                            puertasImg.contains("300") ||
-                            placasImg.contains("300") ||
-                            sello1Img.contains("300") ||
-                            sello2Img.contains("300") ||
-                            derRemolqueP1Img.contains("300") ||
-                            llantasDerEje2Img.contains("300") ||
-                            llantasDerEje1Img.contains("300") ||
-                            chasisTraseroDerImg.contains("300") ||
-                            chasisFrontalDERImg.contains("300") ||
-                            derRemolqueP2Img.contains(" 300") ||
+                    if (!tractorImg.contains("128") ||
+                            !tractorDerImg.contains("128") ||
+                            !tractorIzqImg.contains("128") ||
+                            !tractorFrenteImg.contains("128") ||
+                            !noEconomicoImg.contains("128") ||
+                            !izqRemolqueP1Img.contains("128") ||
+                            !vinImg.contains("128") ||
+                            !chasisFrontalIzqImg.contains("128") ||
+                            !chasisTraseroIzqImg.contains("128") ||
+                            !llantasIzqEje1Img.contains("128") ||
+                            !llantasIzqEje2Img.contains("128") ||
+                            !izqRemolqueP2Img.contains("128") ||
+                            !puertasImg.contains("128") ||
+                            !placasImg.contains("128") ||
+                            !sello1Img.contains("128") ||
+                            !sello2Img.contains("128") ||
+                            !derRemolqueP1Img.contains("128") ||
+                            !llantasDerEje2Img.contains("128") ||
+                            !llantasDerEje1Img.contains("128") ||
+                            !chasisTraseroDerImg.contains("128") ||
+                            !chasisFrontalDERImg.contains("128") ||
+                            !derRemolqueP2Img.contains("128") ||
                             sello1S.length() == 0 ||
                             sello2S.length() == 0 ||
                             placasDatosD.length() == 0 ||
@@ -937,6 +2214,9 @@ public class imgActivity extends AppCompatActivity {
                     ) {
                         Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
                     } else if (tractorImg.contains("128") &&
+                            tractorDerImg.contains("128") &&
+                            tractorIzqImg.contains("128") &&
+                            tractorFrenteImg.contains("128") &&
                             noEconomicoImg.contains("128") &&
                             izqRemolqueP1Img.contains("128") &&
                             vinImg.contains("128") &&
@@ -968,36 +2248,107 @@ public class imgActivity extends AppCompatActivity {
                         try {
                             Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
                                     ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
-                                    defensaCh,
-                                    motorCh,
-                                    pisoCh,
-                                    tanqueDeCombCh,
-                                    llantasCh,
-                                    diferencialCh,
-                                    cabinaCh,
-                                    cilindrosDeAireCh,
-                                    mofleEscapeCh,
-                                    quintaRuedaCh,
-                                    remolqueCh,
-                                    chasisCh,
-                                    puertasTraserasCh,
-                                    paredesCh,
-                                    sellosCh,
-                                    lucesLateralesAmbarCh,
-                                    lucesFrenteCh,
-                                    cuartosAmbarCh,
-                                    lucesTraserasCh,
-                                    cuartosRojosCh,
-                                    lucesDeAltaTraseraCh,
-                                    luzDePlacaCh,
-                                    zoqueterasCh,
-                                    manivelaCh,
-                                    guardaPolvoCh,
-                                    loderasCh,
-                                    llantaDeRefaccionCh,
-                                    placaCh,
                                     placasDatosD,
-                                    comen2
+                                    comen2,
+                                    S_defensa,
+                                    S_llantas,
+                                    S_pisoTractor,
+                                    S_tanqueDiesel,
+                                    S_cabinaCompartimientos,
+                                    S_tanqueAire,
+                                    S_quintaRueda,
+                                    S_ejesTransmision,
+                                    S_tuboEscape,
+                                    S_motor,
+                                    S_baseRemolque,
+                                    S_puerta,
+                                    S_paredLateralDerecha,
+                                    S_techos,
+                                    S_paredFrontal,
+                                    S_paredLateralIzquierda,
+                                    S_pisoInterno,
+                                    S_vvtt,
+                                    S_IRP1_inspeccionMecanica,
+                                    S_IRP1_lucesCheck,
+                                    S_IRP1_luzGaliboIzqFrontalSup,
+                                    S_IRP1_manitas,
+                                    S_IRP1_manivela,
+                                    S_IRP1_patinIzq,
+                                    S_IRP2_cuartoLadoIzq,
+                                    S_IRP2_loderaIzq,
+                                    S_IRP2_lucesCheck,
+                                    S_IRP2_luzABS,
+                                    S_IRP2_luzBarcoIzq,
+                                    S_IRP2_rompevientosIzq,
+                                    S_LlIE1_birlosPivote,
+                                    S_LlIE1_llantasPos1,
+                                    S_LlIE1_llantasPos2,
+                                    S_LlIE1_masaYoyo,
+                                    S_LlIE1_rin,
+                                    S_LlIE1_tieneLodera,
+                                    S_Pu_bisagrasPuertas,
+                                    S_Pu_defensa,
+                                    S_Pu_luzGaliboSupTraseras,
+                                    S_Pu_plafonesDer,
+                                    S_Pu_plafonesIzq,
+                                    S_Pl_luzPlaca,
+                                    S_Pl_placa,
+                                    S_S1_sello1,
+                                    S_S1_altaSeguridad,
+                                    S_LlDE1_birlosPivote,
+                                    S_LlDE1_llantasPos5,
+                                    S_LlDE1_llantasPos6,
+                                    S_LlDE1_masaYoyo,
+                                    S_LlDE1_rin,
+                                    S_LlDE1_tieneLodera,
+                                    S_DRP1_fondoPlaga,
+                                    S_DRP1_pisoPlaga,
+                                    S_DRP1_techoPlaga,
+                                    S_DRP1_lucesCheck,
+                                    S_DRP1_luzGaliboDerFrontalSup,
+                                    S_DRP1_derPlaga,
+                                    S_DRP1_izqPlaga,
+                                    S_DRP1_patinDer,
+                                    S_DRP2_cuartoLadoDer,
+                                    S_DRP2_loderaDer,
+                                    S_DRP2_lucesCheck,
+                                    S_DRP2_luzBarcoDer,
+                                    S_DRP2_rompevientosDer,
+                                    S_S2_escotilla,
+                                    S_S2_sello2,
+                                    S_S2_altaSeguridad,
+                                    S_LlIE2_birlosPivote,
+                                    S_LlIE2_llantasPos3,
+                                    S_LlIE2_llantasPos4,
+                                    S_LlIE2_masaYoyo,
+                                    S_LlIE2_rin,
+                                    S_LlIE2_tieneLodera,
+                                    S_LlDE2_birlosPivote,
+                                    S_LlDE2_llantasPos7,
+                                    S_LlDE2_llantasPos8,
+                                    S_LlDE2_masaYoyo,
+                                    S_LlDE2_rin,
+                                    S_LlDE2_tieneLodera,
+                                    S_CFD_amortiguador,
+                                    S_CFD_bolsaAire,
+                                    S_CFD_gavilan,
+                                    S_CFD_muelle,
+                                    S_CFD_rotachamber,
+                                    S_CTD_amortiguador,
+                                    S_CTD_bolsaAire,
+                                    S_CTD_matraca,
+                                    S_CTD_muelle,
+                                    S_CTD_rotachamber,
+                                    S_CFI_amortiguador,
+                                    S_CFI_bolsaAire,
+                                    S_CFI_gavilan,
+                                    S_CFI_muelle,
+                                    S_CFI_rotachamber,
+                                    S_CTI_amortiguador,
+                                    S_CTI_bolsaAire,
+                                    S_CTI_matraca,
+                                    S_CTI_muelle,
+                                    S_CTI_rotachamber
                                     );
 
 
@@ -1282,25 +2633,28 @@ public class imgActivity extends AppCompatActivity {
 
 
                     } else if (lljumbo == 0) {
-                        if (tractorImg.contains("300") ||
-                                noEconomicoImg.contains("300") ||
-                                izqRemolqueP1Img.contains("300") ||
-                                vinImg.contains("300") ||
-                                chasisFrontalIzqImg.contains("300") ||
-                                chasisTraseroIzqImg.contains("300") ||
-                                llantasIzqEje1Img.contains("300") ||
-                                llantasIzqEje2Img.contains("300") ||
-                                izqRemolqueP2Img.contains("300") ||
-                                puertasImg.contains("300") ||
-                                placasImg.contains("300") ||
-                                sello1Img.contains("300") ||
-                                sello2Img.contains("300") ||
-                                derRemolqueP1Img.contains("300") ||
-                                llantasDerEje2Img.contains("300") ||
-                                llantasDerEje1Img.contains("300") ||
-                                chasisTraseroDerImg.contains("300") ||
-                                chasisFrontalDERImg.contains("300") ||
-                                derRemolqueP2Img.contains(" 300") ||
+                        if (!tractorImg.contains("128") ||
+                                !tractorDerImg.contains("128") ||
+                                !tractorIzqImg.contains("128") ||
+                                !tractorFrenteImg.contains("128") ||
+                                !noEconomicoImg.contains("128") ||
+                                !izqRemolqueP1Img.contains("128") ||
+                                !vinImg.contains("128") ||
+                                !chasisFrontalIzqImg.contains("128") ||
+                                !chasisTraseroIzqImg.contains("128") ||
+                                !llantasIzqEje1Img.contains("128") ||
+                                !llantasIzqEje2Img.contains("128") ||
+                                !izqRemolqueP2Img.contains("128") ||
+                                !puertasImg.contains("128") ||
+                                !placasImg.contains("128") ||
+                                !sello1Img.contains("128") ||
+                                !sello2Img.contains("128") ||
+                                !derRemolqueP1Img.contains("128") ||
+                                !llantasDerEje2Img.contains("128") ||
+                                !llantasDerEje1Img.contains("128") ||
+                                !chasisTraseroDerImg.contains("128") ||
+                                !chasisFrontalDERImg.contains("128") ||
+                                !derRemolqueP2Img.contains(" 128") ||
                                 sello1S.length() == 0 ||
                                 sello2S.length() == 0 ||
                                 placasDatosD.length() == 0 ||
@@ -1317,6 +2671,9 @@ public class imgActivity extends AppCompatActivity {
                         ) {
                             Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
                         }   else if (tractorImg.contains("128") &&
+                                tractorDerImg.contains("128") &&
+                                tractorIzqImg.contains("128") &&
+                                tractorFrenteImg.contains("128") &&
                                 noEconomicoImg.contains("128") &&
                                 izqRemolqueP1Img.contains("128") &&
                                 vinImg.contains("128") &&
@@ -1353,36 +2710,108 @@ public class imgActivity extends AppCompatActivity {
 
                                 Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
                                         ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
-                                        defensaCh,
-                                        motorCh,
-                                        pisoCh,
-                                        tanqueDeCombCh,
-                                        llantasCh,
-                                        diferencialCh,
-                                        cabinaCh,
-                                        cilindrosDeAireCh,
-                                        mofleEscapeCh,
-                                        quintaRuedaCh,
-                                        remolqueCh,
-                                        chasisCh,
-                                        puertasTraserasCh,
-                                        paredesCh,
-                                        sellosCh,
-                                        lucesLateralesAmbarCh,
-                                        lucesFrenteCh,
-                                        cuartosAmbarCh,
-                                        lucesTraserasCh,
-                                        cuartosRojosCh,
-                                        lucesDeAltaTraseraCh,
-                                        luzDePlacaCh,
-                                        zoqueterasCh,
-                                        manivelaCh,
-                                        guardaPolvoCh,
-                                        loderasCh,
-                                        llantaDeRefaccionCh,
-                                        placaCh,
                                         placasDatosD,
-                                        comen2);
+                                        comen2,
+                                        S_defensa,
+                                        S_llantas,
+                                        S_pisoTractor,
+                                        S_tanqueDiesel,
+                                        S_cabinaCompartimientos,
+                                        S_tanqueAire,
+                                        S_quintaRueda,
+                                        S_ejesTransmision,
+                                        S_tuboEscape,
+                                        S_motor,
+                                        S_baseRemolque,
+                                        S_puerta,
+                                        S_paredLateralDerecha,
+                                        S_techos,
+                                        S_paredFrontal,
+                                        S_paredLateralIzquierda,
+                                        S_pisoInterno,
+                                        S_vvtt,
+                                        S_IRP1_inspeccionMecanica,
+                                        S_IRP1_lucesCheck,
+                                        S_IRP1_luzGaliboIzqFrontalSup,
+                                        S_IRP1_manitas,
+                                        S_IRP1_manivela,
+                                        S_IRP1_patinIzq,
+                                        S_IRP2_cuartoLadoIzq,
+                                        S_IRP2_loderaIzq,
+                                        S_IRP2_lucesCheck,
+                                        S_IRP2_luzABS,
+                                        S_IRP2_luzBarcoIzq,
+                                        S_IRP2_rompevientosIzq,
+                                        S_LlIE1_birlosPivote,
+                                        S_LlIE1_llantasPos1,
+                                        S_LlIE1_llantasPos2,
+                                        S_LlIE1_masaYoyo,
+                                        S_LlIE1_rin,
+                                        S_LlIE1_tieneLodera,
+                                        S_Pu_bisagrasPuertas,
+                                        S_Pu_defensa,
+                                        S_Pu_luzGaliboSupTraseras,
+                                        S_Pu_plafonesDer,
+                                        S_Pu_plafonesIzq,
+                                        S_Pl_luzPlaca,
+                                        S_Pl_placa,
+                                        S_S1_sello1,
+                                        S_S1_altaSeguridad,
+                                        S_LlDE1_birlosPivote,
+                                        S_LlDE1_llantasPos5,
+                                        S_LlDE1_llantasPos6,
+                                        S_LlDE1_masaYoyo,
+                                        S_LlDE1_rin,
+                                        S_LlDE1_tieneLodera,
+                                        S_DRP1_fondoPlaga,
+                                        S_DRP1_pisoPlaga,
+                                        S_DRP1_techoPlaga,
+                                        S_DRP1_lucesCheck,
+                                        S_DRP1_luzGaliboDerFrontalSup,
+                                        S_DRP1_derPlaga,
+                                        S_DRP1_izqPlaga,
+                                        S_DRP1_patinDer,
+                                        S_DRP2_cuartoLadoDer,
+                                        S_DRP2_loderaDer,
+                                        S_DRP2_lucesCheck,
+                                        S_DRP2_luzBarcoDer,
+                                        S_DRP2_rompevientosDer,
+                                        S_S2_escotilla,
+                                        S_S2_sello2,
+                                        S_S2_altaSeguridad,
+                                        S_LlIE2_birlosPivote,
+                                        S_LlIE2_llantasPos3,
+                                        S_LlIE2_llantasPos4,
+                                        S_LlIE2_masaYoyo,
+                                        S_LlIE2_rin,
+                                        S_LlIE2_tieneLodera,
+                                        S_LlDE2_birlosPivote,
+                                        S_LlDE2_llantasPos7,
+                                        S_LlDE2_llantasPos8,
+                                        S_LlDE2_masaYoyo,
+                                        S_LlDE2_rin,
+                                        S_LlDE2_tieneLodera,
+                                        S_CFD_amortiguador,
+                                        S_CFD_bolsaAire,
+                                        S_CFD_gavilan,
+                                        S_CFD_muelle,
+                                        S_CFD_rotachamber,
+                                        S_CTD_amortiguador,
+                                        S_CTD_bolsaAire,
+                                        S_CTD_matraca,
+                                        S_CTD_muelle,
+                                        S_CTD_rotachamber,
+                                        S_CFI_amortiguador,
+                                        S_CFI_bolsaAire,
+                                        S_CFI_gavilan,
+                                        S_CFI_muelle,
+                                        S_CFI_rotachamber,
+                                        S_CTI_amortiguador,
+                                        S_CTI_bolsaAire,
+                                        S_CTI_matraca,
+                                        S_CTI_muelle,
+                                        S_CTI_rotachamber
+                                );
 
                                                 String loko = "dfasfsdg";
                                                 Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
@@ -1553,6 +2982,36 @@ public class imgActivity extends AppCompatActivity {
 
                 tractor.setEnabled(false);
                 imgClick("tractor" , REQUEST_TRACTOR);
+
+
+            }
+        });
+        tractoIzq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tractoIzq.setEnabled(false);
+                imgClick("tractorIzq" , REQUEST_TRACTO_IZQ);
+
+
+            }
+        });
+        tractoDer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tractoDer.setEnabled(false);
+                imgClick("tractoDer" , REQUEST_TRACTO_DER);
+
+
+            }
+        });
+        tractoFrente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tractoFrente.setEnabled(false);
+                imgClick("tractorFrente" , REQUEST_TRACTO_FRENTE);
 
 
             }
@@ -1782,6 +3241,51 @@ public class imgActivity extends AppCompatActivity {
                     tractor.setImageBitmap(thumbImage);
                 }else {
                     tractor.setEnabled(true);
+                }
+
+                break;
+            case REQUEST_TRACTO_DER:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(REQUEST_TRACTO_DER);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    tractoDer.setImageBitmap(thumbImage);
+                }else {
+                    tractoDer.setEnabled(true);
+                }
+
+                break;
+            case REQUEST_TRACTO_FRENTE:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(REQUEST_TRACTO_FRENTE);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    tractoFrente.setImageBitmap(thumbImage);
+                }else {
+                    tractoFrente.setEnabled(true);
+                }
+
+                break;
+            case REQUEST_TRACTO_IZQ:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(REQUEST_TRACTO_IZQ);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    tractoIzq.setImageBitmap(thumbImage);
+                }else {
+                    tractoIzq.setEnabled(true);
                 }
 
                 break;
@@ -2242,7 +3746,27 @@ public class imgActivity extends AppCompatActivity {
                                     tractor.setEnabled(true);
 
                                     break;
+                                case REQUEST_TRACTO_DER:
 
+                                    tractoDer.setImageBitmap(null);
+                                    tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractoDer.setEnabled(true);
+
+                                    break;
+                                case REQUEST_TRACTO_FRENTE:
+
+                                    tractoFrente.setImageBitmap(null);
+                                    tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractoFrente.setEnabled(true);
+
+                                    break;
+                                case REQUEST_TRACTO_IZQ:
+
+                                    tractoIzq.setImageBitmap(null);
+                                    tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractoIzq.setEnabled(true);
+
+                                    break;
                                 case REQUEST_NoECONOMICO:
 
                                     noEconomico.setImageBitmap(null);
@@ -2458,7 +3982,27 @@ public class imgActivity extends AppCompatActivity {
                                     tractor.setEnabled(true);
 
                                     break;
+                                case REQUEST_TRACTO_DER:
 
+                                    tractoDer.setImageBitmap(null);
+                                    tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractoDer.setEnabled(true);
+
+                                    break;
+                                case REQUEST_TRACTO_FRENTE:
+
+                                    tractoFrente.setImageBitmap(null);
+                                    tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractoFrente.setEnabled(true);
+
+                                    break;
+                                case REQUEST_TRACTO_IZQ:
+
+                                    tractoIzq.setImageBitmap(null);
+                                    tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractoIzq.setEnabled(true);
+
+                                    break;
                                 case REQUEST_NoECONOMICO:
 
                                     noEconomico.setImageBitmap(null);

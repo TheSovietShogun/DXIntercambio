@@ -183,7 +183,7 @@ public class envioActivity extends AppCompatActivity {
         vacioArr2 = new String[]{"Sin Seleccionar"};
         tipoOpeArr = new String[]{"Sin Seleccionar","Entrada", "Salida"};
         estatusArr = new String[]{"Sin Seleccionar","Cargado", "Vacio","Racks"};
-        tipoMovArr = new String[]{"Sin Seleccionar","Importacion","Exportacion"};
+        tipoMovArr = new String[]{"Sin Seleccionar","Carretera","Frontera"};
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
@@ -293,10 +293,10 @@ public class envioActivity extends AppCompatActivity {
                 }
 
                 switch (tipmov){
-                    case "Importacion" :
+                    case "Frontera" :
                         movimiento = 1;
                         break;
-                    case "Exportacion" :
+                    case "Carretera" :
                         movimiento = 0;
                         break;
                     case "Sin Seleccionar" :
@@ -344,8 +344,8 @@ public class envioActivity extends AppCompatActivity {
                 //REVISA POR OPCION "OTRO"
                      if (idTransportista == 42069 && idLinea == 42069 ){
                         //CAMPOS QUE FORZOSOS
-                        if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg.contains("480")
-                                || idTransportista == 69420 || idLinea == 69420 || idUnidad == 69420 || idRemolque == 69420){
+                        if(tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || !licenciaImg.contains("128")
+                                ){
                             Toast.makeText(envioActivity.this, "Campos vacios existente", Toast.LENGTH_LONG).show();
                         } else {
 
@@ -357,8 +357,8 @@ public class envioActivity extends AppCompatActivity {
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
 
-                            Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
-                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
+                            Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,0,idOperador,0,
+                                    0,0,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                                 builder.setMessage("Favor de revisar la informacion antes de ser enviada \n¡¡En el campo comentario deberan ir los datos faltantes!!")
@@ -415,7 +415,7 @@ public class envioActivity extends AppCompatActivity {
                     } else if (idTransportista != 42069 && idLinea != 42069 ){
                         //ESTA COMPLETO ?
                         if(idOperador == 0 || idUnidad == 0 || idRemolque == 0 || estatus == 3 || tipoOperacion == 3
-                                || movimiento == 3 || licenciaImg.contains("480") || idTransportista == 69420 || idLinea == 69420 || idUnidad == 69420 || idRemolque == 69420){
+                                || movimiento == 3 || !licenciaImg.contains("128") || idTransportista == 69420 || idLinea == 69420 || idUnidad == 69420 || idRemolque == 69420){
                             //NO
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                         }else {
@@ -503,16 +503,16 @@ public class envioActivity extends AppCompatActivity {
                         }
 
 
-                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || licenciaImg.contains("480") || idTransportista == 69420 || idLinea == 69420) {
+                        if (tipoOperacion == 3 || estatus == 3 || comentario.isEmpty() || movimiento == 3 || !licenciaImg.contains("128") || idTransportista == 69420 || idLinea == 69420) {
 
                            // Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                             delta = 400;
                         }
 
 
-                        if(alfa == 400 || bravo == 400 || charlie == 400 || delta == 400 || foxtrop == 400 ){
+                        if( bravo == 400 || charlie == 400 || delta == 400  ){
                             Toast.makeText(envioActivity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
-                        }else if(alfa == 0 || bravo == 0 || charlie == 0 || delta == 0 || foxtrop == 0){
+                        }else if( bravo == 0 || charlie == 0 || delta == 0 ){
 
 
 

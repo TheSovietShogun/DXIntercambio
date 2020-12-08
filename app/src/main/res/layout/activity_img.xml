@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,6 +31,36 @@
                 android:textSize="20dp"
                 app:layout_constraintStart_toEndOf="@+id/checkBox2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+
+            <ImageView
+                android:id="@+id/imageView29"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView33"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox35"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView34"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox35"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView34"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox35"
+                app:srcCompat="@color/azul_chingon" />
 
             <Spinner
                 android:id="@+id/spinner13"
@@ -190,11 +220,12 @@
                 android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
+                android:layout_marginTop="32dp"
                 android:background="@color/griseson"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="4075dp" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox46" />
 
 
             <View
@@ -206,13 +237,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox63" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox58" />
 
             <View
                 android:id="@+id/view4"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="548dp"
+                android:layout_marginTop="32dp"
                 android:background="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -224,7 +255,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView48"
                 app:srcCompat="@color/azul_chingon" />
@@ -439,7 +470,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="150dp"
+                android:layout_marginEnd="149dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView32"
                 app:srcCompat="@color/azul_chingon" />
@@ -1140,7 +1171,7 @@
                 android:layout_width="548dp"
                 android:layout_height="338dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="1828dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 android:ems="10"
@@ -1149,9 +1180,9 @@
                 android:inputType="textMultiLine"
                 android:textColor="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintHorizontal_bias="0.432"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox100" />
 
             <CheckBox
                 android:id="@+id/checkBox29"
@@ -1245,49 +1276,56 @@
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="103dp"
-                android:layout_marginTop="88dp"
-                android:text="Izquierdo Remolque P1"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Costado Izquierdo del Remolque P1"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner5" />
 
             <CheckBox
-                android:id="@+id/checkBox6"
+                android:id="@+id/cb_inspeccion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="103dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="CheckBox"
+                android:text="Inspeccion Mecanica"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
             <CheckBox
-                android:id="@+id/checkBox12"
+                android:id="@+id/cb_lucesCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="106dp"
-                android:layout_marginTop="23dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luces en buen estado ?"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+                app:layout_constraintTop_toBottomOf="@+id/cb_inspeccion" />
 
             <CheckBox
                 android:id="@+id/checkBox13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="103dp"
-                android:layout_marginTop="23dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz Galibo Izq. Frontal Sup"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox12" />
+                app:layout_constraintTop_toBottomOf="@+id/cb_lucesCheck" />
 
             <CheckBox
                 android:id="@+id/checkBox14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="111dp"
-                android:layout_marginTop="13dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Manitas"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox13" />
 
@@ -1295,9 +1333,10 @@
                 android:id="@+id/checkBox15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="111dp"
-                android:layout_marginTop="18dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Manivela"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox14" />
 
@@ -1305,9 +1344,10 @@
                 android:id="@+id/checkBox16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="113dp"
-                android:layout_marginTop="38dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Patin Izquierdo"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox15" />
 
@@ -1315,9 +1355,12 @@
                 android:id="@+id/textView52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="39dp"
-                android:text="Izq Remolque P2"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Costado Izquierdo del Remolque P2"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox16" />
 
@@ -1325,9 +1368,10 @@
                 android:id="@+id/checkBox17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="106dp"
-                android:layout_marginTop="30dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Cuarto lado izquierdo"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -1335,9 +1379,10 @@
                 android:id="@+id/checkBox18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="101dp"
-                android:layout_marginTop="23dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Lodera Izquierda"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox17" />
 
@@ -1345,9 +1390,10 @@
                 android:id="@+id/checkBox19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="101dp"
-                android:layout_marginTop="28dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luces en buen estado ?"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox18" />
 
@@ -1355,9 +1401,10 @@
                 android:id="@+id/checkBox20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="111dp"
-                android:layout_marginTop="26dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz ABS"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox19" />
 
@@ -1365,9 +1412,10 @@
                 android:id="@+id/checkBox21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="103dp"
-                android:layout_marginTop="23dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz de Barco Izquierda"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox20" />
 
@@ -1375,9 +1423,10 @@
                 android:id="@+id/checkBox22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="101dp"
-                android:layout_marginTop="25dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Rompevientos Izquierdo"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox21" />
 
@@ -1385,9 +1434,12 @@
                 android:id="@+id/textView53"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="103dp"
-                android:layout_marginEnd="316dp"
-                android:text="Llantas Izquierda Eje 1"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llantas Izquierdas Eje 1"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner8" />
 
@@ -1395,9 +1447,10 @@
                 android:id="@+id/checkBox23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="360dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Birlos y Pivote"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
@@ -1405,9 +1458,10 @@
                 android:id="@+id/checkBox24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="365dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llanta Posicion 1"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox23" />
 
@@ -1415,9 +1469,10 @@
                 android:id="@+id/checkBox25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:layout_marginEnd="350dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llanta Posicion 2"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox24" />
 
@@ -1425,9 +1480,10 @@
                 android:id="@+id/checkBox39"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:layout_marginEnd="348dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llanta Posicion 4"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox38" />
 
@@ -1435,9 +1491,10 @@
                 android:id="@+id/checkBox42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="356dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Tiene Lodera ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox41" />
 
@@ -1445,9 +1502,10 @@
                 android:id="@+id/checkBox41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
-                android:layout_marginEnd="361dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Rin"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox40" />
 
@@ -1455,9 +1513,10 @@
                 android:id="@+id/checkBox38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="363dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llanta Posicion 3"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox37" />
 
@@ -1465,9 +1524,10 @@
                 android:id="@+id/checkBox37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="358dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Birlos y Pivote"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
@@ -1475,9 +1535,10 @@
                 android:id="@+id/checkBox40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="361dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Masa de Yoyo"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox39" />
 
@@ -1485,9 +1546,10 @@
                 android:id="@+id/checkBox26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="363dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Masa de Yoyo"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox25" />
 
@@ -1495,9 +1557,10 @@
                 android:id="@+id/checkBox27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
-                android:layout_marginEnd="363dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Rin"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox26" />
 
@@ -1505,9 +1568,10 @@
                 android:id="@+id/checkBox28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="358dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Tiene Lodera ? "
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox27" />
 
@@ -1515,9 +1579,10 @@
                 android:id="@+id/checkBox43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="35dp"
-                android:text="CheckBox"
+                android:text="Gavilan"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox47" />
 
@@ -1525,9 +1590,10 @@
                 android:id="@+id/checkBox45"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="21dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Muelle"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox43" />
 
@@ -1535,9 +1601,10 @@
                 android:id="@+id/checkBox46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="85dp"
-                android:layout_marginTop="23dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Rotachamber"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox45" />
 
@@ -1545,9 +1612,10 @@
                 android:id="@+id/checkBox47"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="93dp"
-                android:layout_marginTop="38dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Bolsa de Aire"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox44" />
 
@@ -1555,9 +1623,10 @@
                 android:id="@+id/checkBox44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="78dp"
-                android:layout_marginTop="43dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Amortiguador"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
@@ -1565,9 +1634,10 @@
                 android:id="@+id/checkBox52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="316dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Matraca"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox49" />
 
@@ -1575,9 +1645,10 @@
                 android:id="@+id/checkBox48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="47dp"
-                android:layout_marginEnd="318dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Amortiguador"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
@@ -1585,9 +1656,10 @@
                 android:id="@+id/checkBox49"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:layout_marginEnd="303dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Bolsa de Aire"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox48" />
 
@@ -1595,9 +1667,10 @@
                 android:id="@+id/checkBox50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="311dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Rotachamber"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox51" />
 
@@ -1605,9 +1678,10 @@
                 android:id="@+id/checkBox51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
-                android:layout_marginEnd="316dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Muelle"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox52" />
 
@@ -1615,9 +1689,12 @@
                 android:id="@+id/textView54"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="359dp"
-                android:text="Llantas Izq Eje 2"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llantas Izquierdas Eje 2"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox28" />
 
@@ -1625,9 +1702,12 @@
                 android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="101dp"
-                android:layout_marginTop="52dp"
-                android:text="Chasis Frontal Izq"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Chasis Frontal Izquierdo"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox22" />
 
@@ -1635,9 +1715,12 @@
                 android:id="@+id/textView56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="325dp"
-                android:text="Chasis trasero Izq"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Chasis trasero Izquierdo"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox42" />
 
@@ -1645,9 +1728,12 @@
                 android:id="@+id/textView57"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="149dp"
-                android:layout_marginTop="83dp"
-                android:text="puertas"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Puertas"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -1655,9 +1741,10 @@
                 android:id="@+id/checkBox53"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="143dp"
-                android:layout_marginTop="25dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Bisagras y Puertas"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
@@ -1665,9 +1752,10 @@
                 android:id="@+id/checkBox54"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="141dp"
-                android:layout_marginTop="26dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Defensa"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox53" />
 
@@ -1675,9 +1763,10 @@
                 android:id="@+id/checkBox55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="141dp"
-                android:layout_marginTop="28dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz Galibo Sup Traseras"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox54" />
 
@@ -1685,9 +1774,10 @@
                 android:id="@+id/checkBox56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="136dp"
-                android:layout_marginTop="30dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Plafones Derechos"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox55" />
 
@@ -1695,9 +1785,10 @@
                 android:id="@+id/checkBox57"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="128dp"
-                android:layout_marginTop="36dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Plafones Izquierdos"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox56" />
 
@@ -1705,29 +1796,58 @@
                 android:id="@+id/checkBox59"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="217dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz de Placa"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+            <TextView
+                android:id="@+id/textView58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Placas"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox57" />
 
             <CheckBox
                 android:id="@+id/checkBox58"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="225dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Placa"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox59" />
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Sello 1"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
             <CheckBox
                 android:id="@+id/checkBox61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="230dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="sello 1"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
@@ -1735,256 +1855,261 @@
                 android:id="@+id/checkBox60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="230dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Sello alta seguridad"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox61" />
-
-            <CheckBox
-                android:id="@+id/checkBox62"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="240dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView60" />
-
-            <CheckBox
-                android:id="@+id/checkBox63"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="243dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox64" />
-
-            <CheckBox
-                android:id="@+id/checkBox64"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="243dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox62" />
-
-            <TextView
-                android:id="@+id/textView58"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="96dp"
-                android:layout_marginEnd="256dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-            <TextView
-                android:id="@+id/textView59"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="270dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox58" />
 
             <TextView
                 android:id="@+id/textView60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="276dp"
-                android:text="TextView"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Sello 2"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox60" />
+
+            <CheckBox
+                android:id="@+id/checkBox62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Escotilla"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+            <CheckBox
+                android:id="@+id/checkBox64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="sello 2"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox62" />
+
+            <CheckBox
+                android:id="@+id/checkBox63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Sello alta seguridad\n(si esta presente)"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox64" />
 
             <TextView
                 android:id="@+id/textView61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="196dp"
-                android:layout_marginTop="216dp"
-                android:text="llantas der eje 1"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Llantas Derechas Eje 1"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
-            <CheckBox
-                android:id="@+id/checkBox65"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="45dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView61" />
             <CheckBox
                 android:id="@+id/checkBox66"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="45dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Birlos y Pivote"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
             <CheckBox
                 android:id="@+id/checkBox67"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="45dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta Posicion 5"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox66" />
+
             <CheckBox
                 android:id="@+id/checkBox68"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="45dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Llanta Posicion 6"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox67" />
+
             <CheckBox
                 android:id="@+id/checkBox69"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="45dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Masa de Yoyo"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox68" />
+
             <CheckBox
                 android:id="@+id/checkBox70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="45dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Rin"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox69" />
+
+            <CheckBox
+                android:id="@+id/checkBox400"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Tiene Lodera ? "
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox70" />
+
 
             <TextView
                 android:id="@+id/textView62"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="362dp"
-                android:layout_marginEnd="274dp"
-                android:text="Der remolque p1"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Costado Derecho del Remolque P1"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner11" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
             <CheckBox
                 android:id="@+id/checkBox71"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="El fondo de la caja/contenedor\nesta libre de plagas ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
             <CheckBox
                 android:id="@+id/checkBox72"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="El piso esta libre de plagas ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox71" />
+
             <CheckBox
                 android:id="@+id/checkBox73"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="El techo esta libre de plagas ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox72" />
+
             <CheckBox
                 android:id="@+id/checkBox74"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Luces en buen estado ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox73" />
+
             <CheckBox
                 android:id="@+id/checkBox75"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Luz Galibo Der Frontal Sup"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox74" />
+
             <CheckBox
                 android:id="@+id/checkBox76"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Pared Derecha libre de plagas ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox75" />
+
             <CheckBox
                 android:id="@+id/checkBox77"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Pared Izquierda libre de plagas ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox76" />
+
             <CheckBox
                 android:id="@+id/checkBox78"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Patin Derecho"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox77" />
-            <CheckBox
-                android:id="@+id/checkBox79"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="279dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox78" />
 
             <TextView
                 android:id="@+id/textView63"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="162dp"
-                android:layout_marginTop="56dp"
-                android:text="der remolque p2"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Costado Derecho del Remolque P2"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox70" />
-
-            <CheckBox
-                android:id="@+id/checkBox82"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="137dp"
-                android:layout_marginTop="24dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox81" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox400" />
 
             <CheckBox
                 android:id="@+id/checkBox80"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="137dp"
-                android:layout_marginTop="68dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Cuarto lado derecho"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
@@ -1992,60 +2117,90 @@
                 android:id="@+id/checkBox81"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="137dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="CheckBox"
+                android:text="lodera derecha"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox80" />
 
             <CheckBox
-                android:id="@+id/checkBox84"
+                android:id="@+id/checkBox82"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="137dp"
-                android:layout_marginTop="48dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luces en buen estado ?"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox83"
-                tools:layout_editor_absoluteX="137dp" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox81" />
 
             <CheckBox
                 android:id="@+id/checkBox83"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="137dp"
-                android:layout_marginTop="12dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz de Barco derecha"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox82" />
+
+            <CheckBox
+                android:id="@+id/checkBox84"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Rompevientos derecho"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox83"
+                tools:layout_editor_absoluteX="137dp" />
 
             <TextView
                 android:id="@+id/textView64"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:layout_marginEnd="310dp"
-                android:text="llantas der eje 2"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Lantas Derechas Eje 2"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox79" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox78" />
 
             <CheckBox
                 android:id="@+id/checkBox85"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
-                android:layout_marginEnd="249dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Birlos y Pivote"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView64" />
+
+            <CheckBox
+                android:id="@+id/checkBox86"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llanta posicion 7"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox85" />
 
             <CheckBox
                 android:id="@+id/checkBox87"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="249dp"
-                android:text="CheckBox"
+                android:layout_marginEnd="32dp"
+                android:text="Llanta posicion 8"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox86" />
 
@@ -2053,9 +2208,10 @@
                 android:id="@+id/checkBox88"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="249dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Masa de Yoyo"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox87" />
 
@@ -2063,9 +2219,10 @@
                 android:id="@+id/checkBox89"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="249dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Rin"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox88" />
 
@@ -2073,29 +2230,23 @@
                 android:id="@+id/checkBox90"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="249dp"
-                android:text="CheckBox"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Tiene Lodera ?"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox89" />
-
-            <CheckBox
-                android:id="@+id/checkBox86"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="249dp"
-                android:text="CheckBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox85" />
 
             <TextView
                 android:id="@+id/textView65"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="159dp"
-                android:layout_marginTop="66dp"
-                android:text="chasis frontal derecho"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Chasis Frontal Derecho"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox84" />
 
@@ -2103,45 +2254,54 @@
                 android:id="@+id/checkBox91"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Amortiguador"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
             <CheckBox
                 android:id="@+id/checkBox92"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Bolsa de Aire"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox91" />
+
             <CheckBox
                 android:id="@+id/checkBox93"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Gavilan"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox92" />
+
             <CheckBox
                 android:id="@+id/checkBox94"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="46dp"
-                android:text="CheckBox"
+                android:text="Muelle"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox93" />
+
             <CheckBox
                 android:id="@+id/checkBox95"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Rotachamber"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox94" />
 
@@ -2149,56 +2309,105 @@
                 android:id="@+id/textView66"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="159dp"
-                android:layout_marginTop="66dp"
-                android:text="chasis trasero derecho"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox95" />
-            <CheckBox
-                android:id="@+id/checkBox96"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView66" />
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Chasis Trasero Derecho"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox90" />
+
             <CheckBox
                 android:id="@+id/checkBox97"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Bolsa de Aire"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox96" />
+
             <CheckBox
                 android:id="@+id/checkBox98"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Matraca"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox97" />
+
             <CheckBox
                 android:id="@+id/checkBox99"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Muelle"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox98" />
+
             <CheckBox
                 android:id="@+id/checkBox100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="46dp"
-                android:text="CheckBox"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Rotachamber"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox99" />
+
+            <CheckBox
+                android:id="@+id/checkBox96"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Amortiguador"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Izquierda del Tractor"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView29"
+                app:layout_constraintEnd_toEndOf="@+id/imageView29"
+                app:layout_constraintStart_toStartOf="@+id/imageView29"
+                app:layout_constraintTop_toTopOf="@+id/imageView29" />
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frente del Tractor"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView33"
+                app:layout_constraintEnd_toEndOf="@+id/imageView33"
+                app:layout_constraintStart_toStartOf="@+id/imageView33"
+                app:layout_constraintTop_toTopOf="@+id/imageView33" />
+
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Derecha del Tractor"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView34"
+                app:layout_constraintEnd_toEndOf="@+id/imageView34"
+                app:layout_constraintStart_toStartOf="@+id/imageView34"
+                app:layout_constraintTop_toTopOf="@+id/imageView34" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
