@@ -47,7 +47,7 @@ public class splash extends Activity {
                     password = contraseña;
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.92/api/")
+                            .baseUrl("http://192.168.5.50/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

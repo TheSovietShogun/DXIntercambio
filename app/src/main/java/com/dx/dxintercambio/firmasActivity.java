@@ -43,6 +43,7 @@ public class firmasActivity extends AppCompatActivity {
 
     Bitmap emptyBitmap;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +114,7 @@ public class firmasActivity extends AppCompatActivity {
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.92/api/")
+                            .baseUrl("http://192.168.5.50/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -135,7 +136,7 @@ public class firmasActivity extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(),"Enviado",Toast.LENGTH_SHORT).show();
 
                                 Retrofit retrofit = new Retrofit.Builder()
-                                        .baseUrl("http://192.168.4.92/api/")
+                                        .baseUrl("http://192.168.5.50/api/")
                                         .addConverterFactory(GsonConverterFactory.create())
                                         .build();
 

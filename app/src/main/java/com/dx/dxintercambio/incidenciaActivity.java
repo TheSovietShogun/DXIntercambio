@@ -77,34 +77,6 @@ public class incidenciaActivity extends AppCompatActivity {
     private TextView TWAestatusRemolque ;
     private TextView TWAcomentario ;
 
-    private TextView TWAdefensa ;
-    private TextView TWAmotor ;
-    private TextView TWApiso ;
-    private TextView TWAtanqueDeComb ;
-    private TextView TWAllantas ;
-    private TextView TWAdiferencial ;
-    private TextView TWAcabina ;
-    private TextView TWAcilindrosDeAire ;
-    private TextView TWAmofleEscape ;
-    private TextView TWAquintaRueda ;
-    private TextView TWAremolqueC ;
-    private TextView TWAchasis ;
-    private TextView TWApuertasTraseras ;
-    private TextView TWAparedes ;
-    private TextView TWAsellos ;
-    private TextView TWAlucesLatAmbar ;
-    private TextView TWAlucesDeFrente ;
-    private TextView TWAcuartosAmbar ;
-    private TextView TWAlucesTraseras ;
-    private TextView TWAcuartosRojos ;
-    private TextView TWAlucesDeAltoTraseros ;
-    private TextView TWAluzDePlaca ;
-    private TextView TWAzoqueteas ;
-    private TextView TWAmanivela ;
-    private TextView TWAguardaPolvos ;
-    private TextView TWAloderas ;
-    private TextView TWAllantaDeRefaccion ;
-    private TextView TWAplacas ;
     private TextView TWAplacasDatos ;
     private EditText TWAcomentario2 ;
 
@@ -132,36 +104,6 @@ public class incidenciaActivity extends AppCompatActivity {
     private TextView TWPtipoOperacion ;
     private TextView TWPestatusRemolque ;
     private TextView TWPcomentario ;
-
-
-    private TextView TWPdefensa ;
-    private TextView TWPmotor ;
-    private TextView TWPpiso ;
-    private TextView TWPtanqueDeComb ;
-    private TextView TWPllantas ;
-    private TextView TWPdiferencial ;
-    private TextView TWPcabina ;
-    private TextView TWPcilindrosDeAire ;
-    private TextView TWPmofleEscape ;
-    private TextView TWPquintaRueda ;
-    private TextView TWPremolqueC ;
-    private TextView TWPchasis ;
-    private TextView TWPpuertasTraseras ;
-    private TextView TWPparedes ;
-    private TextView TWPsellos ;
-    private TextView TWPlucesLatAmbar ;
-    private TextView TWPlucesDeFrente ;
-    private TextView TWPcuartosAmbar ;
-    private TextView TWPlucesTraseras ;
-    private TextView TWPcuartosRojos ;
-    private TextView TWPlucesDeAltoTraseros ;
-    private TextView TWPluzDePlaca ;
-    private TextView TWPzoqueteas ;
-    private TextView TWPmanivela ;
-    private TextView TWPguardaPolvos ;
-    private TextView TWPloderas ;
-    private TextView TWPllantaDeRefaccion ;
-    private TextView TWPplacas ;
     private TextView TWPplacasDatos ;
     private EditText  TWPcomentario2;
 
@@ -217,34 +159,6 @@ public class incidenciaActivity extends AppCompatActivity {
          String A_remolque = getIntent().getStringExtra("A_remolque");
          String A_usuario = getIntent().getStringExtra("A_usuario");
 
-        String A_defensa = getIntent().getStringExtra("A_defensa");
-        String A_motor = getIntent().getStringExtra("A_motor");
-        String A_piso = getIntent().getStringExtra("A_piso");
-        String A_tanqueDeComb = getIntent().getStringExtra("A_tanqueDeComb");
-        String A_llantas =getIntent().getStringExtra("A_llantas");
-        String A_diferencial = getIntent().getStringExtra("A_diferencial");
-        String A_cabina = getIntent().getStringExtra("A_cabina");
-        String A_cilindrosDeAire = getIntent().getStringExtra("A_cilindrosDeAire");
-        String A_mofleEscape =getIntent().getStringExtra("A_mofleEscape");
-        String A_quintaRueda = getIntent().getStringExtra("A_quintaRueda");
-        String A_remolqueC = getIntent().getStringExtra("A_remolqueC");
-        String A_chasis =getIntent().getStringExtra("A_chasis");
-        String A_puertasTraseras =getIntent().getStringExtra("A_puertasTraseras");
-        String A_paredes =getIntent().getStringExtra("A_paredes");
-        String A_sellos = getIntent().getStringExtra("A_sellos");
-        String A_lucesLatAmbar =getIntent().getStringExtra("A_lucesLatAmbar");
-        String A_lucesDeFrente = getIntent().getStringExtra("A_lucesDeFrente");
-        String A_cuartosAmbar = getIntent().getStringExtra("A_cuartosAmbar");
-        String A_lucesTraseras = getIntent().getStringExtra("A_lucesTraseras");
-        String A_cuartosRojos = getIntent().getStringExtra("A_cuartosRojos");
-        String A_lucesDeAltoTraseroas = getIntent().getStringExtra("A_lucesDeAltoTraseros");
-        String A_luzDePlaca = getIntent().getStringExtra("A_luzDePlaca");
-        String A_zoqueteras = getIntent().getStringExtra("A_zoqueteras");
-        String A_manivela = getIntent().getStringExtra("A_manivela");
-        String A_guardaPolvos = getIntent().getStringExtra("A_guardaPolvos");
-        String A_loderas = getIntent().getStringExtra("A_loderas");
-        String A_llantaDeRefaccion = getIntent().getStringExtra("A_llantaDeRefaccion");
-        String A_placas = getIntent().getStringExtra("A_placas");
         String A_placasDatos = getIntent().getStringExtra("A_placasDatos");
         String A_comentario2 = getIntent().getStringExtra("A_comentario2");
 
@@ -274,34 +188,6 @@ public class incidenciaActivity extends AppCompatActivity {
         String P_remolque = getIntent().getStringExtra("P_remolque");
         String P_usuario = getIntent().getStringExtra("P_usuario");
 
-        String P_defensa = getIntent().getStringExtra("P_defensa");
-        String P_motor = getIntent().getStringExtra("P_motor");
-        String P_piso = getIntent().getStringExtra("P_piso");
-        String P_tanqueDeComb = getIntent().getStringExtra("P_tanqueDeComb");
-        String P_llantas =getIntent().getStringExtra("P_llantas");
-        String P_diferencial = getIntent().getStringExtra("P_diferencial");
-        String P_cabina = getIntent().getStringExtra("P_cabina");
-        String P_cilindrosDeAire = getIntent().getStringExtra("P_cilindrosDeAire");
-        String P_mofleEscape =getIntent().getStringExtra("P_mofleEscape");
-        String P_quintaRueda = getIntent().getStringExtra("P_quintaRueda");
-        String P_remolqueC = getIntent().getStringExtra("P_remolqueC");
-        String P_chasis =getIntent().getStringExtra("P_chasis");
-        String P_puertasTraseras =getIntent().getStringExtra("P_puertasTraseras");
-        String P_paredes =getIntent().getStringExtra("P_paredes");
-        String P_sellos = getIntent().getStringExtra("P_sellos");
-        String P_lucesLatAmbar =getIntent().getStringExtra("P_lucesLatAmbar");
-        String P_lucesDeFrente = getIntent().getStringExtra("P_lucesDeFrente");
-        String P_cuartosAmbar = getIntent().getStringExtra("P_cuartosAmbar");
-        String P_lucesTraseras = getIntent().getStringExtra("P_lucesTraseras");
-        String P_cuartosRojos = getIntent().getStringExtra("P_cuartosRojos");
-        String P_lucesDeAltoTraseroas = getIntent().getStringExtra("P_lucesDeAltoTraseros");
-        String P_luzDePlaca = getIntent().getStringExtra("P_luzDePlaca");
-        String P_zoqueteras = getIntent().getStringExtra("P_zoqueteras");
-        String P_manivela = getIntent().getStringExtra("P_manivela");
-        String P_guardaPolvos = getIntent().getStringExtra("P_guardaPolvos");
-        String P_loderas = getIntent().getStringExtra("P_loderas");
-        String P_llantaDeRefaccion = getIntent().getStringExtra("P_llantaDeRefaccion");
-        String P_placas = getIntent().getStringExtra("P_placas");
         String P_placasDatos = getIntent().getStringExtra("P_placasDatos");
         String P_comentario2 = getIntent().getStringExtra("P_comentario2");
 
@@ -313,149 +199,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
         try {
 
-            if (A_defensa.contains("1")) {
-                A_defensa = "Si";
-            } else if (A_defensa.contains("0") || A_defensa== null ) {
-                A_defensa = "No";
-            }
-            if (A_motor.contains("1")) {
-                A_motor = "Si";
-            } else if (A_motor.contains("0") || A_motor== null ) {
-                A_motor = "No";
-            }
-            if (A_piso.contains("1")) {
-                A_piso = "Si";
-            } else if (A_piso.contains("0") || A_piso== null) {
-                A_piso = "No";
-            }
-            if (A_tanqueDeComb.contains("1")) {
-                A_tanqueDeComb = "Si";
-            } else if (A_tanqueDeComb.contains("0")|| A_tanqueDeComb== null) {
-                A_tanqueDeComb = "No";
-            }
-            if (A_llantas.contains("1")) {
-                A_llantas = "Si";
-            } else if (A_llantas.contains("0")|| A_llantas== null) {
-                A_llantas = "No";
-            }
-            if (A_diferencial.contains("1")) {
-                A_diferencial = "Si";
-            } else if (A_diferencial.contains("0")|| A_diferencial== null) {
-                A_diferencial = "No";
-            }
-            if (A_cabina.contains("1")) {
-                A_cabina = "Si";
-            } else if (A_cabina.contains("0")|| A_cabina== null) {
-                A_cabina = "No";
-            }
-            if (A_cilindrosDeAire.contains("1")) {
-                A_cilindrosDeAire = "Si";
-            } else if (A_cilindrosDeAire.contains("0")|| A_cilindrosDeAire== null) {
-                A_cilindrosDeAire = "No";
 
-            }
-            if (A_mofleEscape.contains("1")) {
-                A_mofleEscape = "Si";
-            } else if (A_mofleEscape.contains("0")|| A_mofleEscape== null) {
-                A_mofleEscape = "No";
-            }
-            if (A_quintaRueda.contains("1")) {
-                A_quintaRueda = "Si";
-            } else if (A_quintaRueda.contains("0")|| A_quintaRueda== null) {
-                A_quintaRueda = "No";
-            }
-            if (A_remolqueC.contains("1")) {
-                A_remolqueC = "Si";
-            } else if (A_remolqueC.contains("0")|| A_remolqueC== null) {
-                A_remolqueC = "No";
-
-
-            }
-            if (A_chasis.contains("1")) {
-                A_chasis = "Si";
-            } else if (A_chasis.contains("0")|| A_chasis== null) {
-                A_chasis = "No";
-            }
-            if (A_puertasTraseras.contains("1")) {
-                A_puertasTraseras = "Si";
-            } else if (A_puertasTraseras.contains("0")|| A_puertasTraseras== null) {
-                A_puertasTraseras = "No";
-            }
-            if (A_paredes.contains("1")) {
-                A_paredes = "Si";
-            } else if (A_paredes.contains("0")|| A_paredes== null) {
-                A_paredes = "No";
-            }
-            if (A_sellos.contains("1")) {
-                A_sellos = "Si";
-            } else if (A_sellos.contains("0")|| A_sellos== null) {
-                A_sellos = "No";
-            }
-            if (A_lucesLatAmbar.contains("1")) {
-                A_lucesLatAmbar = "Si";
-            } else if (A_lucesLatAmbar.contains("0")|| A_lucesLatAmbar== null) {
-                A_lucesLatAmbar = "No";
-            }
-            if (A_lucesDeFrente.contains("1")) {
-                A_lucesDeFrente = "Si";
-            } else if (A_lucesDeFrente.contains("0")|| A_lucesDeFrente== null) {
-                A_lucesDeFrente = "No";
-            }
-            if (A_cuartosAmbar.contains("1")) {
-                A_cuartosAmbar = "Si";
-            } else if (A_cuartosAmbar.contains("0")|| A_cuartosAmbar== null) {
-                A_cuartosAmbar = "No";
-            }
-            if (A_lucesTraseras.contains("1")) {
-                A_lucesTraseras = "Si";
-            } else if (A_lucesTraseras.contains("0")|| A_lucesTraseras== null) {
-                A_lucesTraseras = "No";
-            }
-            if (A_cuartosRojos.contains("1")) {
-                A_cuartosRojos = "Si";
-            } else if (A_cuartosRojos.contains("0")|| A_cuartosRojos== null) {
-                A_cuartosRojos = "No";
-            }
-            if (A_lucesDeAltoTraseroas.contains("1")) {
-                A_lucesDeAltoTraseroas = "Si";
-            } else if (A_lucesDeAltoTraseroas.contains("0")|| A_lucesDeAltoTraseroas== null) {
-                A_lucesDeAltoTraseroas = "No";
-            }
-            if (A_luzDePlaca.contains("1")) {
-                A_luzDePlaca = "Si";
-            } else if (A_luzDePlaca.contains("0")|| A_luzDePlaca== null) {
-                A_luzDePlaca = "No";
-            }
-            if (A_zoqueteras.contains("1")) {
-                A_zoqueteras = "Si";
-            } else if (A_zoqueteras.contains("0")|| A_zoqueteras== null) {
-                A_zoqueteras = "No";
-            }
-            if (A_manivela.contains("1")) {
-                A_manivela = "Si";
-            } else if (A_manivela.contains("0")|| A_manivela== null) {
-                A_manivela = "No";
-            }
-            if (A_guardaPolvos.contains("1")) {
-                A_guardaPolvos = "Si";
-            } else if (A_guardaPolvos.contains("0")|| A_guardaPolvos== null) {
-                A_guardaPolvos = "No";
-            }
-            if (A_loderas.contains("1")) {
-                A_loderas = "Si";
-            } else if (A_loderas.contains("0")|| A_loderas== null) {
-                A_loderas = "No";
-            }
-            if (A_llantaDeRefaccion.contains("1")) {
-                A_llantaDeRefaccion = "Si";
-            } else if (A_llantaDeRefaccion.contains("0")|| A_llantaDeRefaccion== null) {
-                A_llantaDeRefaccion = "No";
-            }
-            if (A_placas.contains("1")) {
-                A_placas = "Si";
-            } else if (A_placas.contains("0")|| A_placas== null) {
-                A_placas = "No";
-            }
             if (A_placasDatos.contains("1")) {
                 A_placasDatos = "Si";
             } else if (A_placasDatos.contains("0")|| A_placasDatos== null) {
@@ -463,149 +207,6 @@ public class incidenciaActivity extends AppCompatActivity {
             }
 
 
-            if (P_defensa.contains("1")) {
-                P_defensa = "Si";
-            } else if (P_defensa.contains("0")|| P_defensa== null) {
-                P_defensa = "No";
-            }
-            if (P_motor.contains("1")) {
-                P_motor = "Si";
-            } else if (P_motor.contains("0")|| P_motor== null) {
-                P_motor = "No";
-            }
-            if (P_piso.contains("1")) {
-                P_piso = "Si";
-            } else if (P_piso.contains("0")|| P_piso== null) {
-                P_piso = "No";
-            }
-            if (P_tanqueDeComb.contains("1")) {
-                P_tanqueDeComb = "Si";
-            } else if (P_tanqueDeComb.contains("0")|| P_tanqueDeComb== null) {
-                P_tanqueDeComb = "No";
-            }
-            if (P_llantas.contains("1")) {
-                P_llantas = "Si";
-            } else if (P_llantas.contains("0")|| P_llantas== null) {
-                P_llantas = "No";
-            }
-            if (P_diferencial.contains("1")) {
-                P_diferencial = "Si";
-            } else if (P_diferencial.contains("0")|| P_diferencial== null) {
-                P_diferencial = "No";
-            }
-            if (P_cabina.contains("1")) {
-                P_cabina = "Si";
-            } else if (P_cabina.contains("0")|| P_cabina== null) {
-                P_cabina = "No";
-            }
-            if (P_cilindrosDeAire.contains("1")) {
-                P_cilindrosDeAire = "Si";
-            } else if (P_cilindrosDeAire.contains("0")|| P_cilindrosDeAire== null) {
-                P_cilindrosDeAire = "No";
-
-            }
-            if (P_mofleEscape.contains("1")) {
-                P_mofleEscape = "Si";
-            } else if (P_mofleEscape.contains("0")|| P_mofleEscape== null) {
-                P_mofleEscape = "No";
-            }
-            if (P_quintaRueda.contains("1")) {
-                P_quintaRueda = "Si";
-            } else if (P_quintaRueda.contains("0")|| P_quintaRueda== null) {
-                P_quintaRueda = "No";
-            }
-            if (P_remolqueC.contains("1")) {
-                P_remolqueC = "Si";
-            } else if (P_remolqueC.contains("0")|| P_remolqueC== null) {
-                P_remolqueC = "No";
-
-
-            }
-            if (P_chasis.contains("1")) {
-                P_chasis = "Si";
-            } else if (P_chasis.contains("0")|| P_chasis== null) {
-                P_chasis = "No";
-            }
-            if (P_puertasTraseras.contains("1")) {
-                P_puertasTraseras = "Si";
-            } else if (P_puertasTraseras.contains("0")|| P_puertasTraseras== null) {
-                P_puertasTraseras = "No";
-            }
-            if (P_paredes.contains("1")) {
-                P_paredes = "Si";
-            } else if (P_paredes.contains("0")|| P_paredes== null) {
-                P_paredes = "No";
-            }
-            if (P_sellos.contains("1")) {
-                P_sellos = "Si";
-            } else if (P_sellos.contains("0")|| P_sellos== null) {
-                P_sellos = "No";
-            }
-            if (P_lucesLatAmbar.contains("1")) {
-                P_lucesLatAmbar = "Si";
-            } else if (P_lucesLatAmbar.contains("0")|| P_lucesLatAmbar== null) {
-                P_lucesLatAmbar = "No";
-            }
-            if (P_lucesDeFrente.contains("1")) {
-                P_lucesDeFrente = "Si";
-            } else if (P_lucesDeFrente.contains("0")|| P_lucesDeFrente== null) {
-                P_lucesDeFrente = "No";
-            }
-            if (P_cuartosAmbar.contains("1")) {
-                P_cuartosAmbar = "Si";
-            } else if (P_cuartosAmbar.contains("0")|| P_cuartosAmbar== null) {
-                P_cuartosAmbar = "No";
-            }
-            if (P_lucesTraseras.contains("1")) {
-                P_lucesTraseras = "Si";
-            } else if (P_lucesTraseras.contains("0")|| P_lucesTraseras== null) {
-                P_lucesTraseras = "No";
-            }
-            if (P_cuartosRojos.contains("1")) {
-                P_cuartosRojos = "Si";
-            } else if (P_cuartosRojos.contains("0")|| P_cuartosRojos== null) {
-                P_cuartosRojos = "No";
-            }
-            if (P_lucesDeAltoTraseroas.contains("1")) {
-                P_lucesDeAltoTraseroas = "Si";
-            } else if (P_lucesDeAltoTraseroas.contains("0")|| P_lucesDeAltoTraseroas== null) {
-                P_lucesDeAltoTraseroas = "No";
-            }
-            if (P_luzDePlaca.contains("1")) {
-                P_luzDePlaca = "Si";
-            } else if (P_luzDePlaca.contains("0")|| P_luzDePlaca== null) {
-                P_luzDePlaca = "No";
-            }
-            if (P_zoqueteras.contains("1")) {
-                P_zoqueteras = "Si";
-            } else if (P_zoqueteras.contains("0")|| P_zoqueteras== null) {
-                P_zoqueteras = "No";
-            }
-            if (P_manivela.contains("1")) {
-                P_manivela = "Si";
-            } else if (P_manivela.contains("0")|| P_manivela== null) {
-                P_manivela = "No";
-            }
-            if (P_guardaPolvos.contains("1")) {
-                P_guardaPolvos = "Si";
-            } else if (P_guardaPolvos.contains("0")|| P_guardaPolvos== null) {
-                P_guardaPolvos = "No";
-            }
-            if (P_loderas.contains("1")) {
-                P_loderas = "Si";
-            } else if (P_loderas.contains("0")|| P_loderas== null) {
-                P_loderas = "No";
-            }
-            if (P_llantaDeRefaccion.contains("1")) {
-                P_llantaDeRefaccion = "Si";
-            } else if (P_llantaDeRefaccion.contains("0")|| P_llantaDeRefaccion== null) {
-                P_llantaDeRefaccion = "No";
-            }
-            if (P_placas.contains("1")) {
-                P_placas = "Si";
-            } else if (P_placas.contains("0")|| P_placas== null) {
-                P_placas = "No";
-            }
             if (P_placasDatos.contains("1")) {
                 P_placasDatos = "Si";
             } else if (P_placasDatos.contains("0")|| P_placasDatos== null) {
@@ -666,34 +267,6 @@ public class incidenciaActivity extends AppCompatActivity {
         TWAestatusRemolque  = (TextView) findViewById(R.id.estatusRemolque_Actual);
         TWAcomentario  = (TextView) findViewById(R.id.comentario_Actual);
 
-          TWAdefensa = (TextView) findViewById(R.id.defensa_Actual);
-          TWAmotor  = (TextView) findViewById(R.id.motor_Actual);
-          TWApiso  = (TextView) findViewById(R.id.piso_Actual);
-          TWAtanqueDeComb = (TextView) findViewById(R.id.tanqueDeComb_Actual) ;
-          TWAllantas  = (TextView) findViewById(R.id.llantas_Actual);
-          TWAdiferencial  = (TextView) findViewById(R.id.diferencial_Actual);
-          TWAcabina  = (TextView) findViewById(R.id.cabina_Actual);
-          TWAcilindrosDeAire = (TextView) findViewById(R.id.cilindrosDeAire_Actual) ;
-          TWAmofleEscape = (TextView) findViewById(R.id.mofleEscape_Actual) ;
-          TWAquintaRueda  = (TextView) findViewById(R.id.quintaRueda_Actual);
-          TWAremolqueC  = (TextView) findViewById(R.id.remolqueC_Actual);
-          TWAchasis  = (TextView) findViewById(R.id.chasis_Actual);
-          TWApuertasTraseras = (TextView) findViewById(R.id.puertasTraseras_Actual) ;
-          TWAparedes = (TextView) findViewById(R.id.paredes_Actual) ;
-          TWAsellos = (TextView) findViewById(R.id.sellos_Actual) ;
-          TWAlucesLatAmbar  = (TextView) findViewById(R.id.lucesLatAmbar_Actual);
-          TWAlucesDeFrente  = (TextView) findViewById(R.id.lucesDeFrente_Actual);
-          TWAcuartosAmbar = (TextView) findViewById(R.id.cuartosAmbar_Actual) ;
-          TWAlucesTraseras = (TextView) findViewById(R.id.lucesTraseras_Actual) ;
-          TWAcuartosRojos  = (TextView) findViewById(R.id.cuartosRojos_Actual);
-          TWAlucesDeAltoTraseros  = (TextView) findViewById(R.id.lucesDeAltoTrasero_Actual);
-          TWAluzDePlaca = (TextView) findViewById(R.id.luzDePlaca_Actual);
-          TWAzoqueteas  = (TextView) findViewById(R.id.zoqueteras_Actual);
-          TWAmanivela  = (TextView) findViewById(R.id.manivela_Actual);
-          TWAguardaPolvos  = (TextView) findViewById(R.id.guardaPolvos_Actual);
-          TWAloderas  = (TextView) findViewById(R.id.loderas_Actual);
-          TWAllantaDeRefaccion = (TextView) findViewById(R.id.llantaDeRefaccion_Actual) ;
-          TWAplacas  = (TextView) findViewById(R.id.placas_Actual);
           TWAplacasDatos  = (TextView) findViewById(R.id.placasDatos_Actual);
         TWAcomentario2  = (EditText) findViewById(R.id.comentario2_Actual);
 
@@ -726,34 +299,6 @@ public class incidenciaActivity extends AppCompatActivity {
         TWPestatusRemolque  = (TextView) findViewById(R.id.estatusRemolque_Pasado);
         TWPcomentario  = (TextView) findViewById(R.id.comentario_Pasado);
 
-        TWPdefensa = (TextView) findViewById(R.id.defensa_Pasado);
-        TWPmotor  = (TextView) findViewById(R.id.motor_Pasado);
-        TWPpiso  = (TextView) findViewById(R.id.piso_Pasado);
-        TWPtanqueDeComb = (TextView) findViewById(R.id.tanqueDeComb_Pasado) ;
-        TWPllantas  = (TextView) findViewById(R.id.llantas_Pasado);
-        TWPdiferencial  = (TextView) findViewById(R.id.diferencial_Pasado);
-        TWPcabina  = (TextView) findViewById(R.id.cabina_Pasado);
-        TWPcilindrosDeAire = (TextView) findViewById(R.id.cilindrosDeAire_Pasado) ;
-        TWPmofleEscape = (TextView) findViewById(R.id.mofleEscape_Pasado) ;
-        TWPquintaRueda  = (TextView) findViewById(R.id.quintaRueda_Pasado);
-        TWPremolqueC  = (TextView) findViewById(R.id.remolqueC_Pasado);
-        TWPchasis  = (TextView) findViewById(R.id.chasis_Pasado);
-        TWPpuertasTraseras = (TextView) findViewById(R.id.puertasTraseras_Pasado) ;
-        TWPparedes = (TextView) findViewById(R.id.paredes_Pasado) ;
-        TWPsellos = (TextView) findViewById(R.id.sellos_Pasado) ;
-        TWPlucesLatAmbar  = (TextView) findViewById(R.id.lucesLatAmbar_Pasado);
-        TWPlucesDeFrente  = (TextView) findViewById(R.id.lucesDeFrente_Pasado);
-        TWPcuartosAmbar = (TextView) findViewById(R.id.cuartosAmbar_Pasado) ;
-        TWPlucesTraseras = (TextView) findViewById(R.id.lucesTraseras_Pasado) ;
-        TWPcuartosRojos  = (TextView) findViewById(R.id.cuartosRojos_Pasado);
-        TWPlucesDeAltoTraseros  = (TextView) findViewById(R.id.lucesDeAltoTrasero_Pasado);
-        TWPluzDePlaca = (TextView) findViewById(R.id.luzDePlaca_Pasado);
-        TWPzoqueteas  = (TextView) findViewById(R.id.zoqueteras_Pasado);
-        TWPmanivela  = (TextView) findViewById(R.id.manivela_Pasado);
-        TWPguardaPolvos  = (TextView) findViewById(R.id.guardaPolvos_Pasado);
-        TWPloderas  = (TextView) findViewById(R.id.loderas_Pasado);
-        TWPllantaDeRefaccion = (TextView) findViewById(R.id.llantaDeRefaccion_Pasado) ;
-        TWPplacas  = (TextView) findViewById(R.id.placas_Pasado);
         TWPplacasDatos  = (TextView) findViewById(R.id.placasDatos_Pasado);
         TWPcomentario2  = (EditText) findViewById(R.id.comentario2_Pasado);
 
@@ -783,34 +328,7 @@ public class incidenciaActivity extends AppCompatActivity {
         TWAestatusRemolque.setText(A_estatusRemolque);
         TWAcomentario.setText(A_comentario);
 
-        TWAdefensa.setText(A_defensa);
-        TWAmotor.setText(A_motor);
-        TWApiso.setText(A_piso);
-        TWAtanqueDeComb.setText(A_tanqueDeComb);
-        TWAllantas.setText(A_llantas);
-        TWAdiferencial.setText(A_diferencial);
-        TWAcabina.setText(A_cabina);
-        TWAcilindrosDeAire.setText(A_cilindrosDeAire);
-        TWAmofleEscape.setText(A_mofleEscape);
-        TWAquintaRueda.setText(A_quintaRueda);
-        TWAremolqueC.setText(A_remolqueC);
-        TWAchasis.setText(A_chasis);
-        TWApuertasTraseras.setText(A_puertasTraseras);
-        TWAparedes.setText(A_paredes);
-        TWAsellos.setText(A_sellos);
-        TWAlucesLatAmbar.setText(A_lucesLatAmbar);
-        TWAlucesDeFrente.setText(A_lucesDeFrente);
-        TWAcuartosAmbar.setText(A_cuartosAmbar);
-        TWAlucesTraseras.setText(A_lucesTraseras);
-        TWAcuartosRojos.setText(A_cuartosRojos);
-        TWAlucesDeAltoTraseros.setText(A_lucesDeAltoTraseroas);
-        TWAluzDePlaca.setText(A_luzDePlaca);
-        TWAzoqueteas.setText(A_zoqueteras);
-        TWAmanivela.setText(A_manivela);
-        TWAguardaPolvos.setText(A_guardaPolvos);
-        TWAloderas.setText(A_loderas);
-        TWAllantaDeRefaccion.setText(A_llantaDeRefaccion);
-        TWAplacas.setText(A_placas);
+
         TWAplacasDatos.setText(A_placasDatos);
         TWAcomentario2.setText(A_comentario2);
 
@@ -838,34 +356,7 @@ public class incidenciaActivity extends AppCompatActivity {
         TWPestatusRemolque.setText(P_estatusRemolque);
         TWPcomentario.setText(P_comentario);
 
-        TWPdefensa.setText(P_defensa);
-        TWPmotor.setText(P_motor);
-        TWPpiso.setText(P_piso);
-        TWPtanqueDeComb.setText(P_tanqueDeComb);
-        TWPllantas.setText(P_llantas);
-        TWPdiferencial.setText(P_diferencial);
-        TWPcabina.setText(P_cabina);
-        TWPcilindrosDeAire.setText(P_cilindrosDeAire);
-        TWPmofleEscape.setText(P_mofleEscape);
-        TWPquintaRueda.setText(P_quintaRueda);
-        TWPremolqueC.setText(P_remolqueC);
-        TWPchasis.setText(P_chasis);
-        TWPpuertasTraseras.setText(P_puertasTraseras);
-        TWPparedes.setText(P_paredes);
-        TWPsellos.setText(P_sellos);
-        TWPlucesLatAmbar.setText(P_lucesLatAmbar);
-        TWPlucesDeFrente.setText(P_lucesDeFrente);
-        TWPcuartosAmbar.setText(P_cuartosAmbar);
-        TWPlucesTraseras.setText(P_lucesTraseras);
-        TWPcuartosRojos.setText(P_cuartosRojos);
-        TWPlucesDeAltoTraseros.setText(P_lucesDeAltoTraseroas);
-        TWPluzDePlaca.setText(P_luzDePlaca);
-        TWPzoqueteas.setText(P_zoqueteras);
-        TWPmanivela.setText(P_manivela);
-        TWPguardaPolvos.setText(P_guardaPolvos);
-        TWPloderas.setText(P_loderas);
-        TWPllantaDeRefaccion.setText(P_llantaDeRefaccion);
-        TWPplacas.setText(P_placas);
+
         TWPplacasDatos.setText(P_placasDatos);
         TWPcomentario2.setText(P_comentario2);
 
@@ -906,7 +397,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.92:80/api/")
+                            .baseUrl("http://192.168.5.50/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -970,7 +461,7 @@ public class incidenciaActivity extends AppCompatActivity {
                     );
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.92:80/api/")
+                            .baseUrl("http://192.168.5.50/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

@@ -65,7 +65,7 @@ public class imgActivity extends AppCompatActivity {
     private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca , comentario2;
     private String S_defensa = "1";
     private String S_llantas = "1";
-    private String S_pisoTractor = "1";
+    private String S_pisoTractor = "10";
     private String S_tanqueDiesel = "1";
     private String S_cabinaCompartimientos= "1" ;
     private String S_tanqueAire = "1";
@@ -74,11 +74,11 @@ public class imgActivity extends AppCompatActivity {
     private String S_tuboEscape = "1";
     private String S_motor = "1";
     private String S_baseRemolque = "1";
-    private String S_puerta = "1";
-    private String S_paredLateralDerecha = "1";
+    private String S_puerta = "10";
+    private String S_paredLateralDerecha = "10";
     private String S_techos = "1";
-    private String S_paredFrontal= "1" ;
-    private String S_paredLateralIzquierda = "1";
+    private String S_paredFrontal= "10" ;
+    private String S_paredLateralIzquierda = "10";
     private String S_pisoInterno = "1";
     private String S_vvtt= "1" ;
     private String S_IRP1_inspeccionMecanica = "1";
@@ -164,7 +164,7 @@ public class imgActivity extends AppCompatActivity {
     private String S_CTI_rotachamber= "1" ;
     private CheckBox defensa ;
     private CheckBox llantas ;
-    private CheckBox pisoTractor ;
+
     private CheckBox tanqueDiesel ;
     private CheckBox cabinaCompartimientos ;
     private CheckBox tanqueAire ;
@@ -173,12 +173,9 @@ public class imgActivity extends AppCompatActivity {
     private CheckBox tuboEscape ;
     private CheckBox motor ;
     private CheckBox baseRemolque ;
-    private CheckBox puerta ;
-    private CheckBox paredLateralDerecha ;
+
     private CheckBox techos ;
-    private CheckBox paredFrontal ;
-    private CheckBox paredLateralIzquierda ;
-    private CheckBox pisoInterno ;
+
     private CheckBox vvtt ;
 
     private CheckBox IRP1_inspeccionMecanica ;
@@ -451,7 +448,7 @@ public class imgActivity extends AppCompatActivity {
         chasisTraseroDer = (ImageView) findViewById(R.id.imageView19);
         chasisFrontalDER = (ImageView) findViewById(R.id.imageView20);
         derRemolqueP2 = (ImageView) findViewById(R.id.imageView22);
-numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
+        numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
         sello3 = (ImageView) findViewById(R.id.imageView30);
 
 
@@ -486,7 +483,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
 
         defensa = (CheckBox) findViewById(R.id.checkBox);
         llantas = (CheckBox) findViewById(R.id.checkBox8);
-         pisoTractor = (CheckBox) findViewById(R.id.checkBox2);
+       //  pisoTractor = (CheckBox) findViewById(R.id.checkBox2);
         tanqueDiesel = (CheckBox) findViewById(R.id.checkBox9);
         cabinaCompartimientos = (CheckBox) findViewById(R.id.checkBox3);
         tanqueAire = (CheckBox) findViewById(R.id.checkBox10);
@@ -495,12 +492,12 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
         tuboEscape = (CheckBox) findViewById(R.id.checkBox5);
         motor = (CheckBox) findViewById(R.id.checkBox7);
         baseRemolque = (CheckBox) findViewById(R.id.checkBox29);
-        paredLateralDerecha = (CheckBox) findViewById(R.id.checkBox31);
-        paredFrontal = (CheckBox) findViewById(R.id.checkBox33);
-        pisoInterno = (CheckBox) findViewById(R.id.checkBox35);
-        puerta = (CheckBox) findViewById(R.id.checkBox30);
+      //  paredLateralDerecha = (CheckBox) findViewById(R.id.checkBox31);
+        //paredFrontal = (CheckBox) findViewById(R.id.checkBox33);
+        //pisoInterno = (CheckBox) findViewById(R.id.checkBox35);
+        //puerta = (CheckBox) findViewById(R.id.checkBox30);
         techos = (CheckBox) findViewById(R.id.checkBox32);
-        paredLateralIzquierda = (CheckBox) findViewById(R.id.checkBox34);
+        //paredLateralIzquierda = (CheckBox) findViewById(R.id.checkBox34);
         vvtt = (CheckBox) findViewById(R.id.checkBox36);
 
         IRP1_inspeccionMecanica = (CheckBox) findViewById(R.id.cb_inspeccion);
@@ -626,7 +623,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
         Post post =  new Post(user,password);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.4.92:80/api/")
+                .baseUrl("http://192.168.5.50/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -706,12 +703,23 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                     llanta4SP.setVisibility(View.INVISIBLE);
                     llanta7SP.setVisibility(View.INVISIBLE);
                     llanta8SP.setVisibility(View.INVISIBLE);
+                    LlIE2_llantasPos4.setEnabled(false);
+                    LlDE1_llantasPos6.setEnabled(false);
+                    LlIE1_llantasPos2.setEnabled(false);
+                    LlDE2_llantasPos8.setEnabled(false);
+
+
+
 
                 }else{
                     llanta3SP.setVisibility(View.VISIBLE);
                     llanta4SP.setVisibility(View.VISIBLE);
                     llanta7SP.setVisibility(View.VISIBLE);
                     llanta8SP.setVisibility(View.VISIBLE);
+                    LlIE2_llantasPos4.setEnabled(true);
+                    LlDE1_llantasPos6.setEnabled(true);
+                    LlIE1_llantasPos2.setEnabled(true);
+                    LlDE2_llantasPos8.setEnabled(true);
                 }
             }
         });
@@ -746,20 +754,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                 }
             }
         });
-        pisoTractor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
 
-                if (checked1) {
-                    S_pisoTractor = "0";
-
-                }else{
-                    S_pisoTractor = "1";
-                }
-            }
-        });
         tanqueDiesel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -872,34 +867,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                 }
             }
         });
-        puerta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
 
-                if (checked1) {
-                    S_puerta = "0";
-
-                }else{
-                    S_puerta = "1";
-                }
-            }
-        });
-        paredLateralDerecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    S_paredLateralDerecha = "0";
-
-                }else{
-                    S_paredLateralDerecha = "1";
-                }
-            }
-        });
         techos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -914,48 +882,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                 }
             }
         });
-        paredFrontal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
 
-                if (checked1) {
-                    S_paredFrontal = "0";
-
-                }else{
-                    S_paredFrontal = "1";
-                }
-            }
-        });
-        paredLateralIzquierda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    S_paredLateralIzquierda = "0";
-
-                }else{
-                    S_paredLateralIzquierda = "1";
-                }
-            }
-        });
-        pisoInterno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Is the button now checked?
-                checked1 = ((CheckBox) view).isChecked();
-
-                if (checked1) {
-                    S_pisoInterno = "0";
-
-                }else{
-                    S_pisoInterno = "1";
-                }
-            }
-        });
         vvtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -2400,34 +2327,6 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                         String A_remolque = cEnvio2s.get(0).getA_remolque();
                                         String A_usuario = cEnvio2s.get(0).getA_usuario();
 
-                                        String A_defensa = cEnvio2s.get(0).getA_defensa();
-                                        String A_motor = cEnvio2s.get(0).getA_motor();
-                                        String A_piso = cEnvio2s.get(0).getA_piso();
-                                        String A_tanqueDeComb = cEnvio2s.get(0).getA_tanqueDeComb();
-                                        String A_llantas = cEnvio2s.get(0).getA_llantas();
-                                        String A_diferencial = cEnvio2s.get(0).getA_diferencial();
-                                        String A_cabina = cEnvio2s.get(0).getA_cabina();
-                                        String A_cilindrosDeAire = cEnvio2s.get(0).getA_cilindrosDeAire();
-                                        String A_mofleEscape = cEnvio2s.get(0).getA_mofleEscape();
-                                        String A_quintaRueda = cEnvio2s.get(0).getA_quintaRueda();
-                                        String A_remolqueC = cEnvio2s.get(0).getA_remolqueC();
-                                        String A_chasis = cEnvio2s.get(0).getA_chasis();
-                                        String A_puertasTraseras = cEnvio2s.get(0).getA_puertasTraseras();
-                                        String A_paredes = cEnvio2s.get(0).getA_paredes();
-                                        String A_sellos = cEnvio2s.get(0).getA_sellos();
-                                        String A_lucesLatAmbar = cEnvio2s.get(0).getA_lucesLatAmbar();
-                                        String A_lucesDeFrente = cEnvio2s.get(0).getA_lucesDeFrente();
-                                        String A_cuartosAmbar = cEnvio2s.get(0).getA_cuartosAmbar();
-                                        String A_lucesTraseras = cEnvio2s.get(0).getA_lucesTraseras();
-                                        String A_cuartosRojos = cEnvio2s.get(0).getA_cuartosRojos();
-                                        String A_lucesDeAltoTraseroas = cEnvio2s.get(0).getA_lucesDeAltoTraseros();
-                                        String A_luzDePlaca = cEnvio2s.get(0).getA_luzDePlaca();
-                                        String A_zoqueteras = cEnvio2s.get(0).getA_zoqueteras();
-                                        String A_manivela = cEnvio2s.get(0).getA_manivela();
-                                        String A_guardaPolvos = cEnvio2s.get(0).getA_guardaPolvos();
-                                        String A_loderas = cEnvio2s.get(0).getA_loderas();
-                                        String A_llantaDeRefaccion = cEnvio2s.get(0).getA_llantaDeRefaccion();
-                                        String A_placas = cEnvio2s.get(0).getA_placas();
                                         String A_placasDatos =  cEnvio2s.get(0).getA_placasDatos();
                                         String A_comentario2 =  cEnvio2s.get(0).getA_comentario2();
 
@@ -2457,34 +2356,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                         String P_remolque = cEnvio2s.get(0).getP_remolque();
                                         String P_usuario = cEnvio2s.get(0).getP_usuario();
 
-                                        String P_defensa = cEnvio2s.get(0).getP_defensa();
-                                        String P_motor = cEnvio2s.get(0).getP_motor();
-                                        String P_piso = cEnvio2s.get(0).getP_piso();
-                                        String P_tanqueDeComb = cEnvio2s.get(0).getP_tanqueDeComb();
-                                        String P_llantas = cEnvio2s.get(0).getP_llantas();
-                                        String P_diferencial = cEnvio2s.get(0).getP_diferencial();
-                                        String P_cabina = cEnvio2s.get(0).getP_cabina();
-                                        String P_cilindrosDeAire = cEnvio2s.get(0).getP_cilindrosDeAire();
-                                        String P_mofleEscape = cEnvio2s.get(0).getP_mofleEscape();
-                                        String P_quintaRueda = cEnvio2s.get(0).getP_quintaRueda();
-                                        String P_remolqueC = cEnvio2s.get(0).getP_remolqueC();
-                                        String P_chasis = cEnvio2s.get(0).getP_chasis();
-                                        String P_puertasTraseras = cEnvio2s.get(0).getP_puertasTraseras();
-                                        String P_paredes = cEnvio2s.get(0).getP_paredes();
-                                        String P_sellos = cEnvio2s.get(0).getP_sellos();
-                                        String P_lucesLatAmbar = cEnvio2s.get(0).getP_lucesLatAmbar();
-                                        String P_lucesDeFrente = cEnvio2s.get(0).getP_lucesDeFrente();
-                                        String P_cuartosAmbar = cEnvio2s.get(0).getP_cuartosAmbar();
-                                        String P_lucesTraseras = cEnvio2s.get(0).getP_lucesTraseras();
-                                        String P_cuartosRojos = cEnvio2s.get(0).getP_cuartosRojos();
-                                        String P_lucesDeAltoTraseroas = cEnvio2s.get(0).getP_lucesDeAltoTraseros();
-                                        String P_luzDePlaca = cEnvio2s.get(0).getP_luzDePlaca();
-                                        String P_zoqueteras = cEnvio2s.get(0).getP_zoqueteras();
-                                        String P_manivela = cEnvio2s.get(0).getP_manivela();
-                                        String P_guardaPolvos = cEnvio2s.get(0).getP_guardaPolvos();
-                                        String P_loderas = cEnvio2s.get(0).getP_loderas();
-                                        String P_llantaDeRefaccion = cEnvio2s.get(0).getP_llantaDeRefaccion();
-                                        String P_placas = cEnvio2s.get(0).getP_placas();
+
                                         String P_placasDatos =  cEnvio2s.get(0).getP_placasDatos();
                                         String P_comentario2 =  cEnvio2s.get(0).getP_comentario2();
 
@@ -2517,34 +2389,6 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                             i.putExtra("A_remolque", A_remolque);
                                             i.putExtra("A_usuario", A_usuario);
 
-                                            i.putExtra("A_defensa", A_defensa);
-                                            i.putExtra("A_motor", A_motor);
-                                            i.putExtra("A_piso", A_piso);
-                                            i.putExtra("A_tanqueDeComb", A_tanqueDeComb);
-                                            i.putExtra("A_llantas", A_llantas);
-                                            i.putExtra("A_diferencial", A_diferencial);
-                                            i.putExtra("A_cabina", A_cabina);
-                                            i.putExtra("A_cilindrosDeAire", A_cilindrosDeAire);
-                                            i.putExtra("A_mofleEscape", A_mofleEscape);
-                                            i.putExtra("A_quintaRueda", A_quintaRueda);
-                                            i.putExtra("A_remolqueC", A_remolqueC);
-                                            i.putExtra("A_chasis", A_chasis);
-                                            i.putExtra("A_puertasTraseras", A_puertasTraseras);
-                                            i.putExtra("A_paredes", A_paredes);
-                                            i.putExtra("A_sellos", A_sellos);
-                                            i.putExtra("A_lucesLatAmbar", A_lucesLatAmbar);
-                                            i.putExtra("A_lucesDeFrente", A_lucesDeFrente);
-                                            i.putExtra("A_cuartosAmbar", A_cuartosAmbar);
-                                            i.putExtra("A_lucesTraseras", A_lucesTraseras);
-                                            i.putExtra("A_cuartosRojos", A_cuartosRojos);
-                                            i.putExtra("A_lucesDeAltoTraseros", A_lucesDeAltoTraseroas);
-                                            i.putExtra("A_luzDePlaca", A_luzDePlaca);
-                                            i.putExtra("A_zoqueteras", A_zoqueteras);
-                                            i.putExtra("A_manivela", A_manivela);
-                                            i.putExtra("A_guardaPolvos", A_guardaPolvos);
-                                            i.putExtra("A_loderas", A_loderas);
-                                            i.putExtra("A_llantaDeRefaccion", A_llantaDeRefaccion);
-                                            i.putExtra("A_placas", A_placas);
                                             i.putExtra("A_placasDatos", A_placasDatos);
                                             i.putExtra("A_comentario2", A_comentario2);
 
@@ -2574,34 +2418,6 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                             i.putExtra("P_remolque", P_remolque);
                                             i.putExtra("P_usuario", P_usuario);
 
-                                            i.putExtra("P_defensa", P_defensa);
-                                            i.putExtra("P_motor",P_motor);
-                                            i.putExtra("P_piso", P_piso);
-                                            i.putExtra("P_tanqueDeComb", P_tanqueDeComb);
-                                            i.putExtra("P_llantas", P_llantas);
-                                            i.putExtra("P_diferencial", P_diferencial);
-                                            i.putExtra("P_cabina", P_cabina);
-                                            i.putExtra("P_cilindrosDeAire", P_cilindrosDeAire);
-                                            i.putExtra("P_mofleEscape", P_mofleEscape);
-                                            i.putExtra("P_quintaRueda", P_quintaRueda);
-                                            i.putExtra("P_remolqueC", P_remolqueC);
-                                            i.putExtra("P_chasis", P_chasis);
-                                            i.putExtra("P_puertasTraseras", P_puertasTraseras);
-                                            i.putExtra("P_paredes", P_paredes);
-                                            i.putExtra("P_sellos", P_sellos);
-                                            i.putExtra("P_lucesLatAmbar", P_lucesLatAmbar);
-                                            i.putExtra("P_lucesDeFrente", P_lucesDeFrente);
-                                            i.putExtra("P_cuartosAmbar", P_cuartosAmbar);
-                                            i.putExtra("P_lucesTraseras", P_lucesTraseras);
-                                            i.putExtra("P_cuartosRojos", P_cuartosRojos);
-                                            i.putExtra("P_lucesDeAltoTraseros", P_lucesDeAltoTraseroas);
-                                            i.putExtra("P_luzDePlaca", P_luzDePlaca);
-                                            i.putExtra("P_zoqueteras", P_zoqueteras);
-                                            i.putExtra("P_manivela", P_manivela);
-                                            i.putExtra("P_guardaPolvos", P_guardaPolvos);
-                                            i.putExtra("P_loderas", P_loderas);
-                                            i.putExtra("P_llantaDeRefaccion", P_llantaDeRefaccion);
-                                            i.putExtra("P_placas", P_placas);
                                             i.putExtra("P_placasDatos", P_placasDatos);
                                             i.putExtra("P_comentario2", P_comentario2);
 
@@ -2862,6 +2678,8 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                                             String A_remolque = cEnvio2s.get(0).getA_remolque();
                                                             String A_usuario = cEnvio2s.get(0).getA_usuario();
 
+                                                            String A_placasDatos =  cEnvio2s.get(0).getA_placasDatos();
+                                                            String A_comentario2 =  cEnvio2s.get(0).getA_comentario2();
 
                                                             String P_sello1 = cEnvio2s.get(0).getP_sello1();
                                                             String P_sello2 = cEnvio2s.get(0).getP_sello2();
@@ -2888,6 +2706,9 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                                             String P_linea = cEnvio2s.get(0).getP_linea();
                                                             String P_remolque = cEnvio2s.get(0).getP_remolque();
                                                             String P_usuario = cEnvio2s.get(0).getP_usuario();
+
+                                                            String P_placasDatos =  cEnvio2s.get(0).getP_placasDatos();
+                                                            String P_comentario2 =  cEnvio2s.get(0).getP_comentario2();
 
                                                             if(incidencia.contains("SIUUU")){
                                                                 Intent i = new Intent(imgActivity.this, incidenciaActivity.class);
@@ -2917,6 +2738,8 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                                                 i.putExtra("A_remolque", A_remolque);
                                                                 i.putExtra("A_usuario", A_usuario);
 
+                                                                i.putExtra("A_placasDatos", A_placasDatos);
+                                                                i.putExtra("A_comentario2", A_comentario2);
 
                                                                 i.putExtra("P_sello1", P_sello1);
                                                                 i.putExtra("P_sello2", P_sello2);
@@ -2943,6 +2766,9 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                                                                 i.putExtra("P_linea", P_linea);
                                                                 i.putExtra("P_remolque", P_remolque);
                                                                 i.putExtra("P_usuario", P_usuario);
+
+                                                                i.putExtra("P_placasDatos", P_placasDatos);
+                                                                i.putExtra("P_comentario2", P_comentario2);
 
                                                                 i.putExtra("mensaje", mensaje);
                                                                 i.putExtra("folio", folio);
@@ -3709,7 +3535,7 @@ numeroDePlaca = (EditText) findViewById(R.id.editTextTextPersonName);
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.92/api/")
+                            .baseUrl("http://192.168.5.50/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

@@ -250,7 +250,7 @@ public class envioActivity extends AppCompatActivity {
 
                 //ENVIAR
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.4.92/api/")
+                        .baseUrl("http://192.168.5.50/api/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -586,7 +586,7 @@ public class envioActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.4.92/api/")
+                .baseUrl("http://192.168.5.50/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
