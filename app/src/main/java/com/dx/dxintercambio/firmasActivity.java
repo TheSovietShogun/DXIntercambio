@@ -69,8 +69,6 @@ public class firmasActivity extends AppCompatActivity {
         password = preferences.getString("pass","");
 
 
-
-
         imgClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,8 +172,6 @@ public class firmasActivity extends AppCompatActivity {
                                         Toast.makeText(firmasActivity.this, "Error 404U", Toast.LENGTH_LONG).show();
                                     }
                                 });
-
-
 
                             }else {
                                 Toast.makeText(getBaseContext(),"Error Al Enviar",Toast.LENGTH_SHORT).show();
