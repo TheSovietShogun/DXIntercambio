@@ -112,7 +112,7 @@ public class firmasActivity extends AppCompatActivity {
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.50/api/")
+                            .baseUrl("http://192.168.5.55/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -134,7 +134,7 @@ public class firmasActivity extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(),"Enviado",Toast.LENGTH_SHORT).show();
 
                                 Retrofit retrofit = new Retrofit.Builder()
-                                        .baseUrl("http://192.168.5.50/api/")
+                                        .baseUrl("http://192.168.5.55/api/")
                                         .addConverterFactory(GsonConverterFactory.create())
                                         .build();
 

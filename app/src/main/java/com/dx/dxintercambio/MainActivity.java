@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (login.length() != 0 && password.length() != 0) {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.50/api/")
+                            .baseUrl("http://192.168.5.55/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -121,7 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<List<CUsuario>> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "Error 404", Toast.LENGTH_LONG).show();
+
+                            String prueba = t.getMessage();
+
+                            Toast.makeText(MainActivity.this, "Error 404  " + prueba, Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -138,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+
 
         if(!hasPermissions(this, PERMISSIONS)){
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);

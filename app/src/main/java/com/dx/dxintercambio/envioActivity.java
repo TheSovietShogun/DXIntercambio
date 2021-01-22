@@ -127,6 +127,7 @@ public class envioActivity extends AppCompatActivity {
                     .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                         public void onClick(final DialogInterface dialog, final int id) {
 
+
                             SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("user", "");
@@ -178,6 +179,7 @@ public class envioActivity extends AppCompatActivity {
 
         registradoPor.setText(user);
         registradoPor.setEnabled(false);
+
 
         vacioArr = new String[]{"Sin Seleccionar"};
         vacioArr2 = new String[]{"Sin Seleccionar"};
@@ -250,7 +252,7 @@ public class envioActivity extends AppCompatActivity {
 
                 //ENVIAR
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.5.50/api/")
+                        .baseUrl("http://192.168.5.55/api/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -586,7 +588,7 @@ public class envioActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.5.50/api/")
+                .baseUrl("http://192.168.5.55/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

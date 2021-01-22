@@ -53,7 +53,7 @@ public class cancelarActivity extends AppCompatActivity {
                 }else {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.50/api/")
+                            .baseUrl("http://192.168.5.55/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

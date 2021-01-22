@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
@@ -26,11 +26,11 @@
                 android:id="@+id/checkBox9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="160dp"
                 android:text="Tanque de Diesel"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox3"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
 
             <ImageView
@@ -58,30 +58,10 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="55dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox32"
                 app:srcCompat="@color/azul_chingon" />
-
-            <Spinner
-                android:id="@+id/spinner13"
-                android:layout_width="256dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="100dp"
-                android:backgroundTint="@color/azul_chingon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView75" />
-
-            <Spinner
-                android:id="@+id/spinner12"
-                android:layout_width="256dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/azul_chingon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView72" />
 
             <TextView
                 android:id="@+id/textView40"
@@ -119,9 +99,9 @@
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="235dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="234dp"
                 android:text="Parte Derecha del Remolque  "
                 android:textAlignment="center"
                 android:textColor="@color/griseson"
@@ -135,51 +115,101 @@
                 android:id="@+id/spinner9"
                 android:layout_width="256dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView77" />
 
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="300dp"
+                android:text="Eje 2 Izquierdo\nPosicion 5\nPosicion 6 "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner17" />
+
+            <Spinner
+                android:id="@+id/spinner16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner9" />
+
+            <Spinner
+                android:id="@+id/spinner15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner8" />
+
             <Spinner
                 android:id="@+id/spinner8"
                 android:layout_width="256dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner9" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner16" />
+
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="300dp"
+                android:text="Eje 1 Izquierdo\nPosicion 1\nPosicion 2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
             <Spinner
                 android:id="@+id/spinner6"
                 android:layout_width="256dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/azul_chingon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView76" />
-
-            <Spinner
-                android:id="@+id/spinner11"
-                android:layout_width="256dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner13" />
+                app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
             <Spinner
-                android:id="@+id/spinner14"
+                android:id="@+id/spinner5"
                 android:layout_width="256dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="100dp"
                 android:backgroundTint="@color/azul_chingon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner12" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner18" />
+
+            <Spinner
+                android:id="@+id/spinner17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+
+            <Spinner
+                android:id="@+id/spinner18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner6" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -221,51 +251,30 @@
                 android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="50dp"
                 android:background="@color/griseson"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox46" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView23" />
 
 
             <View
                 android:id="@+id/view8"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:background="@color/griseson"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox58" />
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="32dp"
-                android:background="@color/azul_chingon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/comentario2" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView48"
-                app:srcCompat="@color/azul_chingon" />
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="152dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView25"
@@ -278,37 +287,41 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView25"
+                app:layout_constraintTop_toBottomOf="@+id/imageView11"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="150dp"
                 android:layout_marginTop="32dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView25"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView10"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
@@ -318,27 +331,27 @@
                 android:layout_marginStart="150dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView33"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="39dp"
-                android:layout_marginEnd="148dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="39dp"
-                android:layout_marginEnd="148dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
@@ -385,22 +398,19 @@
                 android:id="@+id/imageView16"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner14"
+                app:layout_constraintTop_toBottomOf="@+id/imageView20"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView15"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="150dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView20"
+                android:layout_marginStart="150dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView43"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
@@ -408,42 +418,44 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView19"
+                app:layout_constraintTop_toBottomOf="@+id/imageView15"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/imageView19"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="150dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView22"
+                app:layout_constraintTop_toBottomOf="@+id/imageView28"
                 app:srcCompat="@color/azul_chingon" />
+
 
             <ImageView
                 android:id="@+id/imageView20"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="150dp"
+                android:layout_marginStart="304dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="296dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner19"
                 app:srcCompat="@color/azul_chingon" />
-
 
             <ImageView
                 android:id="@+id/imageView22"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView28"
+                app:layout_constraintTop_toBottomOf="@+id/imageView20"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
@@ -487,18 +499,6 @@
                 app:srcCompat="@color/azul_chingon" />
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N°Tractor"
-                android:textColor="@color/blanco_vergas"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-            <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -535,6 +535,21 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView11"
                 app:layout_constraintStart_toStartOf="@+id/imageView11"
                 app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine3"
+                android:layout_width="586dp"
+                android:layout_height="362dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.626"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox46" />
 
             <TextView
                 android:id="@+id/textView15"
@@ -737,7 +752,7 @@
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daños 1"
+                android:text="Daño"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -749,7 +764,7 @@
                 android:id="@+id/textView100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daños 2"
+                android:text="Daño"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView21"
@@ -761,7 +776,7 @@
                 android:id="@+id/textView101"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daños 3"
+                android:text="Daño"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView23"
@@ -773,7 +788,7 @@
                 android:id="@+id/textView102"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daños 4"
+                android:text="Daño"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView24"
@@ -786,73 +801,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="**En caso de no existir Daños o un Sello Extra en el remolque \n no es necesario tomar fotografias**"
+                android:text="**En caso de no existir Daños \n no es necesario tomar fotografias**"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView73" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
             <Button
                 android:id="@+id/btnImg"
                 android:layout_width="757dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="32dp"
                 android:text="Enviar"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView49" />
 
             <TextView
                 android:id="@+id/textView33"
-                android:layout_width="607dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="32dp"
+                android:layout_width="296dp"
+                android:layout_height="58dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="100dp"
                 android:text="Seleccionar Marca de las Llantas del lado Izquierdo"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
             <TextView
                 android:id="@+id/textView43"
-                android:layout_width="607dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="32dp"
+                android:layout_width="296dp"
+                android:layout_height="58dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:text="Seleccionar Marca de las Llantas del lado Izquierdo"
+                android:layout_marginEnd="100dp"
+                android:text="Seleccionar Marca de las Llantas del lado Derecha"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView15" />
-
-            <Spinner
-                android:id="@+id/spinner5"
-                android:layout_width="256dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="32dp"
-                android:backgroundTint="@color/azul_chingon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
             <EditText
                 android:id="@+id/editText"
@@ -882,9 +883,9 @@
                 android:id="@+id/imageView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioButton2"
@@ -906,9 +907,9 @@
                 android:id="@+id/imageView28"
                 android:layout_width="478dp"
                 android:layout_height="208dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="57dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="161dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="161dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView42"
@@ -929,45 +930,13 @@
                 android:id="@+id/imageView30"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView24"
+                app:layout_constraintTop_toBottomOf="@+id/imageView44"
                 app:srcCompat="@color/azul_chingon" />
-
-            <EditText
-                android:id="@+id/editText4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:ems="10"
-                android:hint="Sello 3"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="@color/blanco_vergas"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView30" />
-
-            <TextView
-                android:id="@+id/textView73"
-                android:layout_width="wrap_content"
-                android:layout_height="59dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:text="Opcionales"
-                android:textAlignment="center"
-                android:textColor="@color/azul_chingon"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
 
             <TextView
                 android:id="@+id/textView74"
@@ -979,136 +948,191 @@
                 app:layout_constraintBottom_toBottomOf="@+id/imageView30"
                 app:layout_constraintEnd_toEndOf="@+id/imageView30"
                 app:layout_constraintStart_toStartOf="@+id/imageView30"
-                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+                app:layout_constraintTop_toTopOf="@+id/imageView30"
+                app:layout_constraintVertical_bias="0.502" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:hint="Sello 3"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/blanco_vergas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView30" />
 
             <TextView
                 android:id="@+id/textView72"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="32dp"
-                android:text="Eje 2\nDerecho "
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="300dp"
+                android:text="Eje 2 Derecho\nPosicion 8\nPosicion 7 "
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+            <Spinner
+                android:id="@+id/spinner12"
+                android:layout_width="256dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView72" />
+
+            <Spinner
+                android:id="@+id/spinner13"
+                android:layout_width="256dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView75" />
+
+            <Spinner
+                android:id="@+id/spinner14"
+                android:layout_width="256dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner22" />
 
             <TextView
                 android:id="@+id/textView75"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="280dp"
-                android:text="Eje 1\nDerecho "
-                android:textSize="20sp"
+                android:layout_marginEnd="300dp"
+                android:text="Eje 1 Derecho\nPosicion 4\nPosicion 3 "
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView43" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner21" />
 
-            <TextView
-                android:id="@+id/textView76"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spinner20"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="32dp"
-                android:text="Eje 1\nIzquierdo "
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView33" />
-
-            <TextView
-                android:id="@+id/textView77"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="296dp"
-                android:text="Eje 2\nIzquierdo "
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView33" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner13" />
+
+            <Spinner
+                android:id="@+id/spinner19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner11" />
+
+            <Spinner
+                android:id="@+id/spinner11"
+                android:layout_width="256dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner20" />
 
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="24dp"
                 android:text="Defensa"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="24dp"
                 android:text="Cabina y\nCompartimientos"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="24dp"
                 android:text="Quinta Rueda"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="24dp"
                 android:text="Tubo de\nEscape"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
 
             <CheckBox
                 android:id="@+id/checkBox7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="124dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="144dp"
                 android:text="Motor\n(en caso de alerta)"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox5"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
 
             <CheckBox
                 android:id="@+id/checkBox8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="120dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="248dp"
                 android:text="Llantas"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
             <CheckBox
                 android:id="@+id/checkBox10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="180dp"
                 android:text="Tanque de Aire"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox3"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
 
             <CheckBox
                 android:id="@+id/checkBox11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="76dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="200dp"
                 android:text="Eje de\nTransmision"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/checkBox4"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
 
             <TextView
@@ -1132,7 +1156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="144dp"
+                android:layout_marginEnd="150dp"
                 android:ems="10"
                 android:hint="Numero de Placa"
                 android:inputType="textPersonName"
@@ -1161,7 +1185,7 @@
                 android:layout_width="548dp"
                 android:layout_height="338dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 android:ems="10"
@@ -1178,22 +1202,22 @@
                 android:id="@+id/checkBox29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="24dp"
                 android:text="Base del\nRemolque"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
 
             <CheckBox
                 android:id="@+id/checkBox32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
+                android:layout_marginStart="150dp"
                 android:layout_marginTop="24dp"
                 android:text="Techos interno y\n externo"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox29" />
 
             <CheckBox
@@ -1211,14 +1235,14 @@
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:text="Costado Izquierdo del Remolque P1"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <CheckBox
                 android:id="@+id/cb_inspeccion"
@@ -1370,13 +1394,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="44dp"
                 android:text="Llantas Izquierdas Eje 1"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner8" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <CheckBox
                 android:id="@+id/checkBox23"
@@ -1928,13 +1952,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="36dp"
                 android:text="Costado Derecho del Remolque P1"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView22" />
 
             <CheckBox
                 android:id="@+id/checkBox71"
@@ -2343,6 +2367,285 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView34"
                 app:layout_constraintStart_toStartOf="@+id/imageView34"
                 app:layout_constraintTop_toTopOf="@+id/imageView34" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="586dp"
+                android:layout_height="362dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Observaciones"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.626"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox46" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine4"
+                android:layout_width="586dp"
+                android:layout_height="362dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Observaciones"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox58" />
+
+            <ImageView
+                android:id="@+id/imageView43"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView71"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView44"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView42"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView45"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView43"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="**En caso de no existir Daños o un Sello Extra en el remolque \n no es necesario tomar fotografias**"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine4" />
+
+            <ImageView
+                android:id="@+id/imageView42"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView71"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView73"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView42"
+                app:layout_constraintEnd_toEndOf="@+id/imageView42"
+                app:layout_constraintStart_toStartOf="@+id/imageView42"
+                app:layout_constraintTop_toTopOf="@+id/imageView42"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="4656dp" />
+
+            <TextView
+                android:id="@+id/textView79"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView43"
+                app:layout_constraintEnd_toEndOf="@+id/imageView43"
+                app:layout_constraintStart_toStartOf="@+id/imageView43"
+                app:layout_constraintTop_toTopOf="@+id/imageView43"
+                tools:layout_editor_absoluteX="514dp"
+                tools:layout_editor_absoluteY="4888dp" />
+
+            <TextView
+                android:id="@+id/textView80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView44"
+                app:layout_constraintEnd_toEndOf="@+id/imageView44"
+                app:layout_constraintStart_toStartOf="@+id/imageView44"
+                app:layout_constraintTop_toTopOf="@+id/imageView44"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="4888dp" />
+
+            <TextView
+                android:id="@+id/textView78"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+                app:layout_constraintEnd_toEndOf="@+id/imageView45"
+                app:layout_constraintStart_toStartOf="@+id/imageView45"
+                app:layout_constraintTop_toTopOf="@+id/imageView45"
+                tools:layout_editor_absoluteX="515dp"
+                tools:layout_editor_absoluteY="4656dp" />
+
+            <Spinner
+                android:id="@+id/spinner21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner14" />
+
+            <Spinner
+                android:id="@+id/spinner22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner12" />
+
+            <ImageView
+                android:id="@+id/imageView48"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView47"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView85"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="**En caso de no existir Daños o un Sello Extra en el remolque \n no es necesario tomar fotografias**"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comentario2" />
+
+            <ImageView
+                android:id="@+id/imageView46"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView85"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView47"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView85"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView49"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView46"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView81"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                tools:layout_editor_absoluteX="236dp"
+                tools:layout_editor_absoluteY="7292dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView46"
+                app:layout_constraintEnd_toEndOf="@+id/imageView46"
+                app:layout_constraintStart_toStartOf="@+id/imageView46"
+                app:layout_constraintTop_toTopOf="@+id/imageView46"
+                />
+
+            <TextView
+                android:id="@+id/textView83"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                tools:layout_editor_absoluteX="540dp"
+                tools:layout_editor_absoluteY="7524dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView47"
+                app:layout_constraintEnd_toEndOf="@+id/imageView47"
+                app:layout_constraintStart_toStartOf="@+id/imageView47"
+                app:layout_constraintTop_toTopOf="@+id/imageView47"
+                />
+
+            <TextView
+                android:id="@+id/textView84"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                tools:layout_editor_absoluteX="540dp"
+                tools:layout_editor_absoluteY="7292dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView48"
+                app:layout_constraintEnd_toEndOf="@+id/imageView48"
+                app:layout_constraintStart_toStartOf="@+id/imageView48"
+                app:layout_constraintTop_toTopOf="@+id/imageView48"
+                />
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daño"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20dp"
+                tools:layout_editor_absoluteX="236dp"
+                tools:layout_editor_absoluteY="7524dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView49"
+                app:layout_constraintEnd_toEndOf="@+id/imageView49"
+                app:layout_constraintStart_toStartOf="@+id/imageView49"
+                app:layout_constraintTop_toTopOf="@+id/imageView49"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

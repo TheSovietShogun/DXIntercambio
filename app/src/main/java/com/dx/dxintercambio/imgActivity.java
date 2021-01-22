@@ -55,14 +55,16 @@ public class imgActivity extends AppCompatActivity {
     private ImageView tractor , noEconomico, izqRemolqueP1 , vin , chasisFrontalIzq , chasisTraseroIzq , llantasIzqEje1
             ,llantasIzqEje2 , izqRemolqueP2 , puertas , placas , sello1 , sello2 , derRemolqueP1 , llantasDerEje2
             , llantasDerEje1 , chasisTraseroDer , chasisFrontalDER , derRemolqueP2 , damage1 , damage2 , damage3 , damage4, sello3
-            ,tractoFrente,tractoIzq,tractoDer;
+            ,tractoFrente,tractoIzq,tractoDer,
+            damage5 , damage6 , damage7 , damage8,
+            damage9 , damage10 , damage11 , damage12 ;
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final String TAG = "envioActivity";
     private Spinner llanta1SP, llanta2SP , llanta3SP ,llanta4SP,llanta5SP ,llanta6SP ,llanta7SP,llanta8SP;
     private CheckBox jumboRB1  , piso ,tanquedeComb , diferencial , cabina
     , cilindrosDeAire,mofleEscape , manivela ,puertasTraseras, sellos, lucesTraseras, cuartosRojos, lucesDeAltaTraseras, luzDePlace,
     placa, zoqueteras, guardaPolvo, loderas , remolque , lucesLateralesAmbar, chasis , lucesdeFrentem ,paredes , llantaDeRefaccion , cuartosAmbar;
-    private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca , comentario2;
+    private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca , comentario2, comentario0 , comentario1;
     private String S_defensa = "1";
     private String S_llantas = "1";
     private String S_pisoTractor = "10";
@@ -314,10 +316,18 @@ public class imgActivity extends AppCompatActivity {
     private static final int DAMAGE2 = 501;
     private static final int DAMAGE3 = 502;
     private static final int DAMAGE4 = 503;
+    private static final int DAMAGE5= 504;
+    private static final int DAMAGE6 = 505;
+    private static final int DAMAGE7 = 506;
+    private static final int DAMAGE8 = 507;
+    private static final int DAMAGE9= 508;
+    private static final int DAMAGE10 = 509;
+    private static final int DAMAGE11= 510;
+    private static final int DAMAGE12 = 511;
     private Boolean resk;
     private final int THUMBSIZE = 128;
     private int res = 0 ;
-    private String tractorImg ;
+    //private String tractorImg ;
     private String tractorDerImg ;
     private String tractorFrenteImg ;
     private String tractorIzqImg ;
@@ -334,6 +344,7 @@ public class imgActivity extends AppCompatActivity {
     private String placasImg;
     private String sello3Img;
     private String sello1Img;
+    private String comentarios;
     private int idRemolque;
     private String sello2Img;
     private String derRemolqueP1Img;
@@ -369,42 +380,7 @@ public class imgActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu2,menu);
-        return true ;
-    }
 
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.cancelar){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Desea cancelar este Intercambio ?")
-                    .setCancelable(false)
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                        public void onClick(final DialogInterface dialog, final int id) {
-
-                            Intent i = new Intent(imgActivity.this, cancelarActivity.class);
-                            i.putExtra("mensaje", mensaje);
-                            i.putExtra("idUsuario", idUsuario);
-                            startActivity(i);
-
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(final DialogInterface dialog, final int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        }else{
-            return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -429,7 +405,7 @@ public class imgActivity extends AppCompatActivity {
         idUsuario = getIntent().getStringExtra("idUsuario");
 
 
-        tractor = (ImageView) findViewById(R.id.imageView3);
+       // tractor = (ImageView) findViewById(R.id.imageView3);
         noEconomico = (ImageView) findViewById(R.id.imageView4);
         izqRemolqueP1 = (ImageView) findViewById(R.id.imageView5);
         vin = (ImageView) findViewById(R.id.imageView11);
@@ -473,17 +449,30 @@ public class imgActivity extends AppCompatActivity {
         damage3 = (ImageView) findViewById(R.id.imageView23);
         damage4 = (ImageView) findViewById(R.id.imageView24);
 
+        damage5 = (ImageView) findViewById(R.id.imageView42);
+        damage6 = (ImageView) findViewById(R.id.imageView43);
+        damage7 = (ImageView) findViewById(R.id.imageView44);
+        damage8 = (ImageView) findViewById(R.id.imageView45);
+
+        damage9 = (ImageView) findViewById(R.id.imageView46);
+        damage10 = (ImageView) findViewById(R.id.imageView47);
+        damage11 = (ImageView) findViewById(R.id.imageView48);
+        damage12 = (ImageView) findViewById(R.id.imageView49);
+
         tractoFrente= (ImageView) findViewById(R.id.imageView33);
         tractoDer= (ImageView) findViewById(R.id.imageView34);
         tractoIzq= (ImageView) findViewById(R.id.imageView29);
 
+        comentario0 = (EditText) findViewById(R.id.editTextTextMultiLine);
+        comentario1 = (EditText) findViewById(R.id.editTextTextMultiLine4);
         comentario2 = (EditText) findViewById(R.id.comentario2);
+
 
         btnImg = (Button) findViewById(R.id.btnImg);
 
         defensa = (CheckBox) findViewById(R.id.checkBox);
         llantas = (CheckBox) findViewById(R.id.checkBox8);
-       //  pisoTractor = (CheckBox) findViewById(R.id.checkBox2);
+        //pisoTractor = (CheckBox) findViewById(R.id.checkBox2);
         tanqueDiesel = (CheckBox) findViewById(R.id.checkBox9);
         cabinaCompartimientos = (CheckBox) findViewById(R.id.checkBox3);
         tanqueAire = (CheckBox) findViewById(R.id.checkBox10);
@@ -492,7 +481,7 @@ public class imgActivity extends AppCompatActivity {
         tuboEscape = (CheckBox) findViewById(R.id.checkBox5);
         motor = (CheckBox) findViewById(R.id.checkBox7);
         baseRemolque = (CheckBox) findViewById(R.id.checkBox29);
-      //  paredLateralDerecha = (CheckBox) findViewById(R.id.checkBox31);
+        //paredLateralDerecha = (CheckBox) findViewById(R.id.checkBox31);
         //paredFrontal = (CheckBox) findViewById(R.id.checkBox33);
         //pisoInterno = (CheckBox) findViewById(R.id.checkBox35);
         //puerta = (CheckBox) findViewById(R.id.checkBox30);
@@ -623,7 +612,7 @@ public class imgActivity extends AppCompatActivity {
         Post post =  new Post(user,password);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.5.50/api/")
+                .baseUrl("http://192.168.5.55/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -2043,7 +2032,7 @@ public class imgActivity extends AppCompatActivity {
                 //300 VACIO
                 //128 IMAGFN
 
-                tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
+              //  tractorImg =  String.valueOf(tractor.getDrawable().getBounds());
                 tractorDerImg =  String.valueOf(tractoDer.getDrawable().getBounds());
                 tractorIzqImg =  String.valueOf(tractoIzq.getDrawable().getBounds());
                 tractorFrenteImg =  String.valueOf(tractoFrente.getDrawable().getBounds());
@@ -2086,6 +2075,13 @@ public class imgActivity extends AppCompatActivity {
                 String sello3S = sello3ET.getText().toString();
 
                 String comen2 = comentario2.getText().toString();
+                String comen1 = comentario1.getText().toString();
+                String comen0 = comentario0.getText().toString();
+
+                comentarios = "IZQUIERDA="+comen0 +
+                        "     TRASERA="+comen1+
+                        "     DERECHA="+comen2;
+
 
                  lljumbo =0;
 
@@ -2107,7 +2103,7 @@ public class imgActivity extends AppCompatActivity {
 
                 // SI LAS LLANTAS SON JUMBO SOLO REVISA 4
                 if(lljumbo == 1 ) {
-                    if (!tractorImg.contains("128") ||
+                    if (
                             !tractorDerImg.contains("128") ||
                             !tractorIzqImg.contains("128") ||
                             !tractorFrenteImg.contains("128") ||
@@ -2132,7 +2128,7 @@ public class imgActivity extends AppCompatActivity {
                             sello1S.length() == 0 ||
                             sello2S.length() == 0 ||
                             placasDatosD.length() == 0 ||
-                            comen2.length() == 0 ||
+                            comentarios.length() == 0 ||
                             ll1 == "Sin Seleccionar" ||
                             ll2 == "Sin Seleccionar" ||
                             ll6 == "Sin Seleccionar" ||
@@ -2140,7 +2136,7 @@ public class imgActivity extends AppCompatActivity {
 
                     ) {
                         Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
-                    } else if (tractorImg.contains("128") &&
+                    } else if (
                             tractorDerImg.contains("128") &&
                             tractorIzqImg.contains("128") &&
                             tractorFrenteImg.contains("128") &&
@@ -2165,7 +2161,7 @@ public class imgActivity extends AppCompatActivity {
                             sello1S.length() > 0 &&
                             sello2S.length() > 0 &&
                             placasDatosD.length() > 0 &&
-                            comen2.length() >0 &&
+                            comentarios.length() >0 &&
                             ll1 != "Sin Seleccionar" &&
                             ll2 != "Sin Seleccionar" &&
                             ll6 != "Sin Seleccionar" &&
@@ -2176,7 +2172,7 @@ public class imgActivity extends AppCompatActivity {
                             Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
                                     ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
                                     placasDatosD,
-                                    comen2,
+                                    comentarios,
                                     S_defensa,
                                     S_llantas,
                                     S_pisoTractor,
@@ -2449,7 +2445,7 @@ public class imgActivity extends AppCompatActivity {
 
 
                     } else if (lljumbo == 0) {
-                        if (!tractorImg.contains("128") ||
+                        if (
                                 !tractorDerImg.contains("128") ||
                                 !tractorIzqImg.contains("128") ||
                                 !tractorFrenteImg.contains("128") ||
@@ -2474,7 +2470,7 @@ public class imgActivity extends AppCompatActivity {
                                 sello1S.length() == 0 ||
                                 sello2S.length() == 0 ||
                                 placasDatosD.length() == 0 ||
-                                comen2.length() == 0 ||
+                                comentarios.length() == 0 ||
                                 ll1 == "Sin Seleccionar" ||
                                 ll2 == "Sin Seleccionar" ||
                                 ll3 == "Sin Seleccionar" ||
@@ -2486,7 +2482,7 @@ public class imgActivity extends AppCompatActivity {
 
                         ) {
                             Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
-                        }   else if (tractorImg.contains("128") &&
+                        }   else if (
                                 tractorDerImg.contains("128") &&
                                 tractorIzqImg.contains("128") &&
                                 tractorFrenteImg.contains("128") &&
@@ -2511,7 +2507,7 @@ public class imgActivity extends AppCompatActivity {
                                 sello1S.length() > 0 &&
                                 sello2S.length() > 0 &&
                                 placasDatosD.length() > 0 &&
-                                comen2.length() > 0 &&
+                                comentarios.length() > 0 &&
                                  ll1 != "Sin Seleccionar" &&
                                 ll2 != "Sin Seleccionar" &&
                                 ll3 != "Sin Seleccionar" &&
@@ -2527,7 +2523,7 @@ public class imgActivity extends AppCompatActivity {
                                 Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
                                         ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
                                         placasDatosD,
-                                        comen2,
+                                        comentarios,
                                         S_defensa,
                                         S_llantas,
                                         S_pisoTractor,
@@ -2802,7 +2798,7 @@ public class imgActivity extends AppCompatActivity {
             }
         });
 
-        tractor.setOnClickListener(new View.OnClickListener() {
+      /*  tractor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -2811,7 +2807,7 @@ public class imgActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
         tractoIzq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -2976,34 +2972,92 @@ public class imgActivity extends AppCompatActivity {
                 imgClick("derRemolqueP2" , REQUEST_DER_REMOLQUE_P2);
             }
         });
+
         damage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 damage1.setEnabled(false);
-                imgClick("damage1" , DAMAGE1);
+                imgClick("damage1IZQ" , DAMAGE1);
             }
         });
         damage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 damage2.setEnabled(false);
-                imgClick("damage2" , DAMAGE2);
+                imgClick("damage2IZQ" , DAMAGE2);
             }
         });
         damage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 damage3.setEnabled(false);
-                imgClick("damage3" , DAMAGE3);
+                imgClick("damage3IZQ" , DAMAGE3);
             }
         });
         damage4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 damage4.setEnabled(false);
-                imgClick("damage4" , DAMAGE4);
+                imgClick("damage4IZQ" , DAMAGE4);
             }
         });
+        damage5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage5.setEnabled(false);
+                imgClick("damage5TRA" , DAMAGE5);
+            }
+        });
+        damage6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage6.setEnabled(false);
+                imgClick("damage6TRA" , DAMAGE6);
+            }
+        });
+        damage7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage7.setEnabled(false);
+                imgClick("damage7TRA" , DAMAGE7);
+            }
+        });
+        damage8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage8.setEnabled(false);
+                imgClick("damage8TRA" , DAMAGE8);
+            }
+        });
+        damage9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage9.setEnabled(false);
+                imgClick("damage9DER" , DAMAGE9);
+            }
+        });
+        damage10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage10.setEnabled(false);
+                imgClick("damage10DER" , DAMAGE10);
+            }
+        });
+        damage11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage11.setEnabled(false);
+                imgClick("damage11DER" , DAMAGE11);
+            }
+        });
+        damage12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                damage12.setEnabled(false);
+                imgClick("damage12DER" , DAMAGE12);
+            }
+        });
+
 
         /*tarjeta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3055,7 +3109,7 @@ public class imgActivity extends AppCompatActivity {
                 }
                 break;
 
-            case REQUEST_TRACTOR:
+           /* case REQUEST_TRACTOR:
                 if (resultCode == Activity.RESULT_OK ) {
 
                     uploadServer(REQUEST_TRACTOR);
@@ -3069,7 +3123,7 @@ public class imgActivity extends AppCompatActivity {
                     tractor.setEnabled(true);
                 }
 
-                break;
+                break;*/
             case REQUEST_TRACTO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
 
@@ -3467,8 +3521,126 @@ public class imgActivity extends AppCompatActivity {
                     damage4.setEnabled(true);
                 }
                 break;
+            case DAMAGE5:
+                if (resultCode == Activity.RESULT_OK ) {
 
+                    uploadServer(DAMAGE5);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
 
+                    damage5.setImageBitmap(thumbImage);
+
+                }else {
+                    damage5.setEnabled(true);
+                }
+                break;
+            case DAMAGE6:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE6);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage6.setImageBitmap(thumbImage);
+
+                }else {
+                    damage6.setEnabled(true);
+                }
+                break;
+            case DAMAGE7:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE7);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage7.setImageBitmap(thumbImage);
+
+                }else {
+                    damage7.setEnabled(true);
+                }
+                break;
+            case DAMAGE8:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE8);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage8.setImageBitmap(thumbImage);
+
+                }else {
+                    damage8.setEnabled(true);
+                }
+                break;
+            case DAMAGE9:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE9);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage9.setImageBitmap(thumbImage);
+
+                }else {
+                    damage9.setEnabled(true);
+                }
+                break;
+            case DAMAGE10:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE10);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage10.setImageBitmap(thumbImage);
+
+                }else {
+                    damage10.setEnabled(true);
+                }
+                break;
+            case DAMAGE11:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE11);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage11.setImageBitmap(thumbImage);
+
+                }else {
+                    damage11.setEnabled(true);
+                }
+                break;
+            case DAMAGE12:
+                if (resultCode == Activity.RESULT_OK ) {
+
+                    uploadServer(DAMAGE12);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
+                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
+                            THUMBSIZE,
+                            THUMBSIZE);
+
+                    damage12.setImageBitmap(thumbImage);
+
+                }else {
+                    damage12.setEnabled(true);
+                }
+                break;
 
 
 
@@ -3535,7 +3707,7 @@ public class imgActivity extends AppCompatActivity {
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.50/api/")
+                            .baseUrl("http://192.168.5.55/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -3565,13 +3737,13 @@ public class imgActivity extends AppCompatActivity {
 
 
                             switch (codigo){
-                                case REQUEST_TRACTOR:
+                               /* case REQUEST_TRACTOR:
 
                                     tractor.setImageBitmap(null);
                                     tractor.setBackgroundColor(Color.parseColor("#074EAB"));
                                     tractor.setEnabled(true);
 
-                                    break;
+                                    break;*/
                                 case REQUEST_TRACTO_DER:
 
                                     tractoDer.setImageBitmap(null);
@@ -3781,6 +3953,70 @@ public class imgActivity extends AppCompatActivity {
                                     damage4.setImageBitmap(null);
                                     damage4.setBackgroundColor(Color.parseColor("#074EAB"));
                                     damage4.setEnabled(true);
+
+                                    break;
+                                case DAMAGE5:
+
+
+                                    damage5.setImageBitmap(null);
+                                    damage5.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage5.setEnabled(true);
+
+                                    break;
+                                case DAMAGE6:
+
+
+                                    damage6.setImageBitmap(null);
+                                    damage6.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage6.setEnabled(true);
+
+                                    break;
+                                case DAMAGE7:
+
+
+                                    damage7.setImageBitmap(null);
+                                    damage7.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage7.setEnabled(true);
+
+                                    break;
+                                case DAMAGE8:
+
+
+                                    damage8.setImageBitmap(null);
+                                    damage8.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage8.setEnabled(true);
+
+                                    break;
+                                case DAMAGE9:
+
+
+                                    damage9.setImageBitmap(null);
+                                    damage9.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage9.setEnabled(true);
+
+                                    break;
+                                case DAMAGE10:
+
+
+                                    damage10.setImageBitmap(null);
+                                    damage10.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage10.setEnabled(true);
+
+                                    break;
+                                case DAMAGE11:
+
+
+                                    damage11.setImageBitmap(null);
+                                    damage11.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage11.setEnabled(true);
+
+                                    break;
+                                case DAMAGE12:
+
+
+                                    damage12.setImageBitmap(null);
+                                    damage12.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage12.setEnabled(true);
 
                                     break;
 
@@ -3801,13 +4037,13 @@ public class imgActivity extends AppCompatActivity {
 
 
                             switch (codigo){
-                                case REQUEST_TRACTOR:
+                               /* case REQUEST_TRACTOR:
 
                                     tractor.setImageBitmap(null);
                                     tractor.setBackgroundColor(Color.parseColor("#074EAB"));
                                     tractor.setEnabled(true);
 
-                                    break;
+                                    break;*/
                                 case REQUEST_TRACTO_DER:
 
                                     tractoDer.setImageBitmap(null);
@@ -4019,7 +4255,70 @@ public class imgActivity extends AppCompatActivity {
                                     damage4.setEnabled(true);
 
                                     break;
+                                case DAMAGE5:
 
+
+                                    damage5.setImageBitmap(null);
+                                    damage5.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage5.setEnabled(true);
+
+                                    break;
+                                case DAMAGE6:
+
+
+                                    damage6.setImageBitmap(null);
+                                    damage6.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage6.setEnabled(true);
+
+                                    break;
+                                case DAMAGE7:
+
+
+                                    damage7.setImageBitmap(null);
+                                    damage7.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage7.setEnabled(true);
+
+                                    break;
+                                case DAMAGE8:
+
+
+                                    damage8.setImageBitmap(null);
+                                    damage8.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage8.setEnabled(true);
+
+                                    break;
+                                case DAMAGE9:
+
+
+                                    damage9.setImageBitmap(null);
+                                    damage9.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage9.setEnabled(true);
+
+                                    break;
+                                case DAMAGE10:
+
+
+                                    damage10.setImageBitmap(null);
+                                    damage10.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage10.setEnabled(true);
+
+                                    break;
+                                case DAMAGE11:
+
+
+                                    damage11.setImageBitmap(null);
+                                    damage11.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage11.setEnabled(true);
+
+                                    break;
+                                case DAMAGE12:
+
+
+                                    damage12.setImageBitmap(null);
+                                    damage12.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    damage12.setEnabled(true);
+
+                                    break;
 
 
                             }
