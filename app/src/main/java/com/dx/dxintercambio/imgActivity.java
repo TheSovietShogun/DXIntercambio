@@ -612,7 +612,7 @@ public class imgActivity extends AppCompatActivity {
         Post post =  new Post(user,password);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.5.55/api/")
+                .baseUrl("http://192.168.4.107/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -3707,7 +3707,7 @@ public class imgActivity extends AppCompatActivity {
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.55/api/")
+                            .baseUrl("http://192.168.4.107/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

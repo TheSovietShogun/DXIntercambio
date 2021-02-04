@@ -397,7 +397,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.55/api/")
+                            .baseUrl("http://192.168.4.107/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -461,7 +461,7 @@ public class incidenciaActivity extends AppCompatActivity {
                     );
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.5.55/api/")
+                            .baseUrl("http://192.168.4.107/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

@@ -252,7 +252,7 @@ public class envioActivity extends AppCompatActivity {
 
                 //ENVIAR
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.5.55/api/")
+                        .baseUrl("http://192.168.4.107/api/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -360,7 +360,7 @@ public class envioActivity extends AppCompatActivity {
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
 
                             Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,0,idOperador,0,
-                                    0,0,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
+                                    0,0,estatus,comentario,folio,comentarioCancel,0,movimiento,"NLA2",encodedImage,"licencia"+folio);
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                                 builder.setMessage("Favor de revisar la informacion antes de ser enviada \n¡¡En el campo comentario deberan ir los datos faltantes!!")
@@ -432,7 +432,7 @@ public class envioActivity extends AppCompatActivity {
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
 
                             Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
-                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
+                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"NLA2",encodedImage,"licencia"+folio);
 
                               AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                             builder.setMessage("Favor de revisar la informacion antes de ser enviada !")
@@ -527,7 +527,7 @@ public class envioActivity extends AppCompatActivity {
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
 
                             Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
-                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"MTY",encodedImage,"licencia"+folio);
+                                    idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"NLA2",encodedImage,"licencia"+folio);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
                             builder.setMessage("Favor de revisar la informacion antes de ser enviada \n" +
@@ -588,7 +588,7 @@ public class envioActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.5.55/api/")
+                .baseUrl("http://192.168.4.107/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
