@@ -332,9 +332,9 @@ public class envioActivity extends AppCompatActivity {
                 //GET USUARIO
                 int idUsuario = Integer.parseInt(usuario);
 
-                //SET GET FOLIO
-                hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-               folio = ("NL"+hora+idRemolque);
+
+
+
                String comentarioCancel = "";
                int idIntercambio =0 ;
 
@@ -358,6 +358,10 @@ public class envioActivity extends AppCompatActivity {
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+
+                            folio = "";
+                            hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
+                            folio = ("NL"+hora+idRemolque);
 
                             Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,0,idOperador,0,
                                     0,0,estatus,comentario,folio,comentarioCancel,0,movimiento,"NLA2",encodedImage,"licencia"+folio);
@@ -430,6 +434,10 @@ public class envioActivity extends AppCompatActivity {
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+
+                            folio = "";
+                            hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
+                            folio = ("NL"+hora+idRemolque);
 
                             Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                     idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"NLA2",encodedImage,"licencia"+folio);
@@ -525,6 +533,10 @@ public class envioActivity extends AppCompatActivity {
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
                             String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+
+                            folio = "";
+                            hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
+                            folio = ("NL"+hora+idRemolque);
 
                             Post4 post4 = new Post4(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                     idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,"NLA2",encodedImage,"licencia"+folio);

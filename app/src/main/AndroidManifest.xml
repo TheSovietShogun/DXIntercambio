@@ -22,9 +22,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".firmasActivity"></activity>
-        <activity android:name=".incidenciaActivity" />
-        <activity android:name=".cancelarActivity" />
+        <activity android:name=".firmasActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".incidenciaActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".cancelarActivity"
+            android:screenOrientation="portrait" />
+
+
 
         <provider
             android:name=".GenericFileProvider"
