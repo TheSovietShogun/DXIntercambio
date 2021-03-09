@@ -1,14 +1,23 @@
 package com.dx.dxintercambio;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Layout;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText usu, pass;
+    private EditText usu, pass , Hcontra;
     private Button ingre;
     private String login;
     private String password;
@@ -34,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private String tran;
     private SoapPrimitive resultString;
     private int PERMISSION_ALL = 1;
+    private String ip ;
     String[] PERMISSIONS = {
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -41,7 +51,71 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.INTERNET
     };
 
+
     private DxApi dxApi;
+    private AlertDialog alert;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu2,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.hide){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = this.getLayoutInflater();
+
+            View view = inflater.inflate(R.layout.custom_alert,null);
+
+            builder.setView(view)
+                    .setTitle("Configuracion de Sistemas")
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                .setPositiveButton("Ingresar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                            String contraCulera = Hcontra.getText().toString();
+
+                            if (contraCulera.contains("74859990")){
+
+                                Toast.makeText(MainActivity.this, "Correcto", Toast.LENGTH_SHORT).show();
+
+                                Intent i = new Intent(MainActivity.this, sistemas.class);
+                                i.putExtra("mode", "0");
+                                startActivity(i);
+
+                            }else if (contraCulera.contains("mañananoaiclases42069")){
+
+                                Toast.makeText(MainActivity.this, "Monkey Flip", Toast.LENGTH_SHORT).show();
+
+                                Intent i = new Intent(MainActivity.this, sistemas.class);
+                                i.putExtra("mode", "420");
+                                startActivity(i);
+
+                            } else {
+                                Toast.makeText(MainActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                            }
+                    }
+                });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+            Hcontra = view.findViewById(R.id.hcontra);
+
+
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +123,16 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
+        SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
+        ip = preferences.getString("Aip","");
+
         usu = (EditText) findViewById(R.id.usuario);
         pass = (EditText) findViewById(R.id.contraseña);
         ingre = (Button) findViewById(R.id.btnIngresar);
 
+
+        //Toast.makeText(MainActivity.this, "OnCreate", Toast.LENGTH_SHORT).show();
 
         if (!isTaskRoot()
                 && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
@@ -82,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (login.length() != 0 && password.length() != 0) {
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.107/api/")
+                            .baseUrl("http://"+ip+"/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

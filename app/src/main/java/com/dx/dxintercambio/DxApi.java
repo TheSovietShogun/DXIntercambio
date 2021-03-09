@@ -33,7 +33,7 @@ public interface DxApi {
     Call<List<CEnvio>> getEnvio(@Body Post4 post4);
 
    @POST("IntercambioRemolque2")
-   Call<List<CEnvio2>> getEnvio2(@Body Post6 post6);
+   Call<List<CEnvio>> getEnvio2(@Body Post6 post6);
 
     @POST("img")
     Call<String> getImg(@Body Post5 post5);

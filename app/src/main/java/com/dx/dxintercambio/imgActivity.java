@@ -34,8 +34,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Scope;
-import com.google.api.services.drive.Drive;
-import com.google.api.services.drive.DriveScopes;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -277,8 +276,7 @@ public class imgActivity extends AppCompatActivity {
     private CheckBox CTI_muelle ;
     private CheckBox CTI_rotachamber ;
 
-    private Drive mService;
-    private Drive googleDriveService;
+
     private String operacion ;
     private String NoUnidad ;
     private String NoCaja ;
@@ -356,6 +354,7 @@ public class imgActivity extends AppCompatActivity {
             ,quintaRuedaCh, manivelaCh, puertasTraserasCh, sellosCh , lucesTraserasCh ,cuartosRojosCh , lucesDeAltaTraseraCh, luzDePlacaCh ,
     placaCh, zoqueterasCh, guardaPolvoCh, loderasCh, remolqueCh, chasisCh , paredesCh, lucesLateralesAmbarCh, lucesFrenteCh, llantaDeRefaccionCh , cuartosAmbarCh;
     private String derRemolqueP2Img, tarjertaImg ;
+    private Spinner tipoLlanta1 ,tipoLlanta2 ,tipoLlanta3 ,tipoLlanta4 ,tipoLlanta5 ,tipoLlanta6 ,tipoLlanta7 ,tipoLlanta8 ;
     private DxApi dxApi;
     private String damage1Img ;
     private String damage2Img ;
@@ -369,14 +368,15 @@ public class imgActivity extends AppCompatActivity {
     private Object Network;
     private String user ;
     private String password ;
+    private String ip ;
     private int mensaje;
+    private String id ;
     private String imageFileName ;
+    private String [] estatusLlanta = new String[]{"Sin Seleccionar","Recapeada","Original"};
 
     @Override
     protected void onStart() {
         super.onStart();
-
-       // requestSignIn();
 
     }
 
@@ -388,24 +388,17 @@ public class imgActivity extends AppCompatActivity {
         setContentView(R.layout.activity_img);
 
         SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
-
-
-
+        ip = preferences.getString("Aip","");
         user = preferences.getString("user","");
         password = preferences.getString("pass","");
 
-        operacion = getIntent().getStringExtra("operacion");
         NoUnidad = getIntent().getStringExtra("NoUnidad");
-        NoCaja = getIntent().getStringExtra("NoCaja");
-        idRemolque = getIntent().getIntExtra("idRemolque",0);
-        nombreLinea = getIntent().getStringExtra("nombreLinea");
-        nombreTransportista = getIntent().getStringExtra("nombreTransportista");
+        idRemolque = getIntent().getIntExtra("NoCaja",0);
         folio = getIntent().getStringExtra("folio");
         mensaje = getIntent().getIntExtra("mensaje",0);
-        idUsuario = getIntent().getStringExtra("idUsuario");
+        id = String.valueOf(mensaje);
 
 
-       // tractor = (ImageView) findViewById(R.id.imageView3);
         noEconomico = (ImageView) findViewById(R.id.imageView4);
         izqRemolqueP1 = (ImageView) findViewById(R.id.imageView5);
         vin = (ImageView) findViewById(R.id.imageView11);
@@ -428,7 +421,6 @@ public class imgActivity extends AppCompatActivity {
         sello3 = (ImageView) findViewById(R.id.imageView30);
 
 
-        //tarjeta = (ImageView) findViewById(R.id.imageView420);
         jumboRB1 = (CheckBox) findViewById(R.id.radioButton2);
         llanta1SP = (Spinner) findViewById(R.id.spinner6);
         llanta2SP = (Spinner) findViewById(R.id.spinner9);
@@ -438,6 +430,15 @@ public class imgActivity extends AppCompatActivity {
         llanta6SP = (Spinner) findViewById(R.id.spinner13);
         llanta7SP = (Spinner) findViewById(R.id.spinner14);
         llanta8SP = (Spinner) findViewById(R.id.spinner11);
+
+        tipoLlanta1  = (Spinner) findViewById(R.id.spinner18);
+        tipoLlanta2  = (Spinner) findViewById(R.id.spinner17);
+        tipoLlanta3  = (Spinner) findViewById(R.id.spinner16);
+        tipoLlanta4  = (Spinner) findViewById(R.id.spinner15);
+        tipoLlanta5  = (Spinner) findViewById(R.id.spinner22);
+        tipoLlanta6  = (Spinner) findViewById(R.id.spinner21);
+        tipoLlanta7  = (Spinner) findViewById(R.id.spinner20);
+        tipoLlanta8  = (Spinner) findViewById(R.id.spinner19);
 
         sello1ET = (EditText) findViewById(R.id.editText);
         sello2ET = (EditText) findViewById(R.id.editText2);
@@ -588,31 +589,27 @@ public class imgActivity extends AppCompatActivity {
         CTD_rotachamber = (CheckBox) findViewById(R.id.checkBox100);
 
 
-
-
-       /* Llantas = new String[]{"Sin Seleccionar","Hanck","Goodyear", "Michelin", "Yokohama"};
-
-        ArrayAdapter<String> adapterll1 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta1SP.setAdapter(adapterll1);
-        ArrayAdapter<String> adapterll2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta2SP.setAdapter(adapterll2);
-        ArrayAdapter<String> adapterll3 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta3SP.setAdapter(adapterll3);
-        ArrayAdapter<String> adapterll4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta4SP.setAdapter(adapterll4);
-        ArrayAdapter<String> adapterll5 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta5SP.setAdapter(adapterll5);
-        ArrayAdapter<String> adapterll6 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta6SP.setAdapter(adapterll6);
-        ArrayAdapter<String> adapterll7 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta7SP.setAdapter(adapterll7);
-        ArrayAdapter<String> adapterll8 = new ArrayAdapter<String>(this, R.layout.mspinner_item, Llantas);
-        llanta8SP.setAdapter(adapterll8);*/
+        ArrayAdapter<String> adapter0 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta1.setAdapter(adapter0);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta2.setAdapter(adapter1);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta3.setAdapter(adapter2);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta4.setAdapter(adapter3);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta5.setAdapter(adapter4);
+        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta6.setAdapter(adapter5);
+        ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta7.setAdapter(adapter6);
+        ArrayAdapter<String> adapter7 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusLlanta);
+        tipoLlanta8.setAdapter(adapter7);
 
         Post post =  new Post(user,password);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.4.107/api/")
+                .baseUrl("http://"+ip+"/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -653,7 +650,7 @@ public class imgActivity extends AppCompatActivity {
         jumboRB1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Is the button now checked?
+
                  checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
@@ -663,7 +660,7 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE,
                             THUMBSIZE);
 
-                    tractor.setImageBitmap(thumbImage);
+
                     tractoFrente.setImageBitmap(thumbImage);
                     tractoDer.setImageBitmap(thumbImage);
                     tractoIzq.setImageBitmap(thumbImage);
@@ -692,11 +689,16 @@ public class imgActivity extends AppCompatActivity {
                     llanta4SP.setVisibility(View.INVISIBLE);
                     llanta7SP.setVisibility(View.INVISIBLE);
                     llanta8SP.setVisibility(View.INVISIBLE);
+
                     LlIE2_llantasPos4.setEnabled(false);
                     LlDE1_llantasPos6.setEnabled(false);
                     LlIE1_llantasPos2.setEnabled(false);
                     LlDE2_llantasPos8.setEnabled(false);
 
+                    tipoLlanta2.setVisibility(View.INVISIBLE);
+                    tipoLlanta4.setVisibility(View.INVISIBLE);
+                    tipoLlanta6.setVisibility(View.INVISIBLE);
+                    tipoLlanta8.setVisibility(View.INVISIBLE);
 
 
 
@@ -705,10 +707,16 @@ public class imgActivity extends AppCompatActivity {
                     llanta4SP.setVisibility(View.VISIBLE);
                     llanta7SP.setVisibility(View.VISIBLE);
                     llanta8SP.setVisibility(View.VISIBLE);
+
                     LlIE2_llantasPos4.setEnabled(true);
                     LlDE1_llantasPos6.setEnabled(true);
                     LlIE1_llantasPos2.setEnabled(true);
                     LlDE2_llantasPos8.setEnabled(true);
+
+                    tipoLlanta2.setVisibility(View.VISIBLE);
+                    tipoLlanta4.setVisibility(View.VISIBLE);
+                    tipoLlanta6.setVisibility(View.VISIBLE);
+                    tipoLlanta8.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -718,7 +726,7 @@ public class imgActivity extends AppCompatActivity {
         defensa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Is the button now checked?
+
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
@@ -732,7 +740,7 @@ public class imgActivity extends AppCompatActivity {
         llantas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Is the button now checked?
+
                 checked1 = ((CheckBox) view).isChecked();
 
                 if (checked1) {
@@ -2070,6 +2078,24 @@ public class imgActivity extends AppCompatActivity {
                 String ll7 =  llanta7SP.getSelectedItem().toString();
                 String ll8 =  llanta8SP.getSelectedItem().toString();
 
+                String tll1 =  tipoLlanta1.getSelectedItem().toString();
+                String tll2 =  tipoLlanta2.getSelectedItem().toString();
+                String tll3 =  tipoLlanta3.getSelectedItem().toString();
+                String tll4 =  tipoLlanta4.getSelectedItem().toString();
+                String tll5 =  tipoLlanta5.getSelectedItem().toString();
+                String tll6 =  tipoLlanta6.getSelectedItem().toString();
+                String tll7 =  tipoLlanta7.getSelectedItem().toString();
+                String tll8 =  tipoLlanta8.getSelectedItem().toString();
+
+                 ll1 =  ll1 + "-" + tll1;
+                 ll2 =  ll2 + "-" + tll2;
+                 ll3 =  ll3 + "-" + tll3;
+                 ll4 =  ll4 + "-" + tll4;
+                 ll5 =  ll5 + "-" + tll5;
+                 ll6 =  ll6 + "-" + tll6;
+                 ll7 =  ll7 + "-" + tll7;
+                 ll8 =  ll8 + "-" + tll8;
+
                 String sello1S = sello1ET.getText().toString();
                 String sello2S = sello2ET.getText().toString();
                 String sello3S = sello3ET.getText().toString();
@@ -2169,7 +2195,7 @@ public class imgActivity extends AppCompatActivity {
 
 
                         try {
-                            Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
+                            Post6 post6 = new Post6(user, password, idRemolque, "2", mensaje, sello1S, sello2S, ll1,
                                     ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
                                     placasDatosD,
                                     comentarios,
@@ -2275,166 +2301,34 @@ public class imgActivity extends AppCompatActivity {
                                     );
 
 
-                            Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
+                            Call<List<CEnvio>> callenvio2 = dxApi.getEnvio2(post6);
 
-                            callenvio2.enqueue(new Callback<List<CEnvio2>>() {
+                            callenvio2.enqueue(new Callback<List<CEnvio>>() {
                                 @Override
-                                public void onResponse(Call<List<CEnvio2>> call, Response<List<CEnvio2>> response) {
+                                public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
                                     if (!response.isSuccessful()) {
                                         Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                                     }
 
-                                    List<CEnvio2> cEnvio2s = response.body();
-                                        int tam = cEnvio2s.size();
+                                    List<CEnvio> cEnvio2s = response.body();
+                                    String mensaje = cEnvio2s.get(0).getMensaje();
 
-                                    if(tam == 0){
-                                        Toast.makeText(imgActivity.this, "Unidad Nueva !!", Toast.LENGTH_LONG).show();
+                                    if (mensaje.contains("Enviado con exito")){
+
                                         Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                         i.putExtra("folio", folio);
-                                        i.putExtra("mensaje", mensaje);
+                                        i.putExtra("mensaje", id);
                                         startActivity(i);
+
                                     }else{
-                                        String incidencia  = cEnvio2s.get(0).getIncidencia();
-
-                                         String A_sello1 = cEnvio2s.get(0).getA_sello1();
-                                         String A_sello2 = cEnvio2s.get(0).getA_sello2();
-                                         String A_llanta1 = cEnvio2s.get(0).getA_llanta1();
-                                         String A_llanta2 = cEnvio2s.get(0).getA_llanta2();
-                                         String A_llanta3 = cEnvio2s.get(0).getA_llanta3();
-                                         String A_llanta4 = cEnvio2s.get(0).getA_llanta4();
-                                         String A_llanta5 = cEnvio2s.get(0).getA_llanta5();
-                                         String A_llanta6 = cEnvio2s.get(0).getA_llanta6();
-                                         String A_llanta7 = cEnvio2s.get(0).getA_llanta7();
-                                         String A_llanta8 = cEnvio2s.get(0).getA_llanta8();
-                                         String A_llantajumbo = cEnvio2s.get(0).getA_llantajumbo();
-                                         String A_selloExtra = cEnvio2s.get(0).getA_selloExtra();
-                                         String A_sello3= cEnvio2s.get(0).getA_sello3();
-                                        String A_tipoOperacion = cEnvio2s.get(0).getA_tipoOperacion();
-                                        String A_estatusRemolque = cEnvio2s.get(0).getA_estatusRemolque();
-                                        String A_tipoMovimiento = cEnvio2s.get(0).getA_tipoMovimiento();
-                                        String A_comentario = cEnvio2s.get(0).getA_comentario();
-                                        String A_patio = cEnvio2s.get(0).getA_patio();
-                                        String A_fechaServidor = cEnvio2s.get(0).getA_fechaServidor();
-                                        String A_operador = cEnvio2s.get(0).getA_operador();
-                                        String A_unidad = cEnvio2s.get(0).getA_unidad();
-                                        String A_transportista = cEnvio2s.get(0).getA_transportista();
-                                        String A_linea = cEnvio2s.get(0).getA_linea();
-                                        String A_remolque = cEnvio2s.get(0).getA_remolque();
-                                        String A_usuario = cEnvio2s.get(0).getA_usuario();
-
-                                        String A_placasDatos =  cEnvio2s.get(0).getA_placasDatos();
-                                        String A_comentario2 =  cEnvio2s.get(0).getA_comentario2();
-
-                                         String P_sello1 = cEnvio2s.get(0).getP_sello1();
-                                         String P_sello2 = cEnvio2s.get(0).getP_sello2();
-                                         String P_llanta1 = cEnvio2s.get(0).getP_llanta1();
-                                         String P_llanta2= cEnvio2s.get(0).getP_llanta2();
-                                         String P_llanta3 = cEnvio2s.get(0).getP_llanta3();
-                                         String P_llanta4= cEnvio2s.get(0).getP_llanta4();
-                                         String P_llanta5 = cEnvio2s.get(0).getP_llanta5();
-                                         String P_llanta6 = cEnvio2s.get(0).getP_llanta6();
-                                         String P_llanta7 = cEnvio2s.get(0).getP_llanta7();
-                                         String P_llanta8 = cEnvio2s.get(0).getP_llanta8();
-                                         String P_llantajumbo = cEnvio2s.get(0).getP_llantajumbo();
-                                         String P_selloExtra = cEnvio2s.get(0).getP_selloExtra();
-                                         String P_sello3 = cEnvio2s.get(0).getP_sello3();
-                                        String P_tipoOperacion = cEnvio2s.get(0).getP_tipoOperacion();
-                                        String P_estatusRemolque = cEnvio2s.get(0).getP_estatusRemolque();
-                                        String P_tipoMovimiento = cEnvio2s.get(0).getP_tipoMovimiento();
-                                        String P_comentario = cEnvio2s.get(0).getP_comentario();
-                                        String P_patio = cEnvio2s.get(0).getP_patio();
-                                        String P_fechaServidor = cEnvio2s.get(0).getP_fechaServidor();
-                                        String P_operador = cEnvio2s.get(0).getP_operador();
-                                        String P_unidad = cEnvio2s.get(0).getP_unidad();
-                                        String P_transportista = cEnvio2s.get(0).getP_transportista();
-                                        String P_linea = cEnvio2s.get(0).getP_linea();
-                                        String P_remolque = cEnvio2s.get(0).getP_remolque();
-                                        String P_usuario = cEnvio2s.get(0).getP_usuario();
-
-
-                                        String P_placasDatos =  cEnvio2s.get(0).getP_placasDatos();
-                                        String P_comentario2 =  cEnvio2s.get(0).getP_comentario2();
-
-
-                                        if(incidencia.contains("SIUUU")){
-                                            Intent i = new Intent(imgActivity.this, incidenciaActivity.class);
-                                            i.putExtra("A_sello1", A_sello1);
-                                            i.putExtra("A_sello2", A_sello2);
-                                            i.putExtra("A_llanta1", A_llanta1);
-                                            i.putExtra("A_llanta2", A_llanta2);
-                                            i.putExtra("A_llanta3", A_llanta3);
-                                            i.putExtra("A_llanta4", A_llanta4);
-                                            i.putExtra("A_llanta5", A_llanta5);
-                                            i.putExtra("A_llanta6", A_llanta6);
-                                            i.putExtra("A_llanta7", A_llanta7);
-                                            i.putExtra("A_llanta8", A_llanta8);
-                                            i.putExtra("A_llantajumbo", A_llantajumbo);
-                                            i.putExtra("A_selloExtra", A_selloExtra);
-                                            i.putExtra("A_sello3", A_sello3);
-                                            i.putExtra("A_tipoOperacion", A_tipoOperacion);
-                                            i.putExtra("A_estatusRemolque", A_estatusRemolque);
-                                            i.putExtra("A_tipoMovimiento", A_tipoMovimiento);
-                                            i.putExtra("A_comentario", A_comentario);
-                                            i.putExtra("A_patio", A_patio);
-                                            i.putExtra("A_fechaServidor", A_fechaServidor);
-                                            i.putExtra("A_operador", A_operador);
-                                            i.putExtra("A_unidad", A_unidad);
-                                            i.putExtra("A_transportista", A_transportista);
-                                            i.putExtra("A_linea", A_linea);
-                                            i.putExtra("A_remolque", A_remolque);
-                                            i.putExtra("A_usuario", A_usuario);
-
-                                            i.putExtra("A_placasDatos", A_placasDatos);
-                                            i.putExtra("A_comentario2", A_comentario2);
-
-                                            i.putExtra("P_sello1", P_sello1);
-                                            i.putExtra("P_sello2", P_sello2);
-                                            i.putExtra("P_llanta1", P_llanta1);
-                                            i.putExtra("P_llanta2", P_llanta2);
-                                            i.putExtra("P_llanta3", P_llanta3);
-                                            i.putExtra("P_llanta4", P_llanta4);
-                                            i.putExtra("P_llanta5", P_llanta5);
-                                            i.putExtra("P_llanta6", P_llanta6);
-                                            i.putExtra("P_llanta7", P_llanta7);
-                                            i.putExtra("P_llanta8", P_llanta8);
-                                            i.putExtra("P_llantajumbo", P_llantajumbo);
-                                            i.putExtra("P_selloExtra", P_selloExtra);
-                                            i.putExtra("P_sello3", P_sello3);
-                                            i.putExtra("P_tipoOperacion", P_tipoOperacion);
-                                            i.putExtra("P_estatusRemolque", P_estatusRemolque);
-                                            i.putExtra("P_tipoMovimiento", P_tipoMovimiento);
-                                            i.putExtra("P_comentario", P_comentario);
-                                            i.putExtra("P_patio", P_patio);
-                                            i.putExtra("P_fechaServidor", P_fechaServidor);
-                                            i.putExtra("P_operador", P_operador);
-                                            i.putExtra("P_unidad", P_unidad);
-                                            i.putExtra("P_transportista", P_transportista);
-                                            i.putExtra("P_linea", P_linea);
-                                            i.putExtra("P_remolque", P_remolque);
-                                            i.putExtra("P_usuario", P_usuario);
-
-                                            i.putExtra("P_placasDatos", P_placasDatos);
-                                            i.putExtra("P_comentario2", P_comentario2);
-
-
-                                            i.putExtra("mensaje", mensaje);
-                                            i.putExtra("folio", folio);
-                                            startActivity(i);
-
-                                        }else if (incidencia.contains("NO")){
-                                            Intent i = new Intent(imgActivity.this, firmasActivity.class);
-                                            i.putExtra("folio", folio);
-                                            i.putExtra("mensaje", mensaje);
-                                            startActivity(i);
-
-                                        }
+                                        Toast.makeText(imgActivity.this, "Error al Enviar", Toast.LENGTH_LONG).show();
                                     }
 
                                 }
 
                                 @Override
-                                public void onFailure(Call<List<CEnvio2>> call, Throwable t) {
+                                public void onFailure(Call<List<CEnvio>> call, Throwable t) {
                                     Toast.makeText(imgActivity.this, "Error 404", Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -2520,7 +2414,7 @@ public class imgActivity extends AppCompatActivity {
                         ) {
 
 
-                                Post6 post6 = new Post6(user, password, idRemolque, "0", mensaje, sello1S, sello2S, ll1,
+                                Post6 post6 = new Post6(user, password, idRemolque, "2", mensaje, sello1S, sello2S, ll1,
                                         ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
                                         placasDatosD,
                                         comentarios,
@@ -2625,176 +2519,41 @@ public class imgActivity extends AppCompatActivity {
                                         S_CTI_rotachamber
                                 );
 
-                                                String loko = "dfasfsdg";
-                                                Call<List<CEnvio2>> callenvio2 = dxApi.getEnvio2(post6);
+                                                Call<List<CEnvio>> callenvio2 = dxApi.getEnvio2(post6);
 
-                                                callenvio2.enqueue(new Callback<List<CEnvio2>>() {
+                                                callenvio2.enqueue(new Callback<List<CEnvio>>() {
                                                     @Override
-                                                    public void onResponse(Call<List<CEnvio2>> call, Response<List<CEnvio2>> response) {
+                                                    public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
 
                                                         if (!response.isSuccessful()) {
                                                             Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                                                         }
 
-                                                        List<CEnvio2> cEnvio2s = response.body();
-                                                        int tam = cEnvio2s.size();
+                                                        List<CEnvio> cEnvio2s = response.body();
+                                                        String mensaje = cEnvio2s.get(0).getMensaje();
 
-                                                        if(tam == 0){
-                                                            Toast.makeText(imgActivity.this, "Unidad Nueva !!", Toast.LENGTH_LONG).show();
+                                                        if (mensaje.contains("Enviado con exito")){
+
                                                             Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                                             i.putExtra("folio", folio);
-                                                            i.putExtra("mensaje", mensaje);
+                                                            i.putExtra("mensaje", id);
                                                             startActivity(i);
+
                                                         }else{
-                                                            String incidencia  = cEnvio2s.get(0).getIncidencia();
-
-                                                            String A_sello1 = cEnvio2s.get(0).getA_sello1();
-                                                            String A_sello2 = cEnvio2s.get(0).getA_sello2();
-                                                            String A_llanta1 = cEnvio2s.get(0).getA_llanta1();
-                                                            String A_llanta2 = cEnvio2s.get(0).getA_llanta2();
-                                                            String A_llanta3 = cEnvio2s.get(0).getA_llanta3();
-                                                            String A_llanta4 = cEnvio2s.get(0).getA_llanta4();
-                                                            String A_llanta5 = cEnvio2s.get(0).getA_llanta5();
-                                                            String A_llanta6 = cEnvio2s.get(0).getA_llanta6();
-                                                            String A_llanta7 = cEnvio2s.get(0).getA_llanta7();
-                                                            String A_llanta8 = cEnvio2s.get(0).getA_llanta8();
-                                                            String A_llantajumbo = cEnvio2s.get(0).getA_llantajumbo();
-                                                            String A_selloExtra = cEnvio2s.get(0).getA_selloExtra();
-                                                            String A_sello3= cEnvio2s.get(0).getA_sello3();
-                                                            String A_tipoOperacion = cEnvio2s.get(0).getA_tipoOperacion();
-                                                            String A_estatusRemolque = cEnvio2s.get(0).getA_estatusRemolque();
-                                                            String A_tipoMovimiento = cEnvio2s.get(0).getA_tipoMovimiento();
-                                                            String A_comentario = cEnvio2s.get(0).getA_comentario();
-                                                            String A_patio = cEnvio2s.get(0).getA_patio();
-                                                            String A_fechaServidor = cEnvio2s.get(0).getA_fechaServidor();
-                                                            String A_operador = cEnvio2s.get(0).getA_operador();
-                                                            String A_unidad = cEnvio2s.get(0).getA_unidad();
-                                                            String A_transportista = cEnvio2s.get(0).getA_transportista();
-                                                            String A_linea = cEnvio2s.get(0).getA_linea();
-                                                            String A_remolque = cEnvio2s.get(0).getA_remolque();
-                                                            String A_usuario = cEnvio2s.get(0).getA_usuario();
-
-                                                            String A_placasDatos =  cEnvio2s.get(0).getA_placasDatos();
-                                                            String A_comentario2 =  cEnvio2s.get(0).getA_comentario2();
-
-                                                            String P_sello1 = cEnvio2s.get(0).getP_sello1();
-                                                            String P_sello2 = cEnvio2s.get(0).getP_sello2();
-                                                            String P_llanta1 = cEnvio2s.get(0).getP_llanta1();
-                                                            String P_llanta2= cEnvio2s.get(0).getP_llanta2();
-                                                            String P_llanta3 = cEnvio2s.get(0).getP_llanta3();
-                                                            String P_llanta4= cEnvio2s.get(0).getP_llanta4();
-                                                            String P_llanta5 = cEnvio2s.get(0).getP_llanta5();
-                                                            String P_llanta6 = cEnvio2s.get(0).getP_llanta6();
-                                                            String P_llanta7 = cEnvio2s.get(0).getP_llanta7();
-                                                            String P_llanta8 = cEnvio2s.get(0).getP_llanta8();
-                                                            String P_llantajumbo = cEnvio2s.get(0).getP_llantajumbo();
-                                                            String P_selloExtra = cEnvio2s.get(0).getP_selloExtra();
-                                                            String P_sello3 = cEnvio2s.get(0).getP_sello3();
-                                                            String P_tipoOperacion = cEnvio2s.get(0).getP_tipoOperacion();
-                                                            String P_estatusRemolque = cEnvio2s.get(0).getP_estatusRemolque();
-                                                            String P_tipoMovimiento = cEnvio2s.get(0).getP_tipoMovimiento();
-                                                            String P_comentario = cEnvio2s.get(0).getP_comentario();
-                                                            String P_patio = cEnvio2s.get(0).getP_patio();
-                                                            String P_fechaServidor = cEnvio2s.get(0).getP_fechaServidor();
-                                                            String P_operador = cEnvio2s.get(0).getP_operador();
-                                                            String P_unidad = cEnvio2s.get(0).getP_unidad();
-                                                            String P_transportista = cEnvio2s.get(0).getP_transportista();
-                                                            String P_linea = cEnvio2s.get(0).getP_linea();
-                                                            String P_remolque = cEnvio2s.get(0).getP_remolque();
-                                                            String P_usuario = cEnvio2s.get(0).getP_usuario();
-
-                                                            String P_placasDatos =  cEnvio2s.get(0).getP_placasDatos();
-                                                            String P_comentario2 =  cEnvio2s.get(0).getP_comentario2();
-
-                                                            if(incidencia.contains("SIUUU")){
-                                                                Intent i = new Intent(imgActivity.this, incidenciaActivity.class);
-                                                                i.putExtra("A_sello1", A_sello1);
-                                                                i.putExtra("A_sello2", A_sello2);
-                                                                i.putExtra("A_llanta1", A_llanta1);
-                                                                i.putExtra("A_llanta2", A_llanta2);
-                                                                i.putExtra("A_llanta3", A_llanta3);
-                                                                i.putExtra("A_llanta4", A_llanta4);
-                                                                i.putExtra("A_llanta5", A_llanta5);
-                                                                i.putExtra("A_llanta6", A_llanta6);
-                                                                i.putExtra("A_llanta7", A_llanta7);
-                                                                i.putExtra("A_llanta8", A_llanta8);
-                                                                i.putExtra("A_llantajumbo", A_llantajumbo);
-                                                                i.putExtra("A_selloExtra", A_selloExtra);
-                                                                i.putExtra("A_sello3", A_sello3);
-                                                                i.putExtra("A_tipoOperacion", A_tipoOperacion);
-                                                                i.putExtra("A_estatusRemolque", A_estatusRemolque);
-                                                                i.putExtra("A_tipoMovimiento", A_tipoMovimiento);
-                                                                i.putExtra("A_comentario", A_comentario);
-                                                                i.putExtra("A_patio", A_patio);
-                                                                i.putExtra("A_fechaServidor", A_fechaServidor);
-                                                                i.putExtra("A_operador", A_operador);
-                                                                i.putExtra("A_unidad", A_unidad);
-                                                                i.putExtra("A_transportista", A_transportista);
-                                                                i.putExtra("A_linea", A_linea);
-                                                                i.putExtra("A_remolque", A_remolque);
-                                                                i.putExtra("A_usuario", A_usuario);
-
-                                                                i.putExtra("A_placasDatos", A_placasDatos);
-                                                                i.putExtra("A_comentario2", A_comentario2);
-
-                                                                i.putExtra("P_sello1", P_sello1);
-                                                                i.putExtra("P_sello2", P_sello2);
-                                                                i.putExtra("P_llanta1", P_llanta1);
-                                                                i.putExtra("P_llanta2", P_llanta2);
-                                                                i.putExtra("P_llanta3", P_llanta3);
-                                                                i.putExtra("P_llanta4", P_llanta4);
-                                                                i.putExtra("P_llanta5", P_llanta5);
-                                                                i.putExtra("P_llanta6", P_llanta6);
-                                                                i.putExtra("P_llanta7", P_llanta7);
-                                                                i.putExtra("P_llanta8", P_llanta8);
-                                                                i.putExtra("P_llantajumbo", P_llantajumbo);
-                                                                i.putExtra("P_selloExtra", P_selloExtra);
-                                                                i.putExtra("P_sello3", P_sello3);
-                                                                i.putExtra("P_tipoOperacion", P_tipoOperacion);
-                                                                i.putExtra("P_estatusRemolque", P_estatusRemolque);
-                                                                i.putExtra("P_tipoMovimiento", P_tipoMovimiento);
-                                                                i.putExtra("P_comentario", P_comentario);
-                                                                i.putExtra("P_patio", P_patio);
-                                                                i.putExtra("P_fechaServidor", P_fechaServidor);
-                                                                i.putExtra("P_operador", P_operador);
-                                                                i.putExtra("P_unidad", P_unidad);
-                                                                i.putExtra("P_transportista", P_transportista);
-                                                                i.putExtra("P_linea", P_linea);
-                                                                i.putExtra("P_remolque", P_remolque);
-                                                                i.putExtra("P_usuario", P_usuario);
-
-                                                                i.putExtra("P_placasDatos", P_placasDatos);
-                                                                i.putExtra("P_comentario2", P_comentario2);
-
-                                                                i.putExtra("mensaje", mensaje);
-                                                                i.putExtra("folio", folio);
-
-                                                                startActivity(i);
-
-                                                            }else if (incidencia.contains("NO")){
-                                                                Intent i = new Intent(imgActivity.this, firmasActivity.class);
-                                                                i.putExtra("folio", folio);
-                                                                i.putExtra("mensaje", mensaje);
-                                                                startActivity(i);
-                                                            }
+                                                            Toast.makeText(imgActivity.this, "Error al Enviar", Toast.LENGTH_LONG).show();
                                                         }
+
 
                                                     }
 
                                                     @Override
-                                                    public void onFailure(Call<List<CEnvio2>> call, Throwable t) {
+                                                    public void onFailure(Call<List<CEnvio>> call, Throwable t) {
                                                         Toast.makeText(imgActivity.this, "Error 404", Toast.LENGTH_LONG).show();
                                                     }
                                                 });
-
-
-
-
-
                         }
                     }
                 }
-
             }
         });
 
@@ -2972,7 +2731,6 @@ public class imgActivity extends AppCompatActivity {
                 imgClick("derRemolqueP2" , REQUEST_DER_REMOLQUE_P2);
             }
         });
-
         damage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -3057,8 +2815,6 @@ public class imgActivity extends AppCompatActivity {
                 imgClick("damage12DER" , DAMAGE12);
             }
         });
-
-
         /*tarjeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -3674,19 +3430,6 @@ public class imgActivity extends AppCompatActivity {
 
     }
 
-    private void requestSignIn() {
-
-        GoogleSignInOptions signInOptions =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
-                        .build();
-        GoogleSignInClient client = GoogleSignIn.getClient(this, signInOptions);
-
-        // The result of the sign-in Intent is handled in onActivityResult.
-        startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
-    }
-
     @Override
     public void onBackPressed() {
 
@@ -3707,7 +3450,7 @@ public class imgActivity extends AppCompatActivity {
                     String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.107/api/")
+                            .baseUrl("http://"+ip+"/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -3727,7 +3470,7 @@ public class imgActivity extends AppCompatActivity {
                             String cEnvios = String.valueOf(response);
 
 
-                            Toast.makeText(getBaseContext(),"Enviado",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Imagen Cargada",Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -4337,4 +4080,6 @@ public class imgActivity extends AppCompatActivity {
 
 
     }
+
+
 }

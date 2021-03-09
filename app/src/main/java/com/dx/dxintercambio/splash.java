@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 import org.ksoap2.serialization.SoapPrimitive;
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class splash extends Activity {
 
-    private String usuario , contraseña , idUsuario , login , password ,mensaje ;
+    private String usuario , contraseña , idUsuario , login , password ,mensaje ,ip ;
     private SoapPrimitive resultString;
     private DxApi dxApi;
 
@@ -30,13 +31,12 @@ public class splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         try {
-        new Handler().postDelayed(new Runnable() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
 
-
                 SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
-
+                ip = preferences.getString("Aip","");
                 usuario = preferences.getString("user","");
                 contraseña = preferences.getString("pass","");
 
@@ -47,7 +47,7 @@ public class splash extends Activity {
                     password = contraseña;
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.107/api/")
+                            .baseUrl("http://"+ip+"/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

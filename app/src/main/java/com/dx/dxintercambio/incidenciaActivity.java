@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class incidenciaActivity extends AppCompatActivity {
 
-    private String A_sello1 ;
+  /*  private String A_sello1 ;
     private String A_sello2 ;
     private String A_llanta1 ;
     private String A_llanta2 ;
@@ -118,7 +118,7 @@ public class incidenciaActivity extends AppCompatActivity {
     private DxApi dxApi;
     private String folio;
     private int mensaje;
-
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +194,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
         folio = getIntent().getStringExtra("folio");
         mensaje = getIntent().getIntExtra("mensaje",0);
+        id = String.valueOf(mensaje);
 
         int idIntercambio = getIntent().getIntExtra("idIntercambio",0);
 
@@ -267,7 +268,7 @@ public class incidenciaActivity extends AppCompatActivity {
         TWAestatusRemolque  = (TextView) findViewById(R.id.estatusRemolque_Actual);
         TWAcomentario  = (TextView) findViewById(R.id.comentario_Actual);
 
-          TWAplacasDatos  = (TextView) findViewById(R.id.placasDatos_Actual);
+        TWAplacasDatos  = (TextView) findViewById(R.id.placasDatos_Actual);
         TWAcomentario2  = (EditText) findViewById(R.id.comentario2_Actual);
 
 
@@ -279,15 +280,15 @@ public class incidenciaActivity extends AppCompatActivity {
         TWPsello2 = (TextView) findViewById(R.id.sello2_Pasado);
         TWPllanta1 = (TextView) findViewById(R.id.llanta1_Pasado);
         TWPllanta2 = (TextView) findViewById(R.id.llanta2_Pasado);
-         TWPllanta3 = (TextView) findViewById(R.id.llanta3_Pasado);
-         TWPllanta4 = (TextView) findViewById(R.id.llanta4_Pasado);
+        TWPllanta3 = (TextView) findViewById(R.id.llanta3_Pasado);
+        TWPllanta4 = (TextView) findViewById(R.id.llanta4_Pasado);
         TWPllanta5 = (TextView) findViewById(R.id.llanta5_Pasado);
         TWPllanta6 = (TextView) findViewById(R.id.llanta6_Pasado);
         TWPllanta7 = (TextView) findViewById(R.id.llanta7_Pasado);
         TWPllanta8= (TextView) findViewById(R.id.llanta8_Pasado) ;
         TWPllantasjumbo= (TextView) findViewById(R.id.llantasJumbo_Pasado) ;
         TWPselloExtra = (TextView) findViewById(R.id.selloExtra_Pasado);
-         TWPsello3 = (TextView) findViewById(R.id.selloExtra3_Pasado);
+        TWPsello3 = (TextView) findViewById(R.id.selloExtra3_Pasado);
         TWPfecha  = (TextView) findViewById(R.id.fecha_Pasado);
         TWPusuario  = (TextView) findViewById(R.id.usuario_Pasado);
         TWPpatio  = (TextView) findViewById(R.id.patio_Pasado);
@@ -370,7 +371,7 @@ public class incidenciaActivity extends AppCompatActivity {
                 if(comentario.length()>0){
 
 
-                    Post6 post6 = new Post6(user, password, 0, "1", idIntercambio, "", "", "",
+                    Post6 post6 = new Post6(user, password, 0, "1", mensaje, "", "", "",
                             "", "", "", "", "", "", "", 0, 0, 0, "", 3, comentario,
                             "",
                             "",
@@ -397,7 +398,7 @@ public class incidenciaActivity extends AppCompatActivity {
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.107/api/")
+                            .baseUrl("http://192.168.4.115/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -412,10 +413,12 @@ public class incidenciaActivity extends AppCompatActivity {
                                 Toast.makeText(incidenciaActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }
                             Toast.makeText(incidenciaActivity.this, "Incidencia Cancelada", Toast.LENGTH_LONG).show();
+
                             Intent i = new Intent(incidenciaActivity.this, firmasActivity.class);
-                            i.putExtra("folio", folio);
                             i.putExtra("mensaje", mensaje);
+                            i.putExtra("folio", folio);
                             startActivity(i);
+
                         }
 
                         @Override
@@ -438,7 +441,7 @@ public class incidenciaActivity extends AppCompatActivity {
                 comentario = comen.getText().toString();
 
                 if(comentario.length() >0){
-                    Post6 post6 = new Post6(user, password, 0, "1", idIntercambio, "", "", "",
+                    Post6 post6 = new Post6(user, password, 0, "1", mensaje, "", "", "",
                             "", "", "", "", "", "", "", 0, 0, 0, "", 1, comentario,
                             "",
                             "",
@@ -461,7 +464,7 @@ public class incidenciaActivity extends AppCompatActivity {
                     );
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.107/api/")
+                            .baseUrl("http://192.168.4.115/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -476,8 +479,11 @@ public class incidenciaActivity extends AppCompatActivity {
                             if(!response.isSuccessful()){
                                 Toast.makeText(incidenciaActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                             }
-                            Toast.makeText(incidenciaActivity.this, "Intercambio Confirmado", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(incidenciaActivity.this, splash.class);
+                            Toast.makeText(incidenciaActivity.this, "Incidencia Confirmada", Toast.LENGTH_LONG).show();
+
+                            Intent i = new Intent(incidenciaActivity.this, firmasActivity.class);
+                            i.putExtra("mensaje", mensaje);
+                            i.putExtra("folio", folio);
                             startActivity(i);
 
                         }
@@ -499,6 +505,8 @@ public class incidenciaActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
     }
+*/
+
+
 }

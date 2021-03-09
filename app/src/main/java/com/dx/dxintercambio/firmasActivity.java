@@ -38,7 +38,8 @@ public class firmasActivity extends AppCompatActivity {
     Bitmap bitmap2;
     DxApi dxApi;
     String folio ,id;
-    int mensaje;
+    String mensaje;
+    String ip;
     private String user , password ;
 
     Bitmap emptyBitmap;
@@ -59,15 +60,14 @@ public class firmasActivity extends AppCompatActivity {
         btnEnvio = (Button) findViewById(R.id.button2);
 
         folio = getIntent().getStringExtra("folio");
-        mensaje = getIntent().getIntExtra("mensaje",0);
-        id = String.valueOf(mensaje);
+        mensaje = getIntent().getStringExtra("mensaje");
 
 
         SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
 
         user = preferences.getString("user","");
         password = preferences.getString("pass","");
-
+        ip = preferences.getString("Aip","");
 
         imgClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class firmasActivity extends AppCompatActivity {
 
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.4.107/api/")
+                            .baseUrl("http://"+ip+"/api/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -131,16 +131,16 @@ public class firmasActivity extends AppCompatActivity {
                             String cEnvios = String.valueOf(response);
 
                             if(cEnvios.contains("200")){
-                                Toast.makeText(getBaseContext(),"Enviado",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(),"Intercambio Completo",Toast.LENGTH_SHORT).show();
 
                                 Retrofit retrofit = new Retrofit.Builder()
-                                        .baseUrl("http://192.168.4.107/api/")
+                                        .baseUrl("http://"+ip+"/api/")
                                         .addConverterFactory(GsonConverterFactory.create())
                                         .build();
 
                                 dxApi = retrofit.create(DxApi.class);
 
-                                Post8 post8 = new Post8(user,password,id);
+                                Post8 post8 = new Post8(user,password,mensaje);
                                 Call<List<CEnvio>> callTerminado = dxApi.getTerminado(post8);
 
                                 callTerminado.enqueue(new Callback<List<CEnvio>>() {
