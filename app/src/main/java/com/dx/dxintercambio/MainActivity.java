@@ -65,10 +65,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.hide){
 
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
 
+
             View view = inflater.inflate(R.layout.custom_alert,null);
+
 
             builder.setView(view)
                     .setTitle("Configuracion de Sistemas")
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this, sistemas.class);
                                 i.putExtra("mode", "0");
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
 
                             }else if (contraCulera.contains("mañananoaiclases42069")){
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this, sistemas.class);
                                 i.putExtra("mode", "420");
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
 
                             } else {
@@ -132,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         ingre = (Button) findViewById(R.id.btnIngresar);
 
 
-        //Toast.makeText(MainActivity.this, "OnCreate", Toast.LENGTH_SHORT).show();
+
 
         if (!isTaskRoot()
                 && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
@@ -193,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this, envioActivity.class);
                                 i.putExtra("idUsuario", idUsuario);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                             } else {
                                 Toast.makeText(MainActivity.this, "Usuario Incorrecto", Toast.LENGTH_SHORT).show();

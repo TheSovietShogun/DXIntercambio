@@ -47,4 +47,7 @@ public interface DxApi {
     @POST("IntercambioRemolque3")
     Call<List<CEnvio>> getTerminado(@Body Post8 post8);
 
+    @POST("logApp")
+    Call<List<CEnvio>> getLogApp(@Body PostLogApp postLogApp);
+
 }

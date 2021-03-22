@@ -15,9 +15,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +40,7 @@ import com.google.android.gms.common.api.Scope;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -364,7 +367,7 @@ public class imgActivity extends AppCompatActivity {
     boolean checked1;
     boolean checked2;
     private int lljumbo ;
-    private int lljumbo2 ;
+    private int lljumboCheck ;
     private Object Network;
     private String user ;
     private String password ;
@@ -373,6 +376,7 @@ public class imgActivity extends AppCompatActivity {
     private String id ;
     private String imageFileName ;
     private String [] estatusLlanta = new String[]{"Sin Seleccionar","Recapeada","Original"};
+    Bitmap bm1;
 
     @Override
     protected void onStart() {
@@ -624,6 +628,7 @@ public class imgActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
                 }
+
                 List<CLlanta> CLlantas = response.body();
 
 
@@ -651,38 +656,11 @@ public class imgActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                 checked1 = ((CheckBox) view).isChecked();
+                 checked2 = ((CheckBox) view).isChecked();
 
-                if (checked1) {
-
-               /* Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                            BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                            THUMBSIZE,
-                            THUMBSIZE);
+                if (checked2) {
 
 
-                    tractoFrente.setImageBitmap(thumbImage);
-                    tractoDer.setImageBitmap(thumbImage);
-                    tractoIzq.setImageBitmap(thumbImage);
-
-                    noEconomico.setImageBitmap(thumbImage);
-                    izqRemolqueP1.setImageBitmap(thumbImage);
-                    vin.setImageBitmap(thumbImage);
-                    chasisFrontalIzq.setImageBitmap(thumbImage);
-                    chasisTraseroIzq.setImageBitmap(thumbImage);
-                    llantasIzqEje1.setImageBitmap(thumbImage);
-                    llantasIzqEje2.setImageBitmap(thumbImage);
-                    izqRemolqueP2.setImageBitmap(thumbImage);
-                    puertas.setImageBitmap(thumbImage);
-                    placas.setImageBitmap(thumbImage);
-                    sello1.setImageBitmap(thumbImage);
-                    sello2.setImageBitmap(thumbImage);
-                    derRemolqueP1.setImageBitmap(thumbImage);
-                    llantasDerEje2.setImageBitmap(thumbImage);
-                    llantasDerEje1.setImageBitmap(thumbImage);
-                    chasisTraseroDer.setImageBitmap(thumbImage);
-                    chasisFrontalDER.setImageBitmap(thumbImage);
-                    derRemolqueP2.setImageBitmap(thumbImage);*/
 
 
                     llanta3SP.setVisibility(View.INVISIBLE);
@@ -2114,7 +2092,7 @@ public class imgActivity extends AppCompatActivity {
 
                 int selloExtra ;
 
-                if(checked1){
+                if(checked2){
                     lljumbo = 1;
                 }
 
@@ -2196,7 +2174,7 @@ public class imgActivity extends AppCompatActivity {
 
                         try {
                             Post6 post6 = new Post6(user, password, idRemolque, "2", mensaje, sello1S, sello2S, ll1,
-                                    ll2, ll6, ll5, "", "", "", "", lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
+                                    ll2, ll6, ll5, "", "", "", "", lljumbo, 0, selloExtra, sello3S, 0, "",
                                     placasDatosD,
                                     comentarios,
                                     S_defensa,
@@ -2319,6 +2297,7 @@ public class imgActivity extends AppCompatActivity {
                                         Intent i = new Intent(imgActivity.this, firmasActivity.class);
                                         i.putExtra("folio", folio);
                                         i.putExtra("mensaje", id);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(i);
 
                                     }else{
@@ -2338,220 +2317,221 @@ public class imgActivity extends AppCompatActivity {
                         }
 
 
-                    } else if (lljumbo == 0) {
-                        if (
-                                !tractorDerImg.contains("128") ||
-                                !tractorIzqImg.contains("128") ||
-                                !tractorFrenteImg.contains("128") ||
-                                !noEconomicoImg.contains("128") ||
-                                !izqRemolqueP1Img.contains("128") ||
-                                !vinImg.contains("128") ||
-                                !chasisFrontalIzqImg.contains("128") ||
-                                !chasisTraseroIzqImg.contains("128") ||
-                                !llantasIzqEje1Img.contains("128") ||
-                                !llantasIzqEje2Img.contains("128") ||
-                                !izqRemolqueP2Img.contains("128") ||
-                                !puertasImg.contains("128") ||
-                                !placasImg.contains("128") ||
-                                !sello1Img.contains("128") ||
-                                !sello2Img.contains("128") ||
-                                !derRemolqueP1Img.contains("128") ||
-                                !llantasDerEje2Img.contains("128") ||
-                                !llantasDerEje1Img.contains("128") ||
-                                !chasisTraseroDerImg.contains("128") ||
-                                !chasisFrontalDERImg.contains("128") ||
-                                !derRemolqueP2Img.contains(" 128") ||
-                                sello1S.length() == 0 ||
-                                sello2S.length() == 0 ||
-                                placasDatosD.length() == 0 ||
-                                comentarios.length() == 0 ||
-                                ll1 == "Sin Seleccionar" ||
-                                ll2 == "Sin Seleccionar" ||
-                                ll3 == "Sin Seleccionar" ||
-                                ll4 == "Sin Seleccionar" ||
-                                ll5 == "Sin Seleccionar" ||
-                                ll6 == "Sin Seleccionar" ||
-                                ll7 == "Sin Seleccionar" ||
-                                ll8 == "Sin Seleccionar"
+                    }
+                }else if (lljumbo == 0) {
+                    if (
+                            !tractorDerImg.contains("128") ||
+                                    !tractorIzqImg.contains("128") ||
+                                    !tractorFrenteImg.contains("128") ||
+                                    !noEconomicoImg.contains("128") ||
+                                    !izqRemolqueP1Img.contains("128") ||
+                                    !vinImg.contains("128") ||
+                                    !chasisFrontalIzqImg.contains("128") ||
+                                    !chasisTraseroIzqImg.contains("128") ||
+                                    !llantasIzqEje1Img.contains("128") ||
+                                    !llantasIzqEje2Img.contains("128") ||
+                                    !izqRemolqueP2Img.contains("128") ||
+                                    !puertasImg.contains("128") ||
+                                    !placasImg.contains("128") ||
+                                    !sello1Img.contains("128") ||
+                                    !sello2Img.contains("128") ||
+                                    !derRemolqueP1Img.contains("128") ||
+                                    !llantasDerEje2Img.contains("128") ||
+                                    !llantasDerEje1Img.contains("128") ||
+                                    !chasisTraseroDerImg.contains("128") ||
+                                    !chasisFrontalDERImg.contains("128") ||
+                                    !derRemolqueP2Img.contains(" 128") ||
+                                    sello1S.length() == 0 ||
+                                    sello2S.length() == 0 ||
+                                    placasDatosD.length() == 0 ||
+                                    comentarios.length() == 0 ||
+                                    ll1 == "Sin Seleccionar" ||
+                                    ll2 == "Sin Seleccionar" ||
+                                    ll3 == "Sin Seleccionar" ||
+                                    ll4 == "Sin Seleccionar" ||
+                                    ll5 == "Sin Seleccionar" ||
+                                    ll6 == "Sin Seleccionar" ||
+                                    ll7 == "Sin Seleccionar" ||
+                                    ll8 == "Sin Seleccionar"
 
-                        ) {
-                            Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
-                        }   else if (
-                                tractorDerImg.contains("128") &&
-                                tractorIzqImg.contains("128") &&
-                                tractorFrenteImg.contains("128") &&
-                                noEconomicoImg.contains("128") &&
-                                izqRemolqueP1Img.contains("128") &&
-                                vinImg.contains("128") &&
-                                chasisFrontalIzqImg.contains("128") &&
-                                chasisTraseroIzqImg.contains("128") &&
-                                llantasIzqEje1Img.contains("128") &&
-                                llantasIzqEje2Img.contains("128") &&
-                                izqRemolqueP2Img.contains("128") &&
-                                puertasImg.contains("128") &&
-                                placasImg.contains("128") &&
-                                sello1Img.contains("128") &&
-                                sello2Img.contains("128") &&
-                                derRemolqueP1Img.contains("128") &&
-                                llantasDerEje2Img.contains("128") &&
-                                llantasDerEje1Img.contains("128") &&
-                                chasisTraseroDerImg.contains("128") &&
-                                chasisFrontalDERImg.contains("128") &&
-                                derRemolqueP2Img.contains("128") &&
-                                sello1S.length() > 0 &&
-                                sello2S.length() > 0 &&
-                                placasDatosD.length() > 0 &&
-                                comentarios.length() > 0 &&
-                                 ll1 != "Sin Seleccionar" &&
-                                ll2 != "Sin Seleccionar" &&
-                                ll3 != "Sin Seleccionar" &&
-                                ll4 != "Sin Seleccionar" &&
-                                ll5 != "Sin Seleccionar" &&
-                                ll6 != "Sin Seleccionar" &&
-                                ll7 != "Sin Seleccionar" &&
-                                ll8 != "Sin Seleccionar"
+                    ) {
+                        Toast.makeText(getBaseContext(), "Datos Incompletos", Toast.LENGTH_SHORT).show();
+                    }   else if (
+                            tractorDerImg.contains("128") &&
+                                    tractorIzqImg.contains("128") &&
+                                    tractorFrenteImg.contains("128") &&
+                                    noEconomicoImg.contains("128") &&
+                                    izqRemolqueP1Img.contains("128") &&
+                                    vinImg.contains("128") &&
+                                    chasisFrontalIzqImg.contains("128") &&
+                                    chasisTraseroIzqImg.contains("128") &&
+                                    llantasIzqEje1Img.contains("128") &&
+                                    llantasIzqEje2Img.contains("128") &&
+                                    izqRemolqueP2Img.contains("128") &&
+                                    puertasImg.contains("128") &&
+                                    placasImg.contains("128") &&
+                                    sello1Img.contains("128") &&
+                                    sello2Img.contains("128") &&
+                                    derRemolqueP1Img.contains("128") &&
+                                    llantasDerEje2Img.contains("128") &&
+                                    llantasDerEje1Img.contains("128") &&
+                                    chasisTraseroDerImg.contains("128") &&
+                                    chasisFrontalDERImg.contains("128") &&
+                                    derRemolqueP2Img.contains("128") &&
+                                    sello1S.length() > 0 &&
+                                    sello2S.length() > 0 &&
+                                    placasDatosD.length() > 0 &&
+                                    comentarios.length() > 0 &&
+                                    ll1 != "Sin Seleccionar" &&
+                                    ll2 != "Sin Seleccionar" &&
+                                    ll3 != "Sin Seleccionar" &&
+                                    ll4 != "Sin Seleccionar" &&
+                                    ll5 != "Sin Seleccionar" &&
+                                    ll6 != "Sin Seleccionar" &&
+                                    ll7 != "Sin Seleccionar" &&
+                                    ll8 != "Sin Seleccionar"
 
-                        ) {
-
-
-                                Post6 post6 = new Post6(user, password, idRemolque, "2", mensaje, sello1S, sello2S, ll1,
-                                        ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, lljumbo2, selloExtra, sello3S, 0, "",
-                                        placasDatosD,
-                                        comentarios,
-                                        S_defensa,
-                                        S_llantas,
-                                        S_pisoTractor,
-                                        S_tanqueDiesel,
-                                        S_cabinaCompartimientos,
-                                        S_tanqueAire,
-                                        S_quintaRueda,
-                                        S_ejesTransmision,
-                                        S_tuboEscape,
-                                        S_motor,
-                                        S_baseRemolque,
-                                        S_puerta,
-                                        S_paredLateralDerecha,
-                                        S_techos,
-                                        S_paredFrontal,
-                                        S_paredLateralIzquierda,
-                                        S_pisoInterno,
-                                        S_vvtt,
-                                        S_IRP1_inspeccionMecanica,
-                                        S_IRP1_lucesCheck,
-                                        S_IRP1_luzGaliboIzqFrontalSup,
-                                        S_IRP1_manitas,
-                                        S_IRP1_manivela,
-                                        S_IRP1_patinIzq,
-                                        S_IRP2_cuartoLadoIzq,
-                                        S_IRP2_loderaIzq,
-                                        S_IRP2_lucesCheck,
-                                        S_IRP2_luzABS,
-                                        S_IRP2_luzBarcoIzq,
-                                        S_IRP2_rompevientosIzq,
-                                        S_LlIE1_birlosPivote,
-                                        S_LlIE1_llantasPos1,
-                                        S_LlIE1_llantasPos2,
-                                        S_LlIE1_masaYoyo,
-                                        S_LlIE1_rin,
-                                        S_LlIE1_tieneLodera,
-                                        S_Pu_bisagrasPuertas,
-                                        S_Pu_defensa,
-                                        S_Pu_luzGaliboSupTraseras,
-                                        S_Pu_plafonesDer,
-                                        S_Pu_plafonesIzq,
-                                        S_Pl_luzPlaca,
-                                        S_Pl_placa,
-                                        S_S1_sello1,
-                                        S_S1_altaSeguridad,
-                                        S_LlDE1_birlosPivote,
-                                        S_LlDE1_llantasPos5,
-                                        S_LlDE1_llantasPos6,
-                                        S_LlDE1_masaYoyo,
-                                        S_LlDE1_rin,
-                                        S_LlDE1_tieneLodera,
-                                        S_DRP1_fondoPlaga,
-                                        S_DRP1_pisoPlaga,
-                                        S_DRP1_techoPlaga,
-                                        S_DRP1_lucesCheck,
-                                        S_DRP1_luzGaliboDerFrontalSup,
-                                        S_DRP1_derPlaga,
-                                        S_DRP1_izqPlaga,
-                                        S_DRP1_patinDer,
-                                        S_DRP2_cuartoLadoDer,
-                                        S_DRP2_loderaDer,
-                                        S_DRP2_lucesCheck,
-                                        S_DRP2_luzBarcoDer,
-                                        S_DRP2_rompevientosDer,
-                                        S_S2_escotilla,
-                                        S_S2_sello2,
-                                        S_S2_altaSeguridad,
-                                        S_LlIE2_birlosPivote,
-                                        S_LlIE2_llantasPos3,
-                                        S_LlIE2_llantasPos4,
-                                        S_LlIE2_masaYoyo,
-                                        S_LlIE2_rin,
-                                        S_LlIE2_tieneLodera,
-                                        S_LlDE2_birlosPivote,
-                                        S_LlDE2_llantasPos7,
-                                        S_LlDE2_llantasPos8,
-                                        S_LlDE2_masaYoyo,
-                                        S_LlDE2_rin,
-                                        S_LlDE2_tieneLodera,
-                                        S_CFD_amortiguador,
-                                        S_CFD_bolsaAire,
-                                        S_CFD_gavilan,
-                                        S_CFD_muelle,
-                                        S_CFD_rotachamber,
-                                        S_CTD_amortiguador,
-                                        S_CTD_bolsaAire,
-                                        S_CTD_matraca,
-                                        S_CTD_muelle,
-                                        S_CTD_rotachamber,
-                                        S_CFI_amortiguador,
-                                        S_CFI_bolsaAire,
-                                        S_CFI_gavilan,
-                                        S_CFI_muelle,
-                                        S_CFI_rotachamber,
-                                        S_CTI_amortiguador,
-                                        S_CTI_bolsaAire,
-                                        S_CTI_matraca,
-                                        S_CTI_muelle,
-                                        S_CTI_rotachamber
-                                );
-
-                                                Call<List<CEnvio>> callenvio2 = dxApi.getEnvio2(post6);
-
-                                                callenvio2.enqueue(new Callback<List<CEnvio>>() {
-                                                    @Override
-                                                    public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
-
-                                                        if (!response.isSuccessful()) {
-                                                            Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
-                                                        }
-
-                                                        List<CEnvio> cEnvio2s = response.body();
-                                                        String mensaje = cEnvio2s.get(0).getMensaje();
-
-                                                        if (mensaje.contains("Enviado con exito")){
-
-                                                            Intent i = new Intent(imgActivity.this, firmasActivity.class);
-                                                            i.putExtra("folio", folio);
-                                                            i.putExtra("mensaje", id);
-                                                            startActivity(i);
-
-                                                        }else{
-                                                            Toast.makeText(imgActivity.this, "Error al Enviar", Toast.LENGTH_LONG).show();
-                                                        }
+                    ) {
 
 
-                                                    }
+                        Post6 post6 = new Post6(user, password, idRemolque, "2", mensaje, sello1S, sello2S, ll1,
+                                ll2, ll3, ll4, ll5, ll6, ll7, ll8, lljumbo, 0, selloExtra, sello3S, 0, "",
+                                placasDatosD,
+                                comentarios,
+                                S_defensa,
+                                S_llantas,
+                                S_pisoTractor,
+                                S_tanqueDiesel,
+                                S_cabinaCompartimientos,
+                                S_tanqueAire,
+                                S_quintaRueda,
+                                S_ejesTransmision,
+                                S_tuboEscape,
+                                S_motor,
+                                S_baseRemolque,
+                                S_puerta,
+                                S_paredLateralDerecha,
+                                S_techos,
+                                S_paredFrontal,
+                                S_paredLateralIzquierda,
+                                S_pisoInterno,
+                                S_vvtt,
+                                S_IRP1_inspeccionMecanica,
+                                S_IRP1_lucesCheck,
+                                S_IRP1_luzGaliboIzqFrontalSup,
+                                S_IRP1_manitas,
+                                S_IRP1_manivela,
+                                S_IRP1_patinIzq,
+                                S_IRP2_cuartoLadoIzq,
+                                S_IRP2_loderaIzq,
+                                S_IRP2_lucesCheck,
+                                S_IRP2_luzABS,
+                                S_IRP2_luzBarcoIzq,
+                                S_IRP2_rompevientosIzq,
+                                S_LlIE1_birlosPivote,
+                                S_LlIE1_llantasPos1,
+                                S_LlIE1_llantasPos2,
+                                S_LlIE1_masaYoyo,
+                                S_LlIE1_rin,
+                                S_LlIE1_tieneLodera,
+                                S_Pu_bisagrasPuertas,
+                                S_Pu_defensa,
+                                S_Pu_luzGaliboSupTraseras,
+                                S_Pu_plafonesDer,
+                                S_Pu_plafonesIzq,
+                                S_Pl_luzPlaca,
+                                S_Pl_placa,
+                                S_S1_sello1,
+                                S_S1_altaSeguridad,
+                                S_LlDE1_birlosPivote,
+                                S_LlDE1_llantasPos5,
+                                S_LlDE1_llantasPos6,
+                                S_LlDE1_masaYoyo,
+                                S_LlDE1_rin,
+                                S_LlDE1_tieneLodera,
+                                S_DRP1_fondoPlaga,
+                                S_DRP1_pisoPlaga,
+                                S_DRP1_techoPlaga,
+                                S_DRP1_lucesCheck,
+                                S_DRP1_luzGaliboDerFrontalSup,
+                                S_DRP1_derPlaga,
+                                S_DRP1_izqPlaga,
+                                S_DRP1_patinDer,
+                                S_DRP2_cuartoLadoDer,
+                                S_DRP2_loderaDer,
+                                S_DRP2_lucesCheck,
+                                S_DRP2_luzBarcoDer,
+                                S_DRP2_rompevientosDer,
+                                S_S2_escotilla,
+                                S_S2_sello2,
+                                S_S2_altaSeguridad,
+                                S_LlIE2_birlosPivote,
+                                S_LlIE2_llantasPos3,
+                                S_LlIE2_llantasPos4,
+                                S_LlIE2_masaYoyo,
+                                S_LlIE2_rin,
+                                S_LlIE2_tieneLodera,
+                                S_LlDE2_birlosPivote,
+                                S_LlDE2_llantasPos7,
+                                S_LlDE2_llantasPos8,
+                                S_LlDE2_masaYoyo,
+                                S_LlDE2_rin,
+                                S_LlDE2_tieneLodera,
+                                S_CFD_amortiguador,
+                                S_CFD_bolsaAire,
+                                S_CFD_gavilan,
+                                S_CFD_muelle,
+                                S_CFD_rotachamber,
+                                S_CTD_amortiguador,
+                                S_CTD_bolsaAire,
+                                S_CTD_matraca,
+                                S_CTD_muelle,
+                                S_CTD_rotachamber,
+                                S_CFI_amortiguador,
+                                S_CFI_bolsaAire,
+                                S_CFI_gavilan,
+                                S_CFI_muelle,
+                                S_CFI_rotachamber,
+                                S_CTI_amortiguador,
+                                S_CTI_bolsaAire,
+                                S_CTI_matraca,
+                                S_CTI_muelle,
+                                S_CTI_rotachamber
+                        );
 
-                                                    @Override
-                                                    public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                                        Toast.makeText(imgActivity.this, "Error 404", Toast.LENGTH_LONG).show();
-                                                    }
-                                                });
-                        }
+                        Call<List<CEnvio>> callenvio2 = dxApi.getEnvio2(post6);
+
+                        callenvio2.enqueue(new Callback<List<CEnvio>>() {
+                            @Override
+                            public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+
+                                if (!response.isSuccessful()) {
+                                    Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
+                                }
+
+                                List<CEnvio> cEnvio2s = response.body();
+                                String mensaje = cEnvio2s.get(0).getMensaje();
+
+                                if (mensaje.contains("Enviado con exito")){
+
+                                    Intent i = new Intent(imgActivity.this, firmasActivity.class);
+                                    i.putExtra("folio", folio);
+                                    i.putExtra("mensaje", id);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
+
+                                }else{
+                                    Toast.makeText(imgActivity.this, "Error al Enviar", Toast.LENGTH_LONG).show();
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                                Toast.makeText(imgActivity.this, "Error 404", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 }
             }
@@ -2826,8 +2806,9 @@ public class imgActivity extends AppCompatActivity {
 
     private void imgClick (String photo , int code){
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        try{
 
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
         //File destPath = new File(String.valueOf(getBaseContext().getCacheDir()));
         imageFileName = null ;
@@ -2835,22 +2816,22 @@ public class imgActivity extends AppCompatActivity {
         photoURI = null;
         imageFileName = photo+ "-Folio"+folio ;
 
-        try {
             imageFile = File.createTempFile(
                     imageFileName,  // prefix
                     ".jpeg",         // suffix
                     destPath      // directory
             );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         photoURI = FileProvider.getUriForFile(getBaseContext(), getBaseContext().getApplicationContext().getPackageName() + ".provider", imageFile);
         camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         camera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(camera,code);
+
+        }catch (Exception e ){
+
+            logApp(e.getMessage(),"Img","Intercambios DX");
+
+        }
 
     }
 
@@ -2883,11 +2864,16 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_TRACTO_DER);
+                    upload up = new upload();
+                    up.execute(REQUEST_TRACTO_DER);
+
+                    //uploadServer(REQUEST_TRACTO_DER);
+
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
+
 
                     tractoDer.setImageBitmap(thumbImage);
                 }else {
@@ -2898,7 +2884,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTO_FRENTE:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_TRACTO_FRENTE);
+                    upload up = new upload();
+                    up.execute(REQUEST_TRACTO_FRENTE);
+
+                    //uploadServer(REQUEST_TRACTO_FRENTE);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -2913,7 +2902,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTO_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_TRACTO_IZQ);
+                    upload up = new upload();
+                    up.execute(REQUEST_TRACTO_IZQ);
+
+                   // uploadServer(REQUEST_TRACTO_IZQ);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -2928,8 +2920,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_NoECONOMICO:
                 if (resultCode == Activity.RESULT_OK ) {
 
+                    upload up = new upload();
+                    up.execute(REQUEST_NoECONOMICO);
 
-                    uploadServer(REQUEST_NoECONOMICO);
+                    //uploadServer(REQUEST_NoECONOMICO);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -2943,7 +2937,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_IZQ_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_IZQ_REMOLQUE_P1);
+                    upload up = new upload();
+                    up.execute(REQUEST_IZQ_REMOLQUE_P1);
+
+                   // uploadServer(REQUEST_IZQ_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -2959,7 +2956,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_VIN:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_VIN);
+                    upload up = new upload();
+                    up.execute(REQUEST_VIN);
+
+                    //uploadServer(REQUEST_VIN);
                     Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -2976,7 +2976,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_FRONTAL_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_CHASIS_FRONTAL_IZQ);
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_FRONTAL_IZQ);
+
+                    //uploadServer(REQUEST_CHASIS_FRONTAL_IZQ);
                     Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -2993,7 +2996,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_TRASERO_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_CHASIS_TRASERO_IZQ);
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_TRASERO_IZQ);
+
+                    //uploadServer(REQUEST_CHASIS_TRASERO_IZQ);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3008,7 +3014,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_IZQ_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_LLANTAS_IZQ_EJE1);
+                    upload up = new upload();
+                    up.execute(REQUEST_LLANTAS_IZQ_EJE1);
+
+                    //uploadServer(REQUEST_LLANTAS_IZQ_EJE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3025,7 +3034,11 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST__LLANTAS_IZQ_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST__LLANTAS_IZQ_EJE2);
+
+                    upload up = new upload();
+                    up.execute(REQUEST__LLANTAS_IZQ_EJE2);
+
+                    //uploadServer(REQUEST__LLANTAS_IZQ_EJE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3040,7 +3053,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_IZQ_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_IZQ_REMOLQUE_P2);
+                    upload up = new upload();
+                    up.execute(REQUEST_IZQ_REMOLQUE_P2);
+
+                    //uploadServer(REQUEST_IZQ_REMOLQUE_P2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3055,7 +3071,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_PUERTAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_PUERTAS);
+                    upload up = new upload();
+                    up.execute(REQUEST_PUERTAS);
+
+                    //uploadServer(REQUEST_PUERTAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3070,7 +3089,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_PLACAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_PLACAS);
+                    upload up = new upload();
+                    up.execute(REQUEST_PLACAS);
+
+                    //uploadServer(REQUEST_PLACAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3085,7 +3107,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_SELLO1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_SELLO1);
+                    upload up = new upload();
+                    up.execute(REQUEST_SELLO1);
+
+                    //uploadServer(REQUEST_SELLO1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3100,7 +3125,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_SELLO2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_SELLO2);
+                    upload up = new upload();
+                    up.execute(REQUEST_SELLO2);
+
+                    //uploadServer(REQUEST_SELLO2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3115,7 +3143,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_DER_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_DER_REMOLQUE_P1);
+                    upload up = new upload();
+                    up.execute(REQUEST_DER_REMOLQUE_P1);
+
+                    //uploadServer(REQUEST_DER_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3130,7 +3161,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_DER_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_LLANTAS_DER_EJE2);
+                    upload up = new upload();
+                    up.execute(REQUEST_LLANTAS_DER_EJE2);
+
+                    //uploadServer(REQUEST_LLANTAS_DER_EJE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3145,7 +3179,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_DER_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_LLANTAS_DER_EJE1);
+                    upload up = new upload();
+                    up.execute(REQUEST_LLANTAS_DER_EJE1);
+
+                    //uploadServer(REQUEST_LLANTAS_DER_EJE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3160,7 +3197,10 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_TRASERO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(REQUEST_CHASIS_TRASERO_DER);
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_TRASERO_DER);
+
+                    //uploadServer(REQUEST_CHASIS_TRASERO_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3174,7 +3214,12 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_CHASIS_FRONTAL_DER:
                 if (resultCode == Activity.RESULT_OK ) {
-                    uploadServer(REQUEST_CHASIS_FRONTAL_DER);
+
+
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_FRONTAL_DER);
+
+                    //uploadServer(REQUEST_CHASIS_FRONTAL_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3189,7 +3234,11 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_DER_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
-                    uploadServer(REQUEST_DER_REMOLQUE_P2);
+
+                    upload up = new upload();
+                    up.execute(REQUEST_DER_REMOLQUE_P2);
+
+                    //uploadServer(REQUEST_DER_REMOLQUE_P2);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3204,7 +3253,12 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_SELLO3:
                 if (resultCode == Activity.RESULT_OK ) {
-                    uploadServer(REQUEST_SELLO3);
+
+                    upload up = new upload();
+                    up.execute(REQUEST_SELLO3);
+
+
+                   // uploadServer(REQUEST_SELLO3);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3220,7 +3274,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE1);
+                    upload up = new upload();
+                    up.execute(DAMAGE1);
+
+                    //uploadServer(DAMAGE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3235,7 +3292,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE2);
+                    upload up = new upload();
+                    up.execute(DAMAGE2);
+
+                    //uploadServer(DAMAGE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3250,7 +3310,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE3:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE3);
+                    upload up = new upload();
+                    up.execute(DAMAGE3);
+
+                    //uploadServer(DAMAGE3);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3265,7 +3328,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE4:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE4);
+                    upload up = new upload();
+                    up.execute(DAMAGE4);
+
+                    //uploadServer(DAMAGE4);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3280,7 +3346,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE5:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE5);
+                    upload up = new upload();
+                    up.execute(DAMAGE5);
+
+                    //uploadServer(DAMAGE5);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3295,7 +3364,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE6:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE6);
+                    upload up = new upload();
+                    up.execute(DAMAGE6);
+
+                    //uploadServer(DAMAGE6);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3310,7 +3382,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE7:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE7);
+                    upload up = new upload();
+                    up.execute(DAMAGE7);
+
+                    //uploadServer(DAMAGE7);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3325,7 +3400,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE8:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE8);
+                    upload up = new upload();
+                    up.execute(DAMAGE8);
+
+                    //uploadServer(DAMAGE8);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3340,7 +3418,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE9:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE9);
+                    upload up = new upload();
+                    up.execute(DAMAGE9);
+
+                    //uploadServer(DAMAGE9);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3355,7 +3436,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE10:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE10);
+                    upload up = new upload();
+                    up.execute(DAMAGE10);
+
+                    //uploadServer(DAMAGE10);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3370,7 +3454,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE11:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE11);
+                    upload up = new upload();
+                    up.execute(DAMAGE11);
+
+                    //uploadServer(DAMAGE11);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3385,7 +3472,10 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE12:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    uploadServer(DAMAGE12);
+                    upload up = new upload();
+                    up.execute(DAMAGE12);
+
+                    //uploadServer(DAMAGE12);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -3443,11 +3533,24 @@ public class imgActivity extends AppCompatActivity {
             public void run() {
 
                 try {
+
+                    if(bm1!=null)
+                    {
+                        bm1.recycle();
+                        bm1=null;
+                    }
+
                     String path = imageFile.getPath();
-                    Bitmap bm = BitmapFactory.decodeFile(path);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bm.compress(Bitmap.CompressFormat.JPEG, 70, baos);
-                    String encodedImage = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
+                    bm1 = BitmapFactory.decodeFile(path);
+
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bm1.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                    byte [] byte_arr = new byte[3000];
+                    byte_arr = stream.toByteArray();
+                    String base64 = new String(Base64.encode(byte_arr,2));
+
+
 
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://"+ip+"/api/")
@@ -3456,7 +3559,7 @@ public class imgActivity extends AppCompatActivity {
 
                     dxApi = retrofit.create(DxApi.class);
 
-                    Post5 post5 = new Post5(user,password,imageFileName,encodedImage,folio);
+                    Post5 post5 = new Post5(user,password,imageFileName,base64,folio);
                     Call<String> callImg = dxApi.getImg(post5);
 
                     callImg.enqueue(new Callback<String>() {
@@ -3470,7 +3573,22 @@ public class imgActivity extends AppCompatActivity {
                             String cEnvios = String.valueOf(response);
 
 
-                            Toast.makeText(getBaseContext(),"Imagen Cargada",Toast.LENGTH_SHORT).show();
+                                    try {
+                                        File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
+                                        String path = destPath.toString();
+                                        File directory = new File(path);
+                                        File[] files = directory.listFiles();
+
+                                        for(File file : files) {
+                                            Log.d("Files", "FileName:" + file.getName());
+                                            file.delete();
+                                        }
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+
                         }
 
                         @Override
@@ -4079,6 +4197,712 @@ public class imgActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void logApp (String mensaje, String pantalla, String app){
+        try {
+            DxApi dxApi;
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://dxxpress.net/API/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            dxApi = retrofit.create(DxApi.class);
+
+            PostLogApp postLogApp = new PostLogApp(user, password, mensaje, app, pantalla);
+
+            Call<List<CEnvio>> call = dxApi.getLogApp(postLogApp);
+
+            call.enqueue(new Callback<List<CEnvio>>() {
+                @Override
+                public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+                    if (!response.isSuccessful()) {
+                        String khe = "papa nicolss ???";
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                    String khe = "papa nicolss ???";
+                }
+            });
+
+
+        }catch (Exception e){
+            String khe = "papa nicolss ???";
+        }
+
+    }
+
+
+    private class upload extends AsyncTask<Integer,Void,Void>{
+
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+
+            int codigo = integers[0];
+
+            try {
+
+                if(bm1!=null)
+                {
+                    bm1.recycle();
+                    bm1=null;
+                }
+
+                String path = imageFile.getPath();
+                bm1 = BitmapFactory.decodeFile(path);
+
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bm1.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                byte [] byte_arr = new byte[3000];
+                byte_arr = stream.toByteArray();
+                String base64 = new String(Base64.encode(byte_arr,2));
+
+
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://"+ip+"/api/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                dxApi = retrofit.create(DxApi.class);
+
+                Post5 post5 = new Post5(user,password,imageFileName,base64,folio);
+                Call<String> callImg = dxApi.getImg(post5);
+
+                callImg.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if(!response.isSuccessful()){
+                            Toast.makeText(imgActivity.this, "Error 500", Toast.LENGTH_LONG).show();
+                        }
+
+                        String cEnvios = String.valueOf(response);
+
+
+                        try {
+                            File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
+                            String path = destPath.toString();
+                            File directory = new File(path);
+                            File[] files = directory.listFiles();
+
+                            for(File file : files) {
+                                Log.d("Files", "FileName:" + file.getName());
+                                file.delete();
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                        Toast.makeText(getBaseContext(),"Error 400Img : "+ t.getMessage() ,Toast.LENGTH_SHORT).show();
+
+
+                        switch (codigo){
+                               /* case REQUEST_TRACTOR:
+
+                                    tractor.setImageBitmap(null);
+                                    tractor.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractor.setEnabled(true);
+
+                                    break;*/
+                            case REQUEST_TRACTO_DER:
+
+                                tractoDer.setImageBitmap(null);
+                                tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                tractoDer.setEnabled(true);
+
+                                break;
+                            case REQUEST_TRACTO_FRENTE:
+
+                                tractoFrente.setImageBitmap(null);
+                                tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
+                                tractoFrente.setEnabled(true);
+
+                                break;
+                            case REQUEST_TRACTO_IZQ:
+
+                                tractoIzq.setImageBitmap(null);
+                                tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                tractoIzq.setEnabled(true);
+
+                                break;
+                            case REQUEST_NoECONOMICO:
+
+                                noEconomico.setImageBitmap(null);
+                                noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
+                                noEconomico.setEnabled(true);
+
+                                break;
+                            case REQUEST_IZQ_REMOLQUE_P1:
+
+
+                                izqRemolqueP1.setImageBitmap(null);
+                                izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                izqRemolqueP1.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST_VIN:
+
+                                vin.setImageBitmap(null);
+                                vin.setBackgroundColor(Color.parseColor("#074EAB"));
+                                vin.setEnabled(true);
+
+
+                                break;
+                            case REQUEST_CHASIS_FRONTAL_IZQ:
+
+
+                                chasisFrontalIzq.setImageBitmap(null);
+                                chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisFrontalIzq.setEnabled(true);
+
+                                break;
+                            case REQUEST_CHASIS_TRASERO_IZQ:
+
+
+                                chasisTraseroIzq.setImageBitmap(null);
+                                chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisTraseroIzq.setEnabled(true);
+
+                                break;
+                            case REQUEST_LLANTAS_IZQ_EJE1:
+
+
+                                llantasIzqEje1.setImageBitmap(null);
+                                llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasIzqEje1.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST__LLANTAS_IZQ_EJE2:
+
+                                llantasIzqEje2.setImageBitmap(null);
+                                llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasIzqEje2.setEnabled(true);
+
+                                break;
+                            case REQUEST_IZQ_REMOLQUE_P2:
+
+
+                                izqRemolqueP2.setImageBitmap(null);
+                                izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                izqRemolqueP2.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST_PUERTAS:
+
+
+                                puertas.setImageBitmap(null);
+                                puertas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                puertas.setEnabled(true);
+
+                                break;
+                            case REQUEST_PLACAS:
+
+                                placas.setImageBitmap(null);
+                                placas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                placas.setEnabled(true);
+
+                                break;
+                            case REQUEST_SELLO1:
+
+
+                                sello1.setImageBitmap(null);
+                                sello1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                sello1.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST_SELLO2:
+
+
+                                sello2.setImageBitmap(null);
+                                sello2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                sello2.setEnabled(true);
+
+                                break;
+                            case REQUEST_DER_REMOLQUE_P1:
+
+
+
+                                derRemolqueP1.setImageBitmap(null);
+                                derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                derRemolqueP1.setEnabled(true);
+
+                                break;
+                            case REQUEST_LLANTAS_DER_EJE2:
+
+
+                                llantasDerEje2.setImageBitmap(null);
+                                llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasDerEje2.setEnabled(true);
+
+                                break;
+                            case REQUEST_LLANTAS_DER_EJE1:
+
+
+                                llantasDerEje1.setImageBitmap(null);
+                                llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasDerEje1.setEnabled(true);
+
+                                break;
+                            case REQUEST_CHASIS_TRASERO_DER:
+
+
+                                chasisTraseroDer.setImageBitmap(null);
+                                chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisTraseroDer.setEnabled(true);
+
+                                break;
+                            case REQUEST_CHASIS_FRONTAL_DER:
+
+
+                                chasisFrontalDER.setImageBitmap(null);
+                                chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisFrontalDER.setEnabled(true);
+
+                                break;
+                            case REQUEST_DER_REMOLQUE_P2:
+
+
+                                derRemolqueP2.setImageBitmap(null);
+                                derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                derRemolqueP2.setEnabled(true);
+
+                                break;
+                            case REQUEST_SELLO3:
+
+
+                                sello3.setImageBitmap(null);
+                                sello3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                sello3.setEnabled(true);
+
+                                break;
+                            case DAMAGE1:
+
+
+                                damage1.setImageBitmap(null);
+                                damage1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage1.setEnabled(true);
+
+                                break;
+                            case DAMAGE2:
+
+
+                                damage2.setImageBitmap(null);
+                                damage2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage2.setEnabled(true);
+
+                                break;
+                            case DAMAGE3:
+
+
+                                damage3.setImageBitmap(null);
+                                damage3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage3.setEnabled(true);
+
+                                break;
+                            case DAMAGE4:
+
+
+                                damage4.setImageBitmap(null);
+                                damage4.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage4.setEnabled(true);
+
+                                break;
+                            case DAMAGE5:
+
+
+                                damage5.setImageBitmap(null);
+                                damage5.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage5.setEnabled(true);
+
+                                break;
+                            case DAMAGE6:
+
+
+                                damage6.setImageBitmap(null);
+                                damage6.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage6.setEnabled(true);
+
+                                break;
+                            case DAMAGE7:
+
+
+                                damage7.setImageBitmap(null);
+                                damage7.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage7.setEnabled(true);
+
+                                break;
+                            case DAMAGE8:
+
+
+                                damage8.setImageBitmap(null);
+                                damage8.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage8.setEnabled(true);
+
+                                break;
+                            case DAMAGE9:
+
+
+                                damage9.setImageBitmap(null);
+                                damage9.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage9.setEnabled(true);
+
+                                break;
+                            case DAMAGE10:
+
+
+                                damage10.setImageBitmap(null);
+                                damage10.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage10.setEnabled(true);
+
+                                break;
+                            case DAMAGE11:
+
+
+                                damage11.setImageBitmap(null);
+                                damage11.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage11.setEnabled(true);
+
+                                break;
+                            case DAMAGE12:
+
+
+                                damage12.setImageBitmap(null);
+                                damage12.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage12.setEnabled(true);
+
+                                break;
+
+
+
+                        }
+
+                    }
+                });
+
+            } catch (Exception e) {
+
+                e.getMessage();
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getBaseContext(),"Error al enviar imagen",Toast.LENGTH_SHORT).show();
+
+
+                        switch (codigo){
+                               /* case REQUEST_TRACTOR:
+
+                                    tractor.setImageBitmap(null);
+                                    tractor.setBackgroundColor(Color.parseColor("#074EAB"));
+                                    tractor.setEnabled(true);
+
+                                    break;*/
+                            case REQUEST_TRACTO_DER:
+
+                                tractoDer.setImageBitmap(null);
+                                tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                tractoDer.setEnabled(true);
+
+                                break;
+                            case REQUEST_TRACTO_FRENTE:
+
+                                tractoFrente.setImageBitmap(null);
+                                tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
+                                tractoFrente.setEnabled(true);
+
+                                break;
+                            case REQUEST_TRACTO_IZQ:
+
+                                tractoIzq.setImageBitmap(null);
+                                tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                tractoIzq.setEnabled(true);
+
+                                break;
+                            case REQUEST_NoECONOMICO:
+
+                                noEconomico.setImageBitmap(null);
+                                noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
+                                noEconomico.setEnabled(true);
+
+                                break;
+                            case REQUEST_IZQ_REMOLQUE_P1:
+
+
+                                izqRemolqueP1.setImageBitmap(null);
+                                izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                izqRemolqueP1.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST_VIN:
+
+                                vin.setImageBitmap(null);
+                                vin.setBackgroundColor(Color.parseColor("#074EAB"));
+                                vin.setEnabled(true);
+
+
+                                break;
+                            case REQUEST_CHASIS_FRONTAL_IZQ:
+
+
+                                chasisFrontalIzq.setImageBitmap(null);
+                                chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisFrontalIzq.setEnabled(true);
+
+                                break;
+                            case REQUEST_CHASIS_TRASERO_IZQ:
+
+
+                                chasisTraseroIzq.setImageBitmap(null);
+                                chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisTraseroIzq.setEnabled(true);
+
+                                break;
+                            case REQUEST_LLANTAS_IZQ_EJE1:
+
+
+                                llantasIzqEje1.setImageBitmap(null);
+                                llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasIzqEje1.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST__LLANTAS_IZQ_EJE2:
+
+                                llantasIzqEje2.setImageBitmap(null);
+                                llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasIzqEje2.setEnabled(true);
+
+                                break;
+                            case REQUEST_IZQ_REMOLQUE_P2:
+
+
+                                izqRemolqueP2.setImageBitmap(null);
+                                izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                izqRemolqueP2.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST_PUERTAS:
+
+
+                                puertas.setImageBitmap(null);
+                                puertas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                puertas.setEnabled(true);
+
+                                break;
+                            case REQUEST_PLACAS:
+
+                                placas.setImageBitmap(null);
+                                placas.setBackgroundColor(Color.parseColor("#074EAB"));
+                                placas.setEnabled(true);
+
+                                break;
+                            case REQUEST_SELLO1:
+
+
+                                sello1.setImageBitmap(null);
+                                sello1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                sello1.setEnabled(true);
+
+
+
+                                break;
+                            case REQUEST_SELLO2:
+
+
+                                sello2.setImageBitmap(null);
+                                sello2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                sello2.setEnabled(true);
+
+                                break;
+                            case REQUEST_DER_REMOLQUE_P1:
+
+
+
+                                derRemolqueP1.setImageBitmap(null);
+                                derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                derRemolqueP1.setEnabled(true);
+
+                                break;
+                            case REQUEST_LLANTAS_DER_EJE2:
+
+
+                                llantasDerEje2.setImageBitmap(null);
+                                llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasDerEje2.setEnabled(true);
+
+                                break;
+                            case REQUEST_LLANTAS_DER_EJE1:
+
+
+                                llantasDerEje1.setImageBitmap(null);
+                                llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                llantasDerEje1.setEnabled(true);
+
+                                break;
+                            case REQUEST_CHASIS_TRASERO_DER:
+
+
+                                chasisTraseroDer.setImageBitmap(null);
+                                chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisTraseroDer.setEnabled(true);
+
+                                break;
+                            case REQUEST_CHASIS_FRONTAL_DER:
+
+
+                                chasisFrontalDER.setImageBitmap(null);
+                                chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
+                                chasisFrontalDER.setEnabled(true);
+
+                                break;
+                            case REQUEST_DER_REMOLQUE_P2:
+
+
+                                derRemolqueP2.setImageBitmap(null);
+                                derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                derRemolqueP2.setEnabled(true);
+
+                                break;
+                            case REQUEST_SELLO3:
+
+
+                                sello3.setImageBitmap(null);
+                                sello3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                sello3.setEnabled(true);
+
+                                break;
+                            case DAMAGE1:
+
+
+                                damage1.setImageBitmap(null);
+                                damage1.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage1.setEnabled(true);
+
+                                break;
+                            case DAMAGE2:
+
+
+                                damage2.setImageBitmap(null);
+                                damage2.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage2.setEnabled(true);
+
+                                break;
+                            case DAMAGE3:
+
+
+                                damage3.setImageBitmap(null);
+                                damage3.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage3.setEnabled(true);
+
+                                break;
+                            case DAMAGE4:
+
+
+                                damage4.setImageBitmap(null);
+                                damage4.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage4.setEnabled(true);
+
+                                break;
+                            case DAMAGE5:
+
+
+                                damage5.setImageBitmap(null);
+                                damage5.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage5.setEnabled(true);
+
+                                break;
+                            case DAMAGE6:
+
+
+                                damage6.setImageBitmap(null);
+                                damage6.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage6.setEnabled(true);
+
+                                break;
+                            case DAMAGE7:
+
+
+                                damage7.setImageBitmap(null);
+                                damage7.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage7.setEnabled(true);
+
+                                break;
+                            case DAMAGE8:
+
+
+                                damage8.setImageBitmap(null);
+                                damage8.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage8.setEnabled(true);
+
+                                break;
+                            case DAMAGE9:
+
+
+                                damage9.setImageBitmap(null);
+                                damage9.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage9.setEnabled(true);
+
+                                break;
+                            case DAMAGE10:
+
+
+                                damage10.setImageBitmap(null);
+                                damage10.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage10.setEnabled(true);
+
+                                break;
+                            case DAMAGE11:
+
+
+                                damage11.setImageBitmap(null);
+                                damage11.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage11.setEnabled(true);
+
+                                break;
+                            case DAMAGE12:
+
+
+                                damage12.setImageBitmap(null);
+                                damage12.setBackgroundColor(Color.parseColor("#074EAB"));
+                                damage12.setEnabled(true);
+
+                                break;
+
+
+                        }
+
+
+                    }
+                });
+            }
+
+            return null;
+        }
     }
 
 

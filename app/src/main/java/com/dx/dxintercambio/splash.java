@@ -29,6 +29,7 @@ public class splash extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_splash);
         try {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
@@ -72,6 +73,7 @@ public class splash extends Activity {
                             if (res.contains("1")){
                                 Intent i = new Intent(splash.this, envioActivity.class);
                                 i.putExtra("idUsuario", idUsuario);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                             } else {
                                 Toast.makeText(splash.this, "Usuario Incorrecto" , Toast.LENGTH_SHORT).show();
@@ -83,6 +85,7 @@ public class splash extends Activity {
                         public void onFailure(Call<List<CUsuario>> call, Throwable t) {
                             Toast.makeText(splash.this, "Error 404" , Toast.LENGTH_LONG).show();
                             Intent i = new Intent(splash.this, MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                         }
                     });
@@ -93,11 +96,13 @@ public class splash extends Activity {
 
 
                     Intent i = new Intent(splash.this, MainActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
 
                 } else {
 
                     Intent i = new Intent(splash.this, MainActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
 
@@ -107,6 +112,7 @@ public class splash extends Activity {
         }catch (Exception e ){
 
             Intent i = new Intent(splash.this, MainActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
         }
     }

@@ -37,7 +37,9 @@ import androidx.core.content.FileProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -110,7 +112,6 @@ public class envioActivity extends AppCompatActivity {
                         public void onClick(final DialogInterface dialog, final int id) {
 
 
-
                             SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("user", "");
@@ -118,6 +119,7 @@ public class envioActivity extends AppCompatActivity {
                             editor.commit();
 
                             Intent i = new Intent(envioActivity.this, MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
 
                         }
@@ -624,17 +626,19 @@ public class envioActivity extends AppCompatActivity {
 
                                     String imageFilePath = imageFile.getPath();
                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
-                                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                                    String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                    byte [] byte_arr = stream.toByteArray();
+                                    String encodedImage = new String(Base64.encode(byte_arr,2));
 
 
                                     folio = "";
                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
                                     folio = ("NL"+hora+idRemolque);
 
-                                    envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,0,idOperador,0,
-                                            0,0,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
+
+                                    envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
+                                            idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
                                             "licencia"+folio,"","");
 
                                     }
@@ -655,9 +659,10 @@ public class envioActivity extends AppCompatActivity {
                                                 }else {
                                                     String imageFilePath = imageFile.getPath();
                                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
-                                                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                                                    String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+                                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                                    byte [] byte_arr = stream.toByteArray();
+                                                    String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
@@ -674,9 +679,10 @@ public class envioActivity extends AppCompatActivity {
                                                 }else {
                                                     String imageFilePath = imageFile.getPath();
                                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
-                                                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                                                    String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+                                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                                    byte [] byte_arr = stream.toByteArray();
+                                                    String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
@@ -694,9 +700,10 @@ public class envioActivity extends AppCompatActivity {
                                                 }else {
                                                     String imageFilePath = imageFile.getPath();
                                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
-                                                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                                                    String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+                                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                                    byte [] byte_arr = stream.toByteArray();
+                                                    String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
@@ -714,9 +721,10 @@ public class envioActivity extends AppCompatActivity {
                                      }else {
                                          String imageFilePath = imageFile.getPath();
                                          Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
-                                         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                                         String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+                                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                         byte [] byte_arr = stream.toByteArray();
+                                         String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                          folio = "";
                                          hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
@@ -761,7 +769,7 @@ public class envioActivity extends AppCompatActivity {
                                              if (idRemolque == 0 && remolque2 == "0" ) {
                                                  charlie = 400;
                                              }else if(idRemolque == 0 && remolque2 == "1" ){
-                                                 if(unidadStr2.isEmpty()){
+                                                 if(remolqueStr2.isEmpty()){
                                                      charlie = 400;
                                                  }
                                              }
@@ -779,9 +787,10 @@ public class envioActivity extends AppCompatActivity {
 
                                             String imageFilePath = imageFile.getPath();
                                             Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
-                                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                                            String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
+                                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                            byte [] byte_arr = stream.toByteArray();
+                                            String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                             folio = "";
                                             hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
@@ -810,12 +819,19 @@ public class envioActivity extends AppCompatActivity {
                     File directory = new File(path);
                     File[] files = directory.listFiles();
 
-                    for (int i = 0; i < files.length; i++)
-                    {
-                        Log.d("Files", "FileName:" + files[i].getName());
-                        getApplicationContext().deleteFile(files[i].getName());
+//                    for (int i = 0; i < files.length; i++)
+//                    {
+//                        Log.d("Files", "FileName:" + files[i].getName());
+//                        String a = files[i].getName();
+//                       // getApplicationContext().deleteFile(files[i].getName());
+//
+//                    }
 
+                    for(File file : files) {
+                        Log.d("Files", "FileName:" + file.getName());
+                        file.delete();
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -887,6 +903,7 @@ public class envioActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
                 if (resultCode == Activity.RESULT_OK ) {
+
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
@@ -905,7 +922,7 @@ public class envioActivity extends AppCompatActivity {
                         int UidRemolque , int UidLinea , int UestatusRemolque , String Ucomentario , String Ufolio, String UcomentarioCancel , int UidIntercambio ,
                         int UtipoMovimiento , String Upatio , String Uimg , String UimgNombre , String UotroUnidad, String UotroRemolque){
 
-        //Toast.makeText(envioActivity.this, "ENVIAO", Toast.LENGTH_LONG).show();
+
 
         Post4 post4 = new Post4(Uuser,Upassword,UfechaHora,UtipoOperacion,UidUsuario,UidSQL,UidTransportista,UidOperador,UidUnidad,
                 UidRemolque,UidLinea,UestatusRemolque,Ucomentario,Ufolio,UcomentarioCancel,UidIntercambio,UtipoMovimiento,Upatio,Uimg,
@@ -949,6 +966,7 @@ public class envioActivity extends AppCompatActivity {
                                     i.putExtra("idUsuario", usuario);
                                     i.putExtra("folio", Ufolio);
                                     i.putExtra("mensaje", mensaje);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i);
                                 }
 
