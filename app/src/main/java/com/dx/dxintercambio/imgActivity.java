@@ -36,6 +36,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Scope;
+import com.squareup.picasso.Picasso;
 
 
 import java.io.ByteArrayOutputStream;
@@ -2864,9 +2865,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_TRACTO_DER);
-
                     //uploadServer(REQUEST_TRACTO_DER);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
@@ -2875,7 +2873,11 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
 
+
                     tractoDer.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_TRACTO_DER);
+
                 }else {
                     tractoDer.setEnabled(true);
                 }
@@ -2884,9 +2886,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTO_FRENTE:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_TRACTO_FRENTE);
-
                     //uploadServer(REQUEST_TRACTO_FRENTE);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -2894,6 +2893,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     tractoFrente.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_TRACTO_FRENTE);
+
                 }else {
                     tractoFrente.setEnabled(true);
                 }
@@ -2902,16 +2904,16 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_TRACTO_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_TRACTO_IZQ);
-
-                   // uploadServer(REQUEST_TRACTO_IZQ);
+                    // uploadServer(REQUEST_TRACTO_IZQ);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     tractoIzq.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_TRACTO_IZQ);
+
                 }else {
                     tractoIzq.setEnabled(true);
                 }
@@ -2920,9 +2922,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_NoECONOMICO:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_NoECONOMICO);
-
                     //uploadServer(REQUEST_NoECONOMICO);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -2930,6 +2929,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     noEconomico.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_NoECONOMICO);
+
                 } else {
                     noEconomico.setEnabled(true);
                 }
@@ -2937,15 +2939,15 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_IZQ_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_IZQ_REMOLQUE_P1);
-
-                   // uploadServer(REQUEST_IZQ_REMOLQUE_P1);
+                    // uploadServer(REQUEST_IZQ_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
                     izqRemolqueP1.setImageBitmap(thumbImage);
+
+                    upload up = new upload();
+                    up.execute(REQUEST_IZQ_REMOLQUE_P1);
 
 
                 }else {
@@ -2956,9 +2958,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_VIN:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_VIN);
-
                     //uploadServer(REQUEST_VIN);
                     Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -2966,6 +2965,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     vin.setImageBitmap(thumbImage);
+
+                    upload up = new upload();
+                    up.execute(REQUEST_VIN);
 
 
                 }else {
@@ -2976,9 +2978,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_FRONTAL_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_CHASIS_FRONTAL_IZQ);
-
                     //uploadServer(REQUEST_CHASIS_FRONTAL_IZQ);
                     Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -2986,6 +2985,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     chasisFrontalIzq.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_FRONTAL_IZQ);
+
 
 
                 }else {
@@ -2996,9 +2998,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_TRASERO_IZQ:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_CHASIS_TRASERO_IZQ);
-
                     //uploadServer(REQUEST_CHASIS_TRASERO_IZQ);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3007,16 +3006,15 @@ public class imgActivity extends AppCompatActivity {
 
                     chasisTraseroIzq.setImageBitmap(thumbImage);
 
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_TRASERO_IZQ);
+
                 }else {
                     chasisTraseroIzq.setEnabled(true);
                 }
                 break;
             case REQUEST_LLANTAS_IZQ_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
-
-                    upload up = new upload();
-                    up.execute(REQUEST_LLANTAS_IZQ_EJE1);
-
                     //uploadServer(REQUEST_LLANTAS_IZQ_EJE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3024,6 +3022,10 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     llantasIzqEje1.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_LLANTAS_IZQ_EJE1);
+
+
 
 
 
@@ -3035,9 +3037,6 @@ public class imgActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK ) {
 
 
-                    upload up = new upload();
-                    up.execute(REQUEST__LLANTAS_IZQ_EJE2);
-
                     //uploadServer(REQUEST__LLANTAS_IZQ_EJE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3045,6 +3044,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     llantasIzqEje2.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST__LLANTAS_IZQ_EJE2);
+
 
                 }else {
                     llantasIzqEje2.setEnabled(true);
@@ -3053,9 +3055,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_IZQ_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_IZQ_REMOLQUE_P2);
-
                     //uploadServer(REQUEST_IZQ_REMOLQUE_P2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3063,6 +3062,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     izqRemolqueP2.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_IZQ_REMOLQUE_P2);
+
 
                 }else {
                     izqRemolqueP2.setEnabled(true);
@@ -3071,9 +3073,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_PUERTAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_PUERTAS);
-
                     //uploadServer(REQUEST_PUERTAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3081,6 +3080,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     puertas.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_PUERTAS);
+
 
                 }else {
                     puertas.setEnabled(true);
@@ -3089,9 +3091,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_PLACAS:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_PLACAS);
-
                     //uploadServer(REQUEST_PLACAS);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3099,6 +3098,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     placas.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_PLACAS);
+
 
                 }else {
                     placas.setEnabled(true);
@@ -3107,9 +3109,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_SELLO1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_SELLO1);
-
                     //uploadServer(REQUEST_SELLO1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3117,6 +3116,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     sello1.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_SELLO1);
+
 
                 }else {
                     sello1.setEnabled(true);
@@ -3125,9 +3127,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_SELLO2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_SELLO2);
-
                     //uploadServer(REQUEST_SELLO2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3135,6 +3134,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     sello2.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_SELLO2);
+
 
                 }else {
                     sello2.setEnabled(true);
@@ -3143,9 +3145,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_DER_REMOLQUE_P1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_DER_REMOLQUE_P1);
-
                     //uploadServer(REQUEST_DER_REMOLQUE_P1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3153,6 +3152,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     derRemolqueP1.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_DER_REMOLQUE_P1);
+
 
                 }else {
                     derRemolqueP1.setEnabled(true);
@@ -3161,9 +3163,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_DER_EJE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_LLANTAS_DER_EJE2);
-
                     //uploadServer(REQUEST_LLANTAS_DER_EJE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3171,6 +3170,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     llantasDerEje2.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_LLANTAS_DER_EJE2);
+
 
                 }else {
                     llantasDerEje2.setEnabled(true);
@@ -3179,9 +3181,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_LLANTAS_DER_EJE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_LLANTAS_DER_EJE1);
-
                     //uploadServer(REQUEST_LLANTAS_DER_EJE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3189,6 +3188,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     llantasDerEje1.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_LLANTAS_DER_EJE1);
+
 
                 }else {
                     llantasDerEje1.setEnabled(true);
@@ -3196,9 +3198,6 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_CHASIS_TRASERO_DER:
                 if (resultCode == Activity.RESULT_OK ) {
-
-                    upload up = new upload();
-                    up.execute(REQUEST_CHASIS_TRASERO_DER);
 
                     //uploadServer(REQUEST_CHASIS_TRASERO_DER);
 
@@ -3208,6 +3207,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     chasisTraseroDer.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_TRASERO_DER);
+
                 }else {
                     chasisTraseroDer.setEnabled(true);
                 }
@@ -3215,9 +3217,6 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_CHASIS_FRONTAL_DER:
                 if (resultCode == Activity.RESULT_OK ) {
 
-
-                    upload up = new upload();
-                    up.execute(REQUEST_CHASIS_FRONTAL_DER);
 
                     //uploadServer(REQUEST_CHASIS_FRONTAL_DER);
 
@@ -3227,6 +3226,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     chasisFrontalDER.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_CHASIS_FRONTAL_DER);
+
 
                 }else {
                     chasisFrontalDER.setEnabled(true);
@@ -3234,9 +3236,6 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case REQUEST_DER_REMOLQUE_P2:
                 if (resultCode == Activity.RESULT_OK ) {
-
-                    upload up = new upload();
-                    up.execute(REQUEST_DER_REMOLQUE_P2);
 
                     //uploadServer(REQUEST_DER_REMOLQUE_P2);
 
@@ -3246,6 +3245,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     derRemolqueP2.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_DER_REMOLQUE_P2);
+
 
                 }else {
                     derRemolqueP2.setEnabled(true);
@@ -3254,11 +3256,7 @@ public class imgActivity extends AppCompatActivity {
             case REQUEST_SELLO3:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(REQUEST_SELLO3);
-
-
-                   // uploadServer(REQUEST_SELLO3);
+                    // uploadServer(REQUEST_SELLO3);
 
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3266,6 +3264,10 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     sello3.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(REQUEST_SELLO3);
+
+
 
                 }else {
                     sello3.setEnabled(true);
@@ -3274,9 +3276,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE1:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE1);
-
                     //uploadServer(DAMAGE1);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3284,6 +3283,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage1.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE1);
+
 
                 }else {
                     damage1.setEnabled(true);
@@ -3292,9 +3294,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE2:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE2);
-
                     //uploadServer(DAMAGE2);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3302,6 +3301,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage2.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE2);
+
 
                 }else {
                     damage2.setEnabled(true);
@@ -3310,9 +3312,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE3:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE3);
-
                     //uploadServer(DAMAGE3);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3320,6 +3319,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage3.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE3);
+
 
                 }else {
                     damage3.setEnabled(true);
@@ -3328,9 +3330,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE4:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE4);
-
                     //uploadServer(DAMAGE4);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3338,6 +3337,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage4.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE4);
+
 
                 }else {
                     damage4.setEnabled(true);
@@ -3346,9 +3348,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE5:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE5);
-
                     //uploadServer(DAMAGE5);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3356,6 +3355,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage5.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE5);
+
 
                 }else {
                     damage5.setEnabled(true);
@@ -3364,9 +3366,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE6:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE6);
-
                     //uploadServer(DAMAGE6);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3374,6 +3373,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage6.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE6);
+
 
                 }else {
                     damage6.setEnabled(true);
@@ -3382,9 +3384,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE7:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE7);
-
                     //uploadServer(DAMAGE7);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3392,6 +3391,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage7.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE7);
+
 
                 }else {
                     damage7.setEnabled(true);
@@ -3400,9 +3402,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE8:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE8);
-
                     //uploadServer(DAMAGE8);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3410,6 +3409,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage8.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE8);
+
 
                 }else {
                     damage8.setEnabled(true);
@@ -3418,9 +3420,6 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE9:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE9);
-
                     //uploadServer(DAMAGE9);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
@@ -3428,6 +3427,9 @@ public class imgActivity extends AppCompatActivity {
                             THUMBSIZE);
 
                     damage9.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE9);
+
 
                 }else {
                     damage9.setEnabled(true);
@@ -3435,9 +3437,6 @@ public class imgActivity extends AppCompatActivity {
                 break;
             case DAMAGE10:
                 if (resultCode == Activity.RESULT_OK ) {
-
-                    upload up = new upload();
-                    up.execute(DAMAGE10);
 
                     //uploadServer(DAMAGE10);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
@@ -3447,15 +3446,16 @@ public class imgActivity extends AppCompatActivity {
 
                     damage10.setImageBitmap(thumbImage);
 
+                    upload up = new upload();
+                    up.execute(DAMAGE10);
+
+
                 }else {
                     damage10.setEnabled(true);
                 }
                 break;
             case DAMAGE11:
                 if (resultCode == Activity.RESULT_OK ) {
-
-                    upload up = new upload();
-                    up.execute(DAMAGE11);
 
                     //uploadServer(DAMAGE11);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
@@ -3465,6 +3465,10 @@ public class imgActivity extends AppCompatActivity {
 
                     damage11.setImageBitmap(thumbImage);
 
+                    upload up = new upload();
+                    up.execute(DAMAGE11);
+
+
                 }else {
                     damage11.setEnabled(true);
                 }
@@ -3472,16 +3476,17 @@ public class imgActivity extends AppCompatActivity {
             case DAMAGE12:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    upload up = new upload();
-                    up.execute(DAMAGE12);
-
-                    //uploadServer(DAMAGE12);
+//uploadServer(DAMAGE12);
                     Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
                             THUMBSIZE,
                             THUMBSIZE);
 
                     damage12.setImageBitmap(thumbImage);
+                    upload up = new upload();
+                    up.execute(DAMAGE12);
+
+
 
                 }else {
                     damage12.setEnabled(true);
@@ -3571,6 +3576,7 @@ public class imgActivity extends AppCompatActivity {
                             }
 
                             String cEnvios = String.valueOf(response);
+
 
 
                                     try {
@@ -4237,7 +4243,13 @@ public class imgActivity extends AppCompatActivity {
 
     private class upload extends AsyncTask<Integer,Void,Void>{
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
 
+            Toast.makeText(imgActivity.this, "Imagen Cargada Correctamente", Toast.LENGTH_LONG).show();
+
+        }
 
         @Override
         protected Void doInBackground(Integer... integers) {
@@ -4285,20 +4297,20 @@ public class imgActivity extends AppCompatActivity {
                         String cEnvios = String.valueOf(response);
 
 
-                        try {
+                       /* try {
                             File destPath = new File(getBaseContext().getExternalFilesDir(null).getAbsolutePath());
                             String path = destPath.toString();
                             File directory = new File(path);
                             File[] files = directory.listFiles();
 
-                            for(File file : files) {
+                            for (File file : files) {
                                 Log.d("Files", "FileName:" + file.getName());
                                 file.delete();
                             }
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
 
                     }
@@ -4904,6 +4916,7 @@ public class imgActivity extends AppCompatActivity {
             return null;
         }
     }
+
 
 
 }

@@ -18,9 +18,9 @@
 
         <ImageView
             android:id="@+id/imageView32"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView50"
@@ -126,10 +126,10 @@
 
         <ImageView
             android:id="@+id/imageView31"
-            android:layout_width="67dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView47"
             app:srcCompat="@drawable/ic_delete_forever_black_24dp" />
@@ -149,14 +149,14 @@
 
         <TextView
             android:id="@+id/textView50"
-            android:layout_width="376dp"
-            android:layout_height="68dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:text="Por este medio declaro haber estado presente durante la inspeccion del equipo y avalo que las condiciones del mismo señaladas son correctas y verdaderas"
+            android:text="Por este medio declaro haber estado presente durante la inspeccion del equipo y\n
+             avalo que las condiciones del mismo señaladas son correctas y verdaderas"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signature_view2" />
 

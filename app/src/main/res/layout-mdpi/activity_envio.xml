@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -198,6 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -209,6 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -232,6 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -267,6 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -289,6 +295,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="7dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -311,6 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -329,10 +337,11 @@
 
             <EditText
                 android:id="@+id/comentario1"
-                android:layout_width="734dp"
+                android:layout_width="match_parent"
                 android:layout_height="198dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/azul_chingon"
                 android:ems="10"
                 android:gravity="start|top"
@@ -405,10 +414,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="# Unidad (Otro)"
                 android:inputType="textPersonName"
                 android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/numeroUnidad" />
 
@@ -418,10 +429,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="No Economico de Remolque (Otro)"
                 android:inputType="textPersonName"
                 android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/numeroRemolque" />
 
@@ -439,4 +452,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

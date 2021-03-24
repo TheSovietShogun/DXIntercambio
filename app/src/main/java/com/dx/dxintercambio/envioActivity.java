@@ -634,7 +634,7 @@ public class envioActivity extends AppCompatActivity {
 
                                     folio = "";
                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                    folio = ("NL"+hora+idRemolque);
+                                    folio = ("RA"+hora+idRemolque);
 
 
                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
@@ -666,7 +666,7 @@ public class envioActivity extends AppCompatActivity {
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                                    folio = ("NL"+hora+idRemolque);
+                                                    folio = ("RA"+hora+idRemolque);
 
                                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -686,7 +686,7 @@ public class envioActivity extends AppCompatActivity {
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                                    folio = ("NL"+hora+idRemolque);
+                                                    folio = ("RA"+hora+idRemolque);
 
                                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -707,7 +707,7 @@ public class envioActivity extends AppCompatActivity {
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                                    folio = ("NL"+hora+idRemolque);
+                                                    folio = ("RA"+hora+idRemolque);
 
                                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -728,7 +728,7 @@ public class envioActivity extends AppCompatActivity {
 
                                          folio = "";
                                          hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                         folio = ("NL"+hora+idRemolque);
+                                         folio = ("RA"+hora+idRemolque);
 
                                          envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                  idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -794,7 +794,7 @@ public class envioActivity extends AppCompatActivity {
 
                                             folio = "";
                                             hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                            folio = ("NL"+hora+idRemolque);
+                                            folio = ("RA"+hora+idRemolque);
 
                                             envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                     idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -819,13 +819,6 @@ public class envioActivity extends AppCompatActivity {
                     File directory = new File(path);
                     File[] files = directory.listFiles();
 
-//                    for (int i = 0; i < files.length; i++)
-//                    {
-//                        Log.d("Files", "FileName:" + files[i].getName());
-//                        String a = files[i].getName();
-//                       // getApplicationContext().deleteFile(files[i].getName());
-//
-//                    }
 
                     for(File file : files) {
                         Log.d("Files", "FileName:" + file.getName());
