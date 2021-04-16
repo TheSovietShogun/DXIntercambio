@@ -27,15 +27,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="373dp" />
+                app:layout_constraintGuide_begin="486dp" />
 
             <CheckBox
                 android:id="@+id/checkBox9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
                 android:text="Tanque de Diesel"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
 
@@ -1097,7 +1100,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="Defensa"
                 android:textSize="20dp"
@@ -1108,7 +1111,7 @@
                 android:id="@+id/checkBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="Cabina y\nCompartimientos"
                 android:textSize="20dp"
@@ -1119,7 +1122,7 @@
                 android:id="@+id/checkBox4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="Quinta Rueda"
                 android:textSize="20dp"
@@ -1130,7 +1133,7 @@
                 android:id="@+id/checkBox5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="Tubo de\nEscape"
                 android:textSize="20dp"
@@ -1142,8 +1145,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
                 android:text="Motor\n(en caso de alerta)"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
 
@@ -1152,8 +1158,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
                 android:text="Llantas"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
@@ -1162,8 +1171,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
                 android:text="Tanque de Aire"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
 
@@ -1172,8 +1184,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
                 android:text="Eje de\nTransmision"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
 
@@ -1244,7 +1259,7 @@
                 android:id="@+id/checkBox29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="Base del\nRemolque"
                 android:textSize="20dp"
@@ -1255,7 +1270,7 @@
                 android:id="@+id/checkBox32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="Techos interno y\n externo"
                 android:textSize="20dp"

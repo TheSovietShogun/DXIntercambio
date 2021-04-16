@@ -13,12 +13,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,14 +37,18 @@ import androidx.core.content.FileProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,8 +56,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.view.Menu;
-
-import com.kyanogen.signatureview.SignatureView;
 
 public class envioActivity extends AppCompatActivity {
 
@@ -92,7 +94,7 @@ public class envioActivity extends AppCompatActivity {
     private int PERMISSION_ALL = 1;
     private int azul = Color.parseColor("#074EAB");
     private boolean checked1;
-
+    private int widthScreen;
 
 
 
@@ -179,28 +181,62 @@ public class envioActivity extends AppCompatActivity {
         estatusArr = new String[]{"Sin Seleccionar","Cargado", "Vacio","Racks"};
         tipoMovArr = new String[]{"Sin Seleccionar","Exportacion","Importacion"};
 
+         widthScreen  = getApplicationContext().getResources().getDisplayMetrics().widthPixels;
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
-        tipoOperacionSP.setAdapter(adapter);
+         //480 cel
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusArr);
-        estatusCaja.setAdapter(adapter2);
+        if(widthScreen > 480){
 
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr);
-        unidad.setAdapter(adapter3);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoOpeArr);
+            tipoOperacionSP.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr2);
-        noRemolque.setAdapter(adapter4);
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item, estatusArr);
+            estatusCaja.setAdapter(adapter2);
 
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoMovArr);
-        tipoMovimiento.setAdapter(adapter5);
+            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr);
+            unidad.setAdapter(adapter3);
+
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.mspinner_item, vacioArr2);
+            noRemolque.setAdapter(adapter4);
+
+            ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.mspinner_item, tipoMovArr);
+            tipoMovimiento.setAdapter(adapter5);
+        }else {
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.mspinner_item2, tipoOpeArr);
+            tipoOperacionSP.setAdapter(adapter);
+
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.mspinner_item2, estatusArr);
+            estatusCaja.setAdapter(adapter2);
+
+            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.mspinner_item2, vacioArr);
+            unidad.setAdapter(adapter3);
+
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.mspinner_item2, vacioArr2);
+            noRemolque.setAdapter(adapter4);
+
+            ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.mspinner_item2, tipoMovArr);
+            tipoMovimiento.setAdapter(adapter5);
+
+
+        }
 
 
 
-        Retrofit retrofit = new Retrofit.Builder()
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(3, TimeUnit.MINUTES)
+                .connectTimeout(3, TimeUnit.MINUTES)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
+
+        Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://"+ip+"/api/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                ;
+
+        builder.client(httpClient.build());
+
+        Retrofit retrofit = builder.build();
 
         dxApi = retrofit.create(DxApi.class);
         Post post = new Post(user,password);
@@ -221,8 +257,15 @@ public class envioActivity extends AppCompatActivity {
                 CUnidad cUnidad11 = new CUnidad(0,"Sin Seleccionar");
                 List<CUnidad> cUnidads =  new ArrayList<CUnidad>();
                 cUnidads.add(0,cUnidad11);
-                ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item, cUnidads);
-                unidad.setAdapter(adapterU);
+
+                if(widthScreen > 480){
+                    ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item, cUnidads);
+                    unidad.setAdapter(adapterU);
+                }else {
+                    ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item2, cUnidads);
+                    unidad.setAdapter(adapterU);
+                }
+
 
 
                 CFlota cFlota12 = new CFlota("-1","Otro");
@@ -232,9 +275,13 @@ public class envioActivity extends AppCompatActivity {
                 cFlotas.add(0,cFlota11);
                 cFlotas.add(1,cFlota12);
 
-
-                ArrayAdapter<CFlota> adapter3 = new ArrayAdapter<CFlota>(envioActivity.this , R.layout.mspinner_item, cFlotas);
-                transportista.setAdapter(adapter3);
+                if(widthScreen > 480){
+                    ArrayAdapter<CFlota> adapter3 = new ArrayAdapter<CFlota>(envioActivity.this , R.layout.mspinner_item, cFlotas);
+                    transportista.setAdapter(adapter3);
+                }else {
+                    ArrayAdapter<CFlota> adapter3 = new ArrayAdapter<CFlota>(envioActivity.this , R.layout.mspinner_item2, cFlotas);
+                    transportista.setAdapter(adapter3);
+                }
 
 
             }
@@ -297,8 +344,16 @@ public class envioActivity extends AppCompatActivity {
                             CUnidad cUnidad11 = new CUnidad(0,"Sin Seleccionar");
                             cUnidads.add(0,cUnidad11);
 
-                            ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item, cUnidads);
-                            unidad.setAdapter(adapterU);
+                            if(widthScreen > 480){
+                                ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item, cUnidads);
+                                unidad.setAdapter(adapterU);
+                            }else{
+                                ArrayAdapter<CUnidad> adapterU = new ArrayAdapter<CUnidad>(envioActivity.this , R.layout.mspinner_item2, cUnidads);
+                                unidad.setAdapter(adapterU);
+                            }
+
+
+
 
                         }
 
@@ -333,8 +388,16 @@ public class envioActivity extends AppCompatActivity {
                 CRemolque cRemolque = new CRemolque(0,"Sin Seleccionar");
                 List<CRemolque> cRemolques =  new ArrayList<CRemolque>();
                 cRemolques.add(0,cRemolque);
-                ArrayAdapter<CRemolque> adapterU = new ArrayAdapter<CRemolque>(envioActivity.this , R.layout.mspinner_item, cRemolques);
-                noRemolque.setAdapter(adapterU);
+
+                if(widthScreen > 480){
+                    ArrayAdapter<CRemolque> adapterU = new ArrayAdapter<CRemolque>(envioActivity.this , R.layout.mspinner_item, cRemolques);
+                    noRemolque.setAdapter(adapterU);
+                }else{
+                    ArrayAdapter<CRemolque> adapterU = new ArrayAdapter<CRemolque>(envioActivity.this , R.layout.mspinner_item2, cRemolques);
+                    noRemolque.setAdapter(adapterU);
+                }
+
+
 
                 CLinea cLinea12 = new CLinea("-1","Otro");
                 CLinea cLinea1 = new CLinea("0","Sin Seleccionar");
@@ -343,10 +406,15 @@ public class envioActivity extends AppCompatActivity {
                 cLineas.add(1,cLinea12);
 
 
+                if(widthScreen > 480){
+                    ArrayAdapter<CLinea> adapter = new ArrayAdapter<CLinea>(envioActivity.this , R.layout.mspinner_item, cLineas);
+                    linea.setAdapter(adapter);
+                }else{
+                    ArrayAdapter<CLinea> adapter = new ArrayAdapter<CLinea>(envioActivity.this , R.layout.mspinner_item2, cLineas);
+                    linea.setAdapter(adapter);
+                }
 
-                ArrayAdapter<CLinea> adapter = new ArrayAdapter<CLinea>(envioActivity.this , R.layout.mspinner_item, cLineas);
-                // adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-                linea.setAdapter(adapter);
+
             }
 
             @Override
@@ -402,10 +470,15 @@ public class envioActivity extends AppCompatActivity {
 
                             cRemolques.add(0,cRemolque);
 
-                            ArrayAdapter<CRemolque> adapterR = new ArrayAdapter<CRemolque>(envioActivity.this, R.layout.mspinner_item, cRemolques);
-                            // adapterR.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-                            noRemolque.setAdapter(adapterR);
-                            //noRemolque.setText(null);
+                            if(widthScreen > 480){
+                                ArrayAdapter<CRemolque> adapterR = new ArrayAdapter<CRemolque>(envioActivity.this, R.layout.mspinner_item, cRemolques);
+                                noRemolque.setAdapter(adapterR);
+                            }else{
+                                ArrayAdapter<CRemolque> adapterR = new ArrayAdapter<CRemolque>(envioActivity.this, R.layout.mspinner_item2, cRemolques);
+                                noRemolque.setAdapter(adapterR);
+                            }
+
+
 
                         }
 
@@ -437,8 +510,15 @@ public class envioActivity extends AppCompatActivity {
 
                 List<COperador> cOperadors = response.body();
 
-                ArrayAdapter<COperador> adapter2 = new ArrayAdapter<COperador>(envioActivity.this , R.layout.mspinner_item, cOperadors);
-                operador.setAdapter(adapter2);
+                if(widthScreen > 480){
+                    ArrayAdapter<COperador> adapter2 = new ArrayAdapter<COperador>(envioActivity.this , R.layout.mspinner_item, cOperadors);
+                    operador.setAdapter(adapter2);
+                }else{
+                    ArrayAdapter<COperador> adapter2 = new ArrayAdapter<COperador>(envioActivity.this , R.layout.mspinner_item3, cOperadors);
+                    operador.setAdapter(adapter2);
+                }
+
+
             }
 
             @Override
@@ -537,13 +617,24 @@ public class envioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                        .callTimeout(3, TimeUnit.MINUTES)
+                        .connectTimeout(3, TimeUnit.MINUTES)
+                        .readTimeout(30, TimeUnit.SECONDS)
+                        .writeTimeout(30, TimeUnit.SECONDS);
 
-                Retrofit retrofit = new Retrofit.Builder()
+                Retrofit.Builder builder = new Retrofit.Builder()
                         .baseUrl("http://"+ip+"/api/")
                         .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                        ;
+
+                builder.client(httpClient.build());
+
+                Retrofit retrofit = builder.build();
 
                 dxApi = retrofit.create(DxApi.class);
+
+
 
                 fechaHora = (String) android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new Date());
                 licenciaImg =  String.valueOf(licencia.getDrawable().getBounds());
@@ -627,15 +718,14 @@ public class envioActivity extends AppCompatActivity {
                                     String imageFilePath = imageFile.getPath();
                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
                                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                                     byte [] byte_arr = stream.toByteArray();
                                     String encodedImage = new String(Base64.encode(byte_arr,2));
 
 
                                     folio = "";
                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                    folio = ("RA"+hora+idRemolque);
-
+                                    folio = (patio+hora+idRemolque);
 
                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -660,13 +750,13 @@ public class envioActivity extends AppCompatActivity {
                                                     String imageFilePath = imageFile.getPath();
                                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
                                                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                                                     byte [] byte_arr = stream.toByteArray();
                                                     String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                                    folio = ("RA"+hora+idRemolque);
+                                                    folio = (patio+hora+idRemolque);
 
                                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -680,13 +770,13 @@ public class envioActivity extends AppCompatActivity {
                                                     String imageFilePath = imageFile.getPath();
                                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
                                                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                                                     byte [] byte_arr = stream.toByteArray();
                                                     String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                                    folio = ("RA"+hora+idRemolque);
+                                                    folio = (patio+hora+idRemolque);
 
                                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -701,13 +791,13 @@ public class envioActivity extends AppCompatActivity {
                                                     String imageFilePath = imageFile.getPath();
                                                     Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
                                                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                                                     byte [] byte_arr = stream.toByteArray();
                                                     String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                                     folio = "";
                                                     hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                                    folio = ("RA"+hora+idRemolque);
+                                                    folio = (patio+hora+idRemolque);
 
                                                     envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                             idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -722,13 +812,13 @@ public class envioActivity extends AppCompatActivity {
                                          String imageFilePath = imageFile.getPath();
                                          Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
                                          ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                         bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                                          byte [] byte_arr = stream.toByteArray();
                                          String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                          folio = "";
                                          hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                         folio = ("RA"+hora+idRemolque);
+                                         folio = (patio+hora+idRemolque);
 
                                          envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                  idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -788,13 +878,13 @@ public class envioActivity extends AppCompatActivity {
                                             String imageFilePath = imageFile.getPath();
                                             Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
                                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                                             byte [] byte_arr = stream.toByteArray();
                                             String encodedImage = new String(Base64.encode(byte_arr,2));
 
                                             folio = "";
                                             hora =  new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                            folio = ("RA"+hora+idRemolque);
+                                            folio = (patio+hora+idRemolque);
 
                                             envioSiuuu(user,password,fechaHora,tipoOperacion,idUsuario,0,idTransportista,idOperador,idUnidad,
                                                     idRemolque,idLinea,estatus,comentario,folio,comentarioCancel,0,movimiento,patio,encodedImage,
@@ -830,6 +920,9 @@ public class envioActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+
         thread.start();
 
 
@@ -865,6 +958,8 @@ public class envioActivity extends AppCompatActivity {
     }
 
     private void imgClick (String photo , int code){
+
+
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
@@ -915,76 +1010,136 @@ public class envioActivity extends AppCompatActivity {
                         int UidRemolque , int UidLinea , int UestatusRemolque , String Ucomentario , String Ufolio, String UcomentarioCancel , int UidIntercambio ,
                         int UtipoMovimiento , String Upatio , String Uimg , String UimgNombre , String UotroUnidad, String UotroRemolque){
 
+        boolean serverIsAlive = false;
+
+        try {
+             serverIsAlive = new checkCon().execute().get();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String loco ;
 
 
-        Post4 post4 = new Post4(Uuser,Upassword,UfechaHora,UtipoOperacion,UidUsuario,UidSQL,UidTransportista,UidOperador,UidUnidad,
-                UidRemolque,UidLinea,UestatusRemolque,Ucomentario,Ufolio,UcomentarioCancel,UidIntercambio,UtipoMovimiento,Upatio,Uimg,
-                "licencia"+Ufolio,UotroUnidad,UotroRemolque
-        );
+        if(serverIsAlive == true){
+            Post4 post4 = new Post4(Uuser,Upassword,UfechaHora,UtipoOperacion,UidUsuario,UidSQL,UidTransportista,UidOperador,UidUnidad,
+                    UidRemolque,UidLinea,UestatusRemolque,Ucomentario,Ufolio,UcomentarioCancel,UidIntercambio,UtipoMovimiento,Upatio,Uimg,
+                    "licencia"+Ufolio,UotroUnidad,UotroRemolque
+            );
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
-        builder.setMessage("Favor de revisar la informacion antes de ser enviada \n" +
-                "¡¡En el campo comentario deberan ir los datos faltantes!!")
-                .setCancelable(false)
-                .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
+            AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
+            builder.setMessage("Favor de revisar la informacion antes de ser enviada \n" +
+                    "¡¡En el campo comentario deberan ir los datos faltantes!!")
+                    .setCancelable(false)
+                    .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Call<List<CEnvio>> callEnvio = dxApi.getEnvio(post4);
 
 
-                        callEnvio.enqueue(new Callback<List<CEnvio>>() {
-                            @Override
-                            public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+                            callEnvio.enqueue(new Callback<List<CEnvio>>() {
 
-                                if (!response.isSuccessful()) {
-                                    Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
+                                @Override
+                                public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
+
+                                    if (!response.isSuccessful()) {
+                                        Toast.makeText(envioActivity.this, "Error 500", Toast.LENGTH_LONG).show();
+                                    }
+                                    List<CEnvio> cEnvios = response.body();
+
+                                    mensaje = cEnvios.get(0).getReturn_value();
+
+                                    if (mensaje == 0) {
+                                        Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(envioActivity.this, "Intercambio Iniciado", Toast.LENGTH_LONG).show();
+
+                                        String unidad = String.valueOf(idUnidad);
+                                        int remolque = idRemolque;
+
+
+
+                                        Intent i = new Intent(envioActivity.this, imgActivity.class);
+                                        i.putExtra("NoUnidad", unidad);
+                                        i.putExtra("NoCaja", remolque);
+                                        i.putExtra("idUsuario", usuario);
+                                        i.putExtra("folio", Ufolio);
+                                        i.putExtra("mensaje", mensaje);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                    }
+
+
                                 }
-                                List<CEnvio> cEnvios = response.body();
 
-                                mensaje = cEnvios.get(0).getReturn_value();
-
-                                if (mensaje == 0) {
-                                    Toast.makeText(envioActivity.this, "Error 202", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(envioActivity.this, "Intercambio Iniciado", Toast.LENGTH_LONG).show();
-
-                                    String unidad = String.valueOf(idUnidad);
-                                    int remolque = idRemolque;
-
-
-
-                                    Intent i = new Intent(envioActivity.this, imgActivity.class);
-                                    i.putExtra("NoUnidad", unidad);
-                                    i.putExtra("NoCaja", remolque);
-                                    i.putExtra("idUsuario", usuario);
-                                    i.putExtra("folio", Ufolio);
-                                    i.putExtra("mensaje", mensaje);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(i);
+                                @Override
+                                public void onFailure(Call<List<CEnvio>> call, Throwable t) {
+                                    Toast.makeText(envioActivity.this, "Error 404 " + t.getMessage(), Toast.LENGTH_LONG).show();
                                 }
+                            });
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
+            alert = builder.create();
+            alert.show();
 
-                            }
+        }else{
 
-                            @Override
-                            public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                Toast.makeText(envioActivity.this, "Error 404 " + t.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+            AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
+            builder.setMessage("Sin respuesta del server ")
+                    .setCancelable(false)
+                    .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
-        alert = builder.create();
-        alert.show();
+            alert = builder.create();
+            alert.show();
+
+        }
+
 
     }
 
+private class checkCon extends AsyncTask<Void, Void, Boolean> {
 
+    @Override
+    protected Boolean doInBackground(Void... voids) {
+
+        boolean exists = false;
+        try {
+            SocketAddress sockaddr = new InetSocketAddress("192.168.4.150", 80);
+            // unbound socket
+            Socket sock = new Socket();
+
+            //  timeoutMs = Exception thrown
+            int timeoutMs = 2000;   // 2 seconds
+            sock.connect(sockaddr, timeoutMs);
+            exists = true;
+        } catch(IOException e) {
+            exists = false;
+        }
+
+        /*if(exists){
+            String loco = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        }else{
+            String loko2 = "MAMO";
+        }*/
+
+        return exists;
+    }
+}
 
 }
