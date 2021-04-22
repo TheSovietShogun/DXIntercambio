@@ -157,7 +157,6 @@ public class firmasActivity extends AppCompatActivity {
                                             if (mensaje.contains("Enviado con exito")){
 
                                                 Intent i = new Intent(firmasActivity.this, splash.class);
-                                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(i);
 
                                             }else{

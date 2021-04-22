@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this, sistemas.class);
                                 i.putExtra("mode", "0");
-                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
 
                             }else if (contraCulera.contains("mañananoaiclases42069")){
@@ -101,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this, sistemas.class);
                                 i.putExtra("mode", "420");
-                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
 
                             } else {
@@ -198,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this, envioActivity.class);
                                 i.putExtra("idUsuario", idUsuario);
-                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                             } else {
                                 Toast.makeText(MainActivity.this, "Usuario Incorrecto", Toast.LENGTH_SHORT).show();

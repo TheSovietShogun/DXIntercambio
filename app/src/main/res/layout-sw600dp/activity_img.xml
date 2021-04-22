@@ -914,11 +914,11 @@
 
             <ImageView
                 android:id="@+id/imageView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_width="800dp"
+                android:layout_height="500dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioButton2"
@@ -926,8 +926,8 @@
 
             <ImageView
                 android:id="@+id/imageView27"
-                android:layout_width="264dp"
-                android:layout_height="265dp"
+                android:layout_width="800dp"
+                android:layout_height="500dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
@@ -938,8 +938,8 @@
 
             <ImageView
                 android:id="@+id/imageView28"
-                android:layout_width="478dp"
-                android:layout_height="208dp"
+                android:layout_width="800dp"
+                android:layout_height="500dp"
                 android:layout_marginStart="161dp"
                 android:layout_marginTop="56dp"
                 android:layout_marginEnd="161dp"
@@ -995,7 +995,6 @@
                 android:hint="Sello 3"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textColor="@color/blanco_vergas"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView30" />
@@ -1249,7 +1248,6 @@
                 android:gravity="start|top"
                 android:hint="Observaciones"
                 android:inputType="textMultiLine"
-                android:textColor="@color/azul_chingon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.432"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1714,7 +1712,6 @@
                 android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="100dp"
                 android:text="Chasis Frontal Izquierdo"
                 android:textColor="@color/azul_chingon"
@@ -1728,7 +1725,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:layout_marginEnd="32dp"
                 android:text="Chasis trasero Izquierdo"
                 android:textColor="@color/azul_chingon"
                 android:textSize="20dp"

@@ -226,8 +226,8 @@ public class envioActivity extends AppCompatActivity {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                 .callTimeout(3, TimeUnit.MINUTES)
                 .connectTimeout(3, TimeUnit.MINUTES)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS);
+                .readTimeout(2, TimeUnit.MINUTES)
+                .writeTimeout(2, TimeUnit.MINUTES);
 
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://"+ip+"/api/")
@@ -620,8 +620,8 @@ public class envioActivity extends AppCompatActivity {
                 OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                         .callTimeout(3, TimeUnit.MINUTES)
                         .connectTimeout(3, TimeUnit.MINUTES)
-                        .readTimeout(30, TimeUnit.SECONDS)
-                        .writeTimeout(30, TimeUnit.SECONDS);
+                        .readTimeout(2, TimeUnit.MINUTES)
+                        .writeTimeout(2, TimeUnit.MINUTES);
 
                 Retrofit.Builder builder = new Retrofit.Builder()
                         .baseUrl("http://"+ip+"/api/")
@@ -1010,22 +1010,7 @@ public class envioActivity extends AppCompatActivity {
                         int UidRemolque , int UidLinea , int UestatusRemolque , String Ucomentario , String Ufolio, String UcomentarioCancel , int UidIntercambio ,
                         int UtipoMovimiento , String Upatio , String Uimg , String UimgNombre , String UotroUnidad, String UotroRemolque){
 
-        boolean serverIsAlive = false;
 
-        try {
-             serverIsAlive = new checkCon().execute().get();
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        String loco ;
-
-
-        if(serverIsAlive == true){
             Post4 post4 = new Post4(Uuser,Upassword,UfechaHora,UtipoOperacion,UidUsuario,UidSQL,UidTransportista,UidOperador,UidUnidad,
                     UidRemolque,UidLinea,UestatusRemolque,Ucomentario,Ufolio,UcomentarioCancel,UidIntercambio,UtipoMovimiento,Upatio,Uimg,
                     "licencia"+Ufolio,UotroUnidad,UotroRemolque
@@ -1069,7 +1054,6 @@ public class envioActivity extends AppCompatActivity {
                                         i.putExtra("idUsuario", usuario);
                                         i.putExtra("folio", Ufolio);
                                         i.putExtra("mensaje", mensaje);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(i);
                                     }
 
@@ -1093,53 +1077,9 @@ public class envioActivity extends AppCompatActivity {
             alert = builder.create();
             alert.show();
 
-        }else{
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(envioActivity.this);
-            builder.setMessage("Sin respuesta del server ")
-                    .setCancelable(false)
-                    .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-
-            alert = builder.create();
-            alert.show();
-
-        }
-
 
     }
 
-private class checkCon extends AsyncTask<Void, Void, Boolean> {
 
-    @Override
-    protected Boolean doInBackground(Void... voids) {
-
-        boolean exists = false;
-        try {
-            SocketAddress sockaddr = new InetSocketAddress("192.168.4.150", 80);
-            // unbound socket
-            Socket sock = new Socket();
-
-            //  timeoutMs = Exception thrown
-            int timeoutMs = 2000;   // 2 seconds
-            sock.connect(sockaddr, timeoutMs);
-            exists = true;
-        } catch(IOException e) {
-            exists = false;
-        }
-
-        /*if(exists){
-            String loco = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        }else{
-            String loko2 = "MAMO";
-        }*/
-
-        return exists;
-    }
-}
 
 }

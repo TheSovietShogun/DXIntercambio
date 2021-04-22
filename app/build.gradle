@@ -68,4 +68,7 @@ dependencies {
 
     //okhttp
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
+
+    //canary leak
+   //9l debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }
