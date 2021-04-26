@@ -28,7 +28,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -251,7 +257,7 @@ public class imgActivity extends AppCompatActivity {
     private  AlertDialog alert ;
     private Context context;
     File destPath;
-
+    Uri photoURI;
 
 
     @Override
@@ -1602,10 +1608,12 @@ public class imgActivity extends AppCompatActivity {
 
         btnImg.setOnClickListener(view -> {
 
-            //300 VACIO
-            //128 IMAGN
+
+            //32 SM-T290
+            //36 Laredo
 
             try {
+
 
                 tractorDerImg = String.valueOf(tractoDer.getDrawable().getBounds());
                 tractorIzqImg = String.valueOf(tractoIzq.getDrawable().getBounds());
@@ -1629,6 +1637,11 @@ public class imgActivity extends AppCompatActivity {
                 chasisFrontalDERImg = String.valueOf(chasisFrontalDER.getDrawable().getBounds());
                 derRemolqueP2Img = String.valueOf(derRemolqueP2.getDrawable().getBounds());
                 sello3Img = String.valueOf(sello3.getDrawable().getBounds());
+
+
+
+
+
 
                 damage1Img = String.valueOf(damage1.getDrawable().getBounds());
                 damage2Img = String.valueOf(damage2.getDrawable().getBounds());
@@ -1685,7 +1698,7 @@ public class imgActivity extends AppCompatActivity {
                 }
 
 
-                if (sello3Img.contains("128") && sello3S.length() > 0) {
+                if (sello3Img.contains("36") && sello3S.length() > 0) {
                     selloExtra = 1;
                 } else {
                     selloExtra = 0;
@@ -1697,27 +1710,27 @@ public class imgActivity extends AppCompatActivity {
                 // SI LAS LLANTAS SON JUMBO SOLO REVISA 4
                 if (lljumbo == 1) {
                     if (
-                            !tractorDerImg.contains("128") ||
-                                    !tractorIzqImg.contains("128") ||
-                                    !tractorFrenteImg.contains("128") ||
-                                    !noEconomicoImg.contains("128") ||
-                                    !izqRemolqueP1Img.contains("128") ||
-                                    !vinImg.contains("128") ||
-                                    !chasisFrontalIzqImg.contains("128") ||
-                                    !chasisTraseroIzqImg.contains("128") ||
-                                    !llantasIzqEje1Img.contains("128") ||
-                                    !llantasIzqEje2Img.contains("128") ||
-                                    !izqRemolqueP2Img.contains("128") ||
-                                    !puertasImg.contains("128") ||
-                                    !placasImg.contains("128") ||
-                                    !sello1Img.contains("128") ||
-                                    !sello2Img.contains("128") ||
-                                    !derRemolqueP1Img.contains("128") ||
-                                    !llantasDerEje2Img.contains("128") ||
-                                    !llantasDerEje1Img.contains("128") ||
-                                    !chasisTraseroDerImg.contains("128") ||
-                                    !chasisFrontalDERImg.contains("128") ||
-                                    !derRemolqueP2Img.contains("128") ||
+                            !tractorDerImg.contains("36") ||
+                                    !tractorIzqImg.contains("36") ||
+                                    !tractorFrenteImg.contains("36") ||
+                                    !noEconomicoImg.contains("36") ||
+                                    !izqRemolqueP1Img.contains("36") ||
+                                    !vinImg.contains("36") ||
+                                    !chasisFrontalIzqImg.contains("36") ||
+                                    !chasisTraseroIzqImg.contains("36") ||
+                                    !llantasIzqEje1Img.contains("36") ||
+                                    !llantasIzqEje2Img.contains("36") ||
+                                    !izqRemolqueP2Img.contains("36") ||
+                                    !puertasImg.contains("36") ||
+                                    !placasImg.contains("36") ||
+                                    !sello1Img.contains("36") ||
+                                    !sello2Img.contains("36") ||
+                                    !derRemolqueP1Img.contains("36") ||
+                                    !llantasDerEje2Img.contains("36") ||
+                                    !llantasDerEje1Img.contains("36") ||
+                                    !chasisTraseroDerImg.contains("36") ||
+                                    !chasisFrontalDERImg.contains("36") ||
+                                    !derRemolqueP2Img.contains("36") ||
                                     sello1S.length() == 0 ||
                                     sello2S.length() == 0 ||
                                     placasDatosD.length() == 0 ||
@@ -1731,27 +1744,27 @@ public class imgActivity extends AppCompatActivity {
                     ) {
                         Toast.makeText(context, "Datos Incompletos", Toast.LENGTH_SHORT).show();
                     } else if (
-                            tractorDerImg.contains("128") &&
-                                    tractorIzqImg.contains("128") &&
-                                    tractorFrenteImg.contains("128") &&
-                                    noEconomicoImg.contains("128") &&
-                                    izqRemolqueP1Img.contains("128") &&
-                                    vinImg.contains("128") &&
-                                    chasisFrontalIzqImg.contains("128") &&
-                                    chasisTraseroIzqImg.contains("128") &&
-                                    llantasIzqEje1Img.contains("128") &&
-                                    llantasIzqEje2Img.contains("128") &&
-                                    izqRemolqueP2Img.contains("128") &&
-                                    puertasImg.contains("128") &&
-                                    placasImg.contains("128") &&
-                                    sello1Img.contains("128") &&
-                                    sello2Img.contains("128") &&
-                                    derRemolqueP1Img.contains("128") &&
-                                    llantasDerEje2Img.contains("128") &&
-                                    llantasDerEje1Img.contains("128") &&
-                                    chasisTraseroDerImg.contains("128") &&
-                                    chasisFrontalDERImg.contains("128") &&
-                                    derRemolqueP2Img.contains("128") &&
+                            tractorDerImg.contains("36") &&
+                                    tractorIzqImg.contains("36") &&
+                                    tractorFrenteImg.contains("36") &&
+                                    noEconomicoImg.contains("36") &&
+                                    izqRemolqueP1Img.contains("36") &&
+                                    vinImg.contains("36") &&
+                                    chasisFrontalIzqImg.contains("36") &&
+                                    chasisTraseroIzqImg.contains("36") &&
+                                    llantasIzqEje1Img.contains("36") &&
+                                    llantasIzqEje2Img.contains("36") &&
+                                    izqRemolqueP2Img.contains("36") &&
+                                    puertasImg.contains("36") &&
+                                    placasImg.contains("36") &&
+                                    sello1Img.contains("36") &&
+                                    sello2Img.contains("36") &&
+                                    derRemolqueP1Img.contains("36") &&
+                                    llantasDerEje2Img.contains("36") &&
+                                    llantasDerEje1Img.contains("36") &&
+                                    chasisTraseroDerImg.contains("36") &&
+                                    chasisFrontalDERImg.contains("36") &&
+                                    derRemolqueP2Img.contains("36") &&
                                     sello1S.length() > 0 &&
                                     sello2S.length() > 0 &&
                                     placasDatosD.length() > 0 &&
@@ -1906,27 +1919,27 @@ public class imgActivity extends AppCompatActivity {
                     }
                 } else if (lljumbo == 0) {
                     if (
-                            !tractorDerImg.contains("128") ||
-                                    !tractorIzqImg.contains("128") ||
-                                    !tractorFrenteImg.contains("128") ||
-                                    !noEconomicoImg.contains("128") ||
-                                    !izqRemolqueP1Img.contains("128") ||
-                                    !vinImg.contains("128") ||
-                                    !chasisFrontalIzqImg.contains("128") ||
-                                    !chasisTraseroIzqImg.contains("128") ||
-                                    !llantasIzqEje1Img.contains("128") ||
-                                    !llantasIzqEje2Img.contains("128") ||
-                                    !izqRemolqueP2Img.contains("128") ||
-                                    !puertasImg.contains("128") ||
-                                    !placasImg.contains("128") ||
-                                    !sello1Img.contains("128") ||
-                                    !sello2Img.contains("128") ||
-                                    !derRemolqueP1Img.contains("128") ||
-                                    !llantasDerEje2Img.contains("128") ||
-                                    !llantasDerEje1Img.contains("128") ||
-                                    !chasisTraseroDerImg.contains("128") ||
-                                    !chasisFrontalDERImg.contains("128") ||
-                                    !derRemolqueP2Img.contains(" 128") ||
+                            !tractorDerImg.contains("36") ||
+                                    !tractorIzqImg.contains("36") ||
+                                    !tractorFrenteImg.contains("36") ||
+                                    !noEconomicoImg.contains("36") ||
+                                    !izqRemolqueP1Img.contains("36") ||
+                                    !vinImg.contains("36") ||
+                                    !chasisFrontalIzqImg.contains("36") ||
+                                    !chasisTraseroIzqImg.contains("36") ||
+                                    !llantasIzqEje1Img.contains("36") ||
+                                    !llantasIzqEje2Img.contains("36") ||
+                                    !izqRemolqueP2Img.contains("36") ||
+                                    !puertasImg.contains("36") ||
+                                    !placasImg.contains("36") ||
+                                    !sello1Img.contains("36") ||
+                                    !sello2Img.contains("36") ||
+                                    !derRemolqueP1Img.contains("36") ||
+                                    !llantasDerEje2Img.contains("36") ||
+                                    !llantasDerEje1Img.contains("36") ||
+                                    !chasisTraseroDerImg.contains("36") ||
+                                    !chasisFrontalDERImg.contains("36") ||
+                                    !derRemolqueP2Img.contains(" 36") ||
                                     sello1S.length() == 0 ||
                                     sello2S.length() == 0 ||
                                     placasDatosD.length() == 0 ||
@@ -1943,27 +1956,27 @@ public class imgActivity extends AppCompatActivity {
                     ) {
                         Toast.makeText(context, "Datos Incompletos", Toast.LENGTH_SHORT).show();
                     } else if (
-                            tractorDerImg.contains("128") &&
-                                    tractorIzqImg.contains("128") &&
-                                    tractorFrenteImg.contains("128") &&
-                                    noEconomicoImg.contains("128") &&
-                                    izqRemolqueP1Img.contains("128") &&
-                                    vinImg.contains("128") &&
-                                    chasisFrontalIzqImg.contains("128") &&
-                                    chasisTraseroIzqImg.contains("128") &&
-                                    llantasIzqEje1Img.contains("128") &&
-                                    llantasIzqEje2Img.contains("128") &&
-                                    izqRemolqueP2Img.contains("128") &&
-                                    puertasImg.contains("128") &&
-                                    placasImg.contains("128") &&
-                                    sello1Img.contains("128") &&
-                                    sello2Img.contains("128") &&
-                                    derRemolqueP1Img.contains("128") &&
-                                    llantasDerEje2Img.contains("128") &&
-                                    llantasDerEje1Img.contains("128") &&
-                                    chasisTraseroDerImg.contains("128") &&
-                                    chasisFrontalDERImg.contains("128") &&
-                                    derRemolqueP2Img.contains("128") &&
+                            tractorDerImg.contains("36") &&
+                                    tractorIzqImg.contains("36") &&
+                                    tractorFrenteImg.contains("36") &&
+                                    noEconomicoImg.contains("36") &&
+                                    izqRemolqueP1Img.contains("36") &&
+                                    vinImg.contains("36") &&
+                                    chasisFrontalIzqImg.contains("36") &&
+                                    chasisTraseroIzqImg.contains("36") &&
+                                    llantasIzqEje1Img.contains("36") &&
+                                    llantasIzqEje2Img.contains("36") &&
+                                    izqRemolqueP2Img.contains("36") &&
+                                    puertasImg.contains("36") &&
+                                    placasImg.contains("36") &&
+                                    sello1Img.contains("36") &&
+                                    sello2Img.contains("36") &&
+                                    derRemolqueP1Img.contains("36") &&
+                                    llantasDerEje2Img.contains("36") &&
+                                    llantasDerEje1Img.contains("36") &&
+                                    chasisTraseroDerImg.contains("36") &&
+                                    chasisFrontalDERImg.contains("36") &&
+                                    derRemolqueP2Img.contains("36") &&
                                     sello1S.length() > 0 &&
                                     sello2S.length() > 0 &&
                                     placasDatosD.length() > 0 &&
@@ -2276,9 +2289,10 @@ public class imgActivity extends AppCompatActivity {
     private void imgClick (String photo , int code){
 
         try{
+
         imageFileName = null ;
         imageFile = null ;
-            Uri photoURI;
+        photoURI = null;
         imageFileName = photo+ "-Folio"+folio ;
 
             imageFile = File.createTempFile(
@@ -2291,11 +2305,9 @@ public class imgActivity extends AppCompatActivity {
         camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         camera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(camera,code);
-
         }catch (Exception e ){
 
             Toast.makeText(imgActivity.this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
-
         }
 
     }
@@ -2316,14 +2328,8 @@ public class imgActivity extends AppCompatActivity {
 
                 case REQUEST_TRACTO_DER:
                     if (resultCode == Activity.RESULT_OK ) {
-
-                        //uploadServer(REQUEST_TRACTO_DER);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        tractoDer.setImageBitmap(thumbImage);
+                        
+                        tractoDer.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_TRACTO_DER);
 
@@ -2334,14 +2340,8 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_TRACTO_FRENTE:
                     if (resultCode == Activity.RESULT_OK ) {
-
-                        //uploadServer(REQUEST_TRACTO_FRENTE);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        tractoFrente.setImageBitmap(thumbImage);
+                        
+                        tractoFrente.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_TRACTO_FRENTE);
 
@@ -2352,14 +2352,9 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_TRACTO_IZQ:
                     if (resultCode == Activity.RESULT_OK ) {
+                        
 
-                        // uploadServer(REQUEST_TRACTO_IZQ);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        tractoIzq.setImageBitmap(thumbImage);
+                        tractoIzq.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_TRACTO_IZQ);
 
@@ -2370,14 +2365,9 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_NoECONOMICO:
                     if (resultCode == Activity.RESULT_OK ) {
+                        
 
-                        //uploadServer(REQUEST_NoECONOMICO);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        noEconomico.setImageBitmap(thumbImage);
+                        noEconomico.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_NoECONOMICO);
 
@@ -2388,12 +2378,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_IZQ_REMOLQUE_P1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        // uploadServer(REQUEST_IZQ_REMOLQUE_P1);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-                        izqRemolqueP1.setImageBitmap(thumbImage);
+                        
+                        izqRemolqueP1.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
                         up.execute(REQUEST_IZQ_REMOLQUE_P1);
@@ -2407,13 +2393,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_VIN:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_VIN);
-                        Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        vin.setImageBitmap(thumbImage);
+                        
+                        vin.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
                         up.execute(REQUEST_VIN);
@@ -2427,13 +2408,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_CHASIS_FRONTAL_IZQ:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_CHASIS_FRONTAL_IZQ);
-                        Bitmap  thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        chasisFrontalIzq.setImageBitmap(thumbImage);
+                        
+                        chasisFrontalIzq.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_CHASIS_FRONTAL_IZQ);
 
@@ -2447,13 +2423,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_CHASIS_TRASERO_IZQ:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_CHASIS_TRASERO_IZQ);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        chasisTraseroIzq.setImageBitmap(thumbImage);
+                        
+                        chasisTraseroIzq.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
                         up.execute(REQUEST_CHASIS_TRASERO_IZQ);
@@ -2464,13 +2435,8 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_LLANTAS_IZQ_EJE1:
                     if (resultCode == Activity.RESULT_OK ) {
-                        //uploadServer(REQUEST_LLANTAS_IZQ_EJE1);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        llantasIzqEje1.setImageBitmap(thumbImage);
+                        
+                        llantasIzqEje1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_LLANTAS_IZQ_EJE1);
 
@@ -2485,14 +2451,9 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST__LLANTAS_IZQ_EJE2:
                     if (resultCode == Activity.RESULT_OK ) {
 
+                         
 
-                        //uploadServer(REQUEST__LLANTAS_IZQ_EJE2);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        llantasIzqEje2.setImageBitmap(thumbImage);
+                        llantasIzqEje2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST__LLANTAS_IZQ_EJE2);
 
@@ -2504,13 +2465,9 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_IZQ_REMOLQUE_P2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_IZQ_REMOLQUE_P2);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
+                     
 
-                        izqRemolqueP2.setImageBitmap(thumbImage);
+                        izqRemolqueP2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_IZQ_REMOLQUE_P2);
 
@@ -2522,13 +2479,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_PUERTAS:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_PUERTAS);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        puertas.setImageBitmap(thumbImage);
+                        
+                        puertas.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_PUERTAS);
 
@@ -2540,13 +2492,9 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_PLACAS:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_PLACAS);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
+                      
 
-                        placas.setImageBitmap(thumbImage);
+                        placas.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_PLACAS);
 
@@ -2558,13 +2506,9 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_SELLO1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_SELLO1);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
+                        
 
-                        sello1.setImageBitmap(thumbImage);
+                        sello1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_SELLO1);
 
@@ -2576,13 +2520,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_SELLO2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_SELLO2);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        sello2.setImageBitmap(thumbImage);
+                       
+                        sello2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_SELLO2);
 
@@ -2594,13 +2533,9 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_DER_REMOLQUE_P1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_DER_REMOLQUE_P1);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
+                       
 
-                        derRemolqueP1.setImageBitmap(thumbImage);
+                        derRemolqueP1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_DER_REMOLQUE_P1);
 
@@ -2612,13 +2547,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_LLANTAS_DER_EJE2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_LLANTAS_DER_EJE2);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        llantasDerEje2.setImageBitmap(thumbImage);
+                       
+                        llantasDerEje2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_LLANTAS_DER_EJE2);
 
@@ -2630,13 +2560,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_LLANTAS_DER_EJE1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(REQUEST_LLANTAS_DER_EJE1);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        llantasDerEje1.setImageBitmap(thumbImage);
+                        
+                        llantasDerEje1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_LLANTAS_DER_EJE1);
 
@@ -2647,15 +2572,9 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_CHASIS_TRASERO_DER:
                     if (resultCode == Activity.RESULT_OK ) {
+                        
 
-                        //uploadServer(REQUEST_CHASIS_TRASERO_DER);
-
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        chasisTraseroDer.setImageBitmap(thumbImage);
+                        chasisTraseroDer.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_CHASIS_TRASERO_DER);
 
@@ -2665,16 +2584,9 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_CHASIS_FRONTAL_DER:
                     if (resultCode == Activity.RESULT_OK ) {
+                        
 
-
-                        //uploadServer(REQUEST_CHASIS_FRONTAL_DER);
-
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        chasisFrontalDER.setImageBitmap(thumbImage);
+                        chasisFrontalDER.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_CHASIS_FRONTAL_DER);
 
@@ -2685,15 +2597,9 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_DER_REMOLQUE_P2:
                     if (resultCode == Activity.RESULT_OK ) {
+                        
 
-                        //uploadServer(REQUEST_DER_REMOLQUE_P2);
-
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        derRemolqueP2.setImageBitmap(thumbImage);
+                        derRemolqueP2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_DER_REMOLQUE_P2);
 
@@ -2705,14 +2611,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_SELLO3:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        // uploadServer(REQUEST_SELLO3);
-
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        sello3.setImageBitmap(thumbImage);
+                      
+                        sello3.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_SELLO3);
 
@@ -2725,13 +2625,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE1);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage1.setImageBitmap(thumbImage);
+                    
+                        damage1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE1);
 
@@ -2743,13 +2638,9 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE2);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
+                      
 
-                        damage2.setImageBitmap(thumbImage);
+                        damage2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE2);
 
@@ -2761,13 +2652,9 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE3:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE3);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
+                     
 
-                        damage3.setImageBitmap(thumbImage);
+                        damage3.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE3);
 
@@ -2779,13 +2666,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE4:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE4);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage4.setImageBitmap(thumbImage);
+                       
+                        damage4.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE4);
 
@@ -2797,13 +2679,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE5:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE5);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage5.setImageBitmap(thumbImage);
+                       
+                        damage5.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE5);
 
@@ -2815,13 +2692,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE6:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE6);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage6.setImageBitmap(thumbImage);
+                     
+                        damage6.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE6);
 
@@ -2833,13 +2705,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE7:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE7);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage7.setImageBitmap(thumbImage);
+                       
+                        damage7.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE7);
 
@@ -2851,13 +2718,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE8:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE8);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage8.setImageBitmap(thumbImage);
+                    
+                        damage8.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE8);
 
@@ -2869,13 +2731,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE9:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE9);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage9.setImageBitmap(thumbImage);
+                     
+                        damage9.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE9);
 
@@ -2887,13 +2744,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE10:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE10);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage10.setImageBitmap(thumbImage);
+                    
+                        damage10.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
                         up.execute(DAMAGE10);
@@ -2906,13 +2758,8 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE11:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        //uploadServer(DAMAGE11);
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage11.setImageBitmap(thumbImage);
+                  
+                        damage11.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
                         up.execute(DAMAGE11);
@@ -2926,12 +2773,7 @@ public class imgActivity extends AppCompatActivity {
                     if (resultCode == Activity.RESULT_OK ) {
 
 
-                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(
-                                BitmapFactory.decodeFile(imageFile.getAbsolutePath()),
-                                THUMBSIZE,
-                                THUMBSIZE);
-
-                        damage12.setImageBitmap(thumbImage);
+                        damage12.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE12);
 
@@ -2950,9 +2792,6 @@ public class imgActivity extends AppCompatActivity {
             Toast.makeText(imgActivity.this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-
-
-
         super.onActivityResult(requestCode, resultCode, resultData);
     }
 
@@ -2965,7 +2804,7 @@ public class imgActivity extends AppCompatActivity {
 
 
 
-    private static  class upload extends AsyncTask<Integer,Void,Void>{
+    private class upload extends AsyncTask<Integer,Void,Void>{
 
         boolean exists = false;
         boolean paso = false ;
@@ -2980,302 +2819,7 @@ public class imgActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
-          /* if(paso == false ){
-                switch (codigo2){
-                    case REQUEST_TRACTO_DER:
-
-                        tractoDer.setImageBitmap(null);
-                        tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
-                        tractoDer.setEnabled(true);
-
-                        break;
-                    case REQUEST_TRACTO_FRENTE:
-
-                        tractoFrente.setImageBitmap(null);
-                        tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
-                        tractoFrente.setEnabled(true);
-
-                        break;
-                    case REQUEST_TRACTO_IZQ:
-
-                        tractoIzq.setImageBitmap(null);
-                        tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
-                        tractoIzq.setEnabled(true);
-
-                        break;
-                    case REQUEST_NoECONOMICO:
-
-                        noEconomico.setImageBitmap(null);
-                        noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
-                        noEconomico.setEnabled(true);
-
-                        break;
-                    case REQUEST_IZQ_REMOLQUE_P1:
-
-
-                        izqRemolqueP1.setImageBitmap(null);
-                        izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
-                        izqRemolqueP1.setEnabled(true);
-
-
-
-                        break;
-                    case REQUEST_VIN:
-
-                        vin.setImageBitmap(null);
-                        vin.setBackgroundColor(Color.parseColor("#074EAB"));
-                        vin.setEnabled(true);
-
-
-                        break;
-                    case REQUEST_CHASIS_FRONTAL_IZQ:
-
-
-                        chasisFrontalIzq.setImageBitmap(null);
-                        chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
-                        chasisFrontalIzq.setEnabled(true);
-
-                        break;
-                    case REQUEST_CHASIS_TRASERO_IZQ:
-
-
-                        chasisTraseroIzq.setImageBitmap(null);
-                        chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
-                        chasisTraseroIzq.setEnabled(true);
-
-                        break;
-                    case REQUEST_LLANTAS_IZQ_EJE1:
-
-
-                        llantasIzqEje1.setImageBitmap(null);
-                        llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
-                        llantasIzqEje1.setEnabled(true);
-
-
-
-                        break;
-                    case REQUEST__LLANTAS_IZQ_EJE2:
-
-                        llantasIzqEje2.setImageBitmap(null);
-                        llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
-                        llantasIzqEje2.setEnabled(true);
-
-                        break;
-                    case REQUEST_IZQ_REMOLQUE_P2:
-
-
-                        izqRemolqueP2.setImageBitmap(null);
-                        izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
-                        izqRemolqueP2.setEnabled(true);
-
-
-
-                        break;
-                    case REQUEST_PUERTAS:
-
-
-                        puertas.setImageBitmap(null);
-                        puertas.setBackgroundColor(Color.parseColor("#074EAB"));
-                        puertas.setEnabled(true);
-
-                        break;
-                    case REQUEST_PLACAS:
-
-                        placas.setImageBitmap(null);
-                        placas.setBackgroundColor(Color.parseColor("#074EAB"));
-                        placas.setEnabled(true);
-
-                        break;
-                    case REQUEST_SELLO1:
-
-
-                        sello1.setImageBitmap(null);
-                        sello1.setBackgroundColor(Color.parseColor("#074EAB"));
-                        sello1.setEnabled(true);
-
-
-
-                        break;
-                    case REQUEST_SELLO2:
-
-
-                        sello2.setImageBitmap(null);
-                        sello2.setBackgroundColor(Color.parseColor("#074EAB"));
-                        sello2.setEnabled(true);
-
-                        break;
-                    case REQUEST_DER_REMOLQUE_P1:
-
-
-
-                        derRemolqueP1.setImageBitmap(null);
-                        derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
-                        derRemolqueP1.setEnabled(true);
-
-                        break;
-                    case REQUEST_LLANTAS_DER_EJE2:
-
-
-                        llantasDerEje2.setImageBitmap(null);
-                        llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
-                        llantasDerEje2.setEnabled(true);
-
-                        break;
-                    case REQUEST_LLANTAS_DER_EJE1:
-
-
-                        llantasDerEje1.setImageBitmap(null);
-                        llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
-                        llantasDerEje1.setEnabled(true);
-
-                        break;
-                    case REQUEST_CHASIS_TRASERO_DER:
-
-
-                        chasisTraseroDer.setImageBitmap(null);
-                        chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
-                        chasisTraseroDer.setEnabled(true);
-
-                        break;
-                    case REQUEST_CHASIS_FRONTAL_DER:
-
-
-                        chasisFrontalDER.setImageBitmap(null);
-                        chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
-                        chasisFrontalDER.setEnabled(true);
-
-                        break;
-                    case REQUEST_DER_REMOLQUE_P2:
-
-
-                        derRemolqueP2.setImageBitmap(null);
-                        derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
-                        derRemolqueP2.setEnabled(true);
-
-                        break;
-                    case REQUEST_SELLO3:
-
-
-                        sello3.setImageBitmap(null);
-                        sello3.setBackgroundColor(Color.parseColor("#074EAB"));
-                        sello3.setEnabled(true);
-
-                        break;
-                    case DAMAGE1:
-
-
-                        damage1.setImageBitmap(null);
-                        damage1.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage1.setEnabled(true);
-
-                        break;
-                    case DAMAGE2:
-
-
-                        damage2.setImageBitmap(null);
-                        damage2.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage2.setEnabled(true);
-
-                        break;
-                    case DAMAGE3:
-
-
-                        damage3.setImageBitmap(null);
-                        damage3.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage3.setEnabled(true);
-
-                        break;
-                    case DAMAGE4:
-
-
-                        damage4.setImageBitmap(null);
-                        damage4.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage4.setEnabled(true);
-
-                        break;
-                    case DAMAGE5:
-
-
-                        damage5.setImageBitmap(null);
-                        damage5.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage5.setEnabled(true);
-
-                        break;
-                    case DAMAGE6:
-
-
-                        damage6.setImageBitmap(null);
-                        damage6.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage6.setEnabled(true);
-
-                        break;
-                    case DAMAGE7:
-
-
-                        damage7.setImageBitmap(null);
-                        damage7.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage7.setEnabled(true);
-
-                        break;
-                    case DAMAGE8:
-
-
-                        damage8.setImageBitmap(null);
-                        damage8.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage8.setEnabled(true);
-
-                        break;
-                    case DAMAGE9:
-
-
-                        damage9.setImageBitmap(null);
-                        damage9.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage9.setEnabled(true);
-
-                        break;
-                    case DAMAGE10:
-
-
-                        damage10.setImageBitmap(null);
-                        damage10.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage10.setEnabled(true);
-
-                        break;
-                    case DAMAGE11:
-
-
-                        damage11.setImageBitmap(null);
-                        damage11.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage11.setEnabled(true);
-
-                        break;
-                    case DAMAGE12:
-
-
-                        damage12.setImageBitmap(null);
-                        damage12.setBackgroundColor(Color.parseColor("#074EAB"));
-                        damage12.setEnabled(true);
-
-                        break;
-
-
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(imgActivity.this);
-                builder.setMessage("Sin respuesta del server ")
-                        .setCancelable(false)
-                        .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                alert = builder.create();
-                alert.show();
-            }*/
-
-
-
+            
         }
 
         @Override
@@ -3323,8 +2867,42 @@ public class imgActivity extends AppCompatActivity {
 
                 activity.dxApi = retrofit.create(DxApi.class);
 
+               /* RequestBody requestFile =
+                        RequestBody.create( byte_arr ,MediaType.parse("application/json"));
 
-                Post5 post5 = new Post5(activity.user,activity.password,activity.imageFileName,base64,activity.folio);
+                MultipartBody.Part img =
+                        MultipartBody.Part.createFormData("img", activity.imageFileName, requestFile);
+*/
+                /*RequestBody img = RequestBody.create( byte_arr ,MediaType.parse("application/json") );
+
+                RequestBody user = RequestBody.create( activity.user,MediaType.parse("application/json") );
+
+                RequestBody password = RequestBody.create( activity.password ,MediaType.parse("application/json"));
+
+                RequestBody nombre = RequestBody.create( activity.imageFileName,MediaType.parse("application/json") );
+
+                RequestBody folio = RequestBody.create( activity.folio ,MediaType.parse("application/json"));*/
+
+
+                Post5 post5 =  new Post5 (activity.user,activity.password,activity.imageFileName,base64,activity.folio);
+
+                /*JSONObject student1 = new JSONObject();
+                try {
+                    student1.put("user", activity.user);
+                    student1.put("password", activity.password );
+                    student1.put("nombre", activity.imageFileName);
+                    student1.put("folio", activity.folio);
+
+                } catch (JSONException e) {
+
+                }
+                Gson gson = new GsonBuilder().setLenient().create();*/
+
+
+                //RequestBody model = RequestBody.create( gson.toJson(student1) , MediaType.parse("application/json"));
+
+                //Post00 post00 =  new Post00 (activity.user,activity.password,activity.imageFileName,byte_arr,activity.folio);
+
                 Call<String> callImg = activity.dxApi.getImg(post5);
 
                 callImg.enqueue(new Callback<String>() {
@@ -3332,7 +2910,7 @@ public class imgActivity extends AppCompatActivity {
                     public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
 
                         if(!response.isSuccessful()){
-                            Toast.makeText(activity, "Error 500", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, "Error 500" + response.message(), Toast.LENGTH_LONG).show();
                         }
 
 
@@ -3350,40 +2928,41 @@ public class imgActivity extends AppCompatActivity {
                                 .setPositiveButton("Entendido", (dialog, which) -> dialog.cancel());
                         activity.alert = builder.create();
                         activity.alert.show();
+
                         switch (codigo){
                             case REQUEST_TRACTO_DER:
 
-                                activity.tractoDer.setImageBitmap(null);
-                                activity.tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.tractoDer.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.tractoDer.setEnabled(true);
 
                                 break;
                             case REQUEST_TRACTO_FRENTE:
 
-                                activity.tractoFrente.setImageBitmap(null);
-                                activity.tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
+                               
+                                activity.tractoFrente.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.tractoFrente.setEnabled(true);
 
                                 break;
                             case REQUEST_TRACTO_IZQ:
 
-                                activity.tractoIzq.setImageBitmap(null);
-                                activity.tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.tractoIzq.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.tractoIzq.setEnabled(true);
 
                                 break;
                             case REQUEST_NoECONOMICO:
 
-                                activity.noEconomico.setImageBitmap(null);
-                                activity.noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.noEconomico.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.noEconomico.setEnabled(true);
 
                                 break;
                             case REQUEST_IZQ_REMOLQUE_P1:
 
 
-                                activity.izqRemolqueP1.setImageBitmap(null);
-                                activity.izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.izqRemolqueP1.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.izqRemolqueP1.setEnabled(true);
 
 
@@ -3391,8 +2970,8 @@ public class imgActivity extends AppCompatActivity {
                                 break;
                             case REQUEST_VIN:
 
-                                activity.vin.setImageBitmap(null);
-                                activity.vin.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.vin.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.vin.setEnabled(true);
 
 
@@ -3400,24 +2979,24 @@ public class imgActivity extends AppCompatActivity {
                             case REQUEST_CHASIS_FRONTAL_IZQ:
 
 
-                                activity.chasisFrontalIzq.setImageBitmap(null);
-                                activity.chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.chasisFrontalIzq.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.chasisFrontalIzq.setEnabled(true);
 
                                 break;
                             case REQUEST_CHASIS_TRASERO_IZQ:
 
 
-                                activity.chasisTraseroIzq.setImageBitmap(null);
-                                activity.chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.chasisTraseroIzq.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.chasisTraseroIzq.setEnabled(true);
 
                                 break;
                             case REQUEST_LLANTAS_IZQ_EJE1:
 
 
-                                activity.llantasIzqEje1.setImageBitmap(null);
-                                activity.llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.llantasIzqEje1.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.llantasIzqEje1.setEnabled(true);
 
 
@@ -3425,16 +3004,16 @@ public class imgActivity extends AppCompatActivity {
                                 break;
                             case REQUEST__LLANTAS_IZQ_EJE2:
 
-                                activity.llantasIzqEje2.setImageBitmap(null);
-                                activity.llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.llantasIzqEje2.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.llantasIzqEje2.setEnabled(true);
 
                                 break;
                             case REQUEST_IZQ_REMOLQUE_P2:
 
 
-                                activity.izqRemolqueP2.setImageBitmap(null);
-                                activity.izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.izqRemolqueP2.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.izqRemolqueP2.setEnabled(true);
 
 
@@ -3443,23 +3022,23 @@ public class imgActivity extends AppCompatActivity {
                             case REQUEST_PUERTAS:
 
 
-                                activity.puertas.setImageBitmap(null);
-                                activity.puertas.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.puertas.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.puertas.setEnabled(true);
 
                                 break;
                             case REQUEST_PLACAS:
 
-                                activity.placas.setImageBitmap(null);
-                                activity.placas.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.placas.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.placas.setEnabled(true);
 
                                 break;
                             case REQUEST_SELLO1:
 
 
-                                activity.sello1.setImageBitmap(null);
-                                activity.sello1.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.sello1.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.sello1.setEnabled(true);
 
 
@@ -3468,8 +3047,8 @@ public class imgActivity extends AppCompatActivity {
                             case REQUEST_SELLO2:
 
 
-                                activity.sello2.setImageBitmap(null);
-                                activity.sello2.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.sello2.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.sello2.setEnabled(true);
 
                                 break;
@@ -3477,152 +3056,152 @@ public class imgActivity extends AppCompatActivity {
 
 
 
-                                activity.derRemolqueP1.setImageBitmap(null);
-                                activity.derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.derRemolqueP1.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.derRemolqueP1.setEnabled(true);
 
                                 break;
                             case REQUEST_LLANTAS_DER_EJE2:
 
 
-                                activity.llantasDerEje2.setImageBitmap(null);
-                                activity.llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.llantasDerEje2.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.llantasDerEje2.setEnabled(true);
 
                                 break;
                             case REQUEST_LLANTAS_DER_EJE1:
 
 
-                                activity.llantasDerEje1.setImageBitmap(null);
-                                activity.llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.llantasDerEje1.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.llantasDerEje1.setEnabled(true);
 
                                 break;
                             case REQUEST_CHASIS_TRASERO_DER:
 
 
-                                activity.chasisTraseroDer.setImageBitmap(null);
-                                activity.chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.chasisTraseroDer.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.chasisTraseroDer.setEnabled(true);
 
                                 break;
                             case REQUEST_CHASIS_FRONTAL_DER:
 
 
-                                activity.chasisFrontalDER.setImageBitmap(null);
-                                activity.chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.chasisFrontalDER.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.chasisFrontalDER.setEnabled(true);
 
                                 break;
                             case REQUEST_DER_REMOLQUE_P2:
 
 
-                                activity.derRemolqueP2.setImageBitmap(null);
-                                activity.derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.derRemolqueP2.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.derRemolqueP2.setEnabled(true);
 
                                 break;
                             case REQUEST_SELLO3:
 
 
-                                activity.sello3.setImageBitmap(null);
-                                activity.sello3.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.sello3.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.sello3.setEnabled(true);
 
                                 break;
                             case DAMAGE1:
 
 
-                                activity.damage1.setImageBitmap(null);
-                                activity.damage1.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage1.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage1.setEnabled(true);
 
                                 break;
                             case DAMAGE2:
 
 
-                                activity.damage2.setImageBitmap(null);
-                                activity.damage2.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage2.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage2.setEnabled(true);
 
                                 break;
                             case DAMAGE3:
 
 
-                                activity.damage3.setImageBitmap(null);
-                                activity.damage3.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage3.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage3.setEnabled(true);
 
                                 break;
                             case DAMAGE4:
 
 
-                                activity.damage4.setImageBitmap(null);
-                                activity.damage4.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage4.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage4.setEnabled(true);
 
                                 break;
                             case DAMAGE5:
 
 
-                                activity.damage5.setImageBitmap(null);
-                                activity.damage5.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage5.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage5.setEnabled(true);
 
                                 break;
                             case DAMAGE6:
 
 
-                                activity.damage6.setImageBitmap(null);
-                                activity.damage6.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage6.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage6.setEnabled(true);
 
                                 break;
                             case DAMAGE7:
 
 
-                                activity.damage7.setImageBitmap(null);
-                                activity.damage7.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage7.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage7.setEnabled(true);
 
                                 break;
                             case DAMAGE8:
 
 
-                                activity.damage8.setImageBitmap(null);
-                                activity.damage8.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage8.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage8.setEnabled(true);
 
                                 break;
                             case DAMAGE9:
 
 
-                                activity.damage9.setImageBitmap(null);
-                                activity.damage9.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage9.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage9.setEnabled(true);
 
                                 break;
                             case DAMAGE10:
 
 
-                                activity.damage10.setImageBitmap(null);
-                                activity.damage10.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage10.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage10.setEnabled(true);
 
                                 break;
                             case DAMAGE11:
 
 
-                                activity.damage11.setImageBitmap(null);
-                                activity.damage11.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage11.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage11.setEnabled(true);
 
                                 break;
                             case DAMAGE12:
 
 
-                                activity.damage12.setImageBitmap(null);
-                                activity.damage12.setBackgroundColor(Color.parseColor("#074EAB"));
+
+                                activity.damage12.setImageResource(R.drawable.ic_baseline_error_24);
                                 activity.damage12.setEnabled(true);
 
                                 break;
@@ -3637,290 +3216,294 @@ public class imgActivity extends AppCompatActivity {
 
                 String exe = e.getMessage();
 
-                ((imgActivity)activity.context).runOnUiThread(() -> {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setMessage("Sin respuesta del server " + exe )
+                                .setCancelable(false)
+                                .setPositiveButton("Entendido", (dialog, which) -> dialog.cancel());
+                        activity.alert = builder.create();
+                        activity.alert.show();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setMessage("Sin respuesta del server " + exe )
-                            .setCancelable(false)
-                            .setPositiveButton("Entendido", (dialog, which) -> dialog.cancel());
-                    activity.alert = builder.create();
-                    activity.alert.show();
-                    switch (codigo){
-                        case REQUEST_TRACTO_DER:
+                        switch (codigo){
+                            case REQUEST_TRACTO_DER:
 
-                            activity.tractoDer.setImageBitmap(null);
-                            activity.tractoDer.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.tractoDer.setEnabled(true);
 
-                            break;
-                        case REQUEST_TRACTO_FRENTE:
+                                activity.tractoDer.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.tractoDer.setEnabled(true);
 
-                            activity.tractoFrente.setImageBitmap(null);
-                            activity.tractoFrente.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.tractoFrente.setEnabled(true);
+                                break;
+                            case REQUEST_TRACTO_FRENTE:
 
-                            break;
-                        case REQUEST_TRACTO_IZQ:
 
-                            activity.tractoIzq.setImageBitmap(null);
-                            activity.tractoIzq.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.tractoIzq.setEnabled(true);
+                                activity.tractoFrente.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.tractoFrente.setEnabled(true);
 
-                            break;
-                        case REQUEST_NoECONOMICO:
+                                break;
+                            case REQUEST_TRACTO_IZQ:
 
-                            activity.noEconomico.setImageBitmap(null);
-                            activity.noEconomico.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.noEconomico.setEnabled(true);
 
-                            break;
-                        case REQUEST_IZQ_REMOLQUE_P1:
+                                activity.tractoIzq.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.tractoIzq.setEnabled(true);
 
+                                break;
+                            case REQUEST_NoECONOMICO:
 
-                            activity.izqRemolqueP1.setImageBitmap(null);
-                            activity.izqRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.izqRemolqueP1.setEnabled(true);
 
+                                activity.noEconomico.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.noEconomico.setEnabled(true);
 
+                                break;
+                            case REQUEST_IZQ_REMOLQUE_P1:
 
-                            break;
-                        case REQUEST_VIN:
 
-                            activity.vin.setImageBitmap(null);
-                            activity.vin.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.vin.setEnabled(true);
 
+                                activity.izqRemolqueP1.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.izqRemolqueP1.setEnabled(true);
 
-                            break;
-                        case REQUEST_CHASIS_FRONTAL_IZQ:
 
 
-                            activity.chasisFrontalIzq.setImageBitmap(null);
-                            activity.chasisFrontalIzq.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.chasisFrontalIzq.setEnabled(true);
+                                break;
+                            case REQUEST_VIN:
 
-                            break;
-                        case REQUEST_CHASIS_TRASERO_IZQ:
 
+                                activity.vin.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.vin.setEnabled(true);
 
-                            activity.chasisTraseroIzq.setImageBitmap(null);
-                            activity.chasisTraseroIzq.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.chasisTraseroIzq.setEnabled(true);
 
-                            break;
-                        case REQUEST_LLANTAS_IZQ_EJE1:
+                                break;
+                            case REQUEST_CHASIS_FRONTAL_IZQ:
 
 
-                            activity.llantasIzqEje1.setImageBitmap(null);
-                            activity.llantasIzqEje1.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.llantasIzqEje1.setEnabled(true);
 
+                                activity.chasisFrontalIzq.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.chasisFrontalIzq.setEnabled(true);
 
+                                break;
+                            case REQUEST_CHASIS_TRASERO_IZQ:
 
-                            break;
-                        case REQUEST__LLANTAS_IZQ_EJE2:
 
-                            activity.llantasIzqEje2.setImageBitmap(null);
-                            activity.llantasIzqEje2.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.llantasIzqEje2.setEnabled(true);
 
-                            break;
-                        case REQUEST_IZQ_REMOLQUE_P2:
+                                activity.chasisTraseroIzq.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.chasisTraseroIzq.setEnabled(true);
 
+                                break;
+                            case REQUEST_LLANTAS_IZQ_EJE1:
 
-                            activity.izqRemolqueP2.setImageBitmap(null);
-                            activity.izqRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.izqRemolqueP2.setEnabled(true);
 
 
+                                activity.llantasIzqEje1.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.llantasIzqEje1.setEnabled(true);
 
-                            break;
-                        case REQUEST_PUERTAS:
 
 
-                            activity.puertas.setImageBitmap(null);
-                            activity.puertas.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.puertas.setEnabled(true);
+                                break;
+                            case REQUEST__LLANTAS_IZQ_EJE2:
 
-                            break;
-                        case REQUEST_PLACAS:
 
-                            activity.placas.setImageBitmap(null);
-                            activity.placas.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.placas.setEnabled(true);
+                                activity.llantasIzqEje2.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.llantasIzqEje2.setEnabled(true);
 
-                            break;
-                        case REQUEST_SELLO1:
+                                break;
+                            case REQUEST_IZQ_REMOLQUE_P2:
 
 
-                            activity.sello1.setImageBitmap(null);
-                            activity.sello1.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.sello1.setEnabled(true);
 
+                                activity.izqRemolqueP2.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.izqRemolqueP2.setEnabled(true);
 
 
-                            break;
-                        case REQUEST_SELLO2:
 
+                                break;
+                            case REQUEST_PUERTAS:
 
-                            activity.sello2.setImageBitmap(null);
-                            activity.sello2.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.sello2.setEnabled(true);
 
-                            break;
-                        case REQUEST_DER_REMOLQUE_P1:
 
+                                activity.puertas.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.puertas.setEnabled(true);
 
+                                break;
+                            case REQUEST_PLACAS:
 
-                            activity.derRemolqueP1.setImageBitmap(null);
-                            activity.derRemolqueP1.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.derRemolqueP1.setEnabled(true);
 
-                            break;
-                        case REQUEST_LLANTAS_DER_EJE2:
+                                activity.placas.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.placas.setEnabled(true);
 
+                                break;
+                            case REQUEST_SELLO1:
 
-                            activity.llantasDerEje2.setImageBitmap(null);
-                            activity.llantasDerEje2.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.llantasDerEje2.setEnabled(true);
 
-                            break;
-                        case REQUEST_LLANTAS_DER_EJE1:
 
+                                activity.sello1.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.sello1.setEnabled(true);
 
-                            activity.llantasDerEje1.setImageBitmap(null);
-                            activity.llantasDerEje1.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.llantasDerEje1.setEnabled(true);
 
-                            break;
-                        case REQUEST_CHASIS_TRASERO_DER:
 
+                                break;
+                            case REQUEST_SELLO2:
 
-                            activity.chasisTraseroDer.setImageBitmap(null);
-                            activity.chasisTraseroDer.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.chasisTraseroDer.setEnabled(true);
 
-                            break;
-                        case REQUEST_CHASIS_FRONTAL_DER:
 
+                                activity.sello2.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.sello2.setEnabled(true);
 
-                            activity.chasisFrontalDER.setImageBitmap(null);
-                            activity.chasisFrontalDER.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.chasisFrontalDER.setEnabled(true);
+                                break;
+                            case REQUEST_DER_REMOLQUE_P1:
 
-                            break;
-                        case REQUEST_DER_REMOLQUE_P2:
 
 
-                            activity.derRemolqueP2.setImageBitmap(null);
-                            activity.derRemolqueP2.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.derRemolqueP2.setEnabled(true);
 
-                            break;
-                        case REQUEST_SELLO3:
+                                activity.derRemolqueP1.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.derRemolqueP1.setEnabled(true);
 
+                                break;
+                            case REQUEST_LLANTAS_DER_EJE2:
 
-                            activity.sello3.setImageBitmap(null);
-                            activity.sello3.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.sello3.setEnabled(true);
 
-                            break;
-                        case DAMAGE1:
 
+                                activity.llantasDerEje2.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.llantasDerEje2.setEnabled(true);
 
-                            activity.damage1.setImageBitmap(null);
-                            activity.damage1.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage1.setEnabled(true);
+                                break;
+                            case REQUEST_LLANTAS_DER_EJE1:
 
-                            break;
-                        case DAMAGE2:
 
 
-                            activity.damage2.setImageBitmap(null);
-                            activity.damage2.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage2.setEnabled(true);
+                                activity.llantasDerEje1.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.llantasDerEje1.setEnabled(true);
 
-                            break;
-                        case DAMAGE3:
+                                break;
+                            case REQUEST_CHASIS_TRASERO_DER:
 
 
-                            activity.damage3.setImageBitmap(null);
-                            activity.damage3.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage3.setEnabled(true);
 
-                            break;
-                        case DAMAGE4:
+                                activity.chasisTraseroDer.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.chasisTraseroDer.setEnabled(true);
 
+                                break;
+                            case REQUEST_CHASIS_FRONTAL_DER:
 
-                            activity.damage4.setImageBitmap(null);
-                            activity.damage4.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage4.setEnabled(true);
 
-                            break;
-                        case DAMAGE5:
 
+                                activity.chasisFrontalDER.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.chasisFrontalDER.setEnabled(true);
 
-                            activity.damage5.setImageBitmap(null);
-                            activity.damage5.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage5.setEnabled(true);
+                                break;
+                            case REQUEST_DER_REMOLQUE_P2:
 
-                            break;
-                        case DAMAGE6:
 
 
-                            activity.damage6.setImageBitmap(null);
-                            activity.damage6.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage6.setEnabled(true);
+                                activity.derRemolqueP2.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.derRemolqueP2.setEnabled(true);
 
-                            break;
-                        case DAMAGE7:
+                                break;
+                            case REQUEST_SELLO3:
 
 
-                            activity.damage7.setImageBitmap(null);
-                            activity.damage7.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage7.setEnabled(true);
 
-                            break;
-                        case DAMAGE8:
+                                activity.sello3.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.sello3.setEnabled(true);
 
+                                break;
+                            case DAMAGE1:
 
-                            activity.damage8.setImageBitmap(null);
-                            activity.damage8.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage8.setEnabled(true);
 
-                            break;
-                        case DAMAGE9:
 
+                                activity.damage1.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage1.setEnabled(true);
 
-                            activity.damage9.setImageBitmap(null);
-                            activity.damage9.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage9.setEnabled(true);
+                                break;
+                            case DAMAGE2:
 
-                            break;
-                        case DAMAGE10:
 
 
-                            activity.damage10.setImageBitmap(null);
-                            activity.damage10.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage10.setEnabled(true);
+                                activity.damage2.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage2.setEnabled(true);
 
-                            break;
-                        case DAMAGE11:
+                                break;
+                            case DAMAGE3:
 
 
-                            activity.damage11.setImageBitmap(null);
-                            activity.damage11.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage11.setEnabled(true);
 
-                            break;
-                        case DAMAGE12:
+                                activity.damage3.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage3.setEnabled(true);
 
+                                break;
+                            case DAMAGE4:
 
-                            activity.damage12.setImageBitmap(null);
-                            activity.damage12.setBackgroundColor(Color.parseColor("#074EAB"));
-                            activity.damage12.setEnabled(true);
 
-                            break;
+
+                                activity.damage4.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage4.setEnabled(true);
+
+                                break;
+                            case DAMAGE5:
+
+
+
+                                activity.damage5.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage5.setEnabled(true);
+
+                                break;
+                            case DAMAGE6:
+
+
+
+                                activity.damage6.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage6.setEnabled(true);
+
+                                break;
+                            case DAMAGE7:
+
+
+
+                                activity.damage7.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage7.setEnabled(true);
+
+                                break;
+                            case DAMAGE8:
+
+
+
+                                activity.damage8.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage8.setEnabled(true);
+
+                                break;
+                            case DAMAGE9:
+
+
+
+                                activity.damage9.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage9.setEnabled(true);
+
+                                break;
+                            case DAMAGE10:
+
+
+
+                                activity.damage10.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage10.setEnabled(true);
+
+                                break;
+                            case DAMAGE11:
+
+
+
+                                activity.damage11.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage11.setEnabled(true);
+
+                                break;
+                            case DAMAGE12:
+
+
+
+                                activity.damage12.setImageResource(R.drawable.ic_baseline_error_24);
+                                activity.damage12.setEnabled(true);
+
+                                break;
+
+
+                        }
 
 
                     }
