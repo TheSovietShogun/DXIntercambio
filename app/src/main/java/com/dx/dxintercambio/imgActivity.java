@@ -16,6 +16,8 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -258,6 +260,40 @@ public class imgActivity extends AppCompatActivity {
     private Context context;
     File destPath;
     Uri photoURI;
+    private String path_tractoDer;
+    private String path_tractoFrente;
+    private String path_tractoIzq;
+    private String path_noEconomico;
+    private String path_izqRemolqueP1;
+    private String path_vin;
+    private String path_chasisFrontalIzq;
+    private String path_chasisTraseroIzq;
+    private String path_llantasIzqEje1;
+    private String path_llantasIzqEje2;
+    private String path_izqRemolqueP2;
+    private String path_puertas;
+    private String path_placas;
+    private String path_sello1;
+    private String path_sello2;
+    private String path_derRemolqueP1;
+    private String path_llantasDerEje2;
+    private String path_llantasDerEje1;
+    private String path_chasisTraseroDer;
+    private String path_chasisFrontalDER;
+    private String path_derRemolqueP2;
+    private String path_sello3;
+    private String path_damage1;
+    private String path_damage2;
+    private String path_damage3;
+    private String path_damage4;
+    private String path_damage5;
+    private String path_damage6;
+    private String path_damage7;
+    private String path_damage8;
+    private String path_damage9;
+    private String path_damage10;
+    private String path_damage11;
+    private String path_damage12;
 
 
     @Override
@@ -2300,6 +2336,8 @@ public class imgActivity extends AppCompatActivity {
                     ".jpeg",         // suffix
                     destPath      // directory
             );
+
+
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         photoURI = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", imageFile);
         camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -2328,7 +2366,9 @@ public class imgActivity extends AppCompatActivity {
 
                 case REQUEST_TRACTO_DER:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+
+                        path_tractoDer = imageFile.getPath();
+
                         tractoDer.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_TRACTO_DER);
@@ -2340,7 +2380,9 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_TRACTO_FRENTE:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+
+                        path_tractoFrente = imageFile.getPath();
+
                         tractoFrente.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_TRACTO_FRENTE);
@@ -2352,7 +2394,8 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_TRACTO_IZQ:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+
+                        path_tractoIzq = imageFile.getPath();
 
                         tractoIzq.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2365,7 +2408,8 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_NoECONOMICO:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+
+                        path_noEconomico = imageFile.getPath();
 
                         noEconomico.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2378,7 +2422,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_IZQ_REMOLQUE_P1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        
+                        path_izqRemolqueP1 = imageFile.getPath();
+
                         izqRemolqueP1.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
@@ -2393,7 +2438,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_VIN:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        
+                        path_vin = imageFile.getPath();
+
                         vin.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
@@ -2408,7 +2454,8 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_CHASIS_FRONTAL_IZQ:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        
+                        path_chasisFrontalIzq = imageFile.getPath();
+
                         chasisFrontalIzq.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_CHASIS_FRONTAL_IZQ);
@@ -2423,7 +2470,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_CHASIS_TRASERO_IZQ:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        
+                        path_chasisTraseroIzq = imageFile.getPath();
                         chasisTraseroIzq.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
@@ -2435,7 +2482,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_LLANTAS_IZQ_EJE1:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+                        path_llantasIzqEje1 = imageFile.getPath();
                         llantasIzqEje1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_LLANTAS_IZQ_EJE1);
@@ -2451,7 +2498,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST__LLANTAS_IZQ_EJE2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                         
+                        path_llantasIzqEje2 = imageFile.getPath();
 
                         llantasIzqEje2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2465,7 +2512,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_IZQ_REMOLQUE_P2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                     
+                        path_izqRemolqueP2 = imageFile.getPath();
 
                         izqRemolqueP2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2479,7 +2526,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_PUERTAS:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        
+                        path_puertas = imageFile.getPath();
                         puertas.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_PUERTAS);
@@ -2492,7 +2539,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_PLACAS:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                      
+                        path_placas = imageFile.getPath();
 
                         placas.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2506,7 +2553,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_SELLO1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                        
+                        path_sello1 = imageFile.getPath();
 
                         sello1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2520,7 +2567,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_SELLO2:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                       
+                        path_sello2 = imageFile.getPath();
                         sello2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_SELLO2);
@@ -2533,7 +2580,7 @@ public class imgActivity extends AppCompatActivity {
                 case REQUEST_DER_REMOLQUE_P1:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                       
+                        path_derRemolqueP1 = imageFile.getPath();
 
                         derRemolqueP1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2546,7 +2593,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_LLANTAS_DER_EJE2:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_llantasDerEje2 = imageFile.getPath();
                        
                         llantasDerEje2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2559,7 +2606,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_LLANTAS_DER_EJE1:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_llantasDerEje1 = imageFile.getPath();
                         
                         llantasDerEje1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2572,8 +2619,8 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_CHASIS_TRASERO_DER:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
 
+                        path_chasisTraseroDer = imageFile.getPath();
                         chasisTraseroDer.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(REQUEST_CHASIS_TRASERO_DER);
@@ -2584,7 +2631,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_CHASIS_FRONTAL_DER:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+                        path_chasisFrontalDER = imageFile.getPath();
 
                         chasisFrontalDER.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2597,7 +2644,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_DER_REMOLQUE_P2:
                     if (resultCode == Activity.RESULT_OK ) {
-                        
+                        path_derRemolqueP2 = imageFile.getPath();
 
                         derRemolqueP2.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2610,7 +2657,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case REQUEST_SELLO3:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_sello3 = imageFile.getPath();
                       
                         sello3.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2624,7 +2671,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case DAMAGE1:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_damage1 = imageFile.getPath();
                     
                         damage1.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2637,7 +2684,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case DAMAGE2:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_damage2 = imageFile.getPath();
                       
 
                         damage2.setImageResource(R.drawable.ic_ok);
@@ -2651,7 +2698,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case DAMAGE3:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_damage3 = imageFile.getPath();
                      
 
                         damage3.setImageResource(R.drawable.ic_ok);
@@ -2665,7 +2712,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case DAMAGE4:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_damage4 = imageFile.getPath();
                        
                         damage4.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2678,7 +2725,7 @@ public class imgActivity extends AppCompatActivity {
                     break;
                 case DAMAGE5:
                     if (resultCode == Activity.RESULT_OK ) {
-
+                        path_damage5 = imageFile.getPath();
                        
                         damage5.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
@@ -2692,7 +2739,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE6:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                     
+                        path_damage6 = imageFile.getPath();
                         damage6.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE6);
@@ -2705,7 +2752,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE7:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                       
+                        path_damage7 = imageFile.getPath();
                         damage7.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE7);
@@ -2718,7 +2765,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE8:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                    
+                        path_damage8 = imageFile.getPath();
                         damage8.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE8);
@@ -2731,7 +2778,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE9:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                     
+                        path_damage9 = imageFile.getPath();
                         damage9.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE9);
@@ -2744,7 +2791,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE10:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                    
+                        path_damage10 = imageFile.getPath();
                         damage10.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
@@ -2758,7 +2805,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE11:
                     if (resultCode == Activity.RESULT_OK ) {
 
-                  
+                         path_damage11 = imageFile.getPath();
                         damage11.setImageResource(R.drawable.ic_ok);
 
                         upload up = new upload(this);
@@ -2772,7 +2819,7 @@ public class imgActivity extends AppCompatActivity {
                 case DAMAGE12:
                     if (resultCode == Activity.RESULT_OK ) {
 
-
+                         path_damage12 = imageFile.getPath();
                         damage12.setImageResource(R.drawable.ic_ok);
                         upload up = new upload(this);
                         up.execute(DAMAGE12);
@@ -2840,9 +2887,115 @@ public class imgActivity extends AppCompatActivity {
                     activity.bm1=null;
                 }
 
-                String path = activity.imageFile.getPath();
-                activity.bm1 = BitmapFactory.decodeFile(path);
 
+                String path = null;
+                switch (codigo) {
+                    case REQUEST_TRACTO_DER:
+                        path = path_tractoDer ;
+                        break;
+                    case REQUEST_TRACTO_FRENTE:
+                        path =   path_tractoFrente;
+                        break;
+                    case REQUEST_TRACTO_IZQ:
+                        path = path_tractoIzq ;
+                        break;
+                    case REQUEST_NoECONOMICO:
+                        path = path_noEconomico ;
+                        break;
+                    case REQUEST_IZQ_REMOLQUE_P1:
+                        path =   path_izqRemolqueP1 ;
+                        break;
+                    case REQUEST_VIN:
+                        path =   path_vin;
+                        break;
+                    case REQUEST_CHASIS_FRONTAL_IZQ:
+                        path =   path_chasisFrontalIzq ;
+                        break;
+                    case REQUEST_CHASIS_TRASERO_IZQ:
+                        path =  path_chasisTraseroIzq ;
+                        break;
+                    case REQUEST_LLANTAS_IZQ_EJE1:
+                        path =  path_llantasIzqEje1 ;
+                        break;
+                    case REQUEST__LLANTAS_IZQ_EJE2:
+                        path =  path_llantasIzqEje2 ;
+                        break;
+                    case REQUEST_IZQ_REMOLQUE_P2:
+                        path = path_izqRemolqueP2 ;
+                        break;
+                    case REQUEST_PUERTAS:
+                        path =path_puertas ;
+                        break;
+                    case REQUEST_PLACAS:
+                        path = path_placas ;
+                        break;
+                    case REQUEST_SELLO1:
+                        path = path_sello1 ;
+                        break;
+                    case REQUEST_SELLO2:
+                        path =  path_sello2;
+                        break;
+                    case REQUEST_DER_REMOLQUE_P1:
+                        path = path_derRemolqueP1 ;
+                        break;
+                    case REQUEST_LLANTAS_DER_EJE2:
+                        path = path_llantasDerEje2 ;
+                        break;
+                    case REQUEST_LLANTAS_DER_EJE1:
+                        path = path_llantasDerEje1 ;
+                        break;
+                    case REQUEST_CHASIS_TRASERO_DER:
+                        path = path_chasisTraseroDer ;
+                        break;
+                    case REQUEST_CHASIS_FRONTAL_DER:
+                        path =  path_chasisFrontalDER ;
+                        break;
+                    case REQUEST_DER_REMOLQUE_P2:
+                        path =  path_derRemolqueP2 ;
+                        break;
+                    case REQUEST_SELLO3:
+                        path =path_sello3 ;
+                        break;
+                    case DAMAGE1:
+                        path = path_damage1 ;
+                        break;
+                    case DAMAGE2:
+                        path = path_damage2;
+                        break;
+                    case DAMAGE3:
+                        path =path_damage3;
+                        break;
+                    case DAMAGE4:
+                        path = path_damage4;
+                        break;
+                    case DAMAGE5:
+                        path =path_damage5;
+                        break;
+                    case DAMAGE6:
+                        path =path_damage6;
+                        break;
+                    case DAMAGE7:
+                        path = path_damage7;
+                        break;
+                    case DAMAGE8:
+                        path = path_damage8;
+                        break;
+                    case DAMAGE9:
+                        path =path_damage9;
+                        break;
+                    case DAMAGE10:
+                        path = path_damage10;
+                        break;
+                    case DAMAGE11:
+                        path =path_damage11;
+                        break;
+                    case DAMAGE12:
+                        path = path_damage12;
+                        break;
+                }
+
+
+                activity.bm1 = BitmapFactory.decodeFile(path);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
                 activity.bm1.compress(Bitmap.CompressFormat.JPEG, 30, stream);
@@ -2867,41 +3020,7 @@ public class imgActivity extends AppCompatActivity {
 
                 activity.dxApi = retrofit.create(DxApi.class);
 
-               /* RequestBody requestFile =
-                        RequestBody.create( byte_arr ,MediaType.parse("application/json"));
-
-                MultipartBody.Part img =
-                        MultipartBody.Part.createFormData("img", activity.imageFileName, requestFile);
-*/
-                /*RequestBody img = RequestBody.create( byte_arr ,MediaType.parse("application/json") );
-
-                RequestBody user = RequestBody.create( activity.user,MediaType.parse("application/json") );
-
-                RequestBody password = RequestBody.create( activity.password ,MediaType.parse("application/json"));
-
-                RequestBody nombre = RequestBody.create( activity.imageFileName,MediaType.parse("application/json") );
-
-                RequestBody folio = RequestBody.create( activity.folio ,MediaType.parse("application/json"));*/
-
-
                 Post5 post5 =  new Post5 (activity.user,activity.password,activity.imageFileName,base64,activity.folio);
-
-                /*JSONObject student1 = new JSONObject();
-                try {
-                    student1.put("user", activity.user);
-                    student1.put("password", activity.password );
-                    student1.put("nombre", activity.imageFileName);
-                    student1.put("folio", activity.folio);
-
-                } catch (JSONException e) {
-
-                }
-                Gson gson = new GsonBuilder().setLenient().create();*/
-
-
-                //RequestBody model = RequestBody.create( gson.toJson(student1) , MediaType.parse("application/json"));
-
-                //Post00 post00 =  new Post00 (activity.user,activity.password,activity.imageFileName,byte_arr,activity.folio);
 
                 Call<String> callImg = activity.dxApi.getImg(post5);
 
