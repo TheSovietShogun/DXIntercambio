@@ -56,4 +56,10 @@ public interface DxApi {
     @POST("logApp")
     Call<List<CEnvio>> getLogApp(@Body PostLogApp postLogApp);
 
+    @POST("transportista")
+    Call<List<CFlota>> getTranspo(@Body Post post);
+
+    @POST("usuarioRel")
+    Call<List<CUsuarioRel>> getUsuarioRel(@Body Post Post);
+
 }

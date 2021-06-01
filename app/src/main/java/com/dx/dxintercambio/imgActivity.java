@@ -33,7 +33,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.apache.commons.io.FileUtils;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +63,7 @@ public class imgActivity extends AppCompatActivity {
             damage5 , damage6 , damage7 , damage8,
             damage9 , damage10 , damage11 , damage12 ;
     private static final int REQUEST_CODE_SIGN_IN = 1;
-    private static final String TAG = "envioActivity";
+    private static final String TAG = "etapa1_Activity";
     private Spinner llanta1SP, llanta2SP , llanta3SP ,llanta4SP,llanta5SP ,llanta6SP ,llanta7SP,llanta8SP;
 
     private EditText sello1ET ,sello2ET, sello3ET , numeroDePlaca , comentario2, comentario0 , comentario1;
@@ -1135,7 +1135,7 @@ public class imgActivity extends AppCompatActivity {
                 S_DRP1_pisoPlaga = "1";
             }
         });
-        DRP1_techoPlaga.setOnClickListener(view -> {
+        DRP1_techoPlaga .setOnClickListener(view -> {
             // Is the button now checked?
             checked1 = ((CheckBox) view).isChecked();
 

@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".etapa2_Activity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/S_estatusP2"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_marcaP2" />
+
+            <Spinner
+                android:id="@+id/S_estatusP5"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_marcaP5" />
+
+            <ImageView
+                android:id="@+id/IV_llantaIzqEje2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="150dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView96"
+                app:srcCompat="@color/azul_chingon" />
+
+            <CheckBox
+                android:id="@+id/CB_birlosEje2Izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Brilos y pivote"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_estatusP6" />
+
+            <CheckBox
+                android:id="@+id/CB_llantaP5"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Llanta Posicion 5"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_birlosEje2Izq" />
+
+            <CheckBox
+                android:id="@+id/CB_rinesEje2Izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Rin"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_masaEje2Izq" />
+
+            <Spinner
+                android:id="@+id/S_estatusP6"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_marcaP6" />
+
+            <TextView
+                android:id="@+id/textView94"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Llanta Izq Eje 2"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_llantaIzqEje2"
+                app:layout_constraintEnd_toEndOf="@+id/IV_llantaIzqEje2"
+                app:layout_constraintStart_toStartOf="@+id/IV_llantaIzqEje2"
+                app:layout_constraintTop_toTopOf="@+id/IV_llantaIzqEje2" />
+
+            <ImageView
+                android:id="@+id/IV_chasisIzqTrasero"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView98"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq1"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView105"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq4"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq3"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq1"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq4"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView105"
+                app:srcCompat="@color/azul_chingon" />
+
+            <Spinner
+                android:id="@+id/S_marcaP6"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_estatusP5" />
+
+            <TextView
+                android:id="@+id/textView95"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq1"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq1"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq1"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq1" />
+
+            <TextView
+                android:id="@+id/textView99"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq2"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq2"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq2"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq2"
+                tools:layout_editor_absoluteX="211dp"
+                tools:layout_editor_absoluteY="2191dp" />
+
+            <TextView
+                android:id="@+id/textView100"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq3"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq3"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq3"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq3"
+                tools:layout_editor_absoluteX="211dp"
+                tools:layout_editor_absoluteY="2191dp" />
+
+            <TextView
+                android:id="@+id/textView101"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq4"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq4"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq4"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq4"
+                tools:layout_editor_absoluteX="211dp"
+                tools:layout_editor_absoluteY="2191dp" />
+
+            <TextView
+                android:id="@+id/textView102"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto Chasis Trasero Izq"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_chasisIzqTrasero"
+                app:layout_constraintEnd_toEndOf="@+id/IV_chasisIzqTrasero"
+                app:layout_constraintStart_toStartOf="@+id/IV_chasisIzqTrasero"
+                app:layout_constraintTop_toTopOf="@+id/IV_chasisIzqTrasero" />
+
+            <Spinner
+                android:id="@+id/S_marcaP5"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="50dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView96" />
+
+            <CheckBox
+                android:id="@+id/CB_masaEje2Izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Masa de yoyo"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_llantaP6" />
+
+            <CheckBox
+                android:id="@+id/CB_llantaP6"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Llanta Posicion 6"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_llantaP5" />
+
+            <CheckBox
+                android:id="@+id/CB_loderaEje2Izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tiene lodera?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_rinesEje2Izq" />
+
+            <CheckBox
+                android:id="@+id/CB_amortigadorIzqTrasero"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Amortiguador"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView98" />
+
+            <CheckBox
+                android:id="@+id/CB_matracaIzqTasera"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="Matraca"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_bolsaDerFrontal" />
+
+            <CheckBox
+                android:id="@+id/CB_muelleIzqTrasera2"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Muelle"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_matracaIzqTasera" />
+
+            <CheckBox
+                android:id="@+id/CB_rotachamberIzqTrasera"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Rotachamber"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_muelleIzqTrasera2" />
+
+            <CheckBox
+                android:id="@+id/CB_bolsaDerFrontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_marginTop="13dp"
+                android:text="Bolsa de aire"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_amortigadorIzqTrasero" />
+
+            <TextView
+                android:id="@+id/textView96"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text=" Llantas Eje 2"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_loderaEje1Izq" />
+
+            <TextView
+                android:id="@+id/textView98"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Chasis Trasera Izquierdo "
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_loderaEje2Izq" />
+
+            <TextView
+                android:id="@+id/textView105"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Daños"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_rotachamberIzqTrasera" />
+
+            <Spinner
+                android:id="@+id/S_marcaP2"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/azul_chingon"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_estatusP1" />
+
+            <Spinner
+                android:id="@+id/S_estatusP1"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_marcaP1" />
+
+            <Spinner
+                android:id="@+id/S_marcaP1"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="50dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView97" />
+
+            <CheckBox
+                android:id="@+id/CB_amortigadorIzqFrontal"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Amortiguador"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+            <ImageView
+                android:id="@+id/IV_llantaIzqEje1"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="132dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView97"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_chasisIzqFrontal"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView88"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto Chasis Frontal Izq"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_chasisIzqFrontal"
+                app:layout_constraintEnd_toEndOf="@+id/IV_chasisIzqFrontal"
+                app:layout_constraintStart_toStartOf="@+id/IV_chasisIzqFrontal"
+                app:layout_constraintTop_toTopOf="@+id/IV_chasisIzqFrontal" />
+
+            <TextView
+                android:id="@+id/textView88"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="Chasis Frontal Izquierdo"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_jumboIzq" />
+
+            <TextView
+                android:id="@+id/textView97"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llantas Eje 1"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.465"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_rotachamberIzqFrontal" />
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Llanta Izq Eje 1"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_llantaIzqEje1"
+                app:layout_constraintEnd_toEndOf="@+id/IV_llantaIzqEje1"
+                app:layout_constraintStart_toStartOf="@+id/IV_llantaIzqEje1"
+                app:layout_constraintTop_toTopOf="@+id/IV_llantaIzqEje1" />
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="Lado Izquierdo Chasis"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/CB_bolsaIzqFrontal"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Bolsa de aire"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_amortigadorIzqFrontal" />
+
+            <CheckBox
+                android:id="@+id/CB_matracaIzqFrontal"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Matraca"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_bolsaIzqFrontal" />
+
+            <CheckBox
+                android:id="@+id/CB_muelleIzqFrontal"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Muelle"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_matracaIzqFrontal" />
+
+            <CheckBox
+                android:id="@+id/CB_rotachamberIzqFrontal"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Rotachamber"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_muelleIzqFrontal" />
+
+            <CheckBox
+                android:id="@+id/CB_jumboIzq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="Llantas Jumbo ?"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="400dp" />
+
+            <Button
+                android:id="@+id/btn_etapa4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/azul_chingon"
+                android:text="Siguiente"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2"
+                tools:layout_editor_absoluteX="165dp" />
+
+            <CheckBox
+                android:id="@+id/CB_birlosEje1Izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Brilos y pivote"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/S_estatusP2" />
+
+            <CheckBox
+                android:id="@+id/CB_llantaP1"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_marginTop="16dp"
+                android:text="Llanta Posicion 1"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_birlosEje1Izq" />
+
+            <CheckBox
+                android:id="@+id/CB_loderaEje1Izq"
+                android:layout_width="wrap_content"
+                android:checked="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tiene lodera?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_rinesEje1izq" />
+
+            <CheckBox
+                android:id="@+id/CB_llantaP2"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Llanta Posicion 2"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_llantaP1" />
+
+            <CheckBox
+                android:id="@+id/CB_masaEje1Izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Masa de yoyo"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_llantaP2" />
+
+            <CheckBox
+                android:id="@+id/CB_rinesEje1izq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Rin"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_masaEje1Izq" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine2"
+                android:layout_width="529dp"
+                android:layout_height="241dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Observaciones Lado Izquierdo"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,4 +26,12 @@ public class COperador {
     public String toString() {
         return nombreCompleto;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
 }

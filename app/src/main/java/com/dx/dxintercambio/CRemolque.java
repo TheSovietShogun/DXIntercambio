@@ -2,21 +2,40 @@ package com.dx.dxintercambio;
 
 public class CRemolque {
 
-    private int id ;
+    private String id ;
 
     private String remolques;
 
-    public CRemolque(int id, String clave) {
+    private String idLinea;
+
+    public CRemolque(String id, String remolques, String idLinea) {
         this.id = id;
-        this.remolques = clave;
+        this.remolques = remolques;
+        this.idLinea = idLinea;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getRemolques() {
         return remolques;
+    }
+
+    public void setRemolques(String remolques) {
+        this.remolques = remolques;
+    }
+
+    public String getIdLinea() {
+        return idLinea;
+    }
+
+    public void setIdLinea(String idLinea) {
+        this.idLinea = idLinea;
     }
 
     @Override

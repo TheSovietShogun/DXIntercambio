@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".etapa2_Activity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/CB_inspeccionMecanica"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="37dp"
+                android:text="Inspeccion Mecanica"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+            <CheckBox
+                android:id="@+id/CB_luzABS3"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz ABS"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_loderaIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_patinIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="37dp"
+                android:text="Patin Izquierdo"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+            <CheckBox
+                android:id="@+id/CB_cuartoIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Cuarto lado izquierdo"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView89" />
+
+            <ImageView
+                android:id="@+id/IV_numeroEco"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_luzBarcIzq"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_costadoIzqFrente"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/IV_numeroEco"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_costadoIzqAtras"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/IV_manitasIzq"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto del Costado Izq (desde frente) "
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_costadoIzqFrente"
+                app:layout_constraintEnd_toEndOf="@+id/IV_costadoIzqFrente"
+                app:layout_constraintStart_toStartOf="@+id/IV_costadoIzqFrente"
+                app:layout_constraintTop_toTopOf="@+id/IV_costadoIzqFrente" />
+
+            <TextView
+                android:id="@+id/textView93"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto del Costado Izq (desde atras)"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintEnd_toEndOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintStart_toStartOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintTop_toTopOf="@+id/IV_costadoIzqAtras" />
+
+            <ImageView
+                android:id="@+id/IV_manitasIzq"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_rompevientesIzq"
+                app:srcCompat="@color/azul_chingon" />
+
+            <CheckBox
+                android:id="@+id/CB_manivelaIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Manivela"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_patinIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_izqLucesP1"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luces en buen estado?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_inspeccionMecanica" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="400dp" />
+
+            <Button
+                android:id="@+id/btn_etapa3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/azul_chingon"
+                android:text="Siguiente"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IV_costadoIzqFrente" />
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="Lado Izquierdo Remolque"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/CB_manitasIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Manitas"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_manivelaIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_izqLucesP2"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="43dp"
+                android:text="Luces en buen estado?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_cuartoIzq" />
+
+            <TextView
+                android:id="@+id/textView88"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Costado Izquierdo del Remolque P1"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto Numero Economico"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_numeroEco"
+                app:layout_constraintEnd_toEndOf="@+id/IV_numeroEco"
+                app:layout_constraintStart_toStartOf="@+id/IV_numeroEco"
+                app:layout_constraintTop_toTopOf="@+id/IV_numeroEco" />
+
+            <TextView
+                android:id="@+id/textView91"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto Manitas"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_manitasIzq"
+                app:layout_constraintEnd_toEndOf="@+id/IV_manitasIzq"
+                app:layout_constraintStart_toStartOf="@+id/IV_manitasIzq"
+                app:layout_constraintTop_toTopOf="@+id/IV_manitasIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_luzBarcIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="27dp"
+                android:text="Luz de barco izquierda"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_izqLucesP2" />
+
+            <TextView
+                android:id="@+id/textView89"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="32dp"
+                android:text="Costado Izquierdo del Remolque P2"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_luzGabIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_rompevientesIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Rompevientos Izquierdo"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_luzABS3" />
+
+            <CheckBox
+                android:id="@+id/CB_luzGabIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Luz Galibo izq.\n Frontal Sup."
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_izqLucesP1" />
+
+            <CheckBox
+                android:id="@+id/CB_loderaIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Lodera Izquierda"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView89" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

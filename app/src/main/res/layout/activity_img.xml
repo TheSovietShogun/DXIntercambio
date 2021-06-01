@@ -45,17 +45,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
 
             <ImageView
-                android:id="@+id/imageView29"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView33"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox32"
-                app:srcCompat="@color/azul_chingon" />
-
-            <ImageView
                 android:id="@+id/imageView33"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -63,6 +52,17 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView34"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView29"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox32"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/imageView29"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView33"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox32"
                 app:srcCompat="@color/azul_chingon" />
 

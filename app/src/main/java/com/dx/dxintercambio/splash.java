@@ -71,7 +71,7 @@ public class splash extends Activity {
                             String res = cUsuarios.get(0).getRespuesta();
 
                             if (res.contains("1")){
-                                Intent i = new Intent(splash.this, envioActivity.class);
+                                Intent i = new Intent(splash.this, etapa1_Activity.class);
                                 i.putExtra("idUsuario", idUsuario);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
@@ -84,7 +84,7 @@ public class splash extends Activity {
                         @Override
                         public void onFailure(Call<List<CUsuario>> call, Throwable t) {
                             Toast.makeText(splash.this, "Error 404" , Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(splash.this, MainActivity.class);
+                            Intent i = new Intent(splash.this, loginActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                         }
@@ -95,13 +95,13 @@ public class splash extends Activity {
                     }else if (usuario == "" && contraseña == "" ){
 
 
-                    Intent i = new Intent(splash.this, MainActivity.class);
+                    Intent i = new Intent(splash.this, loginActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
 
                 } else {
 
-                    Intent i = new Intent(splash.this, MainActivity.class);
+                    Intent i = new Intent(splash.this, loginActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
@@ -111,7 +111,7 @@ public class splash extends Activity {
 
         }catch (Exception e ){
 
-            Intent i = new Intent(splash.this, MainActivity.class);
+            Intent i = new Intent(splash.this, loginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
         }

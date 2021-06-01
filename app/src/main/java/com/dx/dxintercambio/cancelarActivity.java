@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -103,7 +102,7 @@ public class cancelarActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
                                         // Actions to do after 10 seconds
-                                        Intent i = new Intent(cancelarActivity.this, envioActivity.class);
+                                        Intent i = new Intent(cancelarActivity.this, etapa1_Activity.class);
                                         i.putExtra("idUsuario", idUsuario2);
                                         startActivity(i);
                                     }

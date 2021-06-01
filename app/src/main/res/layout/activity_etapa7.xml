@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".etapa2_Activity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="142dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine5"
+                android:layout_width="529dp"
+                android:layout_height="241dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Observaciones Lado Trasero"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq6" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView110"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq5"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView110"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq6"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq5"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_dañoIzq7"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView109"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq5"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq5"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq5"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq5" />
+
+            <TextView
+                android:id="@+id/textView107"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq6"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq6"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq6"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq6" />
+
+            <TextView
+                android:id="@+id/textView108"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq7"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq7"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq7"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq7" />
+
+            <TextView
+                android:id="@+id/textView110"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Daños"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_rompevientesDer" />
+
+            <TextView
+                android:id="@+id/textView106"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Daño"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_luzGabDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Luz Galibo Der.\n Frontal Sup."
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_lucesCheckDer" />
+
+            <CheckBox
+                android:id="@+id/CB_patinDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Patin Derecho"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_paredPlagasIzq" />
+
+            <CheckBox
+                android:id="@+id/CB_lucesCheckDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Luces en buen estado?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_techoPlagas" />
+
+            <CheckBox
+                android:id="@+id/CB_fondoCaja"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="¿El fondo de la caja\nesta libre de plagas?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+            <CheckBox
+                android:id="@+id/CB_paredPlagasDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Pared derecha\nlibre de plagas?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_luzGabDer" />
+
+            <CheckBox
+                android:id="@+id/CB_cuartoDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Cuarto lado derecho"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView89" />
+
+            <CheckBox
+                android:id="@+id/CB_derLucesP2"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Luces en buen estado?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_loderaDer" />
+
+            <CheckBox
+                android:id="@+id/CB_luzBarcDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Luz de barco derecha"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_derLucesP2" />
+
+            <ImageView
+                android:id="@+id/IV_costadoIzqFrente"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView89"
+                app:srcCompat="@color/azul_chingon" />
+
+            <ImageView
+                android:id="@+id/IV_costadoIzqAtras"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView88"
+                app:srcCompat="@color/azul_chingon" />
+
+            <TextView
+                android:id="@+id/textView93"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto del Costado Izq (desde atras)"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintEnd_toEndOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintTop_toTopOf="@+id/IV_costadoIzqAtras"
+                app:layout_constraintVertical_bias="0.41" />
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Foto del Costado Izq (desde frente) "
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_costadoIzqFrente"
+                app:layout_constraintEnd_toEndOf="@+id/IV_costadoIzqFrente"
+                app:layout_constraintStart_toStartOf="@+id/IV_costadoIzqFrente"
+                app:layout_constraintTop_toTopOf="@+id/IV_costadoIzqFrente" />
+
+            <CheckBox
+                android:id="@+id/CB_paredPlagasIzq"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Pared izquierda\nlibre de plagas?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_paredPlagasDer" />
+
+            <CheckBox
+                android:id="@+id/CB_pisoPlagas"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="El piso esta\nlibre de plagas?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_fondoCaja" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="400dp" />
+
+            <Button
+                android:id="@+id/btn_etapa3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/azul_chingon"
+                android:text="Siguiente"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine5"
+                tools:layout_editor_absoluteX="81dp" />
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="Lado Derecho Remolque"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView88"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Costado Derecho del Remolque P1"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+            <TextView
+                android:id="@+id/textView89"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Costado Derecho del Remolque P2"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_patinDer" />
+
+            <CheckBox
+                android:id="@+id/CB_rompevientesDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Rompevientos Derecha"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_luzBarcDer" />
+
+            <CheckBox
+                android:id="@+id/CB_techoPlagas"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="El techo esta\nlibre de plagas?"
+                android:textSize="30sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_pisoPlagas" />
+
+            <CheckBox
+                android:id="@+id/CB_loderaDer"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Lodera Derecha"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_cuartoDer" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

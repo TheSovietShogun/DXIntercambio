@@ -6,12 +6,12 @@ public class Post2 {
 
     private String password;
 
-    private  String idFlota;
 
-    public Post2(String user, String password, String idFlota) {
+
+    public Post2(String user, String password) {
         this.user = user;
         this.password = password;
-        this.idFlota = idFlota;
+
     }
 
     public String getUser() {
@@ -22,9 +22,7 @@ public class Post2 {
         return password;
     }
 
-    public String getIdFlota() {
-        return idFlota;
-    }
+
 
 
 }

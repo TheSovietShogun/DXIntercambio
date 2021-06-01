@@ -6,12 +6,12 @@ public class Post3 {
 
     private String password;
 
-    private  String idLinea;
 
-    public Post3(String user, String password, String idLinea) {
+
+    public Post3(String user, String password) {
         this.user = user;
         this.password = password;
-        this.idLinea = idLinea;
+
     }
 
     public String getUser() {
@@ -22,9 +22,7 @@ public class Post3 {
         return password;
     }
 
-    public String getIdLinea() {
-        return idLinea;
-    }
+
 
 
 }
