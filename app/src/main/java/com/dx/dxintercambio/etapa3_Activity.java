@@ -212,7 +212,7 @@ public class etapa3_Activity extends AppCompatActivity {
                                 createDirectoryAndSaveFile( actual_fotoCostadoFrente,  "IzqCostadoFrente"+folio+".jpg", path)
                         )
                         {
-                            Intent i = new Intent(etapa3_Activity.this, etapa3_Activity.class);
+                            Intent i = new Intent(etapa3_Activity.this, etapa4_Activity.class);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);
@@ -290,8 +290,8 @@ public class etapa3_Activity extends AppCompatActivity {
             case REQUEST_NO_ECONOMICO:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_NoEconomico.setImageBitmap(photo);
+
+                        IV_NoEconomico.setImageResource(R.drawable.ic_ok);
                         actual_NoEconomico = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_NoEconomico.setImageResource(R.drawable.ic_baseline_error_24);
@@ -301,8 +301,8 @@ public class etapa3_Activity extends AppCompatActivity {
             case REQUEST_MANITAS:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_manitas.setImageBitmap(photo);
+
+                        IV_manitas.setImageResource(R.drawable.ic_ok);
                         actual_manitas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_manitas.setImageResource(R.drawable.ic_baseline_error_24);
@@ -312,8 +312,8 @@ public class etapa3_Activity extends AppCompatActivity {
             case REQUEST_FOTO_COSTADO_FRENTE:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_fotoCostadoFrente.setImageBitmap(photo);
+
+                        IV_fotoCostadoFrente.setImageResource(R.drawable.ic_ok);
                         actual_fotoCostadoFrente = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_fotoCostadoFrente.setImageResource(R.drawable.ic_baseline_error_24);
@@ -323,8 +323,8 @@ public class etapa3_Activity extends AppCompatActivity {
             case REQUEST_FOTO_COSTADO_ATRAS:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_fotoCostadoAtras.setImageBitmap(photo);
+
+                        IV_fotoCostadoAtras.setImageResource(R.drawable.ic_ok);
                         actual_fotoCostadoAtras = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_fotoCostadoAtras.setImageResource(R.drawable.ic_baseline_error_24);

@@ -521,13 +521,13 @@ public class etapa4_Activity extends AppCompatActivity {
                             string_comentarios);
 
                     if(insertIntercambio1 == -1){
-                        Toast.makeText(etapa4_Activity.this, "Error insertIntercambio3", Toast.LENGTH_LONG).show();
+                        Toast.makeText(etapa4_Activity.this, "Error insertIntercambio4", Toast.LENGTH_LONG).show();
                     }else {
                         if(createDirectoryAndSaveFile( actual_chasisIzqFrontal,  "chasisIzqFrontal"+folio+".jpg", path) &&
                                 createDirectoryAndSaveFile( actual_chasisIzqTrasero,  "chasisIzqTrasero"+folio+".jpg", path)
                         )
                         {
-                            Intent i = new Intent(etapa4_Activity.this, etapa3_Activity.class);
+                            Intent i = new Intent(etapa4_Activity.this, etapa5_Activity.class);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);
@@ -588,7 +588,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             string_comentarios);
 
                     if (insertIntercambio1 == -1) {
-                        Toast.makeText(etapa4_Activity.this, "Error insertIntercambio3", Toast.LENGTH_LONG).show();
+                        Toast.makeText(etapa4_Activity.this, "Error insertIntercambio4", Toast.LENGTH_LONG).show();
                     } else {
                         if (createDirectoryAndSaveFile(actual_chasisIzqFrontal, "chasisIzqFrontal" + folio + ".jpg", path) &&
                                 createDirectoryAndSaveFile(actual_chasisIzqTrasero, "chasisIzqTrasero" + folio + ".jpg", path)
@@ -611,7 +611,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             }
 
 
-                            Intent i = new Intent(etapa4_Activity.this, etapa3_Activity.class);
+                            Intent i = new Intent(etapa4_Activity.this, etapa5_Activity.class);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);
@@ -658,8 +658,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_CHASIS_IZQ_FRONTAL:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_chasisIzqFrontal.setImageBitmap(photo);
+
+                        IV_chasisIzqFrontal.setImageResource(R.drawable.ic_ok);
                         actual_chasisIzqFrontal = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_chasisIzqFrontal.setImageResource(R.drawable.ic_baseline_error_24);
@@ -669,8 +669,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_LLANTAEJE1:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_llantaEje1.setImageBitmap(photo);
+
+                        IV_llantaEje1.setImageResource(R.drawable.ic_ok);
                         actual_llantaEje1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_llantaEje1.setImageResource(R.drawable.ic_baseline_error_24);
@@ -680,8 +680,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_LLANTAEJE2:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_llantaEje2.setImageBitmap(photo);
+
+                        IV_llantaEje2.setImageResource(R.drawable.ic_ok);
                         actual_llantaEje2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_llantaEje2.setImageResource(R.drawable.ic_baseline_error_24);
@@ -691,8 +691,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_CHASIS_IZQ_TRASERO:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        IV_chasisIzqTrasero.setImageBitmap(photo);
+
+                        IV_chasisIzqTrasero.setImageResource(R.drawable.ic_ok);
                         actual_chasisIzqTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_chasisIzqTrasero.setImageResource(R.drawable.ic_baseline_error_24);
@@ -702,8 +702,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_DAÑO1:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        daño1.setImageBitmap(photo);
+
+                        daño1.setImageResource(R.drawable.ic_ok);
                         actual_daño1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         daño1.setImageResource(R.drawable.ic_baseline_error_24);
@@ -713,8 +713,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_DAÑO2:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        daño2.setImageBitmap(photo);
+
+                        daño2.setImageResource(R.drawable.ic_ok);
                         actual_daño2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         daño2.setImageResource(R.drawable.ic_baseline_error_24);
@@ -724,8 +724,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_DAÑO3:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        daño3.setImageBitmap(photo);
+
+                        daño3.setImageResource(R.drawable.ic_ok);
                         actual_daño3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         daño3.setImageResource(R.drawable.ic_baseline_error_24);
@@ -735,8 +735,8 @@ public class etapa4_Activity extends AppCompatActivity {
             case REQUEST_DAÑO4:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        daño4.setImageBitmap(photo);
+
+                        daño4.setImageResource(R.drawable.ic_ok);
                         actual_daño4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         daño4.setImageResource(R.drawable.ic_baseline_error_24);

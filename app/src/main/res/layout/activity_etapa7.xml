@@ -29,10 +29,10 @@
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq6" />
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer3" />
 
             <ImageView
-                android:id="@+id/IV_dañoIzq"
+                android:id="@+id/IV_dañoDer"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="32dp"
@@ -42,7 +42,7 @@
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
-                android:id="@+id/IV_dañoIzq5"
+                android:id="@+id/IV_dañoDer1"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="32dp"
@@ -52,23 +52,23 @@
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
-                android:id="@+id/IV_dañoIzq6"
+                android:id="@+id/IV_dañoDer3"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq5"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer1"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
-                android:id="@+id/IV_dañoIzq7"
+                android:id="@+id/IV_dañoDer2"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq"
+                app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer"
                 app:srcCompat="@color/azul_chingon" />
 
             <TextView
@@ -79,10 +79,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq5"
-                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq5"
-                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq5"
-                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq5" />
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoDer1"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoDer1"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoDer1"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoDer1" />
 
             <TextView
                 android:id="@+id/textView107"
@@ -92,10 +92,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq6"
-                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq6"
-                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq6"
-                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq6" />
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoDer3"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoDer3"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoDer3"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoDer3" />
 
             <TextView
                 android:id="@+id/textView108"
@@ -105,10 +105,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq7"
-                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq7"
-                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq7"
-                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq7" />
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoDer2"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoDer2"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoDer2"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoDer2" />
 
             <TextView
                 android:id="@+id/textView110"
@@ -133,10 +133,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq"
-                app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq"
-                app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq"
-                app:layout_constraintTop_toTopOf="@+id/IV_dañoIzq" />
+                app:layout_constraintBottom_toBottomOf="@+id/IV_dañoDer"
+                app:layout_constraintEnd_toEndOf="@+id/IV_dañoDer"
+                app:layout_constraintStart_toStartOf="@+id/IV_dañoDer"
+                app:layout_constraintTop_toTopOf="@+id/IV_dañoDer" />
 
             <CheckBox
                 android:id="@+id/CB_luzGabDer"
@@ -250,7 +250,7 @@
                 android:id="@+id/textView93"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="Foto del Costado Izq (desde atras)"
+                android:text="Foto del Costado Der (desde atras)"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20sp"
@@ -265,7 +265,7 @@
                 android:id="@+id/textView92"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="Foto del Costado Izq (desde frente) "
+                android:text="Foto del Costado Der (desde frente) "
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
                 android:textSize="20sp"

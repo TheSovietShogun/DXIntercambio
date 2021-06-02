@@ -782,7 +782,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long insertIntercambioElectronico6( String folio,String remolqueChasisTraseroDerAmortiguador,String remolqueChasisTraseroDerBolsaAire,String remolqueChasisTraseroDerGavilan,
+    public long insertIntercambioElectronico6( String estatus ,String folio,String remolqueChasisTraseroDerAmortiguador,String remolqueChasisTraseroDerBolsaAire,String remolqueChasisTraseroDerGavilan,
                                                String remolqueChasisTraseroDerMuelle,String remolqueChasisTraseroDerRotachamber, String remolqueLlantaDerEje2BrilosPivote,String remolqueLlantaDerEje2Posicion7Marca,
                                                String remolqueLlantaDerEje2Posicion7Estatus,String remolqueLlantaDerEje2Posicion8Marca, String remolqueLlantaDerEje2Posicion8Estatus,String remolqueLlantaDerEje2Posicion7,
                                                String remolqueLlantaDerEje2Posicion8,String remolqueLlantaDerEje2MasaYoyo, String remolqueLlantaDerEje2Rin,String remolqueLlantaDerEje2Lodera,
@@ -836,7 +836,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long insertIntercambioElectronico7 (String folio,String remolquePisoPLagas,String remolqueTechoPlagas,String remolqueDerLuces,
+    public long insertIntercambioElectronico7 (String estatus ,String folio,String remolquePisoPLagas,String remolqueTechoPlagas,String remolqueDerLuces,
                                                String remolqueDerGaliboFrontal,String remolqueDerParedPlagas, String remolqueDerIzqParedPlagas,String remolqueDerPatin,
                                                String remolqueCuartoLadoDer,String LoderaDer, String remolqueLucesDerP2,String luzBarcoDer,
                                                String rompevientosDer,String remolqueLlantaDerJumbo ){

@@ -301,8 +301,8 @@ public class etapa2_Activity extends AppCompatActivity {
             case REQUEST_IZQ_TRACTO:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        izqTracto.setImageBitmap(photo);
+
+                        izqTracto.setImageResource(R.drawable.ic_ok);
                         actual_izqTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         izqTracto.setImageResource(R.drawable.ic_baseline_error_24);
@@ -312,8 +312,8 @@ public class etapa2_Activity extends AppCompatActivity {
             case REQUEST_DER_TRACTO:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        derTracto.setImageBitmap(photo);
+
+                        derTracto.setImageResource(R.drawable.ic_ok);
                         actual_derTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         derTracto.setImageResource(R.drawable.ic_baseline_error_24);
@@ -323,8 +323,8 @@ public class etapa2_Activity extends AppCompatActivity {
             case REQUEST_FRENTE_TRACTO:
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
-                        Bitmap photo = (Bitmap) resultData.getExtras().get("data");
-                        frenteTracto.setImageBitmap(photo);
+
+                        frenteTracto.setImageResource(R.drawable.ic_ok);
                         actual_frenteTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         frenteTracto.setImageResource(R.drawable.ic_baseline_error_24);

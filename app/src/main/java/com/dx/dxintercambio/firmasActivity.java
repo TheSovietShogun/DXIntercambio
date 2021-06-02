@@ -2,7 +2,9 @@ package com.dx.dxintercambio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -18,6 +20,9 @@ import android.widget.Toast;
 import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,21 +34,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class firmasActivity extends AppCompatActivity {
 
 
-    SignatureView signatureView;
-    SignatureView signatureView2;
-    ImageView imgClear;
-    ImageView imgClear2;
-    Button btnEnvio ;
-    Bitmap bitmap1;
-    Bitmap bitmap2;
-    DxApi dxApi;
-    String folio ,id;
-    String mensaje;
-    String ip;
-    private String user , password ;
-
-    Bitmap emptyBitmap;
-
+    private SignatureView signatureView;
+    private SignatureView signatureView2;
+    private ImageView imgClear;
+    private ImageView imgClear2;
+    private Button btnEnvio ;
+    private Bitmap bitmap1;
+    private Bitmap bitmap2;
+    private String folio ,path;
+    private String mensaje;
+    private String fechaHora;
+    private AlertDialog alert  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +54,15 @@ public class firmasActivity extends AppCompatActivity {
         signatureView =  (SignatureView) findViewById(R.id.signature_view);
         imgClear = (ImageView) findViewById(R.id.imageView32);
 
-
         signatureView2 =  (SignatureView) findViewById(R.id.signature_view2);
         imgClear2 = (ImageView) findViewById(R.id.imageView31);
 
         btnEnvio = (Button) findViewById(R.id.button2);
 
         folio = getIntent().getStringExtra("folio");
-        mensaje = getIntent().getStringExtra("mensaje");
+        path = getIntent().getStringExtra("path");
 
 
-        SharedPreferences preferences = getSharedPreferences ("credenciales", Context.MODE_PRIVATE);
-
-        user = preferences.getString("user","");
-        password = preferences.getString("pass","");
-        ip = preferences.getString("Aip","");
 
         imgClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,100 +86,56 @@ public class firmasActivity extends AppCompatActivity {
                 bitmap1 = signatureView2.getSignatureBitmap();
                 bitmap2 = signatureView.getSignatureBitmap();
 
+                fechaHora = (String) android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new Date());
 
                 if (signatureView.isBitmapEmpty() || signatureView2.isBitmapEmpty()) {
                     Toast.makeText(firmasActivity.this, "Falta firma", Toast.LENGTH_LONG).show();
                 }else  {
 
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(firmasActivity.this);
 
-                    String nombreFirma = "firmaOperador-"+folio;
-                    String nombreFirma2 = "firmaInter-"+folio;
+                    long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico200(
+                            "7","");
 
+                    if(insertIntercambio1 == -1){
+                        Toast.makeText(firmasActivity.this, "Error insertIntercambio200", Toast.LENGTH_LONG).show();
+                    }else {
+                        if(createDirectoryAndSaveFile( bitmap1,  "firmaOperador"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( bitmap2,  "firmaGuardia"+folio+".jpg", path)
+                        )
+                        {
 
+                             AlertDialog.Builder builder = new AlertDialog.Builder(firmasActivity.this);
+                            builder.setMessage("Desea realizar otro intercambio ?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
 
-                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
-                    String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.NO_WRAP);
-
-                    ByteArrayOutputStream bytes2 = new ByteArrayOutputStream();
-                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 70, bytes2);
-                    String encodedImage2 = Base64.encodeToString(bytes2.toByteArray(), Base64.NO_WRAP);
-
-
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://"+ip+"/api/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                    dxApi = retrofit.create(DxApi.class);
-
-                    Post7 post7 = new Post7(user,password,nombreFirma,encodedImage,folio,nombreFirma2,encodedImage2);
-                    Call<String> callImg2 = dxApi.getImg2(post7);
-
-                    callImg2.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
-                            if (!response.isSuccessful()) {
-                                Toast.makeText(firmasActivity.this, "Error 500", Toast.LENGTH_LONG).show();
-                            }
-
-                            String cEnvios = String.valueOf(response);
-
-                            if(cEnvios.contains("200")){
-                                Toast.makeText(getBaseContext(),"Intercambio Completo",Toast.LENGTH_SHORT).show();
-
-                                Retrofit retrofit = new Retrofit.Builder()
-                                        .baseUrl("http://"+ip+"/api/")
-                                        .addConverterFactory(GsonConverterFactory.create())
-                                        .build();
-
-                                dxApi = retrofit.create(DxApi.class);
-
-                                Post8 post8 = new Post8(user,password,mensaje);
-                                Call<List<CEnvio>> callTerminado = dxApi.getTerminado(post8);
-
-                                callTerminado.enqueue(new Callback<List<CEnvio>>() {
-                                    @Override
-                                    public void onResponse(Call<List<CEnvio>> call, Response<List<CEnvio>> response) {
-                                        if (!response.isSuccessful()) {
-                                            Toast.makeText(firmasActivity.this, "Error 500", Toast.LENGTH_LONG).show();
-                                        }else {
-
-                                            List<CEnvio> cEnvios = response.body();
-
-                                            String mensaje = cEnvios.get(0).getMensaje();
-
-                                            if (mensaje.contains("Enviado con exito")){
-
-                                                Intent i = new Intent(firmasActivity.this, splash.class);
-                                                startActivity(i);
-
-                                            }else{
-                                                Toast.makeText(firmasActivity.this, "Error al Enviar", Toast.LENGTH_LONG).show();
-                                            }
+                                            Intent i = new Intent(firmasActivity.this, etapa1_Activity.class);
+                                            startActivity(i);
 
                                         }
+                                    })
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
 
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<List<CEnvio>> call, Throwable t) {
-                                        Toast.makeText(firmasActivity.this, "Error 404U", Toast.LENGTH_LONG).show();
-                                    }
-                                });
-
-                            }else {
-                                Toast.makeText(getBaseContext(),"Error Al Enviar",Toast.LENGTH_SHORT).show();
-                            }
+                                            Intent i = new Intent(firmasActivity.this, menuActivity.class);
+                                            startActivity(i);
 
 
+                                        }
+                                    });
+
+                            alert = builder.create();
+                            alert.show();
+
+
+                        }else{
+                            Toast.makeText(firmasActivity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
                         }
-
-                        @Override
-                        public void onFailure(Call<String> call, Throwable t) {
-                            Toast.makeText(firmasActivity.this, "Error 404U", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    }
 
                 }
 
@@ -198,5 +149,23 @@ public class firmasActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+    }
+
+
+    private boolean createDirectoryAndSaveFile(Bitmap imageToSave, String fileName, String path) {
+
+        File file = new File(path, fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
