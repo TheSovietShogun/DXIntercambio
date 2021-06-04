@@ -26,8 +26,17 @@ import java.io.IOException;
 public class etapa2_Activity extends AppCompatActivity {
 
     private CheckBox defensa, cabina , quintaRueda , tuboEscape , base , techos , llantas , tanqueDiesel , tanqueAire , transmision , motor ;
-    private Boolean check_defensa, check_cabina , check_quintaRueda , check_tuboEscape , check_base ,
-            check_techos , check_llantas , check_tanqueDiesel , check_tanqueAire , check_transmision , check_motor ;
+    private Boolean check_defensa = true,
+            check_cabina = true,
+            check_quintaRueda = true,
+            check_tuboEscape = true,
+            check_base = true,
+            check_techos = true,
+            check_llantas = true,
+            check_tanqueDiesel = true,
+            check_tanqueAire = true,
+            check_transmision = true,
+            check_motor = true;
     private String string_defensa, string_cabina , string_quintaRueda , string_tuboEscape , string_base ,
             string_techos , string_llantas , string_tanqueDiesel , string_tanqueAire , string_transmision , string_motor ,path;
     private ImageView izqTracto, frenteTracto, derTracto ;

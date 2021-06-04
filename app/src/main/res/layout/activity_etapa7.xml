@@ -304,7 +304,7 @@
                 app:layout_constraintGuide_begin="400dp" />
 
             <Button
-                android:id="@+id/btn_etapa3"
+                android:id="@+id/btn_etapa7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

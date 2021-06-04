@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,12 +25,13 @@ public class etapa7_Activity extends AppCompatActivity {
 
     private CheckBox fondoPlaga , pisoPlaga , techoPlaga , lucesCheck1 , luzGabildo,  paredDerPlagas , paredIzqPlagas , patinDer,
             cuartoDer, loderaDer , lucesCheck2, luzBarco , rompevientosDer;
-    private Boolean check_fondoPlaga , check_pisoPlaga , check_techoPlaga , check_lucesCheck1 , check_luzGabildo,  check_paredDerPlagas , check_paredIzqPlagas , check_patinDer,
-            check_cuartoDer, check_loderaDer , check_lucesCheck2, check_luzBarco , check_rompevientosDer;
+    private Boolean check_fondoPlaga = true, check_pisoPlaga = true, check_techoPlaga = true, check_lucesCheck1 = true, check_luzGabildo= true,
+            check_paredDerPlagas = true, check_paredIzqPlagas = true, check_patinDer= true,
+            check_cuartoDer= true, check_loderaDer = true, check_lucesCheck2= true, check_luzBarco = true, check_rompevientosDer= true;
     private String path ,string_fondoPlaga , string_pisoPlaga , string_techoPlaga , string_lucesCheck1 , string_luzGabildo,  string_paredDerPlagas , string_paredIzqPlagas , string_patinDer,
             string_cuartoDer, string_loderaDer , string_lucesCheck2, string_luzBarco , string_rompevientosDer;
     private ImageView IV_costadoDerAtras ,IV_costadoDerFrente ,daño1,daño2,daño3,daño4;;
-    private Bitmap actual_chasisDerFrontal  ,actual_chasisDerTrasero ,actual_daño1,actual_daño2,actual_daño3,actual_daño4;
+    private Bitmap actualDerFrontal  ,actualDerTrasero ,actual_daño1,actual_daño2,actual_daño3,actual_daño4;
     private Button btnEtapa7 ;
     public static final int REQUEST_DER_COSTADO_ATRAS = 100;
     public static final int REQUEST_DER_COSTADO_FRENTE = 101;
@@ -40,6 +42,7 @@ public class etapa7_Activity extends AppCompatActivity {
     private File imageFile;
     private int widthScreen;
     private Uri photoURI;
+    private EditText comentarios ;
     private String  imageFileName , folio;
 
 
@@ -65,15 +68,16 @@ public class etapa7_Activity extends AppCompatActivity {
         luzBarco = (CheckBox) findViewById(R.id.CB_luzBarcDer);
         rompevientosDer = (CheckBox) findViewById(R.id.CB_rompevientesDer);
 
+        comentarios= (EditText) findViewById(R.id.editTextTextMultiLine5);
 
         IV_costadoDerAtras = (ImageView) findViewById(R.id.IV_costadoIzqAtras);
         IV_costadoDerFrente = (ImageView) findViewById(R.id.IV_costadoIzqFrente);
         daño1 = (ImageView) findViewById(R.id.IV_dañoDer);
         daño2 = (ImageView) findViewById(R.id.IV_dañoDer1);
-        daño1 = (ImageView) findViewById(R.id.IV_dañoDer2);
-        daño1 = (ImageView) findViewById(R.id.IV_dañoDer3);
+        daño3 = (ImageView) findViewById(R.id.IV_dañoDer2);
+        daño4 = (ImageView) findViewById(R.id.IV_dañoDer3);
 
-        btnEtapa7 =  (Button) findViewById(R.id.btn_etapa4);
+        btnEtapa7 =  (Button) findViewById(R.id.btn_etapa7);
 
         fondoPlaga.setOnClickListener(view -> {
 
@@ -227,8 +231,9 @@ public class etapa7_Activity extends AppCompatActivity {
                     string_rompevientosDer = "1";
                 }
 
+                String observacioens  = comentarios.getText().toString();
 
-                if(actual_chasisDerFrontal == null || actual_chasisDerTrasero == null ) {
+                if(actualDerFrontal == null || actualDerTrasero == null ) {
 
                     Toast.makeText(etapa7_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
                 } else {
@@ -236,32 +241,32 @@ public class etapa7_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa7_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico7(
-                            "7",folio,string_pisoPlaga,string_techoPlaga,string_lucesCheck1,string_luzGabildo
+                            "7",folio,observacioens,string_pisoPlaga,string_techoPlaga,string_lucesCheck1,string_luzGabildo
                             ,string_paredDerPlagas,string_paredIzqPlagas,string_patinDer,string_cuartoDer,
-                            string_loderaDer,string_lucesCheck2,string_luzBarco,string_rompevientosDer,"");
+                            string_loderaDer,string_lucesCheck2,string_luzBarco,string_rompevientosDer);
 
                     if(insertIntercambio1 == -1){
                         Toast.makeText(etapa7_Activity.this, "Error insertIntercambio7", Toast.LENGTH_LONG).show();
                     }else {
-                        if(createDirectoryAndSaveFile( actual_chasisDerTrasero,  "chasisDerTrasero"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_chasisDerFrontal,  "chasisDerFrontal"+folio+".jpg", path)
+                        if(createDirectoryAndSaveFile( actualDerTrasero,  "DerCostadoAtras"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actualDerFrontal,  "DerCostadoFrente"+folio+".jpg", path)
                         )
                         {
 
                             if(actual_daño1 != null){
-                                createDirectoryAndSaveFile(actual_daño1, "dañoIzq1" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño1, "dañoDer1" + folio + ".jpg", path);
                             }
 
                             if(actual_daño2 != null){
-                                createDirectoryAndSaveFile(actual_daño2, "dañoIzq2" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño2, "dañoDer2" + folio + ".jpg", path);
                             }
 
                             if(actual_daño3 != null){
-                                createDirectoryAndSaveFile(actual_daño3, "dañoIzq3" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño3, "dañoDer3" + folio + ".jpg", path);
                             }
 
                             if(actual_daño4 != null){
-                                createDirectoryAndSaveFile(actual_daño4, "dañoIzq4" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño4, "dañoDer4" + folio + ".jpg", path);
                             }
 
 
@@ -314,7 +319,7 @@ public class etapa7_Activity extends AppCompatActivity {
                     try {
 
                         IV_costadoDerAtras.setImageResource(R.drawable.ic_ok);
-                        actual_chasisDerTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        actualDerTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_costadoDerAtras.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -325,7 +330,7 @@ public class etapa7_Activity extends AppCompatActivity {
                     try {
 
                         IV_costadoDerFrente.setImageResource(R.drawable.ic_ok);
-                        actual_chasisDerFrontal = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        actualDerFrontal = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
                     } catch (IOException e) {
                         IV_costadoDerFrente.setImageResource(R.drawable.ic_baseline_error_24);
                     }

@@ -14,8 +14,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
@@ -34,6 +36,7 @@ public class menuActivity extends AppCompatActivity {
     private TextView redEstatus;
     private Button generarInter , sincronizar, enviarInter ;
     private DxApi dxApi;
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +46,7 @@ public class menuActivity extends AppCompatActivity {
         sincronizar = (Button) findViewById(R.id.sincronizaDatos);
         enviarInter = (Button) findViewById(R.id.enviarIntercambio);
         redEstatus = (TextView) findViewById(R.id.estatusRed);
-
+        listView = (ListView) findViewById(R.id.listView);
 
         /*File mydir = getBaseContext().getDir("intercambios", Context.MODE_PRIVATE);
         mydir.mkdirs();
@@ -326,6 +329,14 @@ public class menuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(menuActivity.this);
+
+        List<CintercambioElectronico> intercambioSelect = dataBaseHelper.selectIntercambioAbierto();
+
+        ArrayAdapter<CintercambioElectronico> adapter2 = new ArrayAdapter<CintercambioElectronico>(this, R.layout.support_simple_spinner_dropdown_item, intercambioSelect);
+        listView.setAdapter(adapter2);
+
 
     }
 

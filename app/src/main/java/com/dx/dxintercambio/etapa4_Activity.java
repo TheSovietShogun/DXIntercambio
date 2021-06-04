@@ -3,6 +3,7 @@ package com.dx.dxintercambio;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -29,10 +30,18 @@ public class etapa4_Activity extends AppCompatActivity {
                     ,amortiguadorTrasera , bolsaTrasera , matracaTrasera , muelleTrasera , rotachamberTrasera, 
             eje1Birlos , llantaP1 , llantaP2 , eje1MasasYoyo, eje1Rin , eje1Lodera,
             eje2Birlos , llantaP5 , llantaP6 , eje2MasasYoyo, eje2Rin , eje2Lodera , jumbo;
-    private Boolean check_amortiguadorFrontal , check_bolsaFrontal , check_matracaFrontal , check_muelleFrontal , check_rotachamberFrontal
-            ,check_amortiguadorTrasera , check_bolsaTrasera , check_matracaTrasera , check_muelleTrasera , check_rotachamberTrasera,
-            check_eje1Birlos , check_llantaP1 , check_llantaP2 , check_eje1MasasYoyo, check_eje1Rin , check_eje1Lodera,
-            check_eje2Birlos , check_llantaP5 , check_llantaP6 , check_eje2MasasYoyo, check_eje2Rin , check_eje2Lodera , check_jumbo;
+    private Boolean check_amortiguadorFrontal = true ,
+            check_bolsaFrontal = true,
+            check_matracaFrontal = true,
+            check_muelleFrontal = true,
+            check_rotachamberFrontal = true,
+            check_amortiguadorTrasera = true,
+            check_bolsaTrasera = true,
+            check_matracaTrasera = true,
+            check_muelleTrasera = true,
+            check_rotachamberTrasera = true,
+            check_eje1Birlos = true, check_llantaP1 = true, check_llantaP2 = true, check_eje1MasasYoyo= true, check_eje1Rin= true , check_eje1Lodera= true,
+            check_eje2Birlos = true, check_llantaP5= true , check_llantaP6 = true, check_eje2MasasYoyo= true, check_eje2Rin = true, check_eje2Lodera = true, check_jumbo =  false ;
     private String path ,string_amortiguadorFrontal , string_bolsaFrontal , string_matracaFrontal , string_muelleFrontal , string_rotachamberFrontal
             ,string_amortiguadorTrasera , string_bolsaTrasera , string_matracaTrasera , string_muelleTrasera , string_rotachamberTrasera,
             string_eje1Birlos , string_llantaP1 , string_llantaP2 , string_eje1MasasYoyo, string_eje1Rin , string_eje1Lodera,
@@ -94,8 +103,8 @@ public class etapa4_Activity extends AppCompatActivity {
         IV_chasisIzqTrasero = (ImageView) findViewById(R.id.IV_chasisIzqTrasero);
         daño1 = (ImageView) findViewById(R.id.IV_dañoIzq1);
         daño2 = (ImageView) findViewById(R.id.IV_dañoIzq2);
-        daño1 = (ImageView) findViewById(R.id.IV_dañoIzq3);
-        daño1 = (ImageView) findViewById(R.id.IV_dañoIzq4);
+        daño3 = (ImageView) findViewById(R.id.IV_dañoIzq3);
+        daño4 = (ImageView) findViewById(R.id.IV_dañoIzq4);
 
         llantaP1Marca = (Spinner) findViewById(R.id.S_marcaP1);
         llantaP2Marca = (Spinner) findViewById(R.id.S_marcaP2);
@@ -106,6 +115,8 @@ public class etapa4_Activity extends AppCompatActivity {
         llantaP2Estatus = (Spinner) findViewById(R.id.S_estatusP2);
         llantaP5Estatus = (Spinner) findViewById(R.id.S_estatusP5);
         llantaP6Estatus = (Spinner) findViewById(R.id.S_estatusP6);
+
+        comentarios = (EditText) findViewById(R.id.editTextTextMultiLine2);
         
         btnEtapa4 =  (Button) findViewById(R.id.btn_etapa4);
 
@@ -114,6 +125,8 @@ public class etapa4_Activity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa4_Activity.this);
 
         List<CLlanta> llantaSelect = dataBaseHelper.selectLlanta();
+        CLlanta cLlanta00 = new CLlanta("-1", "Sin Seleccionar");
+        llantaSelect.add(0, cLlanta00);
 
         if (widthScreen > 480) {
             ArrayAdapter<CLlanta> adapter1 = new ArrayAdapter<CLlanta>(etapa4_Activity.this, R.layout.mspinner_item, llantaSelect);
@@ -354,11 +367,70 @@ public class etapa4_Activity extends AppCompatActivity {
             String idLlantaP6 = cLlanta3.getId();
 
 
-            String llantaEstatusP1 = llantaP1Marca.getSelectedItem().toString();
-            String llantaEstatusP2 = llantaP2Marca.getSelectedItem().toString();
-            String llantaEstatusP5 = llantaP5Marca.getSelectedItem().toString();
-            String llantaEstatusP6 = llantaP6Marca.getSelectedItem().toString();
+            String llantaEstatusP1 = llantaP1Estatus.getSelectedItem().toString();
+            String llantaEstatusP2 = llantaP2Estatus.getSelectedItem().toString();
+            String llantaEstatusP5 = llantaP5Estatus.getSelectedItem().toString();
+            String llantaEstatusP6 = llantaP6Estatus.getSelectedItem().toString();
 
+            String P1 = "";
+            String P2 = "";
+            String P5 = "";
+            String P6 = "";
+
+            switch (llantaEstatusP1){
+                case "Sin Seleccionar":
+                    llantaEstatusP1 = "3";
+                    break;
+                case "Recapeada":
+                    llantaEstatusP1 = "1";
+                    break;
+                case "Original":
+                    llantaEstatusP1 = "0";
+                    break;
+
+            }
+
+            switch (llantaEstatusP2){
+                case "Sin Seleccionar":
+                    llantaEstatusP2 = "3";
+                    break;
+                case "Recapeada":
+                    llantaEstatusP2 = "1";
+                    break;
+                case "Original":
+                    llantaEstatusP2 = "0";
+                    break;
+
+            }
+
+            switch (llantaEstatusP5){
+                case "Sin Seleccionar":
+                    llantaEstatusP5 = "3";
+                    break;
+                case "Recapeada":
+                    llantaEstatusP5 = "1";
+                    break;
+                case "Original":
+                    llantaEstatusP5 = "0";
+                    break;
+
+            }
+
+            switch (llantaEstatusP6){
+                case "Sin Seleccionar":
+                    llantaEstatusP6 = "3";
+                    break;
+                case "Recapeada":
+                    llantaEstatusP6 = "1";
+                    break;
+                case "Original":
+                    llantaEstatusP6 = "0";
+                    break;
+
+            }
+
+
+            String observacioens  = comentarios.getText().toString();
 
             if (check_amortiguadorFrontal) {
                 string_amortiguadorFrontal = "0";
@@ -471,10 +543,17 @@ public class etapa4_Activity extends AppCompatActivity {
                 string_eje2Lodera = "1";
             }
 
+            if (check_jumbo) {
+                string_jumbo = "1";
+            }else{
+                string_jumbo = "0";
+            }
+
             if(string_jumbo.contains("1")){
 
                 if(actual_chasisIzqFrontal == null || actual_chasisIzqTrasero == null ||
-                        idLlantaP1.isEmpty() || idLlantaP5.isEmpty() || llantaEstatusP1.isEmpty() || llantaEstatusP5.isEmpty()) {
+                        idLlantaP1== "-1" || idLlantaP5== "-1" ||
+                        llantaEstatusP1 == "3" || llantaEstatusP5 == "3") {
                     Toast.makeText(etapa4_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -518,7 +597,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             string_muelleTrasera,
                             string_rotachamberTrasera,
 
-                            string_comentarios);
+                            observacioens);
 
                     if(insertIntercambio1 == -1){
                         Toast.makeText(etapa4_Activity.this, "Error insertIntercambio4", Toast.LENGTH_LONG).show();
@@ -540,8 +619,8 @@ public class etapa4_Activity extends AppCompatActivity {
             }else {
 
                 if (actual_chasisIzqFrontal == null || actual_chasisIzqTrasero == null
-                        || idLlantaP1.isEmpty() || idLlantaP2.isEmpty() || idLlantaP5.isEmpty() || idLlantaP6.isEmpty()
-                        || llantaEstatusP1.isEmpty() || llantaEstatusP2.isEmpty() || llantaEstatusP5.isEmpty() || llantaEstatusP6.isEmpty() ) {
+                        || idLlantaP1== "-1" || idLlantaP2== "-1" || idLlantaP5== "-1" || idLlantaP6== "-1"
+                        || llantaEstatusP1 == "3" || llantaEstatusP2== "3" || llantaEstatusP5== "3" || llantaEstatusP6 == "3" ) {
                     Toast.makeText(etapa4_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -585,7 +664,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             string_muelleTrasera,
                             string_rotachamberTrasera,
 
-                            string_comentarios);
+                            observacioens);
 
                     if (insertIntercambio1 == -1) {
                         Toast.makeText(etapa4_Activity.this, "Error insertIntercambio4", Toast.LENGTH_LONG).show();

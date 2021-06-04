@@ -22,7 +22,18 @@ import java.io.IOException;
 public class etapa3_Activity extends AppCompatActivity {
 
     private CheckBox inspeccion , patinIzq , lucesP1 , luzGabildo , manitas ,manivela , cuartoIzq , loderaIzq, lucesP2 ,luzABS , luzBarcoIzq , rompevientosIzq;
-    private Boolean check_inspeccion , check_patinIzq , check_lucesP1 , check_luzGabildo , check_manitas ,check_manivela, check_cuartoIzq , check_loderaIzq, check_lucesP2 ,check_luzABS , check_luzBarcoIzq , check_rompevientosIzq;
+    private Boolean check_inspeccion = true,
+            check_patinIzq = true,
+            check_lucesP1 = true,
+            check_luzGabildo = true,
+            check_manitas = true,
+            check_manivela = true,
+            check_cuartoIzq = true,
+            check_loderaIzq= true,
+            check_lucesP2= true,
+            check_luzABS = true,
+            check_luzBarcoIzq = true,
+            check_rompevientosIzq= true ;
     private String path ,string_inspeccion , string_patinIzq , string_lucesP1 , string_luzGabildo , string_manitas ,string_manivela, string_cuartoIzq , string_loderaIzq, string_lucesP2 ,string_luzABS , string_luzBarcoIzq , string_rompevientosIzq;
     private ImageView  IV_NoEconomico , IV_manitas , IV_fotoCostadoFrente ,IV_fotoCostadoAtras;
     private Bitmap  actual_NoEconomico , actual_manitas , actual_fotoCostadoFrente ,actual_fotoCostadoAtras;

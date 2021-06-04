@@ -29,10 +29,10 @@ public class etapa6_Activity extends AppCompatActivity {
             ,amortiguadorTrasera , bolsaTrasera , matracaTrasera , muelleTrasera , rotachamberTrasera,
             eje1Birlos , llantaP7 , llantaP8 , eje1MasasYoyo, eje1Rin , eje1Lodera,
             eje2Birlos , llantaP3 , llantaP4 , eje2MasasYoyo, eje2Rin , eje2Lodera , jumbo;
-    private Boolean check_amortiguadorFrontal , check_bolsaFrontal , check_matracaFrontal , check_muelleFrontal , check_rotachamberFrontal
-            ,check_amortiguadorTrasera , check_bolsaTrasera , check_matracaTrasera , check_muelleTrasera , check_rotachamberTrasera,
-            check_eje1Birlos , check_llantaP7 , check_llantaP8 , check_eje1MasasYoyo, check_eje1Rin , check_eje1Lodera,
-            check_eje2Birlos , check_llantaP3 , check_llantaP4 , check_eje2MasasYoyo, check_eje2Rin , check_eje2Lodera , check_jumbo;
+    private Boolean check_amortiguadorFrontal = true, check_bolsaFrontal = true, check_matracaFrontal = true, check_muelleFrontal = true, check_rotachamberFrontal= true
+            ,check_amortiguadorTrasera = true, check_bolsaTrasera= true , check_matracaTrasera = true, check_muelleTrasera = true, check_rotachamberTrasera= true,
+            check_eje1Birlos= true , check_llantaP7 = true, check_llantaP8 = true, check_eje1MasasYoyo= true, check_eje1Rin = true, check_eje1Lodera= true,
+            check_eje2Birlos = true, check_llantaP3= true , check_llantaP4 = true, check_eje2MasasYoyo= true, check_eje2Rin = true, check_eje2Lodera = true, check_jumbo = false;
     private String path ,string_amortiguadorFrontal , string_bolsaFrontal , string_matracaFrontal , string_muelleFrontal , string_rotachamberFrontal
             ,string_amortiguadorTrasera , string_bolsaTrasera , string_matracaTrasera , string_muelleTrasera , string_rotachamberTrasera,
             string_eje1Birlos , string_llantaP7 , string_llantaP8 , string_eje1MasasYoyo, string_eje1Rin , string_eje1Lodera,
@@ -111,6 +111,8 @@ public class etapa6_Activity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa6_Activity.this);
 
         List<CLlanta> llantaSelect = dataBaseHelper.selectLlanta();
+        CLlanta cLlanta00 = new CLlanta("-1", "Sin Seleccionar");
+        llantaSelect.add(0, cLlanta00);
 
         if (widthScreen > 480) {
             ArrayAdapter<CLlanta> adapter1 = new ArrayAdapter<CLlanta>(etapa6_Activity.this, R.layout.mspinner_item, llantaSelect);
@@ -321,11 +323,61 @@ public class etapa6_Activity extends AppCompatActivity {
                 String idLlantaP6 = cLlanta3.getId();
 
 
-                String llantaEstatusP1 = llantaP3Marca.getSelectedItem().toString();
-                String llantaEstatusP2 = llantaP4Marca.getSelectedItem().toString();
-                String llantaEstatusP5 = llantaP7Marca.getSelectedItem().toString();
-                String llantaEstatusP6 = llantaP8Marca.getSelectedItem().toString();
+                String llantaEstatusP1 = llantaP3Estatus.getSelectedItem().toString();
+                String llantaEstatusP2 = llantaP4Estatus.getSelectedItem().toString();
+                String llantaEstatusP5 = llantaP7Estatus.getSelectedItem().toString();
+                String llantaEstatusP6 = llantaP8Estatus.getSelectedItem().toString();
 
+                switch (llantaEstatusP1){
+                    case "Sin Seleccionar":
+                        llantaEstatusP1 = "3";
+                        break;
+                    case "Recapeada":
+                        llantaEstatusP1 = "1";
+                        break;
+                    case "Original":
+                        llantaEstatusP1 = "0";
+                        break;
+
+                }
+
+                switch (llantaEstatusP2){
+                    case "Sin Seleccionar":
+                        llantaEstatusP2 = "3";
+                        break;
+                    case "Recapeada":
+                        llantaEstatusP2 = "1";
+                        break;
+                    case "Original":
+                        llantaEstatusP2 = "0";
+                        break;
+                }
+
+                switch (llantaEstatusP5){
+                    case "Sin Seleccionar":
+                        llantaEstatusP5 = "3";
+                        break;
+                    case "Recapeada":
+                        llantaEstatusP5 = "1";
+                        break;
+                    case "Original":
+                        llantaEstatusP5 = "0";
+                        break;
+
+                }
+
+                switch (llantaEstatusP6){
+                    case "Sin Seleccionar":
+                        llantaEstatusP6 = "3";
+                        break;
+                    case "Recapeada":
+                        llantaEstatusP6 = "1";
+                        break;
+                    case "Original":
+                        llantaEstatusP6 = "0";
+                        break;
+
+                }
 
                 if (check_amortiguadorFrontal) {
                     string_amortiguadorFrontal = "0";
@@ -438,18 +490,24 @@ public class etapa6_Activity extends AppCompatActivity {
                     string_eje2Lodera = "1";
                 }
 
+                if (check_jumbo) {
+                    string_jumbo = "1";
+                }else{
+                    string_jumbo = "0";
+                }
+
                 if(string_jumbo.contains("1")){
 
                     if(actual_chasisDerFrontal == null || actual_chasisDerTrasero == null ||
-                            idLlantaP1.isEmpty() || idLlantaP5.isEmpty() || llantaEstatusP1.isEmpty() || llantaEstatusP5.isEmpty()) {
+                            idLlantaP1== "-1" || idLlantaP5== "-1" ||
+                            llantaEstatusP1 == "3" || llantaEstatusP5 == "3") {
                         Toast.makeText(etapa6_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
                     } else {
 
                         DataBaseHelper dataBaseHelper2 = new DataBaseHelper(etapa6_Activity.this);
 
                         long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico6(
-                                "6",
-                                folio,
+                                "6", folio, string_jumbo,
                                 string_amortiguadorTrasera,
                                 string_bolsaTrasera,
                                 string_matracaTrasera,
@@ -457,37 +515,36 @@ public class etapa6_Activity extends AppCompatActivity {
                                 string_rotachamberTrasera,
 
                                 string_eje2Birlos,
-
-                                "idLlantaP7",
-                                "llantaEstatusP7",
-                                "idLlantaP8",
-                                "llantaEstatusP8",
+                                idLlantaP5,
+                                llantaEstatusP5,
+                                idLlantaP6,
+                                llantaEstatusP6,
 
                                 string_llantaP7,
                                 string_llantaP8,
+                                string_eje2MasasYoyo,
+                                string_eje2Rin,
 
-                                "",
-                                "",
-                                "",
-                                "",
-
-                                "idLlantaP3",
-                                "llantaEstatusP3",
-                                "idLlantaP4",
-                                "llantaEstatusP4",
+                                string_eje2Lodera,
+                                string_eje1Birlos,
+                                idLlantaP1,
+                                llantaEstatusP1,
+                                idLlantaP2,
+                                llantaEstatusP2,
 
                                 string_llantaP3,
                                 string_llantaP4,
-
-                                "",
-                                "",
-                                "",
+                                string_eje1MasasYoyo,
+                                string_eje1Rin,
+                                string_eje1Lodera,
 
                                 string_amortiguadorFrontal,
                                 string_bolsaFrontal,
                                 string_matracaFrontal,
                                 string_muelleFrontal,
-                                string_rotachamberFrontal);
+                                string_rotachamberFrontal
+
+                        );
 
                         if(insertIntercambio1 == -1){
                             Toast.makeText(etapa6_Activity.this, "Error insertIntercambio6", Toast.LENGTH_LONG).show();
@@ -509,58 +566,60 @@ public class etapa6_Activity extends AppCompatActivity {
                 }else {
 
                     if (actual_chasisDerFrontal == null || actual_chasisDerTrasero == null
-                            || idLlantaP1.isEmpty() || idLlantaP2.isEmpty() || idLlantaP5.isEmpty() || idLlantaP6.isEmpty()
-                            || llantaEstatusP1.isEmpty() || llantaEstatusP2.isEmpty() || llantaEstatusP5.isEmpty() || llantaEstatusP6.isEmpty() ) {
+                            || idLlantaP1== "-1" || idLlantaP2== "-1" || idLlantaP5== "-1" || idLlantaP6== "-1"
+                            || llantaEstatusP1 == "3" || llantaEstatusP2== "3" || llantaEstatusP5== "3" || llantaEstatusP6== "3" ) {
                         Toast.makeText(etapa6_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
                     } else {
 
                         DataBaseHelper dataBaseHelper2 = new DataBaseHelper(etapa6_Activity.this);
 
-                        long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico4(
-                                "4", folio, string_jumbo,
-                                idLlantaP1,
-                                llantaEstatusP1,
-                                idLlantaP2,
-                                llantaEstatusP2,
-
-                                string_eje1Birlos,
-                                string_llantaP3,
-                                string_llantaP4,
-                                string_eje1MasasYoyo,
-                                string_eje1Rin,
-                                string_eje1Lodera,
-
-                                idLlantaP5,
-                                llantaEstatusP5,
-                                idLlantaP6,
-                                llantaEstatusP6,
-
-                                string_eje2Birlos,
-                                string_llantaP7,
-                                string_llantaP8,
-                                string_eje2MasasYoyo,
-                                string_eje2Rin,
-                                string_eje2Lodera,
-
-                                string_amortiguadorFrontal,
-                                string_bolsaFrontal,
-                                string_matracaFrontal,
-                                string_muelleFrontal,
-                                string_rotachamberFrontal,
-
+                        long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico6(
+                                "6",
+                                folio,
+                                string_jumbo,
                                 string_amortiguadorTrasera,
                                 string_bolsaTrasera,
                                 string_matracaTrasera,
                                 string_muelleTrasera,
                                 string_rotachamberTrasera,
 
-                                string_comentarios);
+                                string_eje2Birlos,
+                                idLlantaP5,
+                                llantaEstatusP5,
+                                idLlantaP6,
+                                llantaEstatusP6,
+
+                                string_llantaP7,
+                                string_llantaP8,
+                                string_eje2MasasYoyo,
+                                string_eje2Rin,
+
+                                string_eje2Lodera,
+                                string_eje1Birlos,
+                                idLlantaP1,
+                                llantaEstatusP1,
+                                idLlantaP2,
+                                llantaEstatusP2,
+
+                                string_llantaP3,
+                                string_llantaP4,
+                                string_eje1MasasYoyo,
+                                string_eje1Rin,
+                                string_eje1Lodera,
+
+                                string_amortiguadorFrontal,
+                                string_bolsaFrontal,
+                                string_matracaFrontal,
+                                string_muelleFrontal,
+                                string_rotachamberFrontal
+
+                        );
 
                         if (insertIntercambio1 == -1) {
                             Toast.makeText(etapa6_Activity.this, "Error insertIntercambio6", Toast.LENGTH_LONG).show();
                         } else {
-                            if (createDirectoryAndSaveFile(actual_chasisDerFrontal, "chasisIzqFrontal" + folio + ".jpg", path) &&
-                                    createDirectoryAndSaveFile(actual_chasisDerTrasero, "chasisIzqTrasero" + folio + ".jpg", path)
+                            if (createDirectoryAndSaveFile(actual_chasisDerFrontal, "chasisDerFrontal" + folio + ".jpg", path) &&
+                                    createDirectoryAndSaveFile(actual_chasisDerTrasero, "chasisDerTrasero" + folio + ".jpg", path)
                             ) {
 
 

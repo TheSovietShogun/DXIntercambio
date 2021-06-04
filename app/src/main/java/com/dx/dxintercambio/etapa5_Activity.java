@@ -24,8 +24,8 @@ import java.io.IOException;
 public class etapa5_Activity extends AppCompatActivity {
 
     private CheckBox bisagras , defensaTrasera , luzGabildoTrasera ,plafonesDerechos , plafonesIzquierdos ,  luzPlaca , sello1 , sello2 , sello1Alta , sello2Alta , vvt , escotilla;
-    private Boolean check_bisagras , check_defensaTrasera , check_luzGabildoTrasera ,check_plafonesDerechos , check_plafonesIzquierdos , check_luzPlaca,
-                    check_sello1 , check_sello2 , check_sello1Alta ,check_sello2Alta , check_vvt , check_escotilla ;
+    private Boolean check_bisagras = true, check_defensaTrasera = true, check_luzGabildoTrasera= true ,check_plafonesDerechos= true , check_plafonesIzquierdos = true, check_luzPlaca= true,
+                    check_sello1 = true, check_sello2 = true, check_sello1Alta = true,check_sello2Alta = true, check_vvt = true, check_escotilla = true;
     private String path ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,string_plafonesIzquierdos ,string_luzPlaca,
             string_sello1 , string_sello2 , string_sello1Alta ,string_sello2Alta , string_vvt , string_escotilla ;
 
@@ -77,8 +77,8 @@ public class etapa5_Activity extends AppCompatActivity {
         IV_sello3 = (ImageView) findViewById(R.id.IV_selloExtra);
         daño1 = (ImageView) findViewById(R.id.IV_dañoTrasero1);
         daño2 = (ImageView) findViewById(R.id.IV_dañoTrasero2);
-        daño1 = (ImageView) findViewById(R.id.IV_dañoTrasero3);
-        daño1 = (ImageView) findViewById(R.id.IV_dañoTrasero4);
+        daño3 = (ImageView) findViewById(R.id.IV_dañoTrasero3);
+        daño4 = (ImageView) findViewById(R.id.IV_dañoTrasero4);
 
         comentarios = (EditText) findViewById(R.id.editTextTextMultiLine2);
         numeroPlaca = (EditText) findViewById(R.id.ED_numeroPlaca);
@@ -86,6 +86,7 @@ public class etapa5_Activity extends AppCompatActivity {
         numeroSello2 = (EditText) findViewById(R.id.editTextTextPersonName4);
         numeroSello3 = (EditText) findViewById(R.id.editTextTextPersonName5);
 
+        comentarios = (EditText) findViewById(R.id.editTextTextMultiLine2);
 
         btnEtapa5 =  (Button) findViewById(R.id.btn_etapa5);
 
@@ -299,6 +300,8 @@ public class etapa5_Activity extends AppCompatActivity {
                     string_escotilla = "1";
                 }
 
+                String observacioens  = comentarios.getText().toString();
+
                 String placa = numeroPlaca.getText().toString();
                 String sello1 = numeroSello1.getText().toString();
                 String sello2 = numeroSello2.getText().toString();
@@ -313,7 +316,7 @@ public class etapa5_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa5_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico5(
-                            "5",folio,placa,sello1,sello2,sello3
+                            "5",folio,observacioens,placa,sello1,sello2,sello3
                             ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,
                             string_plafonesIzquierdos,string_luzPlaca,"",string_sello1,string_sello1Alta,
                     string_escotilla,string_sello2,string_sello2Alta,string_vvt);
@@ -329,19 +332,19 @@ public class etapa5_Activity extends AppCompatActivity {
                         {
 
                             if(actual_daño1 != null){
-                                createDirectoryAndSaveFile(actual_daño1, "dañoIzq1" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño1, "dañoTrasero1" + folio + ".jpg", path);
                             }
 
                             if(actual_daño2 != null){
-                                createDirectoryAndSaveFile(actual_daño2, "dañoIzq2" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño2, "dañoTrasero2" + folio + ".jpg", path);
                             }
 
                             if(actual_daño3 != null){
-                                createDirectoryAndSaveFile(actual_daño3, "dañoIzq3" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño3, "dañoTrasero3" + folio + ".jpg", path);
                             }
 
                             if(actual_daño4 != null){
-                                createDirectoryAndSaveFile(actual_daño4, "dañoIzq4" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño4, "dañoTrasero4" + folio + ".jpg", path);
                             }
 
                             if(actual_sello3 != null){
