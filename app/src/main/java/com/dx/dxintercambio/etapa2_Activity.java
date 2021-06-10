@@ -173,68 +173,68 @@ public class etapa2_Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (check_defensa) {
-                    string_defensa = "0";
-                }else{
                     string_defensa = "1";
+                }else{
+                    string_defensa = "0";
                 }
                 if (check_cabina) {
-                    string_cabina = "0";
-                }else{
                     string_cabina = "1";
+                }else{
+                    string_cabina = "0";
                 }
                 if (check_quintaRueda) {
-                    string_quintaRueda = "0";
+                    string_quintaRueda = "1";
 
                 }else{
-                    string_quintaRueda = "1";
+                    string_quintaRueda = "0";
                 }
                 if (check_tuboEscape) {
-                    string_tuboEscape = "0";
+                    string_tuboEscape = "1";
 
                 }else{
-                    string_tuboEscape = "1";
+                    string_tuboEscape = "0";
                 }
                 if (check_base) {
-                    string_base = "0";
+                    string_base = "1";
 
                 }else{
-                    string_base = "1";
+                    string_base = "0";
                 }
                 if (check_techos) {
-                    string_techos = "0";
+                    string_techos = "1";
 
                 }else{
-                    string_techos = "1";
+                    string_techos = "0";
                 }
                 if (check_llantas) {
-                    string_llantas = "0";
+                    string_llantas = "1";
 
                 }else{
-                    string_llantas = "1";
+                    string_llantas = "0";
                 }
                 if (check_tanqueDiesel) {
-                    string_tanqueDiesel = "0";
+                    string_tanqueDiesel = "1";
 
                 }else{
-                    string_tanqueDiesel = "1";
+                    string_tanqueDiesel = "0";
                 }
                 if (check_tanqueAire) {
-                    string_tanqueAire = "0";
+                    string_tanqueAire = "1";
 
                 }else{
-                    string_tanqueAire = "1";
+                    string_tanqueAire = "0";
                 }
                 if (check_transmision) {
-                    string_transmision = "0";
+                    string_transmision = "1";
 
                 }else{
-                    string_transmision = "1";
+                    string_transmision = "0";
                 }
                 if (check_motor) {
-                    string_motor = "0";
+                    string_motor = "1";
 
                 }else{
-                    string_motor = "1";
+                    string_motor = "0";
                 }
 
                 if(actual_derTracto == null || actual_frenteTracto == null || actual_izqTracto == null) {
@@ -244,7 +244,7 @@ public class etapa2_Activity extends AppCompatActivity {
 
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa2_Activity.this);
 
-                    long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico2(
+                    long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico2("tractoIzqUrl-"+folio,"tractoFrenteUrl-"+folio,"tractoDerUrl-"+folio,
                             "2",folio,string_defensa,string_cabina,string_quintaRueda,string_tuboEscape
                             ,string_base,string_techos,string_llantas,string_tanqueDiesel,
                             string_tanqueAire,string_transmision,string_motor);
@@ -255,12 +255,13 @@ public class etapa2_Activity extends AppCompatActivity {
 
                     }else {
 
-                        if(createDirectoryAndSaveFile( actual_derTracto,  "tractoDer"+folio+".jpg", path) &&
-                        createDirectoryAndSaveFile( actual_frenteTracto,  "frente"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_izqTracto,  "tractoIzq"+folio+".jpg", path)
+                        if(createDirectoryAndSaveFile( actual_derTracto,  "tractoDerUrl-"+folio+".jpg", path) &&
+                        createDirectoryAndSaveFile( actual_frenteTracto,  "tractoFrenteUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_izqTracto,  "tractoIzqUrl-"+folio+".jpg", path)
                         )
                         {
                             Intent i = new Intent(etapa2_Activity.this, etapa3_Activity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);

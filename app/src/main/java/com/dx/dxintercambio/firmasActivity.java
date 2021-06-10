@@ -95,13 +95,16 @@ public class firmasActivity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(firmasActivity.this);
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico200(
-                            "7","");
+                            folio,fechaHora,
+                            "firmaOperadorUrl-"+folio,
+                            "firmaIntercambistaUrl-"+folio
+                    );
 
                     if(insertIntercambio1 == -1){
                         Toast.makeText(firmasActivity.this, "Error insertIntercambio200", Toast.LENGTH_LONG).show();
                     }else {
-                        if(createDirectoryAndSaveFile( bitmap1,  "firmaOperador"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( bitmap2,  "firmaGuardia"+folio+".jpg", path)
+                        if(createDirectoryAndSaveFile( bitmap1,  "firmaOperadorUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( bitmap2,  "firmaIntercambistaUrl-"+folio+".jpg", path)
                         )
                         {
 
@@ -113,6 +116,7 @@ public class firmasActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialog, int which) {
 
                                             Intent i = new Intent(firmasActivity.this, etapa1_Activity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(i);
 
                                         }
@@ -122,6 +126,7 @@ public class firmasActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialog, int which) {
 
                                             Intent i = new Intent(firmasActivity.this, menuActivity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(i);
 
 

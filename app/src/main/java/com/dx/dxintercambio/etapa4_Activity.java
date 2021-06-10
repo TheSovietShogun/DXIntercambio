@@ -433,114 +433,114 @@ public class etapa4_Activity extends AppCompatActivity {
             String observacioens  = comentarios.getText().toString();
 
             if (check_amortiguadorFrontal) {
-                string_amortiguadorFrontal = "0";
-            }else{
                 string_amortiguadorFrontal = "1";
+            }else{
+                string_amortiguadorFrontal = "0";
             }
             if (check_bolsaFrontal) {
-                string_bolsaFrontal = "0";
-            }else{
                 string_bolsaFrontal = "1";
+            }else{
+                string_bolsaFrontal = "0";
             }
             if (check_matracaFrontal) {
-                string_matracaFrontal = "0";
-            }else{
                 string_matracaFrontal = "1";
+            }else{
+                string_matracaFrontal = "0";
             }
             if (check_muelleFrontal) {
-                string_muelleFrontal = "0";
-            }else{
                 string_muelleFrontal = "1";
+            }else{
+                string_muelleFrontal = "0";
             }
             if (check_rotachamberFrontal) {
-                string_rotachamberFrontal = "0";
-            }else{
                 string_rotachamberFrontal = "1";
+            }else{
+                string_rotachamberFrontal = "0";
             }
             if (check_amortiguadorTrasera) {
-                string_amortiguadorTrasera = "0";
-            }else{
                 string_amortiguadorTrasera = "1";
+            }else{
+                string_amortiguadorTrasera = "0";
             }
             if (check_bolsaTrasera) {
-                string_bolsaTrasera = "0";
-            }else{
                 string_bolsaTrasera = "1";
+            }else{
+                string_bolsaTrasera = "0";
             }
             if (check_matracaTrasera) {
-                string_matracaTrasera = "0";
-            }else{
                 string_matracaTrasera = "1";
+            }else{
+                string_matracaTrasera = "0";
             }
             if (check_muelleTrasera) {
-                string_muelleTrasera = "0";
-            }else{
                 string_muelleTrasera = "1";
+            }else{
+                string_muelleTrasera = "0";
             }
             if (check_rotachamberTrasera) {
-                string_rotachamberTrasera = "0";
-            }else{
                 string_rotachamberTrasera = "1";
+            }else{
+                string_rotachamberTrasera = "0";
             }
             if (check_eje1Birlos) {
-                string_eje1Birlos = "0";
-            }else{
                 string_eje1Birlos = "1";
+            }else{
+                string_eje1Birlos = "0";
             }
             if (check_llantaP1) {
-                string_llantaP1 = "0";
-            }else{
                 string_llantaP1 = "1";
+            }else{
+                string_llantaP1 = "0";
             }
             if (check_llantaP2) {
-                string_llantaP2 = "0";
-            }else{
                 string_llantaP2 = "1";
+            }else{
+                string_llantaP2 = "0";
             }
             if (check_eje1MasasYoyo) {
-                string_eje1MasasYoyo = "0";
-            }else{
                 string_eje1MasasYoyo = "1";
+            }else{
+                string_eje1MasasYoyo = "0";
             }
             if (check_eje1Rin) {
-                string_eje1Rin = "0";
-            }else{
                 string_eje1Rin = "1";
+            }else{
+                string_eje1Rin = "0";
             }
             if (check_eje1Lodera) {
-                string_eje1Lodera = "0";
-            }else{
                 string_eje1Lodera = "1";
+            }else{
+                string_eje1Lodera = "0";
             }
             if (check_eje2Birlos) {
-                string_eje2Birlos = "0";
-            }else{
                 string_eje2Birlos = "1";
+            }else{
+                string_eje2Birlos = "0";
             }
             if (check_llantaP5) {
-                string_llantaP5 = "0";
-            }else{
                 string_llantaP5 = "1";
+            }else{
+                string_llantaP5 = "0";
             }
             if (check_llantaP6) {
-                string_llantaP6 = "0";
-            }else{
                 string_llantaP6 = "1";
+            }else{
+                string_llantaP6 = "0";
             }
             if (check_eje2MasasYoyo) {
-                string_eje2MasasYoyo = "0";
-            }else{
                 string_eje2MasasYoyo = "1";
+            }else{
+                string_eje2MasasYoyo = "0";
             }
             if (check_eje2Rin) {
-                string_eje2Rin = "0";
-            }else{
                 string_eje2Rin = "1";
+            }else{
+                string_eje2Rin = "0";
             }
             if (check_eje2Lodera) {
-                string_eje2Lodera = "0";
-            }else{
                 string_eje2Lodera = "1";
+            }else{
+                string_eje2Lodera = "0";
             }
 
             if (check_jumbo) {
@@ -548,6 +548,28 @@ public class etapa4_Activity extends AppCompatActivity {
             }else{
                 string_jumbo = "0";
             }
+
+                String D1 = null ;
+                String D2 = null ;
+                String D3 = null ;
+                String D4 = null ;
+
+            if(actual_daño1 != null){
+                D1 = "remolqueIzqDano1FotoUrl-"+folio;
+            }
+
+            if(actual_daño2 != null){
+                D2 = "remolqueIzqDano2FotoUrl-"+folio;
+            }
+
+            if(actual_daño3 != null){
+                D3 = "remolqueIzqDano3FotoUrl-"+folio;
+            }
+
+            if(actual_daño4 != null){
+                D4 = "remolqueIzqDano4FotoUrl-"+folio;
+            }
+
 
             if(string_jumbo.contains("1")){
 
@@ -560,6 +582,14 @@ public class etapa4_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper2 = new DataBaseHelper(etapa4_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico4(
+                            "remolqueLlantaIzqEje1FotoUrl-"+folio,
+                            "remolqueLlantaIzqEje2FotoUrl-"+folio,
+                            "remolqueChasisFrontalIzqFotoUrl-"+folio,
+                            "remolqueChasisTraseroIzqFotoUrl-"+folio,
+                            D1,
+                            D2,
+                            D3,
+                            D4,
                             "4",folio,string_jumbo,
                             idLlantaP1,
                             llantaEstatusP1,
@@ -602,11 +632,12 @@ public class etapa4_Activity extends AppCompatActivity {
                     if(insertIntercambio1 == -1){
                         Toast.makeText(etapa4_Activity.this, "Error insertIntercambio4", Toast.LENGTH_LONG).show();
                     }else {
-                        if(createDirectoryAndSaveFile( actual_chasisIzqFrontal,  "chasisIzqFrontal"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_chasisIzqTrasero,  "chasisIzqTrasero"+folio+".jpg", path)
+                        if(createDirectoryAndSaveFile( actual_chasisIzqFrontal,  "remolqueChasisFrontalIzqFotoUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_chasisIzqTrasero,  "remolqueChasisTraseroIzqFotoUrl-"+folio+".jpg", path)
                         )
                         {
                             Intent i = new Intent(etapa4_Activity.this, etapa5_Activity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);
@@ -627,6 +658,14 @@ public class etapa4_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper2 = new DataBaseHelper(etapa4_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico4(
+                            "remolqueLlantaIzqEje1FotoUrl-"+folio,
+                            "remolqueLlantaIzqEje2FotoUrl-"+folio,
+                            "remolqueChasisFrontalIzqFotoUrl-"+folio,
+                            "remolqueChasisTraseroIzqFotoUrl-"+folio,
+                            D1,
+                            D2,
+                            D3,
+                            D4,
                             "4", folio, string_jumbo,
                             idLlantaP1,
                             llantaEstatusP1,
@@ -669,28 +708,29 @@ public class etapa4_Activity extends AppCompatActivity {
                     if (insertIntercambio1 == -1) {
                         Toast.makeText(etapa4_Activity.this, "Error insertIntercambio4", Toast.LENGTH_LONG).show();
                     } else {
-                        if (createDirectoryAndSaveFile(actual_chasisIzqFrontal, "chasisIzqFrontal" + folio + ".jpg", path) &&
-                                createDirectoryAndSaveFile(actual_chasisIzqTrasero, "chasisIzqTrasero" + folio + ".jpg", path)
+                        if (createDirectoryAndSaveFile(actual_chasisIzqFrontal, "remolqueChasisFrontalIzqFotoUrl-" + folio + ".jpg", path) &&
+                                createDirectoryAndSaveFile(actual_chasisIzqTrasero, "remolqueChasisTraseroIzqFotoUrl-" + folio + ".jpg", path)
                         ) {
 
                             if(actual_daño1 != null){
-                                createDirectoryAndSaveFile(actual_daño1, "dañoIzq1" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño1, "remolqueIzqDano1FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_daño2 != null){
-                                createDirectoryAndSaveFile(actual_daño2, "dañoIzq2" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño2, "remolqueIzqDano2FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_daño3 != null){
-                                createDirectoryAndSaveFile(actual_daño3, "dañoIzq3" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño3, "remolqueIzqDano3FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_daño4 != null){
-                                createDirectoryAndSaveFile(actual_daño4, "dañoIzq4" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño4, "remolqueIzqDano4FotoUrl-" + folio + ".jpg", path);
                             }
 
 
                             Intent i = new Intent(etapa4_Activity.this, etapa5_Activity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);

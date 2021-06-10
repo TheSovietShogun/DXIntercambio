@@ -330,12 +330,20 @@ public class menuActivity extends AppCompatActivity {
             }
         });
 
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(menuActivity.this);
+        enviarInter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(menuActivity.this, listActivity.class);
+                startActivity(i);
+            }
+        });
+
+       /* DataBaseHelper dataBaseHelper = new DataBaseHelper(menuActivity.this);
 
         List<CintercambioElectronico> intercambioSelect = dataBaseHelper.selectIntercambioAbierto();
 
         ArrayAdapter<CintercambioElectronico> adapter2 = new ArrayAdapter<CintercambioElectronico>(this, R.layout.support_simple_spinner_dropdown_item, intercambioSelect);
-        listView.setAdapter(adapter2);
+        listView.setAdapter(adapter2);*/
 
 
     }

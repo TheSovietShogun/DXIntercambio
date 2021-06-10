@@ -240,64 +240,64 @@ public class etapa5_Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (check_bisagras) {
-                    string_bisagras = "0";
-                }else{
                     string_bisagras = "1";
+                }else{
+                    string_bisagras = "0";
                 }
                 if (check_defensaTrasera) {
-                    string_defensaTrasera = "0";
-                }else{
                     string_defensaTrasera = "1";
+                }else{
+                    string_defensaTrasera = "0";
                 }
                 if (check_luzGabildoTrasera) {
-                    string_luzGabildoTrasera = "0";
-                }else{
                     string_luzGabildoTrasera = "1";
+                }else{
+                    string_luzGabildoTrasera = "0";
                 }
                 if (check_plafonesDerechos) {
-                    string_plafonesDerechos = "0";
-                }else{
                     string_plafonesDerechos = "1";
+                }else{
+                    string_plafonesDerechos = "0";
                 }
                 if (check_plafonesIzquierdos) {
-                    string_plafonesIzquierdos = "0";
-                }else{
                     string_plafonesIzquierdos = "1";
+                }else{
+                    string_plafonesIzquierdos = "0";
                 }
                 if (check_luzPlaca) {
-                    string_luzPlaca = "0";
-                }else{
                     string_luzPlaca = "1";
+                }else{
+                    string_luzPlaca = "0";
                 }
                 if (check_sello1) {
-                    string_sello1 = "0";
-                }else{
                     string_sello1 = "1";
+                }else{
+                    string_sello1 = "0";
                 }
                 if (check_sello2) {
-                    string_sello2 = "0";
-                }else{
                     string_sello2 = "1";
+                }else{
+                    string_sello2 = "0";
                 }
                 if (check_sello1Alta) {
-                    string_sello1Alta = "0";
-                }else{
                     string_sello1Alta = "1";
+                }else{
+                    string_sello1Alta = "0";
                 }
                 if (check_sello2Alta) {
-                    string_sello2Alta = "0";
-                }else{
                     string_sello2Alta = "1";
+                }else{
+                    string_sello2Alta = "0";
                 }
                 if (check_vvt) {
-                    string_vvt = "0";
-                }else{
                     string_vvt = "1";
+                }else{
+                    string_vvt = "0";
                 }
                 if (check_escotilla) {
-                    string_escotilla = "0";
-                }else{
                     string_escotilla = "1";
+                }else{
+                    string_escotilla = "0";
                 }
 
                 String observacioens  = comentarios.getText().toString();
@@ -306,6 +306,32 @@ public class etapa5_Activity extends AppCompatActivity {
                 String sello1 = numeroSello1.getText().toString();
                 String sello2 = numeroSello2.getText().toString();
                 String sello3 = numeroSello3.getText().toString();
+
+                String D1 = null ;
+                String D2 = null ;
+                String D3 = null ;
+                String D4 = null ;
+                String S3 = null ;
+
+                if(actual_daño1 != null){
+                    D1 = "remolqueTraseroDano1FotoUrl-"+folio;
+                }
+
+                if(actual_daño2 != null){
+                    D2 = "remolqueTraseroDano2FotoUrl-"+folio;
+                }
+
+                if(actual_daño3 != null){
+                    D3 = "remolqueTraseroDano3FotoUrl-"+folio;
+                }
+
+                if(actual_daño4 != null){
+                    D4 = "remolqueTraseroDano4FotoUrl-"+folio;
+                }
+
+                if(actual_sello3 != null){
+                    S3 = "remolqueSello3FotoUrl-"+folio;
+                }
 
                 if(actual_puertas == null || actual_placas == null || actual_sello1 == null || actual_sello2 == null ||
                     placa.isEmpty() || sello1.isEmpty() || sello2.isEmpty()) {
@@ -316,6 +342,15 @@ public class etapa5_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa5_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico5(
+                            "remolquePuertasFotoUrl-"+folio,
+                            "remolquePlacasFotoUrl-"+folio,
+                            "remolqueSello1FotoUrl-"+folio,
+                            "remolqueSello2FotoUrl-"+folio,
+                            S3,
+                            D1,
+                            D2,
+                            D3,
+                            D4,
                             "5",folio,observacioens,placa,sello1,sello2,sello3
                             ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,
                             string_plafonesIzquierdos,string_luzPlaca,"",string_sello1,string_sello1Alta,
@@ -324,34 +359,35 @@ public class etapa5_Activity extends AppCompatActivity {
                     if(insertIntercambio1 == -1){
                         Toast.makeText(etapa5_Activity.this, "Error insertIntercambio5", Toast.LENGTH_LONG).show();
                     }else {
-                        if(createDirectoryAndSaveFile( actual_puertas,  "puertas"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_placas,  "placas"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_sello1,  "sello1"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_sello2,  "sello2"+folio+".jpg", path)
+                        if(createDirectoryAndSaveFile( actual_puertas,  "remolquePuertasFotoUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_placas,  "remolquePlacasFotoUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_sello1,  "remolqueSello1FotoUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_sello2,  "remolqueSello2FotoUrl-"+folio+".jpg", path)
                         )
                         {
 
                             if(actual_daño1 != null){
-                                createDirectoryAndSaveFile(actual_daño1, "dañoTrasero1" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño1, "remolqueTraseroDano1FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_daño2 != null){
-                                createDirectoryAndSaveFile(actual_daño2, "dañoTrasero2" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño2, "remolqueTraseroDano2FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_daño3 != null){
-                                createDirectoryAndSaveFile(actual_daño3, "dañoTrasero3" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño3, "remolqueTraseroDano3FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_daño4 != null){
-                                createDirectoryAndSaveFile(actual_daño4, "dañoTrasero4" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_daño4, "remolqueTraseroDano4FotoUrl-" + folio + ".jpg", path);
                             }
 
                             if(actual_sello3 != null){
-                                createDirectoryAndSaveFile(actual_sello3, "sello3" + folio + ".jpg", path);
+                                createDirectoryAndSaveFile(actual_sello3, "remolqueSello3FotoUrl-" + folio + ".jpg", path);
                             }
 
                             Intent i = new Intent(etapa5_Activity.this, etapa6_Activity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);

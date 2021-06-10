@@ -141,64 +141,64 @@ public class etapa3_Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (check_inspeccion) {
-                    string_inspeccion = "0";
-                }else{
                     string_inspeccion = "1";
+                }else{
+                    string_inspeccion = "0";
                 }
                 if (check_patinIzq) {
-                    string_patinIzq = "0";
-                }else{
                     string_patinIzq = "1";
+                }else{
+                    string_patinIzq = "0";
                 }
                 if (check_lucesP1) {
-                    string_lucesP1 = "0";
-                }else{
                     string_lucesP1 = "1";
+                }else{
+                    string_lucesP1 = "0";
                 }
                 if (check_luzGabildo) {
-                    string_luzGabildo = "0";
-                }else{
                     string_luzGabildo = "1";
+                }else{
+                    string_luzGabildo = "0";
                 }
                 if (check_manitas) {
-                    string_manitas = "0";
-                }else{
                     string_manitas = "1";
+                }else{
+                    string_manitas = "0";
                 }
                 if (check_manivela) {
-                    string_manivela = "0";
-                }else{
                     string_manivela = "1";
+                }else{
+                    string_manivela = "0";
                 }
                 if (check_cuartoIzq) {
-                    string_cuartoIzq = "0";
-                }else{
                     string_cuartoIzq = "1";
+                }else{
+                    string_cuartoIzq = "0";
                 }
                 if (check_loderaIzq) {
-                    string_loderaIzq = "0";
-                }else{
                     string_loderaIzq = "1";
+                }else{
+                    string_loderaIzq = "0";
                 }
                 if (check_lucesP2) {
-                    string_lucesP2 = "0";
-                }else{
                     string_lucesP2 = "1";
+                }else{
+                    string_lucesP2 = "0";
                 }
                 if (check_luzABS) {
-                    string_luzABS = "0";
-                }else{
                     string_luzABS = "1";
+                }else{
+                    string_luzABS = "0";
                 }
                 if (check_luzBarcoIzq) {
-                    string_luzBarcoIzq = "0";
-                }else{
                     string_luzBarcoIzq = "1";
+                }else{
+                    string_luzBarcoIzq = "0";
                 }
                 if (check_rompevientosIzq) {
-                    string_rompevientosIzq = "0";
-                }else{
                     string_rompevientosIzq = "1";
+                }else{
+                    string_rompevientosIzq = "0";
                 }
 
 
@@ -210,6 +210,7 @@ public class etapa3_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa3_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico3(
+                            "noEcoUrl-"+folio,"vinUrl-"+folio,"remolqueCostadoTraseroIzqUrl-"+folio,"remolqueCostadoFrenteIzquierdoUrl-"+folio,
                             "3",folio,string_inspeccion,string_lucesP1,string_luzGabildo,string_manitas
                             ,string_manivela,string_patinIzq,string_cuartoIzq,string_loderaIzq,
                             string_lucesP2,string_luzABS,string_luzBarcoIzq,string_rompevientosIzq);
@@ -217,13 +218,14 @@ public class etapa3_Activity extends AppCompatActivity {
                     if(insertIntercambio1 == -1){
                         Toast.makeText(etapa3_Activity.this, "Error insertIntercambio3", Toast.LENGTH_LONG).show();
                     }else {
-                        if(createDirectoryAndSaveFile( actual_NoEconomico,  "noEconomico"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_manitas,  "manitas"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_fotoCostadoAtras,  "IzqCostadoAtras"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_fotoCostadoFrente,  "IzqCostadoFrente"+folio+".jpg", path)
+                        if(createDirectoryAndSaveFile( actual_NoEconomico,  "noEcoUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_manitas,  "manitas-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_fotoCostadoAtras,  "remolqueCostadoTraseroIzqUrl-"+folio+".jpg", path) &&
+                                createDirectoryAndSaveFile( actual_fotoCostadoFrente,  "remolqueCostadoFrenteIzquierdoUrl-"+folio+".jpg", path)
                         )
                         {
                             Intent i = new Intent(etapa3_Activity.this, etapa4_Activity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
                             startActivity(i);

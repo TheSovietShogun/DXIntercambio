@@ -430,7 +430,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
                         folio = "";
                         hora = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                        folio = ( hora + idRemolque);
+                        folio = hora ;
                         envioSiuuu(fechaHora, tipoOperacion, idUsuario, idTransportista, idOperador, idUnidad,
                                 idRemolque, idLinea, estatus, comentario, folio, movimiento, "",nombreOperador,nombreUnidad, nombreRemolque);
                     }
@@ -444,7 +444,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
                                 folio = "";
                                 hora = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                folio = ( hora + idRemolque);
+                                folio = hora ;
 
                                 envioSiuuu(fechaHora, tipoOperacion, idUsuario, idTransportista, idOperador, idUnidad,
                                         idRemolque, idLinea, estatus, comentario, folio, movimiento, "",nombreOperador,nombreUnidad, nombreRemolque);
@@ -458,7 +458,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
                                 folio = "";
                                 hora = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                folio = ( hora + idRemolque);
+                                folio = hora ;
 
                                 envioSiuuu(fechaHora, tipoOperacion, idUsuario, idTransportista, idOperador, idUnidad,
                                         idRemolque, idLinea, estatus, comentario, folio, movimiento, "",nombreOperador,nombreUnidad, nombreRemolque);
@@ -472,7 +472,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
                                 folio = "";
                                 hora = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date());
-                                folio = (hora + idRemolque);
+                                folio = hora ;
 
                                 envioSiuuu(fechaHora, tipoOperacion, idUsuario, idTransportista, idOperador, idUnidad,
                                         idRemolque, idLinea, estatus, comentario, folio, movimiento, "",nombreOperador,nombreUnidad, nombreRemolque);
@@ -570,7 +570,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
         DataBaseHelper dataBaseHelper =  new DataBaseHelper(etapa1_Activity.this);
 
-        long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico1("1",Ufolio,"",UidUsuario,UtipoOperacion,UtipoMovimiento,UestatusRemolque,Ucomentario,UnombreOperador,
+        long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico1("licenciaUrl-"+folio,"1",Ufolio,"",UidUsuario,UtipoOperacion,UtipoMovimiento,UestatusRemolque,Ucomentario,UnombreOperador,
                 UidOperador,UidTransportista,UnombreUniad,UidUnidad,UidLinea,UnombreRemolque,UidRemolque,UfechaHora);
 
         if(insertIntercambio1 == -1){
@@ -586,8 +586,9 @@ public class etapa1_Activity extends AppCompatActivity {
             projDir.mkdir();
             String childDirPath = projDir.getPath();
 
-            if(createDirectoryAndSaveFile( actual_Bitmap,  "licencia"+folio+".jpg", childDirPath )){
+            if(createDirectoryAndSaveFile( actual_Bitmap,  "licenciaUrl-"+folio+".jpg", childDirPath )){
                 Intent i = new Intent(etapa1_Activity.this, etapa2_Activity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.putExtra("folio", folio);
                 i.putExtra("path", childDirPath);
                 startActivity(i);

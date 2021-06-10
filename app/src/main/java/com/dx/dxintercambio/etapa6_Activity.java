@@ -380,114 +380,114 @@ public class etapa6_Activity extends AppCompatActivity {
                 }
 
                 if (check_amortiguadorFrontal) {
-                    string_amortiguadorFrontal = "0";
-                }else{
                     string_amortiguadorFrontal = "1";
+                }else{
+                    string_amortiguadorFrontal = "0";
                 }
                 if (check_bolsaFrontal) {
-                    string_bolsaFrontal = "0";
-                }else{
                     string_bolsaFrontal = "1";
+                }else{
+                    string_bolsaFrontal = "0";
                 }
                 if (check_matracaFrontal) {
-                    string_matracaFrontal = "0";
-                }else{
                     string_matracaFrontal = "1";
+                }else{
+                    string_matracaFrontal = "0";
                 }
                 if (check_muelleFrontal) {
-                    string_muelleFrontal = "0";
-                }else{
                     string_muelleFrontal = "1";
+                }else{
+                    string_muelleFrontal = "0";
                 }
                 if (check_rotachamberFrontal) {
-                    string_rotachamberFrontal = "0";
-                }else{
                     string_rotachamberFrontal = "1";
+                }else{
+                    string_rotachamberFrontal = "0";
                 }
                 if (check_amortiguadorTrasera) {
-                    string_amortiguadorTrasera = "0";
-                }else{
                     string_amortiguadorTrasera = "1";
+                }else{
+                    string_amortiguadorTrasera = "0";
                 }
                 if (check_bolsaTrasera) {
-                    string_bolsaTrasera = "0";
-                }else{
                     string_bolsaTrasera = "1";
+                }else{
+                    string_bolsaTrasera = "0";
                 }
                 if (check_matracaTrasera) {
-                    string_matracaTrasera = "0";
-                }else{
                     string_matracaTrasera = "1";
+                }else{
+                    string_matracaTrasera = "0";
                 }
                 if (check_muelleTrasera) {
-                    string_muelleTrasera = "0";
-                }else{
                     string_muelleTrasera = "1";
+                }else{
+                    string_muelleTrasera = "0";
                 }
                 if (check_rotachamberTrasera) {
-                    string_rotachamberTrasera = "0";
-                }else{
                     string_rotachamberTrasera = "1";
+                }else{
+                    string_rotachamberTrasera = "0";
                 }
                 if (check_eje1Birlos) {
-                    string_eje1Birlos = "0";
-                }else{
                     string_eje1Birlos = "1";
+                }else{
+                    string_eje1Birlos = "0";
                 }
                 if (check_llantaP3) {
-                    string_llantaP3 = "0";
-                }else{
                     string_llantaP3 = "1";
+                }else{
+                    string_llantaP3 = "0";
                 }
                 if (check_llantaP4) {
-                    string_llantaP4 = "0";
-                }else{
                     string_llantaP4 = "1";
+                }else{
+                    string_llantaP4 = "0";
                 }
                 if (check_eje1MasasYoyo) {
-                    string_eje1MasasYoyo = "0";
-                }else{
                     string_eje1MasasYoyo = "1";
+                }else{
+                    string_eje1MasasYoyo = "0";
                 }
                 if (check_eje1Rin) {
-                    string_eje1Rin = "0";
-                }else{
                     string_eje1Rin = "1";
+                }else{
+                    string_eje1Rin = "0";
                 }
                 if (check_eje1Lodera) {
-                    string_eje1Lodera = "0";
-                }else{
                     string_eje1Lodera = "1";
+                }else{
+                    string_eje1Lodera = "0";
                 }
                 if (check_eje2Birlos) {
-                    string_eje2Birlos = "0";
-                }else{
                     string_eje2Birlos = "1";
+                }else{
+                    string_eje2Birlos = "0";
                 }
                 if (check_llantaP7) {
-                    string_llantaP7 = "0";
-                }else{
                     string_llantaP7 = "1";
+                }else{
+                    string_llantaP7 = "0";
                 }
                 if (check_llantaP8) {
-                    string_llantaP8 = "0";
-                }else{
                     string_llantaP8 = "1";
+                }else{
+                    string_llantaP8 = "0";
                 }
                 if (check_eje2MasasYoyo) {
-                    string_eje2MasasYoyo = "0";
-                }else{
                     string_eje2MasasYoyo = "1";
+                }else{
+                    string_eje2MasasYoyo = "0";
                 }
                 if (check_eje2Rin) {
-                    string_eje2Rin = "0";
-                }else{
                     string_eje2Rin = "1";
+                }else{
+                    string_eje2Rin = "0";
                 }
                 if (check_eje2Lodera) {
-                    string_eje2Lodera = "0";
-                }else{
                     string_eje2Lodera = "1";
+                }else{
+                    string_eje2Lodera = "0";
                 }
 
                 if (check_jumbo) {
@@ -507,6 +507,10 @@ public class etapa6_Activity extends AppCompatActivity {
                         DataBaseHelper dataBaseHelper2 = new DataBaseHelper(etapa6_Activity.this);
 
                         long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico6(
+                                "remolqueLlantaDerEje1FotoUrl-"+folio,
+                                "remolqueLlantaDerEje2FotoUrl-"+folio,
+                                "remolqueChasisFrontalDerFotoUrl-"+folio,
+                                "remolqueChasisTraseroDerFotoUrl-"+folio,
                                 "6", folio, string_jumbo,
                                 string_amortiguadorTrasera,
                                 string_bolsaTrasera,
@@ -549,11 +553,12 @@ public class etapa6_Activity extends AppCompatActivity {
                         if(insertIntercambio1 == -1){
                             Toast.makeText(etapa6_Activity.this, "Error insertIntercambio6", Toast.LENGTH_LONG).show();
                         }else {
-                            if(createDirectoryAndSaveFile( actual_chasisDerFrontal,  "chasisIzqFrontal"+folio+".jpg", path) &&
-                                    createDirectoryAndSaveFile( actual_chasisDerTrasero,  "chasisIzqTrasero"+folio+".jpg", path)
+                            if(createDirectoryAndSaveFile( actual_chasisDerFrontal,  "remolqueChasisFrontalDerFotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_chasisDerTrasero,  "remolqueChasisTraseroDerFotoUrl-"+folio+".jpg", path)
                             )
                             {
                                 Intent i = new Intent(etapa6_Activity.this, etapa7_Activity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 i.putExtra("folio", folio);
                                 i.putExtra("path", path);
                                 startActivity(i);
@@ -574,6 +579,10 @@ public class etapa6_Activity extends AppCompatActivity {
                         DataBaseHelper dataBaseHelper2 = new DataBaseHelper(etapa6_Activity.this);
 
                         long insertIntercambio1 = dataBaseHelper2.insertIntercambioElectronico6(
+                                "remolqueLlantaDerEje1FotoUrl-"+folio,
+                                "remolqueLlantaDerEje2FotoUrl-"+folio,
+                                "remolqueChasisFrontalDerFotoUrl-"+folio,
+                                "remolqueChasisTraseroDerFotoUrl-"+folio,
                                 "6",
                                 folio,
                                 string_jumbo,
@@ -618,12 +627,13 @@ public class etapa6_Activity extends AppCompatActivity {
                         if (insertIntercambio1 == -1) {
                             Toast.makeText(etapa6_Activity.this, "Error insertIntercambio6", Toast.LENGTH_LONG).show();
                         } else {
-                            if (createDirectoryAndSaveFile(actual_chasisDerFrontal, "chasisDerFrontal" + folio + ".jpg", path) &&
-                                    createDirectoryAndSaveFile(actual_chasisDerTrasero, "chasisDerTrasero" + folio + ".jpg", path)
+                            if (createDirectoryAndSaveFile(actual_chasisDerFrontal, "remolqueChasisFrontalDerFotoUrl-" + folio + ".jpg", path) &&
+                                    createDirectoryAndSaveFile(actual_chasisDerTrasero, "remolqueChasisTraseroDerFotoUrl-" + folio + ".jpg", path)
                             ) {
 
 
                                 Intent i = new Intent(etapa6_Activity.this, etapa7_Activity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 i.putExtra("folio", folio);
                                 i.putExtra("path", path);
                                 startActivity(i);
