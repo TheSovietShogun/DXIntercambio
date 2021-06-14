@@ -130,6 +130,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "remolqueChasisTraseroIzqRotachamber   TEXT , " +
                 "remolqueIzqObservaciones   TEXT , " +
 
+
                 "Placas   TEXT , " +
                 "Sello1   TEXT , " +
                 "Sello2   TEXT , " +
@@ -148,7 +149,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "remolqueSello2Seguridad   TEXT , " +
                 "remolqueSello2Vvtt   TEXT , " +
                 "remolqueTraseraObservaciones   TEXT , " +
-                
+
+
                 "remolqueChasisTraseroDerAmortiguador   TEXT , " +
                 "remolqueChasisTraseroDerBolsaAire   TEXT , " +
                 "remolqueChasisTraseroDerGavilan   TEXT , " +
@@ -244,7 +246,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
                 "firmaOperadorUrl TEXT , " +
                 "firmaIntercambistaUrl TEXT , " +
-
 
 
                 "fechaFin   TEXT )";
@@ -389,41 +390,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public String insertIntercambioElectronico( String UfechaHora,String UtipoOperacion,String UidUsuario,String UidTransportista
-                                                ,String UidOperador,String UidUnidad ,String  UidRemolque ,String UidLinea ,String  Uestatus ,String Ucomentario,
-                                                String Ufolio,String Umovimiento ,String Upatio , String UotroUnidad, String UotroRemolque){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put("estatus",Uestatus);
-        cv.put("folio",Ufolio);
-        cv.put("terminal",Upatio);
-        cv.put("idUsuario",UidUsuario);
-        cv.put("tipoOperacion",UtipoOperacion);
-        cv.put("tipoMovimiento",Umovimiento);
-        cv.put("estatusRemolque",Uestatus);
-        cv.put("comentario2",Ucomentario);
-        cv.put("idOperador",UidOperador);
-        cv.put("idTransportista",UidTransportista);
-        cv.put("unidad",UotroUnidad);
-        cv.put("idUnidad",UidUnidad);
-        cv.put("idLinea",UidLinea);
-        cv.put("remolque",UotroRemolque);
-        cv.put("idRemolque",UidRemolque);
-        cv.put("fechaInicio",UfechaHora);
-
-        long insert = db.insert(TABLE_INTERCAMBIO, null, cv);
-
-        if(insert == -1){
-            return "-1";
-        }else{
-
-            String folio = Ufolio;
-            return folio;
-        }
-    }
-
     public List<COperador> selectOperador() {
 
         List<COperador> returnList = new ArrayList<>();
@@ -519,11 +485,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         List<CUnidad> returnList = new ArrayList<>();
 
+        String queryString =  null;
+
         if(idTransportista == ""){
             idTransportista = "4";
+            queryString = "SELECT * FROM " + TABLE_UNIDAD + " WHERE "+ COLUMN_CLAVE_UNIDAD + " LIKE  " + "'" + idTransportista + "%'" ;
+        }else {
+            queryString = "SELECT idUnidad , replace(claveUnidad , '" + idTransportista + "' , ' ' ) FROM " + TABLE_UNIDAD + " WHERE "+ COLUMN_CLAVE_UNIDAD + " LIKE  " + "'" + idTransportista + "%'" ;
         }
 
-        String queryString = "SELECT * FROM " + TABLE_UNIDAD + " WHERE "+ COLUMN_CLAVE_UNIDAD + " LIKE  " + "'" + idTransportista + "%'" ;
+
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -613,7 +584,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         List<CUsuarioRel> returnList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM " + TABLE_USUARIO + " WHERE " +COLUMN_LOGIN +" = " + usuario + " AND " + COLUMN_PASSWORD + " = " + contra;
+        String queryString = "SELECT * FROM " + TABLE_USUARIO + " WHERE " +COLUMN_LOGIN +" = '" + usuario + "' AND " + COLUMN_PASSWORD + " = '" + contra+ "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -976,11 +947,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+
     public List<CPopulateList> selectListIntercambioTerminado() {
 
         List<CPopulateList> returnList = new ArrayList<>();
 
-        String queryString = "SELECT i.folio,i.fechaFin,u.claveUnidad,us.login,r.claveRemolque " +
+        String queryString = "SELECT i.folio,i.fechaFin,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin  " +
                 "FROM " + TABLE_INTERCAMBIO + " i LEFT JOIN unidad u ON u.idUnidad = i.idUnidad LEFT JOIN usuario us ON us.idUsuario = i.idUsuario LEFT JOIN remolque r ON r.idRemolque = i.idRemolque "
                 + " WHERE i.fechaFin IS NOT null ";
 
@@ -992,17 +965,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             do {
                 
                 String folio  = cursor.getString(0);
-                String fecha  = cursor.getString(1);
+                String fechaInicio  = cursor.getString(1);
                 String claveUnidad  = cursor.getString(2);
                 String login  = cursor.getString(3);
                 String claveRemolque  = cursor.getString(4);
-
+                String estatus  = cursor.getString(5);
+                String fechaFin  = cursor.getString(6);
 
                 CPopulateList cPopulateList = new CPopulateList ( folio  ,
-                        fecha ,
+                        fechaInicio ,
                         claveRemolque  ,
                         login  ,
-                        claveUnidad
+                        claveUnidad ,
+                        estatus,
+                        fechaFin
                 );
 
                 returnList.add(cPopulateList);
@@ -1166,7 +1142,44 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String rompevientosDer  = cursor.getString(131);
                 String remolqueLlantaDerJumbo  = cursor.getString(132);
                 String remolqueDerObservaciones  = cursor.getString(133);
-                String fechaFin  = cursor.getString(134);
+                String licenciaUrl= cursor.getString(134);
+                String tractoIzqUrl = cursor.getString(135);
+                String tractoFrenteUrl = cursor.getString(136);
+                String tractoDerUrl = cursor.getString(137);
+                String noEcoUrl = cursor.getString(138);
+                String vinUrl = cursor.getString(139);
+                String remolqueCostadoTraseroIzqUrl = cursor.getString(140);
+                String remolqueCostadoFrenteIzquierdoUrl = cursor.getString(141);
+                String remolqueLlantaIzqEje1FotoUrl = cursor.getString(142);
+                String remolqueLlantaIzqEje2FotoUrl = cursor.getString(143);
+                String remolqueChasisFrontalIzqFotoUrl = cursor.getString(144);
+                String remolqueChasisTraseroIzqFotoUrl = cursor.getString(145);
+                String remolqueIzqDano1FotoUrl = cursor.getString(146);
+                String remolqueIzqDano2FotoUrl = cursor.getString(147);
+                String remolqueIzqDano3FotoUrl = cursor.getString(148);
+                String remolqueIzqDano4FotoUrl = cursor.getString(149);
+                String remolquePuertasFotoUrl = cursor.getString(150);
+                String remolquePlacasFotoUrl = cursor.getString(151);
+                String remolqueSello1FotoUrl = cursor.getString(152);
+                String remolqueSello2FotoUrl = cursor.getString(153);
+                String remolqueSello3FotoUrl = cursor.getString(154);
+                String remolqueTraseroDano1FotoUrl = cursor.getString(155);
+                String remolqueTraseroDano2FotoUrl = cursor.getString(156);
+                String remolqueTraseroDano3FotoUrl = cursor.getString(157);
+                String remolqueTraseroDano4FotoUrl = cursor.getString(158);
+                String remolqueCostadoTraseroDerUrl = cursor.getString(159);
+                String remolqueCostadoFrenteDerechoUrl = cursor.getString(160);
+                String remolqueLlantaDerEje1FotoUrl = cursor.getString(161);
+                String remolqueLlantaDerEje2FotoUrl = cursor.getString(162);
+                String remolqueChasisFrontalDerFotoUrl = cursor.getString(163);
+                String remolqueChasisTraseroDerFotoUrl = cursor.getString(164);
+                String remolqueDerDano1FotoUrl = cursor.getString(165);
+                String remolqueDerDano2FotoUrl = cursor.getString(166);
+                String remolqueDerDano3FotoUrl = cursor.getString(167);
+                String remolqueDerDano4FotoUrl = cursor.getString(168);
+                String firmaOperadorUrl = cursor.getString(169);
+                String firmaIntercambistaUrl = cursor.getString(170);
+                String fechaFin  = cursor.getString(171);
 
 
 
@@ -1304,6 +1317,43 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         rompevientosDer  ,
                         remolqueLlantaDerJumbo  ,
                         remolqueDerObservaciones  ,
+                        licenciaUrl ,
+                      tractoIzqUrl ,
+                      tractoFrenteUrl ,
+                      tractoDerUrl ,
+                      noEcoUrl ,
+                      vinUrl ,
+                      remolqueCostadoTraseroIzqUrl ,
+                      remolqueCostadoFrenteIzquierdoUrl ,
+                      remolqueLlantaIzqEje1FotoUrl ,
+                      remolqueLlantaIzqEje2FotoUrl ,
+                      remolqueChasisFrontalIzqFotoUrl ,
+                      remolqueChasisTraseroIzqFotoUrl ,
+                      remolqueIzqDano1FotoUrl ,
+                      remolqueIzqDano2FotoUrl ,
+                      remolqueIzqDano3FotoUrl ,
+                      remolqueIzqDano4FotoUrl ,
+                      remolquePuertasFotoUrl ,
+                      remolquePlacasFotoUrl ,
+                      remolqueSello1FotoUrl ,
+                      remolqueSello2FotoUrl ,
+                      remolqueSello3FotoUrl ,
+                      remolqueTraseroDano1FotoUrl ,
+                      remolqueTraseroDano2FotoUrl ,
+                      remolqueTraseroDano3FotoUrl ,
+                      remolqueTraseroDano4FotoUrl ,
+                      remolqueCostadoTraseroDerUrl ,
+                      remolqueCostadoFrenteDerechoUrl ,
+                      remolqueLlantaDerEje1FotoUrl ,
+                      remolqueLlantaDerEje2FotoUrl ,
+                      remolqueChasisFrontalDerFotoUrl ,
+                      remolqueChasisTraseroDerFotoUrl ,
+                      remolqueDerDano1FotoUrl ,
+                      remolqueDerDano2FotoUrl ,
+                      remolqueDerDano3FotoUrl ,
+                      remolqueDerDano4FotoUrl ,
+                      firmaOperadorUrl ,
+                      firmaIntercambistaUrl ,
                         fechaFin   );
 
 
@@ -1321,11 +1371,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public List<CintercambioElectronico> selectIntercambioAbierto() {
+    public List<CPopulateList> selectIntercambioAbierto() {
 
-        List<CintercambioElectronico> returnList = new ArrayList<>();
+        List<CPopulateList> returnList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM " + TABLE_INTERCAMBIO + " WHERE fechaFin IS null ";
+        String queryString = "SELECT i.folio,i.fechaInicio,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin " +
+                "FROM " + TABLE_INTERCAMBIO + " i LEFT JOIN unidad u ON u.idUnidad = i.idUnidad LEFT JOIN usuario us ON us.idUsuario = i.idUsuario LEFT JOIN remolque r ON r.idRemolque = i.idRemolque "
+                + " WHERE i.fechaFin IS null ";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -1334,282 +1386,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do {
 
-                String estatus  = cursor.getString(0);
-                String folio  = cursor.getString(1);
-                String terminal  = cursor.getString(2);
-                String idUsuario  = cursor.getString(3);
-                String tipoOperacion  = cursor.getString(4);
-                String tipoMovimiento  = cursor.getString(5);
-                String estatusRemolque  = cursor.getString(6);
-                String comentario2  = cursor.getString(7);
-                String nombreOperador  = cursor.getString(8);
-                String idOperador  = cursor.getString(9);
-                String idTransportista  = cursor.getString(10);
-                String unidad  = cursor.getString(11);
-                String idUnidad  = cursor.getString(12);
-                String idLinea  = cursor.getString(13);
-                String remolque  = cursor.getString(14);
-                String idRemolque  = cursor.getString(15);
-                String fechaInicio  = cursor.getString(16);
-                String tractoDefensa  = cursor.getString(17);
-                String tractoCabina  = cursor.getString(18);
-                String tractoQuintaRueda  = cursor.getString(19);
-                String tractoTuboEscape  = cursor.getString(20);
-                String tractoBaseRemolque  = cursor.getString(21);
-                String tractoTechos  = cursor.getString(22);
-                String tractoLlantas  = cursor.getString(23);
-                String tractoTanqueDiesel  = cursor.getString(24);
-                String tractoTanqueAire  = cursor.getString(25);
-                String tractoEjeTransmision  = cursor.getString(26);
-                String tractoMotor  = cursor.getString(27);
-                String remolqueInspeccionMecanica  = cursor.getString(28);
-                String remolqueLucesIzquierda  = cursor.getString(29);
-                String remolqueLucesGaliboIzqFrontalSup  = cursor.getString(30);
-                String remolqueManitasIzq  = cursor.getString(31);
-                String remolqueManivelaIzq  = cursor.getString(32);
-                String remolquePatinIzquierdo  = cursor.getString(33);
-                String remolqueCuartoLadoIzq  = cursor.getString(34);
-                String LoderaIzq  = cursor.getString(35);
-                String remolqueLucesIzqP  = cursor.getString(36);
-                String LuzAbsIzq  = cursor.getString(37);
-                String luzBarcoIzq  = cursor.getString(38);
-                String rompevientosIzq  = cursor.getString(39);
-                String remolqueLlantaIzqJumbo  = cursor.getString(40);
-                String remolqueLlantaIzqEje1Posicion1Marca  = cursor.getString(41);
-                String remolqueLlantaIzqEje1Posicion1Estatus  = cursor.getString(42);
-                String remolqueLlantaIzqEje1Posicion2Marca  = cursor.getString(43);
-                String remolqueLlantaIzqEje1Posicion2Estatus  = cursor.getString(44);
-                String remolqueLlantaIzqEje1BrilosPivote  = cursor.getString(45);
-                String remolqueLlantaIzqEje1Posicion1  = cursor.getString(46);
-                String remolqueLlantaIzqEje1Posicion2  = cursor.getString(47);
-                String remolqueLlantaIzqEje1MesaYoyo  = cursor.getString(48);
-                String remolqueLlantaIzqEje1Rin  = cursor.getString(49);
-                String remolqueLlantaIzqEje1Lodera  = cursor.getString(50);
-                String remolqueLlantaIzqEje2Posicion5Marca  = cursor.getString(51);
-                String remolqueLlantaIzqEje2Posicion5Estatus  = cursor.getString(52);
-                String remolqueLlantaIzqEje2Posicion6Marca  = cursor.getString(53);
-                String remolqueLlantaIzqEje2Posicion6Estatus  = cursor.getString(54);
-                String remolqueLlantaIzqEje2BrilosPivote  = cursor.getString(55);
-                String remolqueLlantaIzqEje2Posicion5  = cursor.getString(56);
-                String remolqueLlantaIzqEje2Posicion6  = cursor.getString(57);
-                String remolqueLlantaIzqEje2MesaYoyo  = cursor.getString(58);
-                String remolqueLlantaIzqEje2Rin  = cursor.getString(59);
-                String remolqueLlantaIzqEje2Lodera  = cursor.getString(60);
-                String remolqueChasisFrontalIzqAmortiguador  = cursor.getString(61);
-                String remolqueChasisFrontalIzqBolsaAire  = cursor.getString(62);
-                String remolqueChasisFrontalIzqGavilan  = cursor.getString(63);
-                String remolqueChasisFrontalIzqMuelle  = cursor.getString(64);
-                String remolqueChasisFrontalIzqRotachamber  = cursor.getString(65);
-                String remolqueChasisTraseroIzqAmortiguador  = cursor.getString(66);
-                String remolqueChasisTraseroIzqBolsaAire  = cursor.getString(67);
-                String remolqueChasisTraseroIzqGavilan  = cursor.getString(68);
-                String remolqueChasisTraseroIzqMuelle  = cursor.getString(69);
-                String remolqueChasisTraseroIzqRotachamber  = cursor.getString(70);
-                String remolqueIzqObservaciones  = cursor.getString(71);
-                String Placas  = cursor.getString(72);
-                String Sello1  = cursor.getString(73);
-                String Sello2  = cursor.getString(74);
-                String Sello3  = cursor.getString(75);
-                String remolquePuertasBisagrasTornillos  = cursor.getString(76);
-                String remolquePuertasDefensa  = cursor.getString(77);
-                String remolquePuertasLuzGaliboSupTraseras  = cursor.getString(78);
-                String remolquePuertasPlafonDerecho  = cursor.getString(79);
-                String remolquePuertasPlafonIzquierdo  = cursor.getString(80);
-                String remolquePlacasLuzPlaca  = cursor.getString(81);
-                String remolquePlacasPlaca  = cursor.getString(82);
-                String remolqueSello1Sello  = cursor.getString(83);
-                String remolqueSello1Seguridad  = cursor.getString(84);
-                String remolqueSello2Escotilla  = cursor.getString(85);
-                String remolqueSello2Sello  = cursor.getString(86);
-                String remolqueSello2Seguridad  = cursor.getString(87);
-                String remolqueSello2Vvtt  = cursor.getString(88);
-                String remolqueTraseraObservaciones  = cursor.getString(89);
-                String remolqueChasisTraseroDerAmortiguador  = cursor.getString(90);
-                String remolqueChasisTraseroDerBolsaAire  = cursor.getString(91);
-                String remolqueChasisTraseroDerGavilan  = cursor.getString(92);
-                String remolqueChasisTraseroDerMuelle  = cursor.getString(93);
-                String remolqueChasisTraseroDerRotachamber  = cursor.getString(94);
-                String remolqueLlantaDerEje2BrilosPivote  = cursor.getString(95);
-                String remolqueLlantaDerEje2Posicion7Marca  = cursor.getString(96);
-                String remolqueLlantaDerEje2Posicion7Estatus  = cursor.getString(97);
-                String remolqueLlantaDerEje2Posicion8Marca  = cursor.getString(98);
-                String remolqueLlantaDerEje2Posicion8Estatus  = cursor.getString(99);
-                String remolqueLlantaDerEje2Posicion7  = cursor.getString(100);
-                String remolqueLlantaDerEje2Posicion8  = cursor.getString(101);
-                String remolqueLlantaDerEje2MasaYoyo  = cursor.getString(102);
-                String remolqueLlantaDerEje2Rin  = cursor.getString(103);
-                String remolqueLlantaDerEje2Lodera  = cursor.getString(104);
-                String remolqueLlantaDerEje1BrilosPivote  = cursor.getString(105);
-                String remolqueLlantaDerEje1Posicion3Marca  = cursor.getString(106);
-                String remolqueLlantaDerEje1Posicion3Estatus  = cursor.getString(107);
-                String remolqueLlantaDerEje1Posicion4Marca  = cursor.getString(108);
-                String remolqueLlantaDerEje1Posicion4Estatus  = cursor.getString(109);
-                String remolqueLlantaDerEje1Posicion3  = cursor.getString(110);
-                String remolqueLlantaDerEje1Posicion4  = cursor.getString(111);
-                String remolqueLlantaDerEje1MasaYoyo  = cursor.getString(112);
-                String remolqueLlantaDerEje1Rin  = cursor.getString(113);
-                String remolqueLlantaDerEje1Lodera  = cursor.getString(114);
-                String remolqueChasisFrontalDerAmortiguador  = cursor.getString(115);
-                String remolqueChasisFrontalDerBolsaAire  = cursor.getString(116);
-                String remolqueChasisFrontalDerGavilan  = cursor.getString(117);
-                String remolqueChasisFrontalDerMuelle  = cursor.getString(118);
-                String remolqueChasisFrontalDerRotachamber  = cursor.getString(119);
-                String remolquePisoPLagas  = cursor.getString(120);
-                String remolqueTechoPlagas  = cursor.getString(121);
-                String remolqueDerLuces  = cursor.getString(122);
-                String remolqueDerGaliboFrontal  = cursor.getString(123);
-                String remolqueDerParedPlagas  = cursor.getString(124);
-                String remolqueDerIzqParedPlagas  = cursor.getString(125);
-                String remolqueDerPatin  = cursor.getString(126);
-                String remolqueCuartoLadoDer  = cursor.getString(127);
-                String LoderaDer  = cursor.getString(128);
-                String remolqueLucesDerP2  = cursor.getString(129);
-                String luzBarcoDer  = cursor.getString(130);
-                String rompevientosDer  = cursor.getString(131);
-                String remolqueLlantaDerJumbo  = cursor.getString(132);
-                String remolqueDerObservaciones  = cursor.getString(133);
-                String fechaFin  = cursor.getString(134);
+                String folio  = cursor.getString(0);
+                String fechaInicio  = cursor.getString(1);
+                String claveUnidad  = cursor.getString(2);
+                String login  = cursor.getString(3);
+                String claveRemolque  = cursor.getString(4);
+                String estatus  = cursor.getString(5);
+                String fechaFin =  cursor.getString(6);
 
+                CPopulateList cPopulateList = new CPopulateList ( folio  ,
+                        fechaInicio ,
+                        claveRemolque  ,
+                        login  ,
+                        claveUnidad ,
+                        estatus,
+                        fechaFin
+                );
 
-
-                CintercambioElectronico cintercambioElectronico = new CintercambioElectronico ( estatus  ,
-                        folio  ,
-                        terminal  ,
-                        idUsuario  ,
-                        tipoOperacion  ,
-                        tipoMovimiento  ,
-                        estatusRemolque  ,
-                        comentario2  ,
-                        nombreOperador  ,
-                        idOperador  ,
-                        idTransportista  ,
-                        unidad  ,
-                        idUnidad  ,
-                        idLinea  ,
-                        remolque  ,
-                        idRemolque  ,
-                        fechaInicio  ,
-                        tractoDefensa  ,
-                        tractoCabina  ,
-                        tractoQuintaRueda  ,
-                        tractoTuboEscape  ,
-                        tractoBaseRemolque  ,
-                        tractoTechos  ,
-                        tractoLlantas  ,
-                        tractoTanqueDiesel  ,
-                        tractoTanqueAire  ,
-                        tractoEjeTransmision  ,
-                        tractoMotor  ,
-                        remolqueInspeccionMecanica  ,
-                        remolqueLucesIzquierda  ,
-                        remolqueLucesGaliboIzqFrontalSup  ,
-                        remolqueManitasIzq  ,
-                        remolqueManivelaIzq  ,
-                        remolquePatinIzquierdo  ,
-                        remolqueCuartoLadoIzq  ,
-                        LoderaIzq  ,
-                        remolqueLucesIzqP  ,
-                        LuzAbsIzq  ,
-                        luzBarcoIzq  ,
-                        rompevientosIzq  ,
-                        remolqueLlantaIzqJumbo  ,
-                        remolqueLlantaIzqEje1Posicion1Marca  ,
-                        remolqueLlantaIzqEje1Posicion1Estatus  ,
-                        remolqueLlantaIzqEje1Posicion2Marca  ,
-                        remolqueLlantaIzqEje1Posicion2Estatus  ,
-                        remolqueLlantaIzqEje1BrilosPivote  ,
-                        remolqueLlantaIzqEje1Posicion1  ,
-                        remolqueLlantaIzqEje1Posicion2  ,
-                        remolqueLlantaIzqEje1MesaYoyo  ,
-                        remolqueLlantaIzqEje1Rin  ,
-                        remolqueLlantaIzqEje1Lodera  ,
-                        remolqueLlantaIzqEje2Posicion5Marca  ,
-                        remolqueLlantaIzqEje2Posicion5Estatus  ,
-                        remolqueLlantaIzqEje2Posicion6Marca  ,
-                        remolqueLlantaIzqEje2Posicion6Estatus  ,
-                        remolqueLlantaIzqEje2BrilosPivote  ,
-                        remolqueLlantaIzqEje2Posicion5  ,
-                        remolqueLlantaIzqEje2Posicion6  ,
-                        remolqueLlantaIzqEje2MesaYoyo  ,
-                        remolqueLlantaIzqEje2Rin  ,
-                        remolqueLlantaIzqEje2Lodera  ,
-                        remolqueChasisFrontalIzqAmortiguador  ,
-                        remolqueChasisFrontalIzqBolsaAire  ,
-                        remolqueChasisFrontalIzqGavilan  ,
-                        remolqueChasisFrontalIzqMuelle  ,
-                        remolqueChasisFrontalIzqRotachamber  ,
-                        remolqueChasisTraseroIzqAmortiguador  ,
-                        remolqueChasisTraseroIzqBolsaAire  ,
-                        remolqueChasisTraseroIzqGavilan  ,
-                        remolqueChasisTraseroIzqMuelle  ,
-                        remolqueChasisTraseroIzqRotachamber  ,
-                        remolqueIzqObservaciones  ,
-                        Placas  ,
-                        Sello1  ,
-                        Sello2  ,
-                        Sello3  ,
-                        remolquePuertasBisagrasTornillos  ,
-                        remolquePuertasDefensa  ,
-                        remolquePuertasLuzGaliboSupTraseras  ,
-                        remolquePuertasPlafonDerecho  ,
-                        remolquePuertasPlafonIzquierdo  ,
-                        remolquePlacasLuzPlaca  ,
-                        remolquePlacasPlaca  ,
-                        remolqueSello1Sello  ,
-                        remolqueSello1Seguridad  ,
-                        remolqueSello2Escotilla  ,
-                        remolqueSello2Sello  ,
-                        remolqueSello2Seguridad  ,
-                        remolqueSello2Vvtt  ,
-                        remolqueTraseraObservaciones  ,
-                        remolqueChasisTraseroDerAmortiguador  ,
-                        remolqueChasisTraseroDerBolsaAire  ,
-                        remolqueChasisTraseroDerGavilan  ,
-                        remolqueChasisTraseroDerMuelle  ,
-                        remolqueChasisTraseroDerRotachamber  ,
-                        remolqueLlantaDerEje2BrilosPivote  ,
-                        remolqueLlantaDerEje2Posicion7Marca  ,
-                        remolqueLlantaDerEje2Posicion7Estatus  ,
-                        remolqueLlantaDerEje2Posicion8Marca  ,
-                        remolqueLlantaDerEje2Posicion8Estatus  ,
-                        remolqueLlantaDerEje2Posicion7  ,
-                        remolqueLlantaDerEje2Posicion8  ,
-                        remolqueLlantaDerEje2MasaYoyo  ,
-                        remolqueLlantaDerEje2Rin  ,
-                        remolqueLlantaDerEje2Lodera  ,
-                        remolqueLlantaDerEje1BrilosPivote  ,
-                        remolqueLlantaDerEje1Posicion3Marca  ,
-                        remolqueLlantaDerEje1Posicion3Estatus  ,
-                        remolqueLlantaDerEje1Posicion4Marca  ,
-                        remolqueLlantaDerEje1Posicion4Estatus  ,
-                        remolqueLlantaDerEje1Posicion3  ,
-                        remolqueLlantaDerEje1Posicion4  ,
-                        remolqueLlantaDerEje1MasaYoyo  ,
-                        remolqueLlantaDerEje1Rin  ,
-                        remolqueLlantaDerEje1Lodera  ,
-                        remolqueChasisFrontalDerAmortiguador  ,
-                        remolqueChasisFrontalDerBolsaAire  ,
-                        remolqueChasisFrontalDerGavilan  ,
-                        remolqueChasisFrontalDerMuelle  ,
-                        remolqueChasisFrontalDerRotachamber  ,
-                        remolquePisoPLagas  ,
-                        remolqueTechoPlagas  ,
-                        remolqueDerLuces  ,
-                        remolqueDerGaliboFrontal  ,
-                        remolqueDerParedPlagas  ,
-                        remolqueDerIzqParedPlagas  ,
-                        remolqueDerPatin  ,
-                        remolqueCuartoLadoDer  ,
-                        LoderaDer  ,
-                        remolqueLucesDerP2  ,
-                        luzBarcoDer  ,
-                        rompevientosDer  ,
-                        remolqueLlantaDerJumbo  ,
-                        remolqueDerObservaciones  ,
-                        fechaFin   );
-
-
-                returnList.add(cintercambioElectronico);
+                returnList.add(cPopulateList);
 
             }while (cursor.moveToNext());
 
@@ -1623,5 +1417,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    public int clearTables() {
 
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        int response ;
+
+        int response0 = db.delete(TABLE_REMOLQUE,null,null);
+        int response1 = db.delete(TABLE_LLANTA,null,null);
+        int response2 = db.delete(TABLE_USUARIO,null,null);
+        int response3 = db.delete(TABLE_UNIDAD,null,null);
+        int response4 = db.delete(TABLE_TRANSPORTISTA,null,null);
+        int response5 = db.delete(TABLE_LINEA,null,null);
+        int response6 = db.delete(TABLE_OPERADOR,null,null);
+
+
+        if(response0 == -1 || response1 == -1 || response2 == -1 || response3 == -1 || response4 == -1 || response5 == -1 || response6 == -1 ){
+            response =  -1;
+        }else {
+            response =  420;
+        }
+
+        db.close();
+
+        return  response;
+    }
 }

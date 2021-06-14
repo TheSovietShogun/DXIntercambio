@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -42,12 +43,13 @@ public class etapa2_Activity extends AppCompatActivity {
     private ImageView izqTracto, frenteTracto, derTracto ;
     private Bitmap actual_izqTracto, actual_frenteTracto, actual_derTracto ;
     private Button btnEtapa2 ;
+    private final int THUMBSIZE = 128;
     public static final int REQUEST_IZQ_TRACTO = 100;
     public static final int REQUEST_DER_TRACTO = 101;
     public static final int REQUEST_FRENTE_TRACTO = 102;
     private File imageFile;
     private Uri photoURI;
-    private String  imageFileName , folio;
+    private String  imageFileName , folio , usuario;
 
 
     @Override
@@ -57,6 +59,7 @@ public class etapa2_Activity extends AppCompatActivity {
 
         folio = getIntent().getStringExtra("folio");
         path = getIntent().getStringExtra("path");
+        usuario = getIntent().getStringExtra("idUsuario");
 
         defensa = (CheckBox) findViewById(R.id.CB_defensa);
         cabina = (CheckBox) findViewById(R.id.CB_cabina);
@@ -245,7 +248,7 @@ public class etapa2_Activity extends AppCompatActivity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa2_Activity.this);
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico2("tractoIzqUrl-"+folio,"tractoFrenteUrl-"+folio,"tractoDerUrl-"+folio,
-                            "2",folio,string_defensa,string_cabina,string_quintaRueda,string_tuboEscape
+                            "3",folio,string_defensa,string_cabina,string_quintaRueda,string_tuboEscape
                             ,string_base,string_techos,string_llantas,string_tanqueDiesel,
                             string_tanqueAire,string_transmision,string_motor);
 
@@ -264,6 +267,7 @@ public class etapa2_Activity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
+                            i.putExtra("idUsuario", usuario);
                             startActivity(i);
                         }else{
                             Toast.makeText(etapa2_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
@@ -312,8 +316,13 @@ public class etapa2_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        izqTracto.setImageResource(R.drawable.ic_ok);
                         actual_izqTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_izqTracto,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        izqTracto.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         izqTracto.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -323,8 +332,13 @@ public class etapa2_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        derTracto.setImageResource(R.drawable.ic_ok);
                         actual_derTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_derTracto,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        derTracto.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         derTracto.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -334,8 +348,13 @@ public class etapa2_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        frenteTracto.setImageResource(R.drawable.ic_ok);
                         actual_frenteTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_frenteTracto,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        frenteTracto.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         frenteTracto.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -362,4 +381,25 @@ public class etapa2_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        izqTracto.setImageBitmap(null);
+        derTracto.setImageBitmap(null);
+        frenteTracto.setImageBitmap(null);
+
+        actual_derTracto = null ;
+        actual_frenteTracto = null ;
+        actual_izqTracto = null ;
+
+        photoURI = null;
+        imageFile = null;
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

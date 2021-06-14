@@ -45,6 +45,7 @@ public class firmasActivity extends AppCompatActivity {
     private String mensaje;
     private String fechaHora;
     private AlertDialog alert  ;
+    private String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class firmasActivity extends AppCompatActivity {
 
         folio = getIntent().getStringExtra("folio");
         path = getIntent().getStringExtra("path");
+        usuario = getIntent().getStringExtra("idUsuario");
 
 
 
@@ -115,9 +117,17 @@ public class firmasActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
 
-                                            Intent i = new Intent(firmasActivity.this, etapa1_Activity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                            startActivity(i);
+
+                                            if(usuario.isEmpty()){
+                                                Intent i = new Intent(firmasActivity.this, loginActivity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(i);
+                                            }else {
+                                                Intent i = new Intent(firmasActivity.this, etapa1_Activity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                i.putExtra("idUsuario", usuario);
+                                                startActivity(i);
+                                            }
 
                                         }
                                     })
@@ -172,5 +182,18 @@ public class firmasActivity extends AppCompatActivity {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        imgClear.setImageBitmap(null);
+        imgClear2.setImageBitmap(null);
+
+
+        bitmap1 = null;
+        bitmap2 = null;
+
     }
 }

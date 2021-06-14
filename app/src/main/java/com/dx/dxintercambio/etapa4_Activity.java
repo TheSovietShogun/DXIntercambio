@@ -6,6 +6,7 @@ import androidx.core.content.FileProvider;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -64,6 +65,8 @@ public class etapa4_Activity extends AppCompatActivity {
     private EditText comentarios;
     private Spinner llantaP1Marca , llantaP1Estatus, llantaP2Marca , llantaP2Estatus, llantaP5Marca , llantaP5Estatus,llantaP6Marca , llantaP6Estatus;
     private String [] estatusLlanta = new String[]{"Sin Seleccionar","Recapeada","Original"};
+    private final int THUMBSIZE = 128;
+    private String usuario;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class etapa4_Activity extends AppCompatActivity {
 
         folio = getIntent().getStringExtra("folio");
         path = getIntent().getStringExtra("path");
+        usuario = getIntent().getStringExtra("idUsuario");
 
         amortiguadorFrontal = (CheckBox) findViewById(R.id.CB_amortigadorIzqFrontal);
         bolsaFrontal = (CheckBox) findViewById(R.id.CB_bolsaIzqFrontal);
@@ -590,7 +594,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             D2,
                             D3,
                             D4,
-                            "4",folio,string_jumbo,
+                            "5",folio,string_jumbo,
                             idLlantaP1,
                             llantaEstatusP1,
                             "",
@@ -640,6 +644,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
+                            i.putExtra("idUsuario", usuario);
                             startActivity(i);
                         }else{
                             Toast.makeText(etapa4_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
@@ -666,7 +671,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             D2,
                             D3,
                             D4,
-                            "4", folio, string_jumbo,
+                            "5", folio, string_jumbo,
                             idLlantaP1,
                             llantaEstatusP1,
                             idLlantaP2,
@@ -733,6 +738,7 @@ public class etapa4_Activity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
+                            i.putExtra("idUsuario", usuario);
                             startActivity(i);
 
                         } else {
@@ -778,8 +784,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_chasisIzqFrontal.setImageResource(R.drawable.ic_ok);
                         actual_chasisIzqFrontal = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_chasisIzqFrontal,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_chasisIzqFrontal.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_chasisIzqFrontal.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -789,8 +800,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_llantaEje1.setImageResource(R.drawable.ic_ok);
                         actual_llantaEje1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_llantaEje1,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_llantaEje1.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_llantaEje1.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -800,8 +816,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_llantaEje2.setImageResource(R.drawable.ic_ok);
                         actual_llantaEje2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_llantaEje2,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_llantaEje2.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_llantaEje2.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -811,8 +832,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_chasisIzqTrasero.setImageResource(R.drawable.ic_ok);
                         actual_chasisIzqTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_chasisIzqTrasero,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_chasisIzqTrasero.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_chasisIzqTrasero.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -822,8 +848,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño1.setImageResource(R.drawable.ic_ok);
                         actual_daño1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño1,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño1.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño1.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -833,8 +864,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño2.setImageResource(R.drawable.ic_ok);
                         actual_daño2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño2,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño2.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño2.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -844,8 +880,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño3.setImageResource(R.drawable.ic_ok);
                         actual_daño3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño3,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño3.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño3.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -855,8 +896,13 @@ public class etapa4_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño4.setImageResource(R.drawable.ic_ok);
                         actual_daño4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño4,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño4.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño4.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -881,5 +927,36 @@ public class etapa4_Activity extends AppCompatActivity {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IV_chasisIzqFrontal.setImageBitmap(null);
+        IV_llantaEje1.setImageBitmap(null);
+        IV_llantaEje2.setImageBitmap(null);
+        IV_chasisIzqTrasero.setImageBitmap(null);
+        daño1.setImageBitmap(null);
+        daño2.setImageBitmap(null);
+        daño3.setImageBitmap(null);
+        daño4.setImageBitmap(null);
+        actual_chasisIzqFrontal = null;
+        actual_llantaEje1 = null;
+        actual_llantaEje2 = null;
+        actual_chasisIzqTrasero = null;
+        actual_daño1 = null;
+        actual_daño2 = null;
+        actual_daño3 = null;
+        actual_daño4 = null;
+
+        photoURI = null;
+        imageFile = null;
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -5,6 +5,7 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -44,7 +45,9 @@ public class etapa3_Activity extends AppCompatActivity {
     public static final int REQUEST_FOTO_COSTADO_ATRAS = 103;
     private File imageFile;
     private Uri photoURI;
+    private final int THUMBSIZE = 128;
     private String  imageFileName , folio;
+    private String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class etapa3_Activity extends AppCompatActivity {
 
         folio = getIntent().getStringExtra("folio");
         path = getIntent().getStringExtra("path");
+        usuario = getIntent().getStringExtra("idUsuario");
+
 
         inspeccion = (CheckBox) findViewById(R.id.CB_inspeccionMecanica);
         patinIzq = (CheckBox) findViewById(R.id.CB_patinIzq);
@@ -211,7 +216,7 @@ public class etapa3_Activity extends AppCompatActivity {
 
                     long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico3(
                             "noEcoUrl-"+folio,"vinUrl-"+folio,"remolqueCostadoTraseroIzqUrl-"+folio,"remolqueCostadoFrenteIzquierdoUrl-"+folio,
-                            "3",folio,string_inspeccion,string_lucesP1,string_luzGabildo,string_manitas
+                            "4",folio,string_inspeccion,string_lucesP1,string_luzGabildo,string_manitas
                             ,string_manivela,string_patinIzq,string_cuartoIzq,string_loderaIzq,
                             string_lucesP2,string_luzABS,string_luzBarcoIzq,string_rompevientosIzq);
 
@@ -228,6 +233,7 @@ public class etapa3_Activity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
+                            i.putExtra("idUsuario", usuario);
                             startActivity(i);
                         }else{
                             Toast.makeText(etapa3_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
@@ -304,8 +310,13 @@ public class etapa3_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_NoEconomico.setImageResource(R.drawable.ic_ok);
                         actual_NoEconomico = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_NoEconomico,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_NoEconomico.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_NoEconomico.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -315,8 +326,13 @@ public class etapa3_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_manitas.setImageResource(R.drawable.ic_ok);
                         actual_manitas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_manitas,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_manitas.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_manitas.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -326,8 +342,13 @@ public class etapa3_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_fotoCostadoFrente.setImageResource(R.drawable.ic_ok);
                         actual_fotoCostadoFrente = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_fotoCostadoFrente,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_fotoCostadoFrente.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_fotoCostadoFrente.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -337,8 +358,13 @@ public class etapa3_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_fotoCostadoAtras.setImageResource(R.drawable.ic_ok);
                         actual_fotoCostadoAtras = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_fotoCostadoAtras,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_fotoCostadoAtras.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_fotoCostadoAtras.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -365,4 +391,27 @@ public class etapa3_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IV_NoEconomico.setImageBitmap(null);
+        IV_manitas.setImageBitmap(null);
+        IV_fotoCostadoFrente.setImageBitmap(null);
+        IV_fotoCostadoAtras.setImageBitmap(null);
+
+        actual_manitas = null;
+        actual_fotoCostadoAtras =  null ;
+        actual_fotoCostadoFrente =  null ;
+        actual_NoEconomico = null ;
+
+        photoURI = null;
+        imageFile = null;
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

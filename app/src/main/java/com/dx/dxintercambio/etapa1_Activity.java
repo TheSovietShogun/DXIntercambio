@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -552,8 +554,12 @@ public class etapa1_Activity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_LICENCIA) {
                 try {
-                    licencia.setImageResource(R.drawable.ic_ok);
                     actual_Bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                    Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_Bitmap,
+                            THUMBSIZE,
+                            THUMBSIZE);
+                    licencia.setImageBitmap(thumbImage);
+
                 } catch (IOException e) {
                     licencia.setImageResource(R.drawable.ic_baseline_error_24);
                 }
@@ -570,7 +576,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
         DataBaseHelper dataBaseHelper =  new DataBaseHelper(etapa1_Activity.this);
 
-        long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico1("licenciaUrl-"+folio,"1",Ufolio,"",UidUsuario,UtipoOperacion,UtipoMovimiento,UestatusRemolque,Ucomentario,UnombreOperador,
+        long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico1("licenciaUrl-"+folio,"2",Ufolio,"",UidUsuario,UtipoOperacion,UtipoMovimiento,UestatusRemolque,Ucomentario,UnombreOperador,
                 UidOperador,UidTransportista,UnombreUniad,UidUnidad,UidLinea,UnombreRemolque,UidRemolque,UfechaHora);
 
         if(insertIntercambio1 == -1){
@@ -591,6 +597,7 @@ public class etapa1_Activity extends AppCompatActivity {
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.putExtra("folio", folio);
                 i.putExtra("path", childDirPath);
+                i.putExtra("idUsuario", usuario);
                 startActivity(i);
             }else{
                 Toast.makeText(etapa1_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
@@ -616,4 +623,13 @@ public class etapa1_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        licencia.setImageBitmap(null);
+        actual_Bitmap = null ;
+        photoURI = null;
+        imageFile = null;
+    }
 }

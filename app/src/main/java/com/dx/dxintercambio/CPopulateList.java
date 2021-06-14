@@ -3,28 +3,35 @@ package com.dx.dxintercambio;
 public class CPopulateList {
 
     private String folioInterno ;
-    private String fecha ;
+    private String fechaInicio ;
     private String remolque ;
     private String usuario ;
     private String tracto ;
+    private String estatus ;
+    private String fechaFin ;
 
-    public CPopulateList(String folioInterno, String fecha, String remolque, String usuario, String tracto) {
-        this.folioInterno = folioInterno;
-        this.fecha = fecha;
-        this.remolque = remolque;
-        this.usuario = usuario;
-        this.tracto = tracto;
-    }
 
     @Override
     public String toString() {
         return "CPopulateList{" +
                 "folioInterno='" + folioInterno + '\'' +
-                ", fecha='" + fecha + '\'' +
+                ", fechaInicio='" + fechaInicio + '\'' +
                 ", remolque='" + remolque + '\'' +
                 ", usuario='" + usuario + '\'' +
                 ", tracto='" + tracto + '\'' +
+                ", estatus='" + estatus + '\'' +
+                ", fechaFin='" + fechaFin + '\'' +
                 '}';
+    }
+
+    public CPopulateList(String folioInterno, String fechaInicio, String remolque, String usuario, String tracto, String estatus, String fechaFin) {
+        this.folioInterno = folioInterno;
+        this.fechaInicio = fechaInicio;
+        this.remolque = remolque;
+        this.usuario = usuario;
+        this.tracto = tracto;
+        this.estatus = estatus;
+        this.fechaFin = fechaFin;
     }
 
     public String getFolioInterno() {
@@ -35,12 +42,12 @@ public class CPopulateList {
         this.folioInterno = folioInterno;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public String getRemolque() {
@@ -65,5 +72,21 @@ public class CPopulateList {
 
     public void setTracto(String tracto) {
         this.tracto = tracto;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
     }
 }

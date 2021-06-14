@@ -5,6 +5,7 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -44,8 +45,10 @@ public class etapa5_Activity extends AppCompatActivity {
     private File imageFile;
     private int widthScreen;
     private Uri photoURI;
+    private final int THUMBSIZE = 128;
     private String  imageFileName , folio;
     private EditText comentarios , numeroPlaca  , numeroSello1, numeroSello2 , numeroSello3 ;
+    private String usuario;
 
 
     @Override
@@ -55,6 +58,8 @@ public class etapa5_Activity extends AppCompatActivity {
 
         folio = getIntent().getStringExtra("folio");
         path = getIntent().getStringExtra("path");
+        usuario = getIntent().getStringExtra("idUsuario");
+
 
         bisagras = (CheckBox) findViewById(R.id.CB_bisagras);
         defensaTrasera = (CheckBox) findViewById(R.id.CB_defensaTrasera);
@@ -351,7 +356,7 @@ public class etapa5_Activity extends AppCompatActivity {
                             D2,
                             D3,
                             D4,
-                            "5",folio,observacioens,placa,sello1,sello2,sello3
+                            "6",folio,observacioens,placa,sello1,sello2,sello3
                             ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,
                             string_plafonesIzquierdos,string_luzPlaca,"",string_sello1,string_sello1Alta,
                     string_escotilla,string_sello2,string_sello2Alta,string_vvt);
@@ -390,6 +395,7 @@ public class etapa5_Activity extends AppCompatActivity {
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             i.putExtra("folio", folio);
                             i.putExtra("path", path);
+                            i.putExtra("idUsuario", usuario);
                             startActivity(i);
 
                         }else{
@@ -436,8 +442,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_puertas.setImageResource(R.drawable.ic_ok);
                         actual_puertas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_puertas,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_puertas.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_puertas.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -447,8 +458,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_placas.setImageResource(R.drawable.ic_ok);
                         actual_placas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_placas,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_placas.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_placas.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -458,8 +474,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_sello1.setImageResource(R.drawable.ic_ok);
                         actual_sello1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_sello1,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_sello1.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_sello1.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -469,8 +490,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_sello2.setImageResource(R.drawable.ic_ok);
                         actual_sello2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_sello2,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_sello2.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_sello2.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -480,8 +506,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        IV_sello3.setImageResource(R.drawable.ic_ok);
                         actual_sello3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_sello3,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_sello3.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         IV_sello3.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -491,8 +522,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño1.setImageResource(R.drawable.ic_ok);
                         actual_daño1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño1,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño1.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño1.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -502,8 +538,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño2.setImageResource(R.drawable.ic_ok);
                         actual_daño2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño2,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño2.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño2.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -513,8 +554,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño3.setImageResource(R.drawable.ic_ok);
                         actual_daño3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño3,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño3.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño3.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -524,8 +570,13 @@ public class etapa5_Activity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && resultData != null) {
                     try {
 
-                        daño4.setImageResource(R.drawable.ic_ok);
                         actual_daño4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_daño4,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        daño4.setImageBitmap(thumbImage);
+
+
                     } catch (IOException e) {
                         daño4.setImageResource(R.drawable.ic_baseline_error_24);
                     }
@@ -552,4 +603,37 @@ public class etapa5_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IV_puertas.setImageBitmap(null);
+        IV_placas.setImageBitmap(null);
+        IV_sello1.setImageBitmap(null);
+        IV_sello2.setImageBitmap(null);
+        IV_sello3.setImageBitmap(null);
+        daño1.setImageBitmap(null);
+        daño2.setImageBitmap(null);
+        daño3.setImageBitmap(null);
+        daño4.setImageBitmap(null);
+
+
+        actual_puertas = null;
+        actual_placas = null;
+        actual_sello1 = null;
+        actual_sello2 = null;
+        actual_sello3 = null;
+        actual_daño1 = null;
+        actual_daño2 = null;
+        actual_daño3 = null;
+        actual_daño4 = null;
+
+
+        photoURI = null;
+        imageFile = null;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

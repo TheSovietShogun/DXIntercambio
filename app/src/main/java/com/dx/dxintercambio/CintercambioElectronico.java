@@ -2,143 +2,189 @@ package com.dx.dxintercambio;
 
 public class CintercambioElectronico {
 
-    String estatus  ;
-    String folio  ;
-    String terminal  ;
-    String idUsuario  ;
-    String tipoOperacion  ;
-    String tipoMovimiento  ;
-    String estatusRemolque  ;
-    String comentario2  ;
-    String nombreOperador  ;
-    String idOperador  ;
-    String idTransportista  ;
-    String unidad  ;
-    String idUnidad  ;
-    String idLinea  ;
-    String remolque  ;
-    String idRemolque  ;
-    String fechaInicio  ;
-    String tractoDefensa  ;
-    String tractoCabina  ;
-    String tractoQuintaRueda  ;
-    String tractoTuboEscape  ;
-    String tractoBaseRemolque  ;
-    String tractoTechos  ;
-    String tractoLlantas  ;
-    String tractoTanqueDiesel  ;
-    String tractoTanqueAire  ;
-    String tractoEjeTransmision  ;
-    String tractoMotor  ;
-    String remolqueInspeccionMecanica  ;
-    String remolqueLucesIzquierda  ;
-    String remolqueLucesGaliboIzqFrontalSup  ;
-    String remolqueManitasIzq  ;
-    String remolqueManivelaIzq  ;
-    String remolquePatinIzquierdo  ;
-    String remolqueCuartoLadoIzq  ;
-    String LoderaIzq  ;
-    String remolqueLucesIzqP  ;
-    String LuzAbsIzq  ;
-    String luzBarcoIzq  ;
-    String rompevientosIzq  ;
-    String remolqueLlantaIzqJumbo  ;
-    String remolqueLlantaIzqEje1Posicion1Marca  ;
-    String remolqueLlantaIzqEje1Posicion1Estatus  ;
-    String remolqueLlantaIzqEje1Posicion2Marca  ;
-    String remolqueLlantaIzqEje1Posicion2Estatus  ;
-    String remolqueLlantaIzqEje1BrilosPivote  ;
-    String remolqueLlantaIzqEje1Posicion1  ;
-    String remolqueLlantaIzqEje1Posicion2  ;
-    String remolqueLlantaIzqEje1MesaYoyo  ;
-    String remolqueLlantaIzqEje1Rin  ;
-    String remolqueLlantaIzqEje1Lodera  ;
-    String remolqueLlantaIzqEje2Posicion5Marca  ;
-    String remolqueLlantaIzqEje2Posicion5Estatus  ;
-    String remolqueLlantaIzqEje2Posicion6Marca  ;
-    String remolqueLlantaIzqEje2Posicion6Estatus  ;
-    String remolqueLlantaIzqEje2BrilosPivote  ;
-    String remolqueLlantaIzqEje2Posicion5  ;
-    String remolqueLlantaIzqEje2Posicion6  ;
-    String remolqueLlantaIzqEje2MesaYoyo  ;
-    String remolqueLlantaIzqEje2Rin  ;
-    String remolqueLlantaIzqEje2Lodera  ;
-    String remolqueChasisFrontalIzqAmortiguador  ;
-    String remolqueChasisFrontalIzqBolsaAire  ;
-    String remolqueChasisFrontalIzqGavilan  ;
-    String remolqueChasisFrontalIzqMuelle  ;
-    String remolqueChasisFrontalIzqRotachamber  ;
-    String remolqueChasisTraseroIzqAmortiguador  ;
-    String remolqueChasisTraseroIzqBolsaAire  ;
-    String remolqueChasisTraseroIzqGavilan  ;
-    String remolqueChasisTraseroIzqMuelle  ;
-    String remolqueChasisTraseroIzqRotachamber  ;
-    String remolqueIzqObservaciones  ;
-    String Placas  ;
-    String Sello1  ;
-    String Sello2  ;
-    String Sello3  ;
-    String remolquePuertasBisagrasTornillos  ;
-    String remolquePuertasDefensa  ;
-    String remolquePuertasLuzGaliboSupTraseras  ;
-    String remolquePuertasPlafonDerecho  ;
-    String remolquePuertasPlafonIzquierdo  ;
-    String remolquePlacasLuzPlaca  ;
-    String remolquePlacasPlaca  ;
-    String remolqueSello1Sello  ;
-    String remolqueSello1Seguridad  ;
-    String remolqueSello2Escotilla  ;
-    String remolqueSello2Sello  ;
-    String remolqueSello2Seguridad  ;
-    String remolqueSello2Vvtt  ;
-    String remolqueTraseraObservaciones  ;
-    String remolqueChasisTraseroDerAmortiguador  ;
-    String remolqueChasisTraseroDerBolsaAire  ;
-    String remolqueChasisTraseroDerGavilan  ;
-    String remolqueChasisTraseroDerMuelle  ;
-    String remolqueChasisTraseroDerRotachamber  ;
-    String remolqueLlantaDerEje2BrilosPivote  ;
-    String remolqueLlantaDerEje2Posicion7Marca  ;
-    String remolqueLlantaDerEje2Posicion7Estatus  ;
-    String remolqueLlantaDerEje2Posicion8Marca  ;
-    String remolqueLlantaDerEje2Posicion8Estatus  ;
-    String remolqueLlantaDerEje2Posicion7  ;
-    String remolqueLlantaDerEje2Posicion8  ;
-    String remolqueLlantaDerEje2MasaYoyo  ;
-    String remolqueLlantaDerEje2Rin  ;
-    String remolqueLlantaDerEje2Lodera  ;
-    String remolqueLlantaDerEje1BrilosPivote  ;
-    String remolqueLlantaDerEje1Posicion3Marca  ;
-    String remolqueLlantaDerEje1Posicion3Estatus  ;
-    String remolqueLlantaDerEje1Posicion4Marca  ;
-    String remolqueLlantaDerEje1Posicion4Estatus  ;
-    String remolqueLlantaDerEje1Posicion3  ;
-    String remolqueLlantaDerEje1Posicion4  ;
-    String remolqueLlantaDerEje1MasaYoyo  ;
-    String remolqueLlantaDerEje1Rin  ;
-    String remolqueLlantaDerEje1Lodera  ;
-    String remolqueChasisFrontalDerAmortiguador  ;
-    String remolqueChasisFrontalDerBolsaAire  ;
-    String remolqueChasisFrontalDerGavilan  ;
-    String remolqueChasisFrontalDerMuelle  ;
-    String remolqueChasisFrontalDerRotachamber  ;
-    String remolquePisoPLagas  ;
-    String remolqueTechoPlagas  ;
-    String remolqueDerLuces  ;
-    String remolqueDerGaliboFrontal  ;
-    String remolqueDerParedPlagas  ;
-    String remolqueDerIzqParedPlagas  ;
-    String remolqueDerPatin  ;
-    String remolqueCuartoLadoDer  ;
-    String LoderaDer  ;
-    String remolqueLucesDerP2  ;
-    String luzBarcoDer  ;
-    String rompevientosDer  ;
-    String remolqueLlantaDerJumbo  ;
-    String remolqueDerObservaciones  ;
-    String fechaFin  ;
+    String estatus;
+    String folio;
+    String terminal;
+    String idUsuario;
+    String tipoOperacion;
+    String tipoMovimiento;
+    String estatusRemolque;
+    String comentario2;
+    String nombreOperador;
+    String idOperador;
+    String idTransportista;
+    String unidad;
+    String idUnidad;
+    String idLinea;
+    String remolque;
+    String idRemolque;
+    String fechaInicio;
+    String tractoDefensa;
+    String tractoCabina;
+    String tractoQuintaRueda;
+    String tractoTuboEscape;
+    String tractoBaseRemolque;
+    String tractoTechos;
+    String tractoLlantas;
+    String tractoTanqueDiesel;
+    String tractoTanqueAire;
+    String tractoEjeTransmision;
+    String tractoMotor;
+    String remolqueInspeccionMecanica;
+    String remolqueLucesIzquierda;
+    String remolqueLucesGaliboIzqFrontalSup;
+    String remolqueManitasIzq;
+    String remolqueManivelaIzq;
+    String remolquePatinIzquierdo;
+    String remolqueCuartoLadoIzq;
+    String LoderaIzq;
+    String remolqueLucesIzqP;
+    String LuzAbsIzq;
+    String luzBarcoIzq;
+    String rompevientosIzq;
+    String remolqueLlantaIzqJumbo;
+    String remolqueLlantaIzqEje1Posicion1Marca;
+    String remolqueLlantaIzqEje1Posicion1Estatus;
+    String remolqueLlantaIzqEje1Posicion2Marca;
+    String remolqueLlantaIzqEje1Posicion2Estatus;
+    String remolqueLlantaIzqEje1BrilosPivote;
+    String remolqueLlantaIzqEje1Posicion1;
+    String remolqueLlantaIzqEje1Posicion2;
+    String remolqueLlantaIzqEje1MesaYoyo;
+    String remolqueLlantaIzqEje1Rin;
+    String remolqueLlantaIzqEje1Lodera;
+    String remolqueLlantaIzqEje2Posicion5Marca;
+    String remolqueLlantaIzqEje2Posicion5Estatus;
+    String remolqueLlantaIzqEje2Posicion6Marca;
+    String remolqueLlantaIzqEje2Posicion6Estatus;
+    String remolqueLlantaIzqEje2BrilosPivote;
+    String remolqueLlantaIzqEje2Posicion5;
+    String remolqueLlantaIzqEje2Posicion6;
+    String remolqueLlantaIzqEje2MesaYoyo;
+    String remolqueLlantaIzqEje2Rin;
+    String remolqueLlantaIzqEje2Lodera;
+    String remolqueChasisFrontalIzqAmortiguador;
+    String remolqueChasisFrontalIzqBolsaAire;
+    String remolqueChasisFrontalIzqGavilan;
+    String remolqueChasisFrontalIzqMuelle;
+    String remolqueChasisFrontalIzqRotachamber;
+    String remolqueChasisTraseroIzqAmortiguador;
+    String remolqueChasisTraseroIzqBolsaAire;
+    String remolqueChasisTraseroIzqGavilan;
+    String remolqueChasisTraseroIzqMuelle;
+    String remolqueChasisTraseroIzqRotachamber;
+    String remolqueIzqObservaciones;
+    String Placas;
+    String Sello1;
+    String Sello2;
+    String Sello3;
+    String remolquePuertasBisagrasTornillos;
+    String remolquePuertasDefensa;
+    String remolquePuertasLuzGaliboSupTraseras;
+    String remolquePuertasPlafonDerecho;
+    String remolquePuertasPlafonIzquierdo;
+    String remolquePlacasLuzPlaca;
+    String remolquePlacasPlaca;
+    String remolqueSello1Sello;
+    String remolqueSello1Seguridad;
+    String remolqueSello2Escotilla;
+    String remolqueSello2Sello;
+    String remolqueSello2Seguridad;
+    String remolqueSello2Vvtt;
+    String remolqueTraseraObservaciones;
+    String remolqueChasisTraseroDerAmortiguador;
+    String remolqueChasisTraseroDerBolsaAire;
+    String remolqueChasisTraseroDerGavilan;
+    String remolqueChasisTraseroDerMuelle;
+    String remolqueChasisTraseroDerRotachamber;
+    String remolqueLlantaDerEje2BrilosPivote;
+    String remolqueLlantaDerEje2Posicion7Marca;
+    String remolqueLlantaDerEje2Posicion7Estatus;
+    String remolqueLlantaDerEje2Posicion8Marca;
+    String remolqueLlantaDerEje2Posicion8Estatus;
+    String remolqueLlantaDerEje2Posicion7;
+    String remolqueLlantaDerEje2Posicion8;
+    String remolqueLlantaDerEje2MasaYoyo;
+    String remolqueLlantaDerEje2Rin;
+    String remolqueLlantaDerEje2Lodera;
+    String remolqueLlantaDerEje1BrilosPivote;
+    String remolqueLlantaDerEje1Posicion3Marca;
+    String remolqueLlantaDerEje1Posicion3Estatus;
+    String remolqueLlantaDerEje1Posicion4Marca;
+    String remolqueLlantaDerEje1Posicion4Estatus;
+    String remolqueLlantaDerEje1Posicion3;
+    String remolqueLlantaDerEje1Posicion4;
+    String remolqueLlantaDerEje1MasaYoyo;
+    String remolqueLlantaDerEje1Rin;
+    String remolqueLlantaDerEje1Lodera;
+    String remolqueChasisFrontalDerAmortiguador;
+    String remolqueChasisFrontalDerBolsaAire;
+    String remolqueChasisFrontalDerGavilan;
+    String remolqueChasisFrontalDerMuelle;
+    String remolqueChasisFrontalDerRotachamber;
+    String remolquePisoPLagas;
+    String remolqueTechoPlagas;
+    String remolqueDerLuces;
+    String remolqueDerGaliboFrontal;
+    String remolqueDerParedPlagas;
+    String remolqueDerIzqParedPlagas;
+    String remolqueDerPatin;
+    String remolqueCuartoLadoDer;
+    String LoderaDer;
+    String remolqueLucesDerP2;
+    String luzBarcoDer;
+    String rompevientosDer;
+    String remolqueLlantaDerJumbo;
+    String remolqueDerObservaciones;
 
-    public CintercambioElectronico(String estatus, String folio, String terminal, String idUsuario, String tipoOperacion, String tipoMovimiento, String estatusRemolque, String comentario2, String nombreOperador, String idOperador, String idTransportista, String unidad, String idUnidad, String idLinea, String remolque, String idRemolque, String fechaInicio, String tractoDefensa, String tractoCabina, String tractoQuintaRueda, String tractoTuboEscape, String tractoBaseRemolque, String tractoTechos, String tractoLlantas, String tractoTanqueDiesel, String tractoTanqueAire, String tractoEjeTransmision, String tractoMotor, String remolqueInspeccionMecanica, String remolqueLucesIzquierda, String remolqueLucesGaliboIzqFrontalSup, String remolqueManitasIzq, String remolqueManivelaIzq, String remolquePatinIzquierdo, String remolqueCuartoLadoIzq, String loderaIzq, String remolqueLucesIzqP, String luzAbsIzq, String luzBarcoIzq, String rompevientosIzq, String remolqueLlantaIzqJumbo, String remolqueLlantaIzqEje1Posicion1Marca, String remolqueLlantaIzqEje1Posicion1Estatus, String remolqueLlantaIzqEje1Posicion2Marca, String remolqueLlantaIzqEje1Posicion2Estatus, String remolqueLlantaIzqEje1BrilosPivote, String remolqueLlantaIzqEje1Posicion1, String remolqueLlantaIzqEje1Posicion2, String remolqueLlantaIzqEje1MesaYoyo, String remolqueLlantaIzqEje1Rin, String remolqueLlantaIzqEje1Lodera, String remolqueLlantaIzqEje2Posicion5Marca, String remolqueLlantaIzqEje2Posicion5Estatus, String remolqueLlantaIzqEje2Posicion6Marca, String remolqueLlantaIzqEje2Posicion6Estatus, String remolqueLlantaIzqEje2BrilosPivote, String remolqueLlantaIzqEje2Posicion5, String remolqueLlantaIzqEje2Posicion6, String remolqueLlantaIzqEje2MesaYoyo, String remolqueLlantaIzqEje2Rin, String remolqueLlantaIzqEje2Lodera, String remolqueChasisFrontalIzqAmortiguador, String remolqueChasisFrontalIzqBolsaAire, String remolqueChasisFrontalIzqGavilan, String remolqueChasisFrontalIzqMuelle, String remolqueChasisFrontalIzqRotachamber, String remolqueChasisTraseroIzqAmortiguador, String remolqueChasisTraseroIzqBolsaAire, String remolqueChasisTraseroIzqGavilan, String remolqueChasisTraseroIzqMuelle, String remolqueChasisTraseroIzqRotachamber, String remolqueIzqObservaciones, String placas, String sello1, String sello2, String sello3, String remolquePuertasBisagrasTornillos, String remolquePuertasDefensa, String remolquePuertasLuzGaliboSupTraseras, String remolquePuertasPlafonDerecho, String remolquePuertasPlafonIzquierdo, String remolquePlacasLuzPlaca, String remolquePlacasPlaca, String remolqueSello1Sello, String remolqueSello1Seguridad, String remolqueSello2Escotilla, String remolqueSello2Sello, String remolqueSello2Seguridad, String remolqueSello2Vvtt, String remolqueTraseraObservaciones, String remolqueChasisTraseroDerAmortiguador, String remolqueChasisTraseroDerBolsaAire, String remolqueChasisTraseroDerGavilan, String remolqueChasisTraseroDerMuelle, String remolqueChasisTraseroDerRotachamber, String remolqueLlantaDerEje2BrilosPivote, String remolqueLlantaDerEje2Posicion7Marca, String remolqueLlantaDerEje2Posicion7Estatus, String remolqueLlantaDerEje2Posicion8Marca, String remolqueLlantaDerEje2Posicion8Estatus, String remolqueLlantaDerEje2Posicion7, String remolqueLlantaDerEje2Posicion8, String remolqueLlantaDerEje2MasaYoyo, String remolqueLlantaDerEje2Rin, String remolqueLlantaDerEje2Lodera, String remolqueLlantaDerEje1BrilosPivote, String remolqueLlantaDerEje1Posicion3Marca, String remolqueLlantaDerEje1Posicion3Estatus, String remolqueLlantaDerEje1Posicion4Marca, String remolqueLlantaDerEje1Posicion4Estatus, String remolqueLlantaDerEje1Posicion3, String remolqueLlantaDerEje1Posicion4, String remolqueLlantaDerEje1MasaYoyo, String remolqueLlantaDerEje1Rin, String remolqueLlantaDerEje1Lodera, String remolqueChasisFrontalDerAmortiguador, String remolqueChasisFrontalDerBolsaAire, String remolqueChasisFrontalDerGavilan, String remolqueChasisFrontalDerMuelle, String remolqueChasisFrontalDerRotachamber, String remolquePisoPLagas, String remolqueTechoPlagas, String remolqueDerLuces, String remolqueDerGaliboFrontal, String remolqueDerParedPlagas, String remolqueDerIzqParedPlagas, String remolqueDerPatin, String remolqueCuartoLadoDer, String loderaDer, String remolqueLucesDerP2, String luzBarcoDer, String rompevientosDer, String remolqueLlantaDerJumbo, String remolqueDerObservaciones, String fechaFin) {
+    String licenciaUrl;
+
+    String tractoIzqUrl;
+    String tractoFrenteUrl;
+    String tractoDerUrl;
+
+    String noEcoUrl;
+    String vinUrl;
+    String remolqueCostadoTraseroIzqUrl;
+    String remolqueCostadoFrenteIzquierdoUrl;
+
+    String remolqueLlantaIzqEje1FotoUrl;
+    String remolqueLlantaIzqEje2FotoUrl;
+    String remolqueChasisFrontalIzqFotoUrl;
+    String remolqueChasisTraseroIzqFotoUrl;
+    String remolqueIzqDano1FotoUrl;
+    String remolqueIzqDano2FotoUrl;
+    String remolqueIzqDano3FotoUrl;
+    String remolqueIzqDano4FotoUrl;
+
+    String remolquePuertasFotoUrl;
+    String remolquePlacasFotoUrl;
+    String remolqueSello1FotoUrl;
+    String remolqueSello2FotoUrl;
+    String remolqueSello3FotoUrl;
+    String remolqueTraseroDano1FotoUrl;
+    String remolqueTraseroDano2FotoUrl;
+    String remolqueTraseroDano3FotoUrl;
+    String remolqueTraseroDano4FotoUrl;
+
+    String remolqueCostadoTraseroDerUrl;
+    String remolqueCostadoFrenteDerechoUrl;
+
+    String remolqueLlantaDerEje1FotoUrl;
+    String remolqueLlantaDerEje2FotoUrl;
+    String remolqueChasisFrontalDerFotoUrl;
+    String remolqueChasisTraseroDerFotoUrl;
+
+    String remolqueDerDano1FotoUrl;
+    String remolqueDerDano2FotoUrl;
+    String remolqueDerDano3FotoUrl;
+    String remolqueDerDano4FotoUrl;
+
+    String firmaOperadorUrl;
+    String firmaIntercambistaUrl;
+    String fechaFin;
+
+    public CintercambioElectronico(String estatus, String folio, String terminal, String idUsuario, String tipoOperacion, String tipoMovimiento, String estatusRemolque, String comentario2, String nombreOperador, String idOperador, String idTransportista, String unidad, String idUnidad, String idLinea, String remolque, String idRemolque, String fechaInicio, String tractoDefensa, String tractoCabina, String tractoQuintaRueda, String tractoTuboEscape, String tractoBaseRemolque, String tractoTechos, String tractoLlantas, String tractoTanqueDiesel, String tractoTanqueAire, String tractoEjeTransmision, String tractoMotor, String remolqueInspeccionMecanica, String remolqueLucesIzquierda, String remolqueLucesGaliboIzqFrontalSup, String remolqueManitasIzq, String remolqueManivelaIzq, String remolquePatinIzquierdo, String remolqueCuartoLadoIzq, String loderaIzq, String remolqueLucesIzqP, String luzAbsIzq, String luzBarcoIzq, String rompevientosIzq, String remolqueLlantaIzqJumbo, String remolqueLlantaIzqEje1Posicion1Marca, String remolqueLlantaIzqEje1Posicion1Estatus, String remolqueLlantaIzqEje1Posicion2Marca, String remolqueLlantaIzqEje1Posicion2Estatus, String remolqueLlantaIzqEje1BrilosPivote, String remolqueLlantaIzqEje1Posicion1, String remolqueLlantaIzqEje1Posicion2, String remolqueLlantaIzqEje1MesaYoyo, String remolqueLlantaIzqEje1Rin, String remolqueLlantaIzqEje1Lodera, String remolqueLlantaIzqEje2Posicion5Marca, String remolqueLlantaIzqEje2Posicion5Estatus, String remolqueLlantaIzqEje2Posicion6Marca, String remolqueLlantaIzqEje2Posicion6Estatus, String remolqueLlantaIzqEje2BrilosPivote, String remolqueLlantaIzqEje2Posicion5, String remolqueLlantaIzqEje2Posicion6, String remolqueLlantaIzqEje2MesaYoyo, String remolqueLlantaIzqEje2Rin, String remolqueLlantaIzqEje2Lodera, String remolqueChasisFrontalIzqAmortiguador, String remolqueChasisFrontalIzqBolsaAire, String remolqueChasisFrontalIzqGavilan, String remolqueChasisFrontalIzqMuelle, String remolqueChasisFrontalIzqRotachamber, String remolqueChasisTraseroIzqAmortiguador, String remolqueChasisTraseroIzqBolsaAire, String remolqueChasisTraseroIzqGavilan, String remolqueChasisTraseroIzqMuelle, String remolqueChasisTraseroIzqRotachamber, String remolqueIzqObservaciones, String placas, String sello1, String sello2, String sello3, String remolquePuertasBisagrasTornillos, String remolquePuertasDefensa, String remolquePuertasLuzGaliboSupTraseras, String remolquePuertasPlafonDerecho, String remolquePuertasPlafonIzquierdo, String remolquePlacasLuzPlaca, String remolquePlacasPlaca, String remolqueSello1Sello, String remolqueSello1Seguridad, String remolqueSello2Escotilla, String remolqueSello2Sello, String remolqueSello2Seguridad, String remolqueSello2Vvtt, String remolqueTraseraObservaciones, String remolqueChasisTraseroDerAmortiguador, String remolqueChasisTraseroDerBolsaAire, String remolqueChasisTraseroDerGavilan, String remolqueChasisTraseroDerMuelle, String remolqueChasisTraseroDerRotachamber, String remolqueLlantaDerEje2BrilosPivote, String remolqueLlantaDerEje2Posicion7Marca, String remolqueLlantaDerEje2Posicion7Estatus, String remolqueLlantaDerEje2Posicion8Marca, String remolqueLlantaDerEje2Posicion8Estatus, String remolqueLlantaDerEje2Posicion7, String remolqueLlantaDerEje2Posicion8, String remolqueLlantaDerEje2MasaYoyo, String remolqueLlantaDerEje2Rin, String remolqueLlantaDerEje2Lodera, String remolqueLlantaDerEje1BrilosPivote, String remolqueLlantaDerEje1Posicion3Marca, String remolqueLlantaDerEje1Posicion3Estatus, String remolqueLlantaDerEje1Posicion4Marca, String remolqueLlantaDerEje1Posicion4Estatus, String remolqueLlantaDerEje1Posicion3, String remolqueLlantaDerEje1Posicion4, String remolqueLlantaDerEje1MasaYoyo, String remolqueLlantaDerEje1Rin, String remolqueLlantaDerEje1Lodera, String remolqueChasisFrontalDerAmortiguador, String remolqueChasisFrontalDerBolsaAire, String remolqueChasisFrontalDerGavilan, String remolqueChasisFrontalDerMuelle, String remolqueChasisFrontalDerRotachamber, String remolquePisoPLagas, String remolqueTechoPlagas, String remolqueDerLuces, String remolqueDerGaliboFrontal, String remolqueDerParedPlagas, String remolqueDerIzqParedPlagas, String remolqueDerPatin, String remolqueCuartoLadoDer, String loderaDer, String remolqueLucesDerP2, String luzBarcoDer, String rompevientosDer, String remolqueLlantaDerJumbo, String remolqueDerObservaciones, String licenciaUrl, String tractoIzqUrl, String tractoFrenteUrl, String tractoDerUrl, String noEcoUrl, String vinUrl, String remolqueCostadoTraseroIzqUrl, String remolqueCostadoFrenteIzquierdoUrl, String remolqueLlantaIzqEje1FotoUrl, String remolqueLlantaIzqEje2FotoUrl, String remolqueChasisFrontalIzqFotoUrl, String remolqueChasisTraseroIzqFotoUrl, String remolqueIzqDano1FotoUrl, String remolqueIzqDano2FotoUrl, String remolqueIzqDano3FotoUrl, String remolqueIzqDano4FotoUrl, String remolquePuertasFotoUrl, String remolquePlacasFotoUrl, String remolqueSello1FotoUrl, String remolqueSello2FotoUrl, String remolqueSello3FotoUrl, String remolqueTraseroDano1FotoUrl, String remolqueTraseroDano2FotoUrl, String remolqueTraseroDano3FotoUrl, String remolqueTraseroDano4FotoUrl, String remolqueCostadoTraseroDerUrl, String remolqueCostadoFrenteDerechoUrl, String remolqueLlantaDerEje1FotoUrl, String remolqueLlantaDerEje2FotoUrl, String remolqueChasisFrontalDerFotoUrl, String remolqueChasisTraseroDerFotoUrl, String remolqueDerDano1FotoUrl, String remolqueDerDano2FotoUrl, String remolqueDerDano3FotoUrl, String remolqueDerDano4FotoUrl, String firmaOperadorUrl, String firmaIntercambistaUrl, String fechaFin) {
         this.estatus = estatus;
         this.folio = folio;
         this.terminal = terminal;
@@ -273,6 +319,43 @@ public class CintercambioElectronico {
         this.rompevientosDer = rompevientosDer;
         this.remolqueLlantaDerJumbo = remolqueLlantaDerJumbo;
         this.remolqueDerObservaciones = remolqueDerObservaciones;
+        this.licenciaUrl = licenciaUrl;
+        this.tractoIzqUrl = tractoIzqUrl;
+        this.tractoFrenteUrl = tractoFrenteUrl;
+        this.tractoDerUrl = tractoDerUrl;
+        this.noEcoUrl = noEcoUrl;
+        this.vinUrl = vinUrl;
+        this.remolqueCostadoTraseroIzqUrl = remolqueCostadoTraseroIzqUrl;
+        this.remolqueCostadoFrenteIzquierdoUrl = remolqueCostadoFrenteIzquierdoUrl;
+        this.remolqueLlantaIzqEje1FotoUrl = remolqueLlantaIzqEje1FotoUrl;
+        this.remolqueLlantaIzqEje2FotoUrl = remolqueLlantaIzqEje2FotoUrl;
+        this.remolqueChasisFrontalIzqFotoUrl = remolqueChasisFrontalIzqFotoUrl;
+        this.remolqueChasisTraseroIzqFotoUrl = remolqueChasisTraseroIzqFotoUrl;
+        this.remolqueIzqDano1FotoUrl = remolqueIzqDano1FotoUrl;
+        this.remolqueIzqDano2FotoUrl = remolqueIzqDano2FotoUrl;
+        this.remolqueIzqDano3FotoUrl = remolqueIzqDano3FotoUrl;
+        this.remolqueIzqDano4FotoUrl = remolqueIzqDano4FotoUrl;
+        this.remolquePuertasFotoUrl = remolquePuertasFotoUrl;
+        this.remolquePlacasFotoUrl = remolquePlacasFotoUrl;
+        this.remolqueSello1FotoUrl = remolqueSello1FotoUrl;
+        this.remolqueSello2FotoUrl = remolqueSello2FotoUrl;
+        this.remolqueSello3FotoUrl = remolqueSello3FotoUrl;
+        this.remolqueTraseroDano1FotoUrl = remolqueTraseroDano1FotoUrl;
+        this.remolqueTraseroDano2FotoUrl = remolqueTraseroDano2FotoUrl;
+        this.remolqueTraseroDano3FotoUrl = remolqueTraseroDano3FotoUrl;
+        this.remolqueTraseroDano4FotoUrl = remolqueTraseroDano4FotoUrl;
+        this.remolqueCostadoTraseroDerUrl = remolqueCostadoTraseroDerUrl;
+        this.remolqueCostadoFrenteDerechoUrl = remolqueCostadoFrenteDerechoUrl;
+        this.remolqueLlantaDerEje1FotoUrl = remolqueLlantaDerEje1FotoUrl;
+        this.remolqueLlantaDerEje2FotoUrl = remolqueLlantaDerEje2FotoUrl;
+        this.remolqueChasisFrontalDerFotoUrl = remolqueChasisFrontalDerFotoUrl;
+        this.remolqueChasisTraseroDerFotoUrl = remolqueChasisTraseroDerFotoUrl;
+        this.remolqueDerDano1FotoUrl = remolqueDerDano1FotoUrl;
+        this.remolqueDerDano2FotoUrl = remolqueDerDano2FotoUrl;
+        this.remolqueDerDano3FotoUrl = remolqueDerDano3FotoUrl;
+        this.remolqueDerDano4FotoUrl = remolqueDerDano4FotoUrl;
+        this.firmaOperadorUrl = firmaOperadorUrl;
+        this.firmaIntercambistaUrl = firmaIntercambistaUrl;
         this.fechaFin = fechaFin;
     }
 
@@ -413,6 +496,43 @@ public class CintercambioElectronico {
                 ", rompevientosDer='" + rompevientosDer + '\'' +
                 ", remolqueLlantaDerJumbo='" + remolqueLlantaDerJumbo + '\'' +
                 ", remolqueDerObservaciones='" + remolqueDerObservaciones + '\'' +
+                ", licenciaUrl='" + licenciaUrl + '\'' +
+                ", tractoIzqUrl='" + tractoIzqUrl + '\'' +
+                ", tractoFrenteUrl='" + tractoFrenteUrl + '\'' +
+                ", tractoDerUrl='" + tractoDerUrl + '\'' +
+                ", noEcoUrl='" + noEcoUrl + '\'' +
+                ", vinUrl='" + vinUrl + '\'' +
+                ", remolqueCostadoTraseroIzqUrl='" + remolqueCostadoTraseroIzqUrl + '\'' +
+                ", remolqueCostadoFrenteIzquierdoUrl='" + remolqueCostadoFrenteIzquierdoUrl + '\'' +
+                ", remolqueLlantaIzqEje1FotoUrl='" + remolqueLlantaIzqEje1FotoUrl + '\'' +
+                ", remolqueLlantaIzqEje2FotoUrl='" + remolqueLlantaIzqEje2FotoUrl + '\'' +
+                ", remolqueChasisFrontalIzqFotoUrl='" + remolqueChasisFrontalIzqFotoUrl + '\'' +
+                ", remolqueChasisTraseroIzqFotoUrl='" + remolqueChasisTraseroIzqFotoUrl + '\'' +
+                ", remolqueIzqDano1FotoUrl='" + remolqueIzqDano1FotoUrl + '\'' +
+                ", remolqueIzqDano2FotoUrl='" + remolqueIzqDano2FotoUrl + '\'' +
+                ", remolqueIzqDano3FotoUrl='" + remolqueIzqDano3FotoUrl + '\'' +
+                ", remolqueIzqDano4FotoUrl='" + remolqueIzqDano4FotoUrl + '\'' +
+                ", remolquePuertasFotoUrl='" + remolquePuertasFotoUrl + '\'' +
+                ", remolquePlacasFotoUrl='" + remolquePlacasFotoUrl + '\'' +
+                ", remolqueSello1FotoUrl='" + remolqueSello1FotoUrl + '\'' +
+                ", remolqueSello2FotoUrl='" + remolqueSello2FotoUrl + '\'' +
+                ", remolqueSello3FotoUrl='" + remolqueSello3FotoUrl + '\'' +
+                ", remolqueTraseroDano1FotoUrl='" + remolqueTraseroDano1FotoUrl + '\'' +
+                ", remolqueTraseroDano2FotoUrl='" + remolqueTraseroDano2FotoUrl + '\'' +
+                ", remolqueTraseroDano3FotoUrl='" + remolqueTraseroDano3FotoUrl + '\'' +
+                ", remolqueTraseroDano4FotoUrl='" + remolqueTraseroDano4FotoUrl + '\'' +
+                ", remolqueCostadoTraseroDerUrl='" + remolqueCostadoTraseroDerUrl + '\'' +
+                ", remolqueCostadoFrenteDerechoUrl='" + remolqueCostadoFrenteDerechoUrl + '\'' +
+                ", remolqueLlantaDerEje1FotoUrl='" + remolqueLlantaDerEje1FotoUrl + '\'' +
+                ", remolqueLlantaDerEje2FotoUrl='" + remolqueLlantaDerEje2FotoUrl + '\'' +
+                ", remolqueChasisFrontalDerFotoUrl='" + remolqueChasisFrontalDerFotoUrl + '\'' +
+                ", remolqueChasisTraseroDerFotoUrl='" + remolqueChasisTraseroDerFotoUrl + '\'' +
+                ", remolqueDerDano1FotoUrl='" + remolqueDerDano1FotoUrl + '\'' +
+                ", remolqueDerDano2FotoUrl='" + remolqueDerDano2FotoUrl + '\'' +
+                ", remolqueDerDano3FotoUrl='" + remolqueDerDano3FotoUrl + '\'' +
+                ", remolqueDerDano4FotoUrl='" + remolqueDerDano4FotoUrl + '\'' +
+                ", firmaOperadorUrl='" + firmaOperadorUrl + '\'' +
+                ", firmaIntercambistaUrl='" + firmaIntercambistaUrl + '\'' +
                 ", fechaFin='" + fechaFin + '\'' +
                 '}';
     }
@@ -1487,6 +1607,302 @@ public class CintercambioElectronico {
 
     public void setRemolqueDerObservaciones(String remolqueDerObservaciones) {
         this.remolqueDerObservaciones = remolqueDerObservaciones;
+    }
+
+    public String getLicenciaUrl() {
+        return licenciaUrl;
+    }
+
+    public void setLicenciaUrl(String licenciaUrl) {
+        this.licenciaUrl = licenciaUrl;
+    }
+
+    public String getTractoIzqUrl() {
+        return tractoIzqUrl;
+    }
+
+    public void setTractoIzqUrl(String tractoIzqUrl) {
+        this.tractoIzqUrl = tractoIzqUrl;
+    }
+
+    public String getTractoFrenteUrl() {
+        return tractoFrenteUrl;
+    }
+
+    public void setTractoFrenteUrl(String tractoFrenteUrl) {
+        this.tractoFrenteUrl = tractoFrenteUrl;
+    }
+
+    public String getTractoDerUrl() {
+        return tractoDerUrl;
+    }
+
+    public void setTractoDerUrl(String tractoDerUrl) {
+        this.tractoDerUrl = tractoDerUrl;
+    }
+
+    public String getNoEcoUrl() {
+        return noEcoUrl;
+    }
+
+    public void setNoEcoUrl(String noEcoUrl) {
+        this.noEcoUrl = noEcoUrl;
+    }
+
+    public String getVinUrl() {
+        return vinUrl;
+    }
+
+    public void setVinUrl(String vinUrl) {
+        this.vinUrl = vinUrl;
+    }
+
+    public String getRemolqueCostadoTraseroIzqUrl() {
+        return remolqueCostadoTraseroIzqUrl;
+    }
+
+    public void setRemolqueCostadoTraseroIzqUrl(String remolqueCostadoTraseroIzqUrl) {
+        this.remolqueCostadoTraseroIzqUrl = remolqueCostadoTraseroIzqUrl;
+    }
+
+    public String getRemolqueCostadoFrenteIzquierdoUrl() {
+        return remolqueCostadoFrenteIzquierdoUrl;
+    }
+
+    public void setRemolqueCostadoFrenteIzquierdoUrl(String remolqueCostadoFrenteIzquierdoUrl) {
+        this.remolqueCostadoFrenteIzquierdoUrl = remolqueCostadoFrenteIzquierdoUrl;
+    }
+
+    public String getRemolqueLlantaIzqEje1FotoUrl() {
+        return remolqueLlantaIzqEje1FotoUrl;
+    }
+
+    public void setRemolqueLlantaIzqEje1FotoUrl(String remolqueLlantaIzqEje1FotoUrl) {
+        this.remolqueLlantaIzqEje1FotoUrl = remolqueLlantaIzqEje1FotoUrl;
+    }
+
+    public String getRemolqueLlantaIzqEje2FotoUrl() {
+        return remolqueLlantaIzqEje2FotoUrl;
+    }
+
+    public void setRemolqueLlantaIzqEje2FotoUrl(String remolqueLlantaIzqEje2FotoUrl) {
+        this.remolqueLlantaIzqEje2FotoUrl = remolqueLlantaIzqEje2FotoUrl;
+    }
+
+    public String getRemolqueChasisFrontalIzqFotoUrl() {
+        return remolqueChasisFrontalIzqFotoUrl;
+    }
+
+    public void setRemolqueChasisFrontalIzqFotoUrl(String remolqueChasisFrontalIzqFotoUrl) {
+        this.remolqueChasisFrontalIzqFotoUrl = remolqueChasisFrontalIzqFotoUrl;
+    }
+
+    public String getRemolqueChasisTraseroIzqFotoUrl() {
+        return remolqueChasisTraseroIzqFotoUrl;
+    }
+
+    public void setRemolqueChasisTraseroIzqFotoUrl(String remolqueChasisTraseroIzqFotoUrl) {
+        this.remolqueChasisTraseroIzqFotoUrl = remolqueChasisTraseroIzqFotoUrl;
+    }
+
+    public String getRemolqueIzqDano1FotoUrl() {
+        return remolqueIzqDano1FotoUrl;
+    }
+
+    public void setRemolqueIzqDano1FotoUrl(String remolqueIzqDano1FotoUrl) {
+        this.remolqueIzqDano1FotoUrl = remolqueIzqDano1FotoUrl;
+    }
+
+    public String getRemolqueIzqDano2FotoUrl() {
+        return remolqueIzqDano2FotoUrl;
+    }
+
+    public void setRemolqueIzqDano2FotoUrl(String remolqueIzqDano2FotoUrl) {
+        this.remolqueIzqDano2FotoUrl = remolqueIzqDano2FotoUrl;
+    }
+
+    public String getRemolqueIzqDano3FotoUrl() {
+        return remolqueIzqDano3FotoUrl;
+    }
+
+    public void setRemolqueIzqDano3FotoUrl(String remolqueIzqDano3FotoUrl) {
+        this.remolqueIzqDano3FotoUrl = remolqueIzqDano3FotoUrl;
+    }
+
+    public String getRemolqueIzqDano4FotoUrl() {
+        return remolqueIzqDano4FotoUrl;
+    }
+
+    public void setRemolqueIzqDano4FotoUrl(String remolqueIzqDano4FotoUrl) {
+        this.remolqueIzqDano4FotoUrl = remolqueIzqDano4FotoUrl;
+    }
+
+    public String getRemolquePuertasFotoUrl() {
+        return remolquePuertasFotoUrl;
+    }
+
+    public void setRemolquePuertasFotoUrl(String remolquePuertasFotoUrl) {
+        this.remolquePuertasFotoUrl = remolquePuertasFotoUrl;
+    }
+
+    public String getRemolquePlacasFotoUrl() {
+        return remolquePlacasFotoUrl;
+    }
+
+    public void setRemolquePlacasFotoUrl(String remolquePlacasFotoUrl) {
+        this.remolquePlacasFotoUrl = remolquePlacasFotoUrl;
+    }
+
+    public String getRemolqueSello1FotoUrl() {
+        return remolqueSello1FotoUrl;
+    }
+
+    public void setRemolqueSello1FotoUrl(String remolqueSello1FotoUrl) {
+        this.remolqueSello1FotoUrl = remolqueSello1FotoUrl;
+    }
+
+    public String getRemolqueSello2FotoUrl() {
+        return remolqueSello2FotoUrl;
+    }
+
+    public void setRemolqueSello2FotoUrl(String remolqueSello2FotoUrl) {
+        this.remolqueSello2FotoUrl = remolqueSello2FotoUrl;
+    }
+
+    public String getRemolqueSello3FotoUrl() {
+        return remolqueSello3FotoUrl;
+    }
+
+    public void setRemolqueSello3FotoUrl(String remolqueSello3FotoUrl) {
+        this.remolqueSello3FotoUrl = remolqueSello3FotoUrl;
+    }
+
+    public String getRemolqueTraseroDano1FotoUrl() {
+        return remolqueTraseroDano1FotoUrl;
+    }
+
+    public void setRemolqueTraseroDano1FotoUrl(String remolqueTraseroDano1FotoUrl) {
+        this.remolqueTraseroDano1FotoUrl = remolqueTraseroDano1FotoUrl;
+    }
+
+    public String getRemolqueTraseroDano2FotoUrl() {
+        return remolqueTraseroDano2FotoUrl;
+    }
+
+    public void setRemolqueTraseroDano2FotoUrl(String remolqueTraseroDano2FotoUrl) {
+        this.remolqueTraseroDano2FotoUrl = remolqueTraseroDano2FotoUrl;
+    }
+
+    public String getRemolqueTraseroDano3FotoUrl() {
+        return remolqueTraseroDano3FotoUrl;
+    }
+
+    public void setRemolqueTraseroDano3FotoUrl(String remolqueTraseroDano3FotoUrl) {
+        this.remolqueTraseroDano3FotoUrl = remolqueTraseroDano3FotoUrl;
+    }
+
+    public String getRemolqueTraseroDano4FotoUrl() {
+        return remolqueTraseroDano4FotoUrl;
+    }
+
+    public void setRemolqueTraseroDano4FotoUrl(String remolqueTraseroDano4FotoUrl) {
+        this.remolqueTraseroDano4FotoUrl = remolqueTraseroDano4FotoUrl;
+    }
+
+    public String getRemolqueCostadoTraseroDerUrl() {
+        return remolqueCostadoTraseroDerUrl;
+    }
+
+    public void setRemolqueCostadoTraseroDerUrl(String remolqueCostadoTraseroDerUrl) {
+        this.remolqueCostadoTraseroDerUrl = remolqueCostadoTraseroDerUrl;
+    }
+
+    public String getRemolqueCostadoFrenteDerechoUrl() {
+        return remolqueCostadoFrenteDerechoUrl;
+    }
+
+    public void setRemolqueCostadoFrenteDerechoUrl(String remolqueCostadoFrenteDerechoUrl) {
+        this.remolqueCostadoFrenteDerechoUrl = remolqueCostadoFrenteDerechoUrl;
+    }
+
+    public String getRemolqueLlantaDerEje1FotoUrl() {
+        return remolqueLlantaDerEje1FotoUrl;
+    }
+
+    public void setRemolqueLlantaDerEje1FotoUrl(String remolqueLlantaDerEje1FotoUrl) {
+        this.remolqueLlantaDerEje1FotoUrl = remolqueLlantaDerEje1FotoUrl;
+    }
+
+    public String getRemolqueLlantaDerEje2FotoUrl() {
+        return remolqueLlantaDerEje2FotoUrl;
+    }
+
+    public void setRemolqueLlantaDerEje2FotoUrl(String remolqueLlantaDerEje2FotoUrl) {
+        this.remolqueLlantaDerEje2FotoUrl = remolqueLlantaDerEje2FotoUrl;
+    }
+
+    public String getRemolqueChasisFrontalDerFotoUrl() {
+        return remolqueChasisFrontalDerFotoUrl;
+    }
+
+    public void setRemolqueChasisFrontalDerFotoUrl(String remolqueChasisFrontalDerFotoUrl) {
+        this.remolqueChasisFrontalDerFotoUrl = remolqueChasisFrontalDerFotoUrl;
+    }
+
+    public String getRemolqueChasisTraseroDerFotoUrl() {
+        return remolqueChasisTraseroDerFotoUrl;
+    }
+
+    public void setRemolqueChasisTraseroDerFotoUrl(String remolqueChasisTraseroDerFotoUrl) {
+        this.remolqueChasisTraseroDerFotoUrl = remolqueChasisTraseroDerFotoUrl;
+    }
+
+    public String getRemolqueDerDano1FotoUrl() {
+        return remolqueDerDano1FotoUrl;
+    }
+
+    public void setRemolqueDerDano1FotoUrl(String remolqueDerDano1FotoUrl) {
+        this.remolqueDerDano1FotoUrl = remolqueDerDano1FotoUrl;
+    }
+
+    public String getRemolqueDerDano2FotoUrl() {
+        return remolqueDerDano2FotoUrl;
+    }
+
+    public void setRemolqueDerDano2FotoUrl(String remolqueDerDano2FotoUrl) {
+        this.remolqueDerDano2FotoUrl = remolqueDerDano2FotoUrl;
+    }
+
+    public String getRemolqueDerDano3FotoUrl() {
+        return remolqueDerDano3FotoUrl;
+    }
+
+    public void setRemolqueDerDano3FotoUrl(String remolqueDerDano3FotoUrl) {
+        this.remolqueDerDano3FotoUrl = remolqueDerDano3FotoUrl;
+    }
+
+    public String getRemolqueDerDano4FotoUrl() {
+        return remolqueDerDano4FotoUrl;
+    }
+
+    public void setRemolqueDerDano4FotoUrl(String remolqueDerDano4FotoUrl) {
+        this.remolqueDerDano4FotoUrl = remolqueDerDano4FotoUrl;
+    }
+
+    public String getFirmaOperadorUrl() {
+        return firmaOperadorUrl;
+    }
+
+    public void setFirmaOperadorUrl(String firmaOperadorUrl) {
+        this.firmaOperadorUrl = firmaOperadorUrl;
+    }
+
+    public String getFirmaIntercambistaUrl() {
+        return firmaIntercambistaUrl;
+    }
+
+    public void setFirmaIntercambistaUrl(String firmaIntercambistaUrl) {
+        this.firmaIntercambistaUrl = firmaIntercambistaUrl;
     }
 
     public String getFechaFin() {

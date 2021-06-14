@@ -91,6 +91,7 @@
         android:layout_width="34dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
+        android:visibility="invisible"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:indeterminateTint="@color/azul_chingon"
@@ -98,5 +99,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/t6"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="36dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/t6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_ok" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

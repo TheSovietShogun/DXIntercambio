@@ -47,9 +47,12 @@ Context mCtx ;
 
 
         ImageView send = view.findViewById(R.id.imageView3);
+        ImageView okSend = view.findViewById(R.id.imageView26);
         ProgressBar progressBar = view.findViewById(R.id.progressBar3);
         send.setImageResource(R.drawable.ic_subir);
+        okSend.setImageResource(R.drawable.ic_ok);
 
+        okSend.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
 
         TextView remolque = view.findViewById(R.id.t3);
@@ -60,7 +63,7 @@ Context mCtx ;
 
 
         String folioData = "Folio Interno\n"+intercambioList.get(position).getFolioInterno();
-        String fechaData = "Fecha y Hora\n"+intercambioList.get(position).getFecha();
+        String fechaData = "Fecha y Hora\n"+intercambioList.get(position).getFechaFin();
         String remolqueData = "Remolque\n"+intercambioList.get(position).getRemolque();
         String unidadData = "Unidad\n"+intercambioList.get(position).getTracto();
         String usuarioData = "Usuario\n"+intercambioList.get(position).getUsuario();
