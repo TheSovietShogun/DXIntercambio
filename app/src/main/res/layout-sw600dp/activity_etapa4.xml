@@ -34,10 +34,10 @@
 
             <ImageView
                 android:id="@+id/IV_llantaIzqEje2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="150dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
                 app:srcCompat="@color/azul_chingon" />
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Brilos y pivote"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/S_estatusP6" />
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Llanta Posicion 5"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_birlosEje2Izq" />
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Rin"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_masaEje2Izq" />
 
@@ -86,12 +86,12 @@
 
             <TextView
                 android:id="@+id/textView94"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Llanta Izq Eje 2"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_llantaIzqEje2"
                 app:layout_constraintEnd_toEndOf="@+id/IV_llantaIzqEje2"
                 app:layout_constraintStart_toStartOf="@+id/IV_llantaIzqEje2"
@@ -99,9 +99,9 @@
 
             <ImageView
                 android:id="@+id/IV_chasisIzqTrasero"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
@@ -109,8 +109,8 @@
 
             <ImageView
                 android:id="@+id/IV_dañoIzq1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -119,8 +119,8 @@
 
             <ImageView
                 android:id="@+id/IV_dañoIzq2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="35dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
@@ -129,8 +129,8 @@
 
             <ImageView
                 android:id="@+id/IV_dañoIzq3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -139,8 +139,8 @@
 
             <ImageView
                 android:id="@+id/IV_dañoIzq4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
@@ -158,12 +158,12 @@
 
             <TextView
                 android:id="@+id/textView95"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq1"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq1"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq1"
@@ -171,12 +171,12 @@
 
             <TextView
                 android:id="@+id/textView99"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq2"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq2"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq2"
@@ -186,12 +186,12 @@
 
             <TextView
                 android:id="@+id/textView100"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq3"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq3"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq3"
@@ -201,12 +201,12 @@
 
             <TextView
                 android:id="@+id/textView101"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoIzq4"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoIzq4"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoIzq4"
@@ -216,12 +216,12 @@
 
             <TextView
                 android:id="@+id/textView102"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Foto Chasis Trasero Izq"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_chasisIzqTrasero"
                 app:layout_constraintEnd_toEndOf="@+id/IV_chasisIzqTrasero"
                 app:layout_constraintStart_toStartOf="@+id/IV_chasisIzqTrasero"
@@ -243,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Masa de yoyo"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_llantaP6" />
 
@@ -254,7 +254,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Llanta Posicion 6"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_llantaP5" />
 
@@ -265,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Tiene lodera?"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_rinesEje2Izq" />
 
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="Amortiguador"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView98" />
 
@@ -287,7 +287,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="Matraca"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_bolsaDerFrontal" />
 
@@ -298,7 +298,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Muelle"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_matracaIzqTasera" />
 
@@ -309,7 +309,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Rotachamber"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_muelleIzqTrasera2" />
 
@@ -320,7 +320,7 @@
                 android:checked="true"
                 android:layout_marginTop="13dp"
                 android:text="Bolsa de aire"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_amortigadorIzqTrasero" />
 
@@ -403,25 +403,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="Amortiguador"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
             <ImageView
                 android:id="@+id/IV_llantaIzqEje1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="132dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView97"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/IV_chasisIzqFrontal"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
@@ -429,12 +429,12 @@
 
             <TextView
                 android:id="@+id/textView90"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Foto Chasis Frontal Izq"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_chasisIzqFrontal"
                 app:layout_constraintEnd_toEndOf="@+id/IV_chasisIzqFrontal"
                 app:layout_constraintStart_toStartOf="@+id/IV_chasisIzqFrontal"
@@ -473,12 +473,12 @@
 
             <TextView
                 android:id="@+id/textView92"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Llanta Izq Eje 1"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_llantaIzqEje1"
                 app:layout_constraintEnd_toEndOf="@+id/IV_llantaIzqEje1"
                 app:layout_constraintStart_toStartOf="@+id/IV_llantaIzqEje1"
@@ -494,7 +494,7 @@
                 android:text="Lado Izquierdo Chasis"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -507,7 +507,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Bolsa de aire"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_amortigadorIzqFrontal" />
 
@@ -518,7 +518,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Matraca"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_bolsaIzqFrontal" />
 
@@ -529,7 +529,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Muelle"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_matracaIzqFrontal" />
 
@@ -540,7 +540,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Rotachamber"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_muelleIzqFrontal" />
 
@@ -562,7 +562,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="177dp" />
+                app:layout_constraintGuide_begin="400dp" />
 
             <Button
                 android:id="@+id/btn_etapa4"
@@ -573,7 +573,7 @@
                 android:text="Siguiente"
                 android:textAllCaps="false"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2"
                 tools:layout_editor_absoluteX="165dp" />
 
@@ -584,7 +584,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Brilos y pivote"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/S_estatusP2" />
 
@@ -595,7 +595,7 @@
                 android:layout_height="41dp"
                 android:layout_marginTop="16dp"
                 android:text="Llanta Posicion 1"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_birlosEje1Izq" />
 
@@ -606,7 +606,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Tiene lodera?"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_rinesEje1izq" />
 
@@ -617,7 +617,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Llanta Posicion 2"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_llantaP1" />
 
@@ -628,7 +628,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Masa de yoyo"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_llantaP2" />
 
@@ -639,13 +639,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Rin"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_masaEje1Izq" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine2"
-                android:layout_width="match_parent"
+                android:layout_width="529dp"
                 android:layout_height="241dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"

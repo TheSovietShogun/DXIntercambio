@@ -52,6 +52,7 @@ public class firmasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firmas);
 
+
         signatureView =  (SignatureView) findViewById(R.id.signature_view);
         imgClear = (ImageView) findViewById(R.id.imageView32);
 

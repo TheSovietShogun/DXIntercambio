@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/IV_selloExtra"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -29,12 +29,12 @@
 
             <TextView
                 android:id="@+id/textView104"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Sello Extra\n(Opcional)"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_selloExtra"
                 app:layout_constraintEnd_toEndOf="@+id/IV_selloExtra"
                 app:layout_constraintStart_toStartOf="@+id/IV_selloExtra"
@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/IV_sello2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toStartOf="@+id/IV_selloExtra"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -53,12 +53,12 @@
 
             <TextView
                 android:id="@+id/textView103"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Sello 2"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_sello2"
                 app:layout_constraintEnd_toEndOf="@+id/IV_sello2"
                 app:layout_constraintStart_toStartOf="@+id/IV_sello2"
@@ -67,8 +67,8 @@
 
             <ImageView
                 android:id="@+id/IV_sello1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toStartOf="@+id/IV_sello2"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -78,12 +78,12 @@
 
             <TextView
                 android:id="@+id/textView94"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Sello 1"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_sello1"
                 app:layout_constraintEnd_toEndOf="@+id/IV_sello1"
                 app:layout_constraintStart_toStartOf="@+id/IV_sello1"
@@ -91,48 +91,48 @@
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="33dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoTrasero4"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="31dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoTrasero1"
                 app:srcCompat="@color/azul_chingon" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
                 app:srcCompat="@color/azul_chingon" />
 
             <TextView
                 android:id="@+id/textView95"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
@@ -144,8 +144,8 @@
 
             <TextView
                 android:id="@+id/textView99"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
@@ -159,8 +159,8 @@
 
             <TextView
                 android:id="@+id/textView100"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
@@ -174,8 +174,8 @@
 
             <TextView
                 android:id="@+id/textView101"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
@@ -189,61 +189,61 @@
 
             <CheckBox
                 android:id="@+id/CB_sello1"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Sello 1"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
             <CheckBox
                 android:id="@+id/CB_sello1Alta"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Sello 1 Alta\nSeguridad"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello1" />
 
             <CheckBox
                 android:id="@+id/CB_sello2"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="142dp"
                 android:layout_marginTop="15dp"
-                android:checked="true"
                 android:text="Sello 2"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/CB_sello1"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
             <CheckBox
                 android:id="@+id/CB_sello2Alta"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="72dp"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Sello 2 Alta\nSeguridad"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/CB_sello1Alta"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello2" />
 
             <CheckBox
                 android:id="@+id/CB_vvt"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="VVT"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello1Alta" />
 
@@ -251,11 +251,11 @@
                 android:id="@+id/CB_escotilla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
+                android:layout_marginStart="172dp"
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Escotilla"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/CB_vvt"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello2Alta" />
 
@@ -291,20 +291,20 @@
 
             <CheckBox
                 android:id="@+id/CB_bisagras"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:checked="true"
                 android:text="Bisagras y tornillos"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
             <ImageView
                 android:id="@+id/IV_placas"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView97"
@@ -312,9 +312,9 @@
 
             <ImageView
                 android:id="@+id/IV_puertas"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
@@ -322,12 +322,12 @@
 
             <TextView
                 android:id="@+id/textView90"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Foto de Puertas"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_puertas"
                 app:layout_constraintEnd_toEndOf="@+id/IV_puertas"
                 app:layout_constraintStart_toStartOf="@+id/IV_puertas"
@@ -366,12 +366,12 @@
 
             <TextView
                 android:id="@+id/textView92"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:text="Llanta Izq Eje 1"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="12sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_placas"
                 app:layout_constraintEnd_toEndOf="@+id/IV_placas"
                 app:layout_constraintStart_toStartOf="@+id/IV_placas"
@@ -387,7 +387,7 @@
                 android:text="Lado Trasero"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -395,45 +395,45 @@
 
             <CheckBox
                 android:id="@+id/CB_defensaTrasera"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Defensa"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_bisagras" />
 
             <CheckBox
                 android:id="@+id/CB_gabildoTrasera"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:checked="true"
-                android:text="Luz galibo\nSup. Traseras"
-                android:textSize="25sp"
+                android:text="Luz galibo Sup. Traseras"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_defensaTrasera" />
 
             <CheckBox
                 android:id="@+id/CB_plafonesDer"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Plafones Derechos"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_gabildoTrasera" />
 
             <CheckBox
                 android:id="@+id/CB_plafonesIzq"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Plafones Izquierdos"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_plafonesDer" />
 
@@ -442,7 +442,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="156dp" />
+                app:layout_constraintGuide_begin="400dp" />
 
             <Button
                 android:id="@+id/btn_etapa5"
@@ -453,24 +453,24 @@
                 android:text="Siguiente"
                 android:textAllCaps="false"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2"
                 tools:layout_editor_absoluteX="165dp" />
 
             <CheckBox
                 android:id="@+id/CB_luzPlaca"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:checked="true"
                 android:text="Luz de Placa"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/ED_numeroPlaca" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine2"
-                android:layout_width="match_parent"
+                android:layout_width="529dp"
                 android:layout_height="241dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
@@ -489,19 +489,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:ems="10"
-                android:hint="Nº Placa"
                 android:inputType="textPersonName"
+                android:hint="Nº Placa"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView97" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName3"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Name"
                 android:inputType="textPersonName"
+                android:hint="Name"
                 app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -509,12 +509,12 @@
 
             <EditText
                 android:id="@+id/editTextTextPersonName4"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Name"
                 android:inputType="textPersonName"
+                android:hint="Name"
                 app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName5"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
@@ -522,12 +522,12 @@
 
             <EditText
                 android:id="@+id/editTextTextPersonName5"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Name"
                 android:inputType="textPersonName"
+                android:hint="Name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName4"

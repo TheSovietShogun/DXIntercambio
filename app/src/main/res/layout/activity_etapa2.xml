@@ -6,253 +6,247 @@
     android:layout_height="match_parent"
     tools:context=".etapa2_Activity">
 
-    <ImageView
-        android:id="@+id/IV_TractoIzq"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toStartOf="@+id/IV_tractoFrente"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_techos"
-        app:srcCompat="@color/azul_chingon" />
-
-    <ImageView
-        android:id="@+id/IV_tractoFrente"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toStartOf="@+id/IV_tractorDer"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/IV_TractoIzq"
-        app:layout_constraintTop_toBottomOf="@+id/CB_techos"
-        app:srcCompat="@color/azul_chingon" />
-
-    <ImageView
-        android:id="@+id/IV_tractorDer"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/IV_tractoFrente"
-        app:layout_constraintTop_toBottomOf="@+id/CB_techos"
-        app:srcCompat="@color/azul_chingon" />
-
-    <TextView
-        android:id="@+id/textView92"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Derecha del Tractor"
-        android:textAlignment="center"
-        android:textColor="@color/blanco_vergas"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/IV_tractorDer"
-        app:layout_constraintEnd_toEndOf="@+id/IV_tractorDer"
-        app:layout_constraintStart_toStartOf="@+id/IV_tractorDer"
-        app:layout_constraintTop_toTopOf="@+id/IV_tractorDer" />
-
-    <TextView
-        android:id="@+id/textView91"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Frente del Tractor"
-        android:textAlignment="center"
-        android:textColor="@color/blanco_vergas"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/IV_tractoFrente"
-        app:layout_constraintEnd_toEndOf="@+id/IV_tractoFrente"
-        app:layout_constraintStart_toStartOf="@+id/IV_tractoFrente"
-        app:layout_constraintTop_toTopOf="@+id/IV_tractoFrente" />
-
-    <TextView
-        android:id="@+id/textView90"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Izquierda del Tractor"
-        android:textAlignment="center"
-        android:textColor="@color/blanco_vergas"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/IV_TractoIzq"
-        app:layout_constraintEnd_toEndOf="@+id/IV_TractoIzq"
-        app:layout_constraintStart_toStartOf="@+id/IV_TractoIzq"
-        app:layout_constraintTop_toTopOf="@+id/IV_TractoIzq" />
-
-    <CheckBox
-        android:id="@+id/CB_defensa"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Defensa"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView87" />
-
-    <CheckBox
-        android:id="@+id/CB_tanqueAire"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Tanque de Aire"
-        android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/CB_tanqueDiesel" />
-
-    <CheckBox
-        android:id="@+id/CB_tubo"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Tubo Escape"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_quinta" />
-
-    <CheckBox
-        android:id="@+id/CB_quinta"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Quinta Rueda"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_cabina" />
-
-    <CheckBox
-        android:id="@+id/CB_cabina"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Cabina y\nCompartimientos"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_defensa" />
-
-    <CheckBox
-        android:id="@+id/CB_ejeTrans"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Eje de\nTransmision"
-        android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/CB_tanqueAire" />
-
-    <CheckBox
-        android:id="@+id/CB_techos"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Techos Interno y\nExterno"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_base" />
-
-    <CheckBox
-        android:id="@+id/CB_llanta"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Llantas"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView87" />
-
-    <CheckBox
-        android:id="@+id/CB_motor"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Motor"
-        android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/CB_ejeTrans" />
-
-    <CheckBox
-        android:id="@+id/CB_base"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Base del\nRemolque"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_tubo" />
-
-    <CheckBox
-        android:id="@+id/CB_tanqueDiesel"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Tanque de Diesel"
-        android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/CB_llanta" />
-
-    <TextView
-        android:id="@+id/textView87"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="Tractor"
-        android:textAlignment="center"
-        android:textColor="@color/azul_chingon"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="400dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_etapa2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/azul_chingon"
-        android:textColor="@color/blanco_vergas"
-        android:textSize="30sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="32dp"
-        android:textAllCaps="false"
-        android:text="Siguiente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IV_tractoFrente" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/CB_base"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Base del\nRemolque"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_tubo" />
+
+            <ImageView
+                android:id="@+id/IV_TractoIzq"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toStartOf="@+id/IV_tractoFrente"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_techos"
+                app:srcCompat="@color/azul_chingon" />
+
+            <CheckBox
+                android:id="@+id/CB_cabina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Cabina y\nCompartimientos"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_defensa" />
+
+            <CheckBox
+                android:id="@+id/CB_tanqueDiesel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="true"
+                android:text="Tanque de\nDiesel"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_llanta" />
+
+            <ImageView
+                android:id="@+id/IV_tractoFrente"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toStartOf="@+id/IV_tractorDer"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/IV_TractoIzq"
+                app:layout_constraintTop_toBottomOf="@+id/CB_techos"
+                app:srcCompat="@color/azul_chingon" />
+
+            <CheckBox
+                android:id="@+id/CB_ejeTrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Eje de\nTransmision"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_tanqueAire" />
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:textSize="12sp"
+                android:text="Izquierda del Tractor"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+
+                app:layout_constraintBottom_toBottomOf="@+id/IV_TractoIzq"
+                app:layout_constraintEnd_toEndOf="@+id/IV_TractoIzq"
+                app:layout_constraintStart_toStartOf="@+id/IV_TractoIzq"
+                app:layout_constraintTop_toTopOf="@+id/IV_TractoIzq" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="238dp" />
+
+            <CheckBox
+                android:id="@+id/CB_tubo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Tubo Escape"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_quinta" />
+
+            <CheckBox
+                android:id="@+id/CB_defensa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:checked="true"
+                android:text="Defensa"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="Tractor"
+                android:textAlignment="center"
+                android:textColor="@color/azul_chingon"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/IV_tractorDer"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/IV_tractoFrente"
+                app:layout_constraintTop_toBottomOf="@+id/CB_techos"
+                app:srcCompat="@color/azul_chingon" />
+
+            <CheckBox
+                android:id="@+id/CB_techos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Techos Interno y\nExterno"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_base" />
+
+            <CheckBox
+                android:id="@+id/CB_motor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Motor"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_ejeTrans" />
+
+            <CheckBox
+                android:id="@+id/CB_quinta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Quinta Rueda"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_cabina" />
+
+            <TextView
+                android:id="@+id/textView91"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:text="Frente del Tractor"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_tractoFrente"
+                app:layout_constraintEnd_toEndOf="@+id/IV_tractoFrente"
+                app:layout_constraintStart_toStartOf="@+id/IV_tractoFrente"
+                app:layout_constraintTop_toTopOf="@+id/IV_tractoFrente" />
+
+            <CheckBox
+                android:id="@+id/CB_llanta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:checked="true"
+                android:text="Llantas"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+            <Button
+                android:id="@+id/btn_etapa2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@color/azul_chingon"
+                android:text="Siguiente"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IV_tractoFrente" />
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:text="Derecha del Tractor"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_tractorDer"
+                app:layout_constraintEnd_toEndOf="@+id/IV_tractorDer"
+                app:layout_constraintStart_toStartOf="@+id/IV_tractorDer"
+                app:layout_constraintTop_toTopOf="@+id/IV_tractorDer" />
+
+            <CheckBox
+                android:id="@+id/CB_tanqueAire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:text="Tanque de\nAire"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_tanqueDiesel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
