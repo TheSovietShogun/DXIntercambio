@@ -10,6 +10,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
@@ -207,8 +208,6 @@ public class etapa1_Activity extends AppCompatActivity {
                     unidad.setText("");
                     idUnidad = "";
 
-
-
                     List<CUnidad> cUnidads = dataBaseHelper.selectUnidad(clave);
 
                     CUnidad cUnidad11 = new CUnidad("0", "Sin Seleccionar");
@@ -314,6 +313,20 @@ public class etapa1_Activity extends AppCompatActivity {
         licencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                licencia.setEnabled(false);
+                licencia.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        licencia.setEnabled(true);
+                        licencia.setClickable(true);
+
+                    }
+                }, TIME);
+
                 imgClick("tractor", REQUEST_LICENCIA);
 
             }
@@ -323,6 +336,28 @@ public class etapa1_Activity extends AppCompatActivity {
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                enviar.setEnabled(false);
+                enviar.setClickable(false);
+                enviar.setText("Enviando...");
+                enviar.setTextColor(Color.parseColor("#074EAB"));
+                enviar.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        enviar.setEnabled(true);
+                        enviar.setClickable(true);
+                        enviar.setText("Siguiente");
+                        enviar.setTextColor(Color.parseColor("#FFFFFF"));
+                        enviar.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
+
 
                 fechaHora = (String) android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new Date());
                 licenciaImg = String.valueOf(licencia.getDrawable().getBounds());
@@ -411,7 +446,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
                 }
 
-                if(varOperador.length() == 0){
+                if(varOperador ==  null  ){
 
                     varOperador= nombreOperador;
 
@@ -440,7 +475,7 @@ public class etapa1_Activity extends AppCompatActivity {
                 } else  {
 
                         if (idTransportista == "-1" && idLinea != "-1" ) {
-                            if ( varUnidad=="" || varOperador == "0" || estatus == "3" || tipoOperacion == "3" || movimiento == "3" || actual_Bitmap == null) {
+                            if ( varUnidad=="" || varOperador == "" || estatus == "3" || tipoOperacion == "3" || movimiento == "3" || actual_Bitmap == null) {
                                 Toast.makeText(etapa1_Activity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                             } else {
 
@@ -453,7 +488,7 @@ public class etapa1_Activity extends AppCompatActivity {
 
                             }
                         } else if (idTransportista != "1" && idLinea == "-1") {
-                            if ( varRemolque == "" || varOperador == "0" || estatus == "3" || tipoOperacion == "3" || movimiento == "3" || actual_Bitmap == null) {
+                            if ( varRemolque == "" || varOperador == "" || estatus == "3" || tipoOperacion == "3" || movimiento == "3" || actual_Bitmap == null) {
 
                                 Toast.makeText(etapa1_Activity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                             } else {
@@ -468,7 +503,7 @@ public class etapa1_Activity extends AppCompatActivity {
                             }
 
                         } else  {
-                            if (varUnidad.isEmpty() || varRemolque.isEmpty() || varOperador == "0" || estatus == "3" || tipoOperacion == "3" || movimiento == "3" ) {
+                            if (varUnidad.isEmpty() || varRemolque.isEmpty() || varOperador == "" || estatus == "3" || tipoOperacion == "3" || movimiento == "3" ) {
                                 Toast.makeText(etapa1_Activity.this, "Campos vacios existentes", Toast.LENGTH_LONG).show();
                             } else {
 

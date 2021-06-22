@@ -62,4 +62,12 @@ public interface DxApi {
     @POST("usuarioRel")
     Call<List<CUsuarioRel>> getUsuarioRel(@Body Post Post);
 
+    @POST("usuarioRel")
+    Call<String> sendIntercambio(@Body CintercambioElectronico cintercambioElectronico);
+
+    @Multipart
+    @POST("api/ImageTest/UploadFile")
+    Call<String> imgMulipart(@Part("carpeta") RequestBody carpeta,
+                             @Part MultipartBody.Part image );
+
 }

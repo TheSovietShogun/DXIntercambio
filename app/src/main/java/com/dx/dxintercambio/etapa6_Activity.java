@@ -5,10 +5,12 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -260,17 +262,18 @@ public class etapa6_Activity extends AppCompatActivity {
 
             if(check_jumbo){
 
-                llantaP3Marca.setVisibility(View.INVISIBLE);
-                llantaP4Marca.setVisibility(View.INVISIBLE);
-                llantaP7Estatus.setVisibility(View.INVISIBLE);
+                llantaP8Marca.setVisibility(View.INVISIBLE);
                 llantaP8Estatus.setVisibility(View.INVISIBLE);
+                llantaP4Marca.setVisibility(View.INVISIBLE);
+                llantaP4Estatus.setVisibility(View.INVISIBLE);
+
 
                 string_jumbo = "1";
             }else{
-                llantaP3Marca.setVisibility(View.VISIBLE);
-                llantaP4Marca.setVisibility(View.VISIBLE);
-                llantaP7Estatus.setVisibility(View.VISIBLE);
+                llantaP8Marca.setVisibility(View.VISIBLE);
                 llantaP8Estatus.setVisibility(View.VISIBLE);
+                llantaP4Marca.setVisibility(View.VISIBLE);
+                llantaP4Estatus.setVisibility(View.VISIBLE);
 
                 string_jumbo = "0";
             }
@@ -281,6 +284,18 @@ public class etapa6_Activity extends AppCompatActivity {
         IV_chasisDerFrontal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_chasisDerFrontal.setEnabled(false);
+                IV_chasisDerFrontal.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_chasisDerFrontal.setEnabled(true);
+                        IV_chasisDerFrontal.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisDerFrontal", REQUEST_CHASIS_DER_FRONTAL);
 
             }
@@ -289,6 +304,18 @@ public class etapa6_Activity extends AppCompatActivity {
         IV_llantaEje1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_llantaEje1.setEnabled(false);
+                IV_llantaEje1.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_llantaEje1.setEnabled(true);
+                        IV_llantaEje1.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("llantaDerEje1", REQUEST_LLANTAEJE1);
 
             }
@@ -296,6 +323,18 @@ public class etapa6_Activity extends AppCompatActivity {
         IV_llantaEje2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_llantaEje2.setEnabled(false);
+                IV_llantaEje2.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_llantaEje2.setEnabled(true);
+                        IV_llantaEje2.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("llantaDerEje2", REQUEST_LLANTAEJE2);
 
             }
@@ -304,6 +343,18 @@ public class etapa6_Activity extends AppCompatActivity {
         IV_chasisDerTrasero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_chasisDerTrasero.setEnabled(false);
+                IV_chasisDerTrasero.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_chasisDerTrasero.setEnabled(true);
+                        IV_chasisDerTrasero.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisDerTrasero", REQUEST_CHASIS_DER_TRASERO);
 
             }
@@ -313,6 +364,26 @@ public class etapa6_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                btnEtapa6.setEnabled(false);
+                btnEtapa6.setClickable(false);
+                btnEtapa6.setText("Enviando...");
+                btnEtapa6.setTextColor(Color.parseColor("#074EAB"));
+                btnEtapa6.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btnEtapa6.setEnabled(true);
+                        btnEtapa6.setClickable(true);
+                        btnEtapa6.setText("Siguiente");
+                        btnEtapa6.setTextColor(Color.parseColor("#FFFFFF"));
+                        btnEtapa6.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
 
                 CLlanta cLlanta = (CLlanta) llantaP3Marca.getSelectedItem();
                 String idLlantaP1 = cLlanta.getId();
@@ -686,7 +757,7 @@ public class etapa6_Activity extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_CHASIS_DER_FRONTAL:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_chasisDerFrontal = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -702,7 +773,7 @@ public class etapa6_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_LLANTAEJE1:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_llantaEje1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -718,7 +789,7 @@ public class etapa6_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_LLANTAEJE2:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_llantaEje2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -734,7 +805,7 @@ public class etapa6_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_CHASIS_DER_TRASERO:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_chasisDerTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);

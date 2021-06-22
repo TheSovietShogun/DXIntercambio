@@ -22,26 +22,11 @@
         app:layout_constraintTop_toBottomOf="@+id/estatusRed" />
 
     <Button
-        android:id="@+id/sincronizaDatos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@color/azul_chingon"
-        android:text="Sincronizar Datos"
-        android:textColor="@color/blanco_vergas"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generaIntercambio" />
-
-    <Button
         android:id="@+id/enviarIntercambio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@color/azul_chingon"
         android:text="Enviar Intercambio"
@@ -49,7 +34,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sincronizaDatos" />
+        app:layout_constraintTop_toBottomOf="@+id/generaIntercambio" />
 
     <TextView
         android:id="@+id/estatusRed"
@@ -67,12 +52,12 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="400dp"
-        android:layout_height="351dp"
+        android:layout_width="match_parent"
+        android:layout_height="438dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

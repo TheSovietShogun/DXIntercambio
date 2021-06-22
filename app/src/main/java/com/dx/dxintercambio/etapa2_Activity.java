@@ -7,10 +7,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -150,6 +152,18 @@ public class etapa2_Activity extends AppCompatActivity {
         izqTracto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                izqTracto.setEnabled(false);
+                izqTracto.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        izqTracto.setEnabled(true);
+                        izqTracto.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("tractoIzq", REQUEST_IZQ_TRACTO);
 
             }
@@ -158,6 +172,18 @@ public class etapa2_Activity extends AppCompatActivity {
         frenteTracto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                frenteTracto.setEnabled(false);
+                frenteTracto.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        frenteTracto.setEnabled(true);
+                        frenteTracto.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("tractoFrente", REQUEST_FRENTE_TRACTO);
 
             }
@@ -166,6 +192,18 @@ public class etapa2_Activity extends AppCompatActivity {
         derTracto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                derTracto.setEnabled(false);
+                derTracto.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        derTracto.setEnabled(true);
+                        derTracto.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("tractoDer", REQUEST_DER_TRACTO);
 
             }
@@ -174,6 +212,28 @@ public class etapa2_Activity extends AppCompatActivity {
         btnEtapa2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                btnEtapa2.setEnabled(false);
+                btnEtapa2.setClickable(false);
+                btnEtapa2.setText("Enviando...");
+                btnEtapa2.setTextColor(Color.parseColor("#074EAB"));
+                btnEtapa2.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btnEtapa2.setEnabled(true);
+                        btnEtapa2.setClickable(true);
+                        btnEtapa2.setText("Siguiente");
+                        btnEtapa2.setTextColor(Color.parseColor("#FFFFFF"));
+                        btnEtapa2.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
+
 
                 if (check_defensa) {
                     string_defensa = "1";
@@ -313,7 +373,7 @@ public class etapa2_Activity extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_IZQ_TRACTO:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_izqTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -329,7 +389,7 @@ public class etapa2_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DER_TRACTO:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_derTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -345,7 +405,7 @@ public class etapa2_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_FRENTE_TRACTO:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_frenteTracto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);

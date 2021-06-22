@@ -46,13 +46,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createTableUnidad = "CREATE TABLE " + TABLE_UNIDAD + " ( " + COLUMN_ID_UNIDAD + " TEXT , " + COLUMN_CLAVE_UNIDAD + " TEXT)";
-        String createTableOperador = "CREATE TABLE " + TABLE_OPERADOR + " (" + COLUMN_ID_OPERADOR + " TEXT , " + COLUMN_NOMBRE_OPERADOR + " TEXT)";
-        String createTableTransportista = "CREATE TABLE " + TABLE_TRANSPORTISTA + " ( " + COLUMN_ID_TRANSPORTISTA + " TEXT , " + COLUMN_NOMBRE_TRANSPOSTISTA + " TEXT , " + COLUMN_CLAVE_TRANSPORTISTA + " TEXT)";
-        String createTableRemolque = "CREATE TABLE " + TABLE_REMOLQUE + " ( " + COLUMN_ID_REMOLQUE + " TEXT , " + COLUMN_CLAVE_REMOLQUE + " TEXT , " + COLUMN_ID_LINEA_REMOLQUE + " TEXT)";
-        String createTableLinea = "CREATE TABLE " + TABLE_LINEA + " (" + COLUMN_ID_LINEA + " TEXT , " + COLUMN_NOMBRE_LINEA + " TEXT)";
-        String createTableLlanta = "CREATE TABLE " + TABLE_LLANTA + " (" + COLUMN_ID_LLANTA + " TEXT , " + COLUMN_NOMBRE_LLANTA + " TEXT)";
-        String createTableUsuario = "CREATE TABLE " + TABLE_USUARIO + " (" + COLUMN_ID_USUARIO + " TEXT , " + COLUMN_LOGIN + " TEXT, " + COLUMN_PASSWORD + " TEXT)";
+        String createTableUnidad = "CREATE TABLE " + TABLE_UNIDAD + "" +
+                " ( " + COLUMN_ID_UNIDAD + " TEXT , " + COLUMN_CLAVE_UNIDAD + " TEXT)";
+
+        String createTableOperador = "CREATE TABLE " + TABLE_OPERADOR +
+                " (" + COLUMN_ID_OPERADOR + " TEXT , " + COLUMN_NOMBRE_OPERADOR + " TEXT)";
+
+        String createTableTransportista = "CREATE TABLE " + TABLE_TRANSPORTISTA +
+                " ( " + COLUMN_ID_TRANSPORTISTA + " TEXT , " + COLUMN_NOMBRE_TRANSPOSTISTA + " TEXT , " + COLUMN_CLAVE_TRANSPORTISTA + " TEXT)";
+
+        String createTableRemolque = "CREATE TABLE " + TABLE_REMOLQUE +
+                " ( " + COLUMN_ID_REMOLQUE + " TEXT , " + COLUMN_CLAVE_REMOLQUE + " TEXT , " + COLUMN_ID_LINEA_REMOLQUE + " TEXT)";
+
+        String createTableLinea = "CREATE TABLE " + TABLE_LINEA +
+                " (" + COLUMN_ID_LINEA + " TEXT , " + COLUMN_NOMBRE_LINEA + " TEXT)";
+
+        String createTableLlanta = "CREATE TABLE " + TABLE_LLANTA +
+                " (" + COLUMN_ID_LLANTA + " TEXT , " + COLUMN_NOMBRE_LLANTA + " TEXT)";
+
+        String createTableUsuario = "CREATE TABLE " + TABLE_USUARIO +
+                " (" + COLUMN_ID_USUARIO + " TEXT , " + COLUMN_LOGIN + " TEXT, " + COLUMN_PASSWORD + " TEXT)";
+
+
         String createTableIntercambioElectronico = "CREATE TABLE IntercambioElectronico (" +
                 "estatus  TEXT , " +
                 "folio    TEXT , " +
@@ -226,6 +241,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "remolqueSello1FotoUrl TEXT , " +
                 "remolqueSello2FotoUrl TEXT , " +
                 "remolqueSello3FotoUrl TEXT , " +
+
                 "remolqueTraseroDano1FotoUrl TEXT , " +
                 "remolqueTraseroDano2FotoUrl TEXT , " +
                 "remolqueTraseroDano3FotoUrl TEXT , " +
@@ -267,126 +283,174 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public boolean insertUnidad(CUnidad cUnidad){
+    public boolean insertUnidad(List<CUnidad> cUnidads){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_UNIDAD,cUnidad.getId());
-        cv.put(COLUMN_CLAVE_UNIDAD,cUnidad.getClave());
+        db.beginTransaction();
+        try {
+        for (CUnidad cUnidad : cUnidads) {
+            cv.put(COLUMN_ID_UNIDAD,cUnidad.getId());
+            cv.put(COLUMN_CLAVE_UNIDAD,cUnidad.getClave());
+            db.insert(TABLE_UNIDAD, null, cv);
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        db.close();
+        return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+           return false;
+        }
 
+    }
 
-        long insert = db.insert(TABLE_UNIDAD, null, cv);
+    public boolean insertOperador(List<COperador> cOperadors){
 
-        if(insert == -1){
-            return false;
-            }else{
-            return true;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        db.beginTransaction();
+
+        try {
+            for (COperador cOperador : cOperadors) {
+                cv.put(COLUMN_ID_OPERADOR,cOperador.getIdOperador());
+                cv.put(COLUMN_NOMBRE_OPERADOR,cOperador.getNombreCompleto());
+                db.insert(TABLE_OPERADOR, null, cv);
             }
-    }
-
-    public boolean insertOperador(COperador cOperador){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put(COLUMN_ID_OPERADOR,cOperador.getIdOperador());
-        cv.put(COLUMN_NOMBRE_OPERADOR,cOperador.getNombreCompleto());
-
-        long insert = db.insert(TABLE_OPERADOR, null, cv);
-
-        if(insert == -1){
-            return false;
-        }else{
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            db.close();
             return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+            return false;
         }
     }
 
-    public boolean insertTranspo(CFlota cFlota){
+    public boolean insertTranspo(List<CFlota> cFlotas ){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_TRANSPORTISTA,cFlota.getId());
-        cv.put(COLUMN_NOMBRE_TRANSPOSTISTA,cFlota.getNombre());
-        cv.put(COLUMN_CLAVE_TRANSPORTISTA,cFlota.getClave());
+        db.beginTransaction();
 
-        long insert = db.insert(TABLE_TRANSPORTISTA, null, cv);
-
-        if(insert == -1){
-            return false;
-        }else{
+        try {
+            for (CFlota cFlota : cFlotas) {
+                cv.put(COLUMN_ID_TRANSPORTISTA,cFlota.getId());
+                cv.put(COLUMN_NOMBRE_TRANSPOSTISTA,cFlota.getNombre());
+                cv.put(COLUMN_CLAVE_TRANSPORTISTA,cFlota.getClave());
+                db.insert(TABLE_TRANSPORTISTA, null, cv);
+            }
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            db.close();
             return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+            return false;
         }
     }
 
-    public boolean insertRemolque(CRemolque cRemolque){
+    public boolean insertRemolque(List<CRemolque> cRemolques){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_REMOLQUE,cRemolque.getId());
-        cv.put(COLUMN_CLAVE_REMOLQUE,cRemolque.getRemolques());
-        cv.put(COLUMN_ID_LINEA_REMOLQUE,cRemolque.getIdLinea());
+        db.beginTransaction();
 
-        long insert = db.insert(TABLE_REMOLQUE, null, cv);
-
-        if(insert == -1){
-            return false;
-        }else{
+        try {
+            for (CRemolque cRemolque : cRemolques) {
+                cv.put(COLUMN_ID_REMOLQUE,cRemolque.getId());
+                cv.put(COLUMN_CLAVE_REMOLQUE,cRemolque.getRemolques());
+                cv.put(COLUMN_ID_LINEA_REMOLQUE,cRemolque.getIdLinea());
+                db.insert(TABLE_REMOLQUE, null, cv);
+            }
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            db.close();
             return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+            return false;
         }
     }
 
-    public boolean insertLinea(CLinea cLinea){
+    public boolean insertLinea(List<CLinea> cLineas){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_LINEA,cLinea.getId());
-        cv.put(COLUMN_NOMBRE_LINEA,cLinea.getNombreLinea());
+        db.beginTransaction();
 
-        long insert = db.insert(TABLE_LINEA, null, cv);
-
-        if(insert == -1){
-            return false;
-        }else{
+        try {
+            for (CLinea cLinea : cLineas) {
+                cv.put(COLUMN_ID_LINEA,cLinea.getId());
+                cv.put(COLUMN_NOMBRE_LINEA,cLinea.getNombreLinea());
+                db.insert(TABLE_LINEA, null, cv);
+            }
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            db.close();
             return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+            return false;
         }
     }
 
-    public boolean insertLlanta(CLlanta cLlanta){
+    public boolean insertLlanta(List<CLlanta> cLlantas){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_LLANTA,cLlanta.getId());
-        cv.put(COLUMN_NOMBRE_LLANTA,cLlanta.getNombre());
+        db.beginTransaction();
 
-        long insert = db.insert(TABLE_LLANTA, null, cv);
-
-        if(insert == -1){
-            return false;
-        }else{
+        try {
+            for (CLlanta cLlanta : cLlantas) {
+                cv.put(COLUMN_ID_LLANTA,cLlanta.getId());
+                cv.put(COLUMN_NOMBRE_LLANTA,cLlanta.getNombre());
+                db.insert(TABLE_LLANTA, null, cv);
+            }
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            db.close();
             return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+            return false;
         }
     }
 
-    public boolean insertUsuario(CUsuarioRel cUsuarioRel){
+    public boolean insertUsuario(List<CUsuarioRel> cUsuarioRels){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_USUARIO,cUsuarioRel.getId());
-        cv.put(COLUMN_LOGIN,cUsuarioRel.getLogin());
-        cv.put(COLUMN_PASSWORD,cUsuarioRel.getPassword());
+        db.beginTransaction();
 
-        long insert = db.insert(TABLE_USUARIO, null, cv);
-
-        if(insert == -1){
-            return false;
-        }else{
+        try {
+            for (CUsuarioRel cUsuarioRel : cUsuarioRels) {
+                cv.put(COLUMN_ID_USUARIO,cUsuarioRel.getId());
+                cv.put(COLUMN_LOGIN,cUsuarioRel.getLogin());
+                cv.put(COLUMN_PASSWORD,cUsuarioRel.getPassword());
+                db.insert(TABLE_USUARIO, null, cv);
+            }
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            db.close();
             return true;
+        } catch (Exception e){
+            db.endTransaction();
+            db.close();
+            return false;
         }
     }
 

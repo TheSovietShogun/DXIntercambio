@@ -5,10 +5,12 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -170,6 +172,18 @@ public class etapa5_Activity extends AppCompatActivity {
         IV_puertas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_puertas.setEnabled(false);
+                IV_puertas.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_puertas.setEnabled(true);
+                        IV_puertas.setClickable(true);
+
+                    }
+                }, TIME);
                     imgClick("chasisIzqFrontal", REQUEST_PUERTAS);
 
             }
@@ -178,6 +192,18 @@ public class etapa5_Activity extends AppCompatActivity {
         IV_placas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_placas.setEnabled(false);
+                IV_placas.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_placas.setEnabled(true);
+                        IV_placas.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_PLACAS);
 
             }
@@ -186,6 +212,18 @@ public class etapa5_Activity extends AppCompatActivity {
         IV_sello1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_sello1.setEnabled(false);
+                IV_sello1.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_sello1.setEnabled(true);
+                        IV_sello1.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_SELLO1);
 
             }
@@ -194,6 +232,18 @@ public class etapa5_Activity extends AppCompatActivity {
         IV_sello2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_sello2.setEnabled(false);
+                IV_sello2.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_sello2.setEnabled(true);
+                        IV_sello2.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_SELLO2);
 
             }
@@ -202,6 +252,18 @@ public class etapa5_Activity extends AppCompatActivity {
         IV_sello3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_sello3.setEnabled(false);
+                IV_sello3.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_sello3.setEnabled(true);
+                        IV_sello3.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_SELLO3);
 
             }
@@ -210,6 +272,18 @@ public class etapa5_Activity extends AppCompatActivity {
         daño1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño1.setEnabled(false);
+                daño1.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño1.setEnabled(true);
+                        daño1.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("traseroDaño1", REQUEST_DAÑO1);
 
             }
@@ -218,6 +292,18 @@ public class etapa5_Activity extends AppCompatActivity {
         daño2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño2.setEnabled(false);
+                daño2.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño2.setEnabled(true);
+                        daño2.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("traseroDaño2", REQUEST_DAÑO2);
 
             }
@@ -226,6 +312,18 @@ public class etapa5_Activity extends AppCompatActivity {
         daño3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño3.setEnabled(false);
+                daño3.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño3.setEnabled(true);
+                        daño3.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("traseroDaño3", REQUEST_DAÑO3);
 
             }
@@ -234,6 +332,18 @@ public class etapa5_Activity extends AppCompatActivity {
         daño4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño4.setEnabled(false);
+                daño4.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño4.setEnabled(true);
+                        daño4.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("traseroDaño4", REQUEST_DAÑO4);
 
             }
@@ -243,6 +353,28 @@ public class etapa5_Activity extends AppCompatActivity {
         btnEtapa5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                btnEtapa5.setEnabled(false);
+                btnEtapa5.setClickable(false);
+                btnEtapa5.setText("Enviando...");
+                btnEtapa5.setTextColor(Color.parseColor("#074EAB"));
+                btnEtapa5.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btnEtapa5.setEnabled(true);
+                        btnEtapa5.setClickable(true);
+                        btnEtapa5.setText("Siguiente");
+                        btnEtapa5.setTextColor(Color.parseColor("#FFFFFF"));
+                        btnEtapa5.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
+
 
                 if (check_bisagras) {
                     string_bisagras = "1";
@@ -439,7 +571,7 @@ public class etapa5_Activity extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_PUERTAS:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_puertas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -455,7 +587,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_PLACAS:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_placas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -471,7 +603,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_SELLO1:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_sello1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -487,7 +619,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_SELLO2:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK) {
                     try {
 
                         actual_sello2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -503,7 +635,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_SELLO3:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_sello3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -519,7 +651,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO1:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -535,7 +667,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO2:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -551,7 +683,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO3:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -567,7 +699,7 @@ public class etapa5_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO4:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);

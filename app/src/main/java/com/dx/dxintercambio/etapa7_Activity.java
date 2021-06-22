@@ -5,10 +5,12 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -152,6 +154,18 @@ public class etapa7_Activity extends AppCompatActivity {
         IV_costadoDerAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_costadoDerAtras.setEnabled(false);
+                IV_costadoDerAtras.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_costadoDerAtras.setEnabled(true);
+                        IV_costadoDerAtras.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_DER_COSTADO_ATRAS);
 
             }
@@ -160,7 +174,99 @@ public class etapa7_Activity extends AppCompatActivity {
         IV_costadoDerFrente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_costadoDerFrente.setEnabled(false);
+                IV_costadoDerFrente.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_costadoDerFrente.setEnabled(true);
+                        IV_costadoDerFrente.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_DER_COSTADO_FRENTE);
+
+            }
+        });
+
+        daño1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                daño1.setEnabled(false);
+                daño1.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño1.setEnabled(true);
+                        daño1.setClickable(true);
+
+                    }
+                }, TIME);
+                imgClick("DerDaño1", REQUEST_DAÑO1);
+
+            }
+        });
+
+        daño2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                daño2.setEnabled(false);
+                daño2.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño2.setEnabled(true);
+                        daño2.setClickable(true);
+
+                    }
+                }, TIME);
+                imgClick("DerDaño2", REQUEST_DAÑO2);
+
+            }
+        });
+
+        daño3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                daño3.setEnabled(false);
+                daño3.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño3.setEnabled(true);
+                        daño3.setClickable(true);
+
+                    }
+                }, TIME);
+                imgClick("DerDaño3", REQUEST_DAÑO3);
+
+            }
+        });
+
+        daño4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                daño4.setEnabled(false);
+                daño4.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño4.setEnabled(true);
+                        daño4.setClickable(true);
+
+                    }
+                }, TIME);
+                imgClick("DerDaño4", REQUEST_DAÑO4);
 
             }
         });
@@ -168,6 +274,27 @@ public class etapa7_Activity extends AppCompatActivity {
         btnEtapa7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                btnEtapa7.setEnabled(false);
+                btnEtapa7.setClickable(false);
+                btnEtapa7.setText("Enviando...");
+                btnEtapa7.setTextColor(Color.parseColor("#074EAB"));
+                btnEtapa7.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btnEtapa7.setEnabled(true);
+                        btnEtapa7.setClickable(true);
+                        btnEtapa7.setText("Siguiente");
+                        btnEtapa7.setTextColor(Color.parseColor("#FFFFFF"));
+                        btnEtapa7.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
 
                 if (check_fondoPlaga) {
                     string_fondoPlaga = "1";
@@ -234,6 +361,8 @@ public class etapa7_Activity extends AppCompatActivity {
                 }else{
                     string_rompevientosDer = "0";
                 }
+
+
 
                 String D1 = null ;
                 String D2 = null ;
@@ -348,7 +477,7 @@ public class etapa7_Activity extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_DER_COSTADO_ATRAS:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actualDerTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -365,7 +494,7 @@ public class etapa7_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DER_COSTADO_FRENTE:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
 
@@ -383,7 +512,7 @@ public class etapa7_Activity extends AppCompatActivity {
                 break;
 
             case REQUEST_DAÑO1:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -399,7 +528,7 @@ public class etapa7_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO2:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -415,7 +544,7 @@ public class etapa7_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO3:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -431,7 +560,7 @@ public class etapa7_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO4:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);

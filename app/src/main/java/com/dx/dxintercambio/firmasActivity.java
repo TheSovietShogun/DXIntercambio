@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Base64;
@@ -32,7 +33,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class firmasActivity extends AppCompatActivity {
-
 
     private SignatureView signatureView;
     private SignatureView signatureView2;
@@ -85,6 +85,26 @@ public class firmasActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                btnEnvio.setEnabled(false);
+                btnEnvio.setClickable(false);
+                btnEnvio.setText("Enviando...");
+                btnEnvio.setTextColor(Color.parseColor("#074EAB"));
+                btnEnvio.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btnEnvio.setEnabled(true);
+                        btnEnvio.setClickable(true);
+                        btnEnvio.setText("Siguiente");
+                        btnEnvio.setTextColor(Color.parseColor("#FFFFFF"));
+                        btnEnvio.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
 
                 bitmap1 = signatureView2.getSignatureBitmap();
                 bitmap2 = signatureView.getSignatureBitmap();

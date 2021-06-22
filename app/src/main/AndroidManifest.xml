@@ -22,7 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".etapa7_Activity"></activity>
+        <service
+            android:name=".SQLiteService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".etapa7_Activity" />
         <activity android:name=".etapa6_Activity" />
         <activity android:name=".etapa5_Activity" />
         <activity android:name=".etapa4_Activity" />

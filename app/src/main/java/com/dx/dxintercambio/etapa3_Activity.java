@@ -5,10 +5,12 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -145,6 +147,27 @@ public class etapa3_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                btnEtapa3.setEnabled(false);
+                btnEtapa3.setClickable(false);
+                btnEtapa3.setText("Enviando...");
+                btnEtapa3.setTextColor(Color.parseColor("#074EAB"));
+                btnEtapa3.setBackgroundResource(R.drawable.round_btn2);
+
+                int TIME = 10000;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btnEtapa3.setEnabled(true);
+                        btnEtapa3.setClickable(true);
+                        btnEtapa3.setText("Siguiente");
+                        btnEtapa3.setTextColor(Color.parseColor("#FFFFFF"));
+                        btnEtapa3.setBackgroundResource(R.drawable.round_btn);
+
+                    }
+                }, TIME);
+
                 if (check_inspeccion) {
                     string_inspeccion = "1";
                 }else{
@@ -246,6 +269,18 @@ public class etapa3_Activity extends AppCompatActivity {
         IV_NoEconomico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_NoEconomico.setEnabled(false);
+                IV_NoEconomico.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_NoEconomico.setEnabled(true);
+                        IV_NoEconomico.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("NoEconomico", REQUEST_NO_ECONOMICO);
 
             }
@@ -254,6 +289,18 @@ public class etapa3_Activity extends AppCompatActivity {
         IV_manitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_manitas.setEnabled(false);
+                IV_manitas.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_manitas.setEnabled(true);
+                        IV_manitas.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("ManitasIzq", REQUEST_MANITAS);
 
             }
@@ -262,6 +309,18 @@ public class etapa3_Activity extends AppCompatActivity {
         IV_fotoCostadoFrente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_fotoCostadoFrente.setEnabled(false);
+                IV_fotoCostadoFrente.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_fotoCostadoFrente.setEnabled(true);
+                        IV_fotoCostadoFrente.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("CostadoFrente", REQUEST_FOTO_COSTADO_FRENTE);
 
             }
@@ -270,6 +329,18 @@ public class etapa3_Activity extends AppCompatActivity {
         IV_fotoCostadoAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_fotoCostadoAtras.setEnabled(false);
+                IV_fotoCostadoAtras.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_fotoCostadoAtras.setEnabled(true);
+                        IV_fotoCostadoAtras.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("CostadoAtras", REQUEST_FOTO_COSTADO_ATRAS);
 
             }
@@ -307,7 +378,7 @@ public class etapa3_Activity extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_NO_ECONOMICO:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_NoEconomico = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -323,7 +394,7 @@ public class etapa3_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_MANITAS:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_manitas = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -339,7 +410,7 @@ public class etapa3_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_FOTO_COSTADO_FRENTE:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_fotoCostadoFrente = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -355,7 +426,7 @@ public class etapa3_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_FOTO_COSTADO_ATRAS:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_fotoCostadoAtras = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);

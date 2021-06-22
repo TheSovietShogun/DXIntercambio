@@ -6,10 +6,12 @@ import androidx.core.content.FileProvider;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -294,6 +296,18 @@ public class etapa4_Activity extends AppCompatActivity {
         IV_chasisIzqFrontal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_chasisIzqFrontal.setEnabled(false);
+                IV_chasisIzqFrontal.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_chasisIzqFrontal.setEnabled(true);
+                        IV_chasisIzqFrontal.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqFrontal", REQUEST_CHASIS_IZQ_FRONTAL);
 
             }
@@ -302,6 +316,18 @@ public class etapa4_Activity extends AppCompatActivity {
         IV_llantaEje1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_llantaEje1.setEnabled(false);
+                IV_llantaEje1.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_llantaEje1.setEnabled(true);
+                        IV_llantaEje1.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("llantaIzqEje1", REQUEST_LLANTAEJE1);
 
             }
@@ -309,6 +335,18 @@ public class etapa4_Activity extends AppCompatActivity {
         IV_llantaEje2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_llantaEje2.setEnabled(false);
+                IV_llantaEje2.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_llantaEje2.setEnabled(true);
+                        IV_llantaEje2.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("llantaIzqEje2", REQUEST_LLANTAEJE2);
 
             }
@@ -317,6 +355,18 @@ public class etapa4_Activity extends AppCompatActivity {
         IV_chasisIzqTrasero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                IV_chasisIzqTrasero.setEnabled(false);
+                IV_chasisIzqTrasero.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_chasisIzqTrasero.setEnabled(true);
+                        IV_chasisIzqTrasero.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("chasisIzqTrasero", REQUEST_CHASIS_IZQ_TRASERO);
 
             }
@@ -325,6 +375,18 @@ public class etapa4_Activity extends AppCompatActivity {
         daño1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño1.setEnabled(false);
+                daño1.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño1.setEnabled(true);
+                        daño1.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("IzqDaño1", REQUEST_DAÑO1);
 
             }
@@ -333,6 +395,18 @@ public class etapa4_Activity extends AppCompatActivity {
         daño2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño2.setEnabled(false);
+                daño2.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño2.setEnabled(true);
+                        daño2.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("IzqDaño2", REQUEST_DAÑO2);
 
             }
@@ -341,6 +415,18 @@ public class etapa4_Activity extends AppCompatActivity {
         daño3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño3.setEnabled(false);
+                daño3.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño3.setEnabled(true);
+                        daño3.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("IzqDaño3", REQUEST_DAÑO3);
 
             }
@@ -349,6 +435,18 @@ public class etapa4_Activity extends AppCompatActivity {
         daño4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                daño4.setEnabled(false);
+                daño4.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        daño4.setEnabled(true);
+                        daño4.setClickable(true);
+
+                    }
+                }, TIME);
                 imgClick("IzqDaño4", REQUEST_DAÑO4);
 
             }
@@ -357,6 +455,27 @@ public class etapa4_Activity extends AppCompatActivity {
 
         btnEtapa4.setOnClickListener(v -> {
 
+
+            btnEtapa4.setEnabled(false);
+            btnEtapa4.setClickable(false);
+            btnEtapa4.setText("Enviando...");
+            btnEtapa4.setTextColor(Color.parseColor("#074EAB"));
+            btnEtapa4.setBackgroundResource(R.drawable.round_btn2);
+
+            int TIME = 10000;
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    btnEtapa4.setEnabled(true);
+                    btnEtapa4.setClickable(true);
+                    btnEtapa4.setText("Siguiente");
+                    btnEtapa4.setTextColor(Color.parseColor("#FFFFFF"));
+                    btnEtapa4.setBackgroundResource(R.drawable.round_btn);
+
+                }
+            }, TIME);
 
             CLlanta cLlanta = (CLlanta) llantaP1Marca.getSelectedItem();
             String idLlantaP1 = cLlanta.getId();
@@ -781,7 +900,7 @@ public class etapa4_Activity extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_CHASIS_IZQ_FRONTAL:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_chasisIzqFrontal = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -797,7 +916,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_LLANTAEJE1:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_llantaEje1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -813,7 +932,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_LLANTAEJE2:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK) {
                     try {
 
                         actual_llantaEje2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -829,7 +948,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_CHASIS_IZQ_TRASERO:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_chasisIzqTrasero = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -845,7 +964,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO1:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -861,7 +980,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO2:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -877,7 +996,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO3:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
@@ -893,7 +1012,7 @@ public class etapa4_Activity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_DAÑO4:
-                if (resultCode == RESULT_OK && resultData != null) {
+                if (resultCode == RESULT_OK ) {
                     try {
 
                         actual_daño4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
