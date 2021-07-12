@@ -38,19 +38,20 @@ public class firmasActivity extends AppCompatActivity {
     private SignatureView signatureView2;
     private ImageView imgClear;
     private ImageView imgClear2;
-    private Button btnEnvio ;
+    private Button btnEnvio;
     private Bitmap bitmap1;
     private Bitmap bitmap2;
-    private String folio ,path;
+    private String folio,path;
     private String mensaje;
     private String fechaHora;
-    private AlertDialog alert  ;
+    private AlertDialog alert;
     private String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firmas);
+
 
 
         signatureView =  (SignatureView) findViewById(R.id.signature_view);
@@ -80,6 +81,8 @@ public class firmasActivity extends AppCompatActivity {
                 signatureView.clearCanvas();
             }
         });
+
+
 
         btnEnvio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +134,7 @@ public class firmasActivity extends AppCompatActivity {
                         )
                         {
 
+
                              AlertDialog.Builder builder = new AlertDialog.Builder(firmasActivity.this);
                             builder.setMessage("Desea realizar otro intercambio ?")
                                     .setCancelable(false)
@@ -172,14 +176,9 @@ public class firmasActivity extends AppCompatActivity {
                             Toast.makeText(firmasActivity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
                         }
                     }
-
                 }
-
-
-
             }
         });
-
     }
 
     @Override

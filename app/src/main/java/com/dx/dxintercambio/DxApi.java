@@ -42,7 +42,7 @@ public interface DxApi {
     Call<String> getImg(@Body Post5 post5);
 
     @POST("imgTest")
- Call<String> getImgTest(@Body Post00 post00);
+    Call<String> getImgTest(@Body Post00 post00);
 
     @POST("img2")
     Call<String> getImg2(@Body Post7 post7);
@@ -62,11 +62,11 @@ public interface DxApi {
     @POST("usuarioRel")
     Call<List<CUsuarioRel>> getUsuarioRel(@Body Post Post);
 
-    @POST("usuarioRel")
-    Call<String> sendIntercambio(@Body CintercambioElectronico cintercambioElectronico);
+ @POST("IntercambioOffline")
+ Call<List<CEnvio3>> sendIntercambio(@Body CintercambioElectronicoSend cintercambioElectronicoSend);
 
-    @Multipart
-    @POST("api/ImageTest/UploadFile")
+ @Multipart
+    @POST("ImageTest/UploadFile")
     Call<String> imgMulipart(@Part("carpeta") RequestBody carpeta,
                              @Part MultipartBody.Part image );
 

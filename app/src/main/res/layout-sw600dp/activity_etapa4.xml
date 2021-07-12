@@ -40,7 +40,7 @@
                 android:layout_marginTop="150dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <CheckBox
                 android:id="@+id/CB_birlosEje2Izq"
@@ -105,7 +105,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoIzq1"
@@ -115,7 +115,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView105"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoIzq2"
@@ -125,7 +125,7 @@
                 android:layout_marginTop="35dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq4"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoIzq3"
@@ -135,7 +135,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoIzq1"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoIzq4"
@@ -145,7 +145,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView105"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <Spinner
                 android:id="@+id/S_marcaP6"
@@ -415,7 +415,7 @@
                 android:layout_marginTop="132dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView97"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_chasisIzqFrontal"
@@ -425,7 +425,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView90"

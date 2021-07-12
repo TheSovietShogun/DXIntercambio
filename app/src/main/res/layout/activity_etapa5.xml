@@ -25,7 +25,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/IV_sello2"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView104"
@@ -49,7 +49,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/IV_sello1"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView103"
@@ -74,7 +74,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView94"
@@ -97,7 +97,7 @@
                 android:layout_marginTop="33dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero2"
@@ -107,7 +107,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoTrasero4"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero3"
@@ -117,7 +117,7 @@
                 android:layout_marginTop="31dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoTrasero1"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero4"
@@ -127,7 +127,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView95"
@@ -136,7 +136,7 @@
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoTrasero1"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoTrasero1"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoTrasero1"
@@ -149,7 +149,7 @@
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoTrasero2"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoTrasero2"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoTrasero2"
@@ -164,7 +164,7 @@
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoTrasero3"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoTrasero3"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoTrasero3"
@@ -179,7 +179,7 @@
                 android:text="Daño"
                 android:textAlignment="center"
                 android:textColor="@color/blanco_vergas"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/IV_dañoTrasero4"
                 app:layout_constraintEnd_toEndOf="@+id/IV_dañoTrasero4"
                 app:layout_constraintStart_toStartOf="@+id/IV_dañoTrasero4"
@@ -195,7 +195,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Sello 1"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
@@ -207,7 +207,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Sello 1 Alta\nSeguridad"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello1" />
 
@@ -219,7 +219,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Sello 2"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/CB_sello1"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
@@ -231,7 +231,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Sello 2 Alta\nSeguridad"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/CB_sello1Alta"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello2" />
 
@@ -243,7 +243,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="VVT"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello1Alta" />
 
@@ -255,7 +255,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Escotilla"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/CB_vvt"
                 app:layout_constraintTop_toBottomOf="@+id/CB_sello2Alta" />
 
@@ -296,7 +296,7 @@
                 android:layout_marginTop="50dp"
                 android:checked="true"
                 android:text="Bisagras y tornillos"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -308,7 +308,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView97"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_puertas"
@@ -318,7 +318,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView90"
@@ -387,7 +387,7 @@
                 android:text="Lado Trasero"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -400,7 +400,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Defensa"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_bisagras" />
 
@@ -411,7 +411,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Luz galibo\nSup. Traseras"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_defensaTrasera" />
 
@@ -422,7 +422,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Plafones Derechos"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_gabildoTrasera" />
 
@@ -433,7 +433,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Plafones Izquierdos"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_plafonesDer" />
 
@@ -456,7 +456,7 @@
                 android:text="Siguiente"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -469,7 +469,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Luz de Placa"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/ED_numeroPlaca" />
 

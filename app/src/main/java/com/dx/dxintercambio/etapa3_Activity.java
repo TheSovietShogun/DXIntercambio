@@ -51,6 +51,8 @@ public class etapa3_Activity extends AppCompatActivity {
     private String  imageFileName , folio;
     private String usuario;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,12 @@ public class etapa3_Activity extends AppCompatActivity {
         IV_manitas = (ImageView) findViewById(R.id.IV_manitasIzq);
         IV_fotoCostadoFrente = (ImageView) findViewById(R.id.IV_costadoIzqFrente);
         IV_fotoCostadoAtras = (ImageView) findViewById(R.id.IV_costadoIzqAtras);
+
+        IV_NoEconomico.setClipToOutline(true);
+        IV_manitas.setClipToOutline(true);
+        IV_fotoCostadoFrente.setClipToOutline(true);
+        IV_fotoCostadoAtras.setClipToOutline(true);
+
 
         btnEtapa3 =  (Button) findViewById(R.id.btn_etapa3);
 
@@ -483,6 +491,6 @@ public class etapa3_Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 }

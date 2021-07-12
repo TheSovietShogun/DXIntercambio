@@ -24,7 +24,7 @@
                 android:layout_marginTop="37dp"
                 android:checked="true"
                 android:text="Inspeccion\nMecanica"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -36,7 +36,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Luz ABS"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_loderaIzq" />
 
@@ -48,7 +48,7 @@
                 android:layout_marginTop="37dp"
                 android:checked="true"
                 android:text="Patin\nIzquierdo"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -60,7 +60,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Cuarto lado\nizquierdo"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView89" />
 
@@ -72,7 +72,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_luzBarcIzq"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_costadoIzqFrente"
@@ -82,7 +82,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_numeroEco"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_costadoIzqAtras"
@@ -92,7 +92,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_manitasIzq"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView92"
@@ -128,7 +128,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_luzBarcIzq"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <CheckBox
                 android:id="@+id/CB_manivelaIzq"
@@ -138,7 +138,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Manivela"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_patinIzq" />
 
@@ -150,7 +150,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Luces en \nbuen estado?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_inspeccionMecanica" />
 
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="205dp" />
+                app:layout_constraintGuide_begin="196dp" />
 
             <Button
                 android:id="@+id/btn_etapa3"
@@ -173,7 +173,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:background="@drawable/round_btn"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +189,7 @@
                 android:text="Lado Izquierdo Remolque"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -203,7 +203,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Manitas"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_manivelaIzq" />
 
@@ -215,7 +215,7 @@
                 android:layout_marginTop="43dp"
                 android:checked="true"
                 android:text="Luces en\nbuen estado?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_cuartoIzq" />
 
@@ -267,7 +267,7 @@
                 android:layout_marginTop="27dp"
                 android:checked="true"
                 android:text="Luz de\nbarco izquierda"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_izqLucesP2" />
 
@@ -294,7 +294,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Rompevientos\nIzquierdo"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_luzABS3" />
 
@@ -306,7 +306,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Luz Galibo izq.\n Frontal Sup."
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_izqLucesP1" />
 
@@ -318,7 +318,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="Lodera\nIzquierda"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView89" />
         </androidx.constraintlayout.widget.ConstraintLayout>

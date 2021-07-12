@@ -85,6 +85,7 @@ public class etapa1_Activity extends AppCompatActivity {
         registradoPor.setText(user);
         registradoPor.setEnabled(false);
 
+        licencia.setClipToOutline(true);
 
         vacioArr = new String[]{"Sin Seleccionar"};
         vacioArr2 = new String[]{"Sin Seleccionar"};

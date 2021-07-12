@@ -99,6 +99,10 @@ public class etapa6_Activity extends AppCompatActivity {
         IV_llantaEje2 = (ImageView) findViewById(R.id.IV_llantaDerEje2);
         IV_chasisDerTrasero = (ImageView) findViewById(R.id.IV_chasisDerTrasero);
 
+        IV_chasisDerFrontal.setClipToOutline(true);
+        IV_llantaEje1.setClipToOutline(true);
+        IV_llantaEje2.setClipToOutline(true);
+        IV_chasisDerTrasero.setClipToOutline(true);
 
         llantaP3Marca = (Spinner) findViewById(R.id.s_marcaP3);
         llantaP4Marca = (Spinner) findViewById(R.id.s_marcaP4);
@@ -596,8 +600,8 @@ public class etapa6_Activity extends AppCompatActivity {
                                 string_eje2Birlos,
                                 idLlantaP5,
                                 llantaEstatusP5,
-                                idLlantaP6,
-                                llantaEstatusP6,
+                                "",
+                                "",
 
                                 string_llantaP7,
                                 string_llantaP8,
@@ -608,8 +612,8 @@ public class etapa6_Activity extends AppCompatActivity {
                                 string_eje1Birlos,
                                 idLlantaP1,
                                 llantaEstatusP1,
-                                idLlantaP2,
-                                llantaEstatusP2,
+                                "",
+                                "",
 
                                 string_llantaP3,
                                 string_llantaP4,
@@ -863,6 +867,6 @@ public class etapa6_Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 }

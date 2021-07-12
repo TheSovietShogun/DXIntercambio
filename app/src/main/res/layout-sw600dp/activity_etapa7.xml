@@ -39,7 +39,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView110"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoDer1"
@@ -49,7 +49,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView110"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoDer3"
@@ -59,7 +59,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer1"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoDer2"
@@ -69,7 +69,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView109"
@@ -234,7 +234,7 @@
                 android:layout_marginEnd="50dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView89"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_costadoIzqAtras"
@@ -244,7 +244,7 @@
                 android:layout_marginEnd="50dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView93"

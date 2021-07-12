@@ -5,20 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +21,6 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,11 +50,11 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
 
         LayoutInflater infalter = LayoutInflater.from(mCtx);
 
-        View view = infalter.inflate(R.layout.mlist_item, null);
+        View view = infalter.inflate(resource, null);
 
 
         ImageView send = view.findViewById(R.id.imageView3);
-        ImageView okSend = view.findViewById(R.id.imageView26);
+        ImageView okSend = view.findViewById(R.id.imageView26)  ;
         ProgressBar progressBar = view.findViewById(R.id.progressBar3);
         send.setImageResource(R.drawable.ic_subir);
         okSend.setImageResource(R.drawable.ic_ok);
@@ -68,10 +62,9 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
         okSend.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
 
-        TextView remolque = view.findViewById(R.id.t3);
-        TextView folio = view.findViewById(R.id.t1);
+
         TextView usuario = view.findViewById(R.id.t5);
-        TextView unidad = view.findViewById(R.id.t4);
+
         TextView fecha = view.findViewById(R.id.t2);
 
 
@@ -91,10 +84,7 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
 
 
 
-        remolque.setText(remolqueData);
-        folio.setText(folioData);
         usuario.setText(usuarioData);
-        unidad.setText(unidadData);
         fecha.setText(fechaData);
 
         String Ufolio = intercambioList.get(position).getFolioInterno();
@@ -280,10 +270,77 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
             String U_firmaIntercambistaUrl= intercambio.get(0).getFirmaIntercambistaUrl() ;
             String U_fechaFin= intercambio.get(0).getFechaFin() ;
 
-            CintercambioElectronico cintercambioElectronico = new CintercambioElectronico(
+            if(U_idOperador == null||U_idOperador.contains("") ){
+                U_idOperador =  "0" ;
+            }
+            if( U_idTransportista == null || U_idTransportista.contains("")){
+                U_idTransportista =  "0" ;
+            }
+            if(U_idUnidad == null || U_idUnidad.contains("")){
+                U_idUnidad =  "0" ;
+            }
+            if( U_idLinea == null|| U_idLinea.contains("")){
+                U_idLinea =  "0" ;
+            }
+            if( U_idRemolque == null||U_idRemolque.contains("")){
+                U_idRemolque =  "0" ;
+            }
+
+
+            if( U_remolqueIzqDano1FotoUrl == null){
+                U_remolqueIzqDano1FotoUrl =  "" ;
+            }
+            if( U_remolqueIzqDano2FotoUrl == null){
+                U_remolqueIzqDano2FotoUrl =  "" ;
+            }
+            if( U_remolqueIzqDano3FotoUrl == null){
+                U_remolqueIzqDano3FotoUrl =  "" ;
+            }
+            if( U_remolqueIzqDano4FotoUrl == null){
+                U_remolqueIzqDano4FotoUrl =  "" ;
+            }
+
+
+            if( U_remolqueTraseroDano1FotoUrl == null){
+                U_remolqueTraseroDano1FotoUrl =  "" ;
+            }
+            if( U_remolqueTraseroDano2FotoUrl == null){
+                U_remolqueTraseroDano2FotoUrl =  "" ;
+            }
+            if( U_remolqueTraseroDano3FotoUrl == null){
+                U_remolqueTraseroDano3FotoUrl =  "" ;
+            }
+            if( U_remolqueTraseroDano4FotoUrl == null){
+                U_remolqueTraseroDano4FotoUrl =  "" ;
+            }
+
+
+            if( U_remolqueDerDano1FotoUrl == null){
+                U_remolqueDerDano1FotoUrl =  "" ;
+            }
+            if( U_remolqueDerDano2FotoUrl == null){
+                U_remolqueDerDano2FotoUrl =  "" ;
+            }
+            if( U_remolqueDerDano3FotoUrl == null){
+                U_remolqueDerDano3FotoUrl =  "" ;
+            }
+            if( U_remolqueDerDano4FotoUrl == null){
+                U_remolqueDerDano4FotoUrl =  "" ;
+            }
+
+
+            if( U_remolqueSello3FotoUrl == null){
+                U_remolqueSello3FotoUrl =  "" ;
+            }
+
+
+
+            CintercambioElectronicoSend electronicoSend = new CintercambioElectronicoSend(
+                    "jesanchez",
+                    "1234",
             U_estatus,
             U_folio,
-            U_terminal,
+            "0",
             U_idUsuario,
             U_tipoOperacion,
             U_tipoMovimiento,
@@ -464,7 +521,7 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                     .writeTimeout(2, TimeUnit.MINUTES);
 
             Retrofit.Builder builder = new Retrofit.Builder()
-                    .baseUrl("http://"+"dxxpress.net/API/api/")
+                    .baseUrl("http://dxxpress.net/api/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     ;
 
@@ -472,22 +529,24 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
             Retrofit retrofit = builder.build();
             dxApi = retrofit.create(DxApi.class);
 
-            Call<String> stringCall = dxApi.sendIntercambio(cintercambioElectronico);
+            Call<List<CEnvio3>> sendIntercambio = dxApi.sendIntercambio(electronicoSend);
 
             Toast.makeText(mCtx, "THE GAME", Toast.LENGTH_LONG).show();
 
-          /*  stringCall.enqueue(new Callback<String>() {
+            sendIntercambio.enqueue(new Callback<List<CEnvio3>>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
+                public void onResponse(Call<List<CEnvio3>> call, Response<List<CEnvio3>> response) {
                     if(!response.isSuccessful()){
 
                         Toast.makeText(mCtx, "Error " + response.message(), Toast.LENGTH_LONG).show();
                         okSend.setImageResource(R.drawable.ic_baseline_error_24);
                         okSend.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.INVISIBLE);
-                        stringCall.cancel();
 
-                    }else{
+
+                    } else {
+
+                        String r = response.message();
 
                         File mydir = mCtx.getDir("intercambios", Context.MODE_PRIVATE);
                         String dirPath = mydir.getPath()+"/"+Ufolio;
@@ -505,6 +564,7 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                 MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
                                 RequestBody carpeta = RequestBody.create( Ufolio ,MediaType.parse("text/plain"));
 
+
                                 Call<String> sendImg = dxApi.imgMulipart(carpeta,fileToUpload);
 
 
@@ -518,15 +578,16 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                             okSend.setImageResource(R.drawable.ic_baseline_error_24);
                                             okSend.setVisibility(View.VISIBLE);
                                             progressBar.setVisibility(View.INVISIBLE);
-                                            stringCall.cancel();
+
 
                                         }else{
 
                                             String r = response.message();
-
                                             if(r.contains("OK")){
-                                                file.delete();
+                                               //file.delete();
                                             }
+
+
 
                                         }
                                     }
@@ -542,6 +603,7 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                         progressBar.setVisibility(View.INVISIBLE);
 
 
+
                                     }
                                 });
 
@@ -550,6 +612,11 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                             progressBar.setVisibility(View.INVISIBLE);
                             okSend.setImageResource(R.drawable.ic_ok);
                             okSend.setVisibility(View.VISIBLE);
+                            send.setEnabled(false);
+                            send.setVisibility(View.INVISIBLE);
+
+
+                           // long resp = dataBaseHelper.deleteIntercambio(Ufolio);
 
                         }else{
 
@@ -557,23 +624,24 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                             okSend.setImageResource(R.drawable.ic_baseline_error_24);
                             okSend.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.INVISIBLE);
-                            stringCall.cancel();
+
+
 
                         }
                     }
                 }
 
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(Call<List<CEnvio3>> call, Throwable t) {
 
                     Toast.makeText(mCtx, "Error : " + t.getMessage(), Toast.LENGTH_LONG).show();
                     okSend.setImageResource(R.drawable.ic_baseline_error_24);
                     okSend.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    stringCall.cancel();
+
 
                 }
-            });*/
+            });
         });
 
 

@@ -40,16 +40,14 @@ public class list2Adapter extends ArrayAdapter<CPopulateList> {
 
         LayoutInflater infalter = LayoutInflater.from(mCtx);
 
-        View view = infalter.inflate(R.layout.mlist_item2, null);
+        View view = infalter.inflate(resource, null);
 
         ImageView cont = view.findViewById(R.id.imageView3);
         cont.setImageResource(R.drawable.ic_continuar);
 
 
         TextView remolque = view.findViewById(R.id.t3);
-        TextView folio = view.findViewById(R.id.t1);
         TextView usuario = view.findViewById(R.id.t5);
-        TextView unidad = view.findViewById(R.id.t4);
         TextView fecha = view.findViewById(R.id.t2);
 
 
@@ -69,9 +67,7 @@ public class list2Adapter extends ArrayAdapter<CPopulateList> {
 
 
         remolque.setText(remolqueData);
-        folio.setText(folioData);
         usuario.setText(usuarioData);
-        unidad.setText(unidadData);
         fecha.setText(fechaData);
 
 

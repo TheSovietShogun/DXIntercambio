@@ -79,6 +79,11 @@ public class etapa2_Activity extends AppCompatActivity {
         frenteTracto = (ImageView) findViewById(R.id.IV_tractorDer);
         derTracto = (ImageView) findViewById(R.id.IV_tractoFrente);
 
+        izqTracto.setClipToOutline(true);
+        frenteTracto.setClipToOutline(true);
+        derTracto.setClipToOutline(true);
+
+
        btnEtapa2 =  (Button) findViewById(R.id.btn_etapa2);
 
 
@@ -460,6 +465,6 @@ public class etapa2_Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 }

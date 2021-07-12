@@ -83,6 +83,13 @@ public class etapa7_Activity extends AppCompatActivity {
         daño3 = (ImageView) findViewById(R.id.IV_dañoDer2);
         daño4 = (ImageView) findViewById(R.id.IV_dañoDer3);
 
+        IV_costadoDerAtras.setClipToOutline(true);
+        IV_costadoDerFrente.setClipToOutline(true);
+        daño1.setClipToOutline(true);
+        daño2.setClipToOutline(true);
+        daño3.setClipToOutline(true);
+        daño4.setClipToOutline(true);
+
         btnEtapa7 =  (Button) findViewById(R.id.btn_etapa7);
 
         fondoPlaga.setOnClickListener(view -> {
@@ -621,7 +628,7 @@ public class etapa7_Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 
 }

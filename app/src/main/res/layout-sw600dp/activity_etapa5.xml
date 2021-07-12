@@ -25,7 +25,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/IV_sello2"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView104"
@@ -49,7 +49,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/IV_sello1"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView103"
@@ -74,7 +74,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView96"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView94"
@@ -97,7 +97,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero2"
@@ -107,7 +107,7 @@
                 android:layout_marginTop="35dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoTrasero4"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero3"
@@ -117,7 +117,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoTrasero1"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoTrasero4"
@@ -127,7 +127,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView98"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView95"
@@ -308,7 +308,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView97"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_puertas"
@@ -318,7 +318,7 @@
                 android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView90"

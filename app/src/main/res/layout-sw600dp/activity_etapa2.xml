@@ -35,7 +35,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/IV_TractoIzq"
                 app:layout_constraintTop_toBottomOf="@+id/CB_techos"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <CheckBox
                 android:id="@+id/CB_llanta"
@@ -58,7 +58,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/IV_tractoFrente"
                 app:layout_constraintTop_toBottomOf="@+id/CB_techos"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <CheckBox
                 android:id="@+id/CB_motor"
@@ -139,7 +139,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CB_techos"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView90"

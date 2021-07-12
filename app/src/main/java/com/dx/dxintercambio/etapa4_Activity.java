@@ -112,6 +112,16 @@ public class etapa4_Activity extends AppCompatActivity {
         daño3 = (ImageView) findViewById(R.id.IV_dañoIzq3);
         daño4 = (ImageView) findViewById(R.id.IV_dañoIzq4);
 
+        IV_chasisIzqFrontal.setClipToOutline(true);
+        IV_llantaEje1.setClipToOutline(true);
+        IV_llantaEje2.setClipToOutline(true);
+        IV_chasisIzqTrasero.setClipToOutline(true);
+        daño1.setClipToOutline(true);
+        daño2.setClipToOutline(true);
+        daño3.setClipToOutline(true);
+        daño4.setClipToOutline(true);
+
+
         llantaP1Marca = (Spinner) findViewById(R.id.S_marcaP1);
         llantaP2Marca = (Spinner) findViewById(R.id.S_marcaP2);
         llantaP5Marca = (Spinner) findViewById(R.id.S_marcaP5);
@@ -395,8 +405,10 @@ public class etapa4_Activity extends AppCompatActivity {
         daño2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 daño2.setEnabled(false);
                 daño2.setClickable(false);
+
                 int TIME = 5000;
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -889,7 +901,7 @@ public class etapa4_Activity extends AppCompatActivity {
         }
 
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        photoURI = FileProvider.getUriForFile(getBaseContext(), getBaseContext().getApplicationContext().getPackageName() + ".provider", imageFile);
+        photoURI = FileProvider.getUriForFile(getBaseContext(),  getBaseContext().getApplicationContext().getPackageName() + ".provider", imageFile);
         camera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         camera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(camera, code);
@@ -1076,6 +1088,6 @@ public class etapa4_Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 }

@@ -87,6 +87,16 @@ public class etapa5_Activity extends AppCompatActivity {
         daño3 = (ImageView) findViewById(R.id.IV_dañoTrasero3);
         daño4 = (ImageView) findViewById(R.id.IV_dañoTrasero4);
 
+        IV_puertas.setClipToOutline(true);
+        IV_placas.setClipToOutline(true);
+        IV_sello1.setClipToOutline(true);
+        IV_sello2.setClipToOutline(true);
+        IV_sello3.setClipToOutline(true);
+        daño1.setClipToOutline(true);
+        daño2.setClipToOutline(true);
+        daño3.setClipToOutline(true);
+        daño4.setClipToOutline(true);
+
         comentarios = (EditText) findViewById(R.id.editTextTextMultiLine2);
         numeroPlaca = (EditText) findViewById(R.id.ED_numeroPlaca);
         numeroSello1 = (EditText) findViewById(R.id.editTextTextPersonName3);
@@ -718,6 +728,8 @@ public class etapa5_Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, resultData);
     }
 
+
+
     private boolean createDirectoryAndSaveFile(Bitmap imageToSave, String fileName, String path) {
 
         File file = new File(path, fileName);
@@ -766,6 +778,6 @@ public class etapa5_Activity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 }

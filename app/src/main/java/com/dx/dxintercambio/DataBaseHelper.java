@@ -43,6 +43,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         super(context, TABLE_INTERCAMBIO + ".db", null, 1);
     }
 
+
+
+   /* @Override
+    protected void finalize() throws Throwable {
+        this.close();
+        super.finalize();
+    }*/
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -275,6 +283,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTableLlanta);
         db.execSQL(createTableUsuario);
         db.execSQL(createTableIntercambioElectronico);
+
+
 
     }
 
@@ -705,8 +715,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long insert = db.insert(TABLE_INTERCAMBIO,null,cv);
 
         if(insert == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return insert;
         }
     }
@@ -738,8 +750,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -773,8 +787,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -838,8 +854,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -888,8 +906,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -948,8 +968,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -987,8 +1009,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -1001,12 +1025,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("fechaFin",fechaFin);
         cv.put("firmaOperadorUrl",firmaOperadorUrl);
         cv.put("firmaIntercambistaUrl",firmaIntercambistaUrl);
+        cv.put("estatus","500");
 
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
 
         if(update == -1){
+            db.close();
             return -1;
         }else{
+            db.close();
             return update;
         }
     }
@@ -1019,7 +1046,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         String queryString = "SELECT i.folio,i.fechaFin,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin  " +
                 "FROM " + TABLE_INTERCAMBIO + " i LEFT JOIN unidad u ON u.idUnidad = i.idUnidad LEFT JOIN usuario us ON us.idUsuario = i.idUsuario LEFT JOIN remolque r ON r.idRemolque = i.idRemolque "
-                + " WHERE i.fechaFin IS NOT null ";
+                + " WHERE i.estatus = " + "'" + 500 + "'" ;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -1506,4 +1533,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return  response;
     }
+
+    public long deleteIntercambio( String folio ){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("estatus","1000");
+
+        long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
+
+        if(update == -1){
+            db.close();
+            return -1;
+        }else{
+            db.close();
+            return update;
+        }
+
+    }
+
+
+
 }

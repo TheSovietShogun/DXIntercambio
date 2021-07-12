@@ -39,7 +39,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView110"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoDer1"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView110"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoDer3"
@@ -59,7 +59,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer1"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <ImageView
                 android:id="@+id/IV_dañoDer2"
@@ -69,7 +69,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/IV_dañoDer"
-                app:srcCompat="@color/azul_chingon" />
+                android:background="@drawable/round_corner_imageview" />
 
             <TextView
                 android:id="@+id/textView109"
@@ -145,7 +145,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Luz Galibo Der.\n Frontal Sup."
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_lucesCheckDer" />
 
@@ -156,7 +156,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Patin Derecho"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_paredPlagasIzq" />
 
@@ -167,7 +167,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Luces en\nbuen estado?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_techoPlagas" />
 
@@ -178,7 +178,7 @@
                 android:layout_marginTop="32dp"
                 android:checked="true"
                 android:text="El fondo de la\ncaja esta libre\nde plagas?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -189,7 +189,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Pared derecha\nlibre de plagas?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_luzGabDer" />
 
@@ -200,7 +200,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Cuarto lado\nderecho"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/textView89" />
 
@@ -211,7 +211,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Luces en\nbuen estado?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_loderaDer" />
 
@@ -222,7 +222,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Luz de\nbarco derecha"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_derLucesP2" />
 
@@ -230,21 +230,21 @@
                 android:id="@+id/IV_costadoIzqFrente"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView89"
-                app:srcCompat="@color/azul_chingon" />
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/round_corner_imageview"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView89" />
 
             <ImageView
                 android:id="@+id/IV_costadoIzqAtras"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView88"
-                app:srcCompat="@color/azul_chingon" />
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/round_corner_imageview"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
             <TextView
                 android:id="@+id/textView93"
@@ -281,7 +281,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Pared izquierda\nlibre de plagas?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_paredPlagasDer" />
 
@@ -292,7 +292,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="El piso esta\nlibre de plagas?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_fondoCaja" />
 
@@ -315,7 +315,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:background="@drawable/round_btn"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -331,7 +331,7 @@
                 android:text="Lado Derecho Remolque"
                 android:textAlignment="center"
                 android:textColor="@color/azul_chingon"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -375,7 +375,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Rompevientos\nDerecha"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_luzBarcDer" />
 
@@ -386,7 +386,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="El techo esta\nlibre de plagas?"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_pisoPlagas" />
 
@@ -397,7 +397,7 @@
                 android:layout_marginTop="16dp"
                 android:checked="true"
                 android:text="Lodera Derecha"
-                android:textSize="25sp"
+               android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/CB_cuartoDer" />
         </androidx.constraintlayout.widget.ConstraintLayout>

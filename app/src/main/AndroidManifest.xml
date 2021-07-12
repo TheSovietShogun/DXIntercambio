@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
         android:allowBackup="true"
         android:configChanges="orientation|screenSize"
@@ -27,14 +27,23 @@
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity android:name=".etapa7_Activity" />
-        <activity android:name=".etapa6_Activity" />
-        <activity android:name=".etapa5_Activity" />
-        <activity android:name=".etapa4_Activity" />
-        <activity android:name=".etapa3_Activity" />
-        <activity android:name=".etapa2_Activity" />
-        <activity android:name=".listActivity" />
-        <activity android:name=".menuActivity">
+        <activity android:name=".etapa7_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".etapa6_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".etapa5_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".etapa4_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".etapa3_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".etapa2_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".listActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".menuActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,6 +59,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".cancelarActivity"
+
             android:screenOrientation="portrait" />
 
         <provider
