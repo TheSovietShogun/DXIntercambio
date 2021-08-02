@@ -9,7 +9,18 @@ public class CPopulateList {
     private String tracto ;
     private String estatus ;
     private String fechaFin ;
+    private String enviado ;
 
+    public CPopulateList(String folioInterno, String fechaInicio, String remolque, String usuario, String tracto, String estatus, String fechaFin, String enviado) {
+        this.folioInterno = folioInterno;
+        this.fechaInicio = fechaInicio;
+        this.remolque = remolque;
+        this.usuario = usuario;
+        this.tracto = tracto;
+        this.estatus = estatus;
+        this.fechaFin = fechaFin;
+        this.enviado = enviado;
+    }
 
     @Override
     public String toString() {
@@ -21,17 +32,8 @@ public class CPopulateList {
                 ", tracto='" + tracto + '\'' +
                 ", estatus='" + estatus + '\'' +
                 ", fechaFin='" + fechaFin + '\'' +
+                ", enviado='" + enviado + '\'' +
                 '}';
-    }
-
-    public CPopulateList(String folioInterno, String fechaInicio, String remolque, String usuario, String tracto, String estatus, String fechaFin) {
-        this.folioInterno = folioInterno;
-        this.fechaInicio = fechaInicio;
-        this.remolque = remolque;
-        this.usuario = usuario;
-        this.tracto = tracto;
-        this.estatus = estatus;
-        this.fechaFin = fechaFin;
     }
 
     public String getFolioInterno() {
@@ -88,5 +90,13 @@ public class CPopulateList {
 
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getEnviado() {
+        return enviado;
+    }
+
+    public void setEnviado(String enviado) {
+        this.enviado = enviado;
     }
 }

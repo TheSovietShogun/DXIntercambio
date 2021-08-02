@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:tag="mlist"
     android:layout_height="match_parent"
     android:background="@color/blanco_vergas"
-    >
+    android:tag="mlist">
 
 
     <TextView
@@ -24,7 +23,7 @@
         android:id="@+id/t6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:text="Acciones"
@@ -38,8 +37,9 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/t6"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView80"
         app:layout_constraintStart_toStartOf="@+id/t6"
         app:layout_constraintTop_toBottomOf="@+id/t6"
         app:srcCompat="@drawable/ic_subir" />
@@ -61,10 +61,10 @@
         android:layout_width="34dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
-        android:visibility="invisible"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:indeterminateTint="@color/azul_chingon"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/t6"
@@ -83,5 +83,16 @@
         app:layout_constraintStart_toEndOf="@+id/t6"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_ok" />
+
+    <ImageView
+        android:id="@+id/imageView80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/t6"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/t6"
+        app:srcCompat="@drawable/ic_delete_forever_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

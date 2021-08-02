@@ -100,6 +100,16 @@
                 android:background="@drawable/round_corner_imageview" />
 
             <ImageView
+                android:id="@+id/IV_interiorRemolque"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="85dp"
+                android:background="@drawable/round_corner_imageview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CB_escotilla" />
+
+            <ImageView
                 android:id="@+id/IV_dañoTrasero2"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
@@ -279,7 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="89dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="32dp"
                 android:text="Daños"
                 android:textAlignment="center"
@@ -287,7 +297,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CB_escotilla" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox31" />
 
             <CheckBox
                 android:id="@+id/CB_bisagras"
@@ -464,14 +474,25 @@
 
             <CheckBox
                 android:id="@+id/CB_luzPlaca"
-                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:checked="true"
                 android:text="Luz de Placa"
                 android:textSize="30sp"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/ED_numeroPlaca" />
+
+            <CheckBox
+                android:id="@+id/CB_luzPlaca2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="true"
+                android:textSize="30sp"
+                android:text="Placa"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_luzPlaca" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine2"
@@ -540,6 +561,74 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName4"
                 app:layout_constraintTop_toBottomOf="@+id/IV_selloExtra" />
+
+            <TextView
+                android:id="@+id/textView113"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/blanco_vergas"
+                android:textSize="20sp"
+                android:text="Interior Remolque\n(si esta vacia)"
+                app:layout_constraintBottom_toBottomOf="@+id/IV_interiorRemolque"
+                app:layout_constraintEnd_toEndOf="@+id/IV_interiorRemolque"
+                app:layout_constraintStart_toStartOf="@+id/IV_interiorRemolque"
+                app:layout_constraintTop_toTopOf="@+id/IV_interiorRemolque" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="89dp"
+                android:text="Empaque Puertas"
+                android:checked="true"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/CB_escotilla" />
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="Cinta Reflejante"
+                android:checked="true"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+            <CheckBox
+                android:id="@+id/checkBox12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:text="Herrajes"
+                android:checked="true"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+
+            <CheckBox
+                android:id="@+id/checkBox30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="Luces Frenado"
+                android:checked="true"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox12" />
+
+            <CheckBox
+                android:id="@+id/checkBox31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:text="Luces Intermitentes"
+                android:checked="true"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox30" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

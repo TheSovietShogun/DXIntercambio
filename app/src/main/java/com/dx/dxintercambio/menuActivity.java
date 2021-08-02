@@ -14,6 +14,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,13 +35,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class menuActivity extends AppCompatActivity {
 
-    private EditText Hcontra;
-    private TextView redEstatus, sinIntercambios;
+    private EditText Hcontra ;
+    private TextView redEstatus, sinIntercambios ;
     private Button generarInter , enviarInter ;
-    private DxApi dxApi;
-    private ListView listView;
+    private DxApi dxApi ;
+    private ListView listView ;
     private list2Adapter list2Adapter ;
-    private int widthScreen;
+    private int widthScreen ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,6 @@ public class menuActivity extends AppCompatActivity {
         widthScreen = getApplicationContext().getResources().getDisplayMetrics().widthPixels;
 
 
-
         if(isNetworkAvailable(getApplicationContext())){
             redEstatus.setText("Estatus Red : Conectado");
             redEstatus.setTextColor(Color.parseColor("#197210"));
@@ -65,13 +67,12 @@ public class menuActivity extends AppCompatActivity {
         }
 
 
-
         if(isNetworkAvailable(getApplicationContext())){
 
             DataBaseHelper dataBaseHelper =  new DataBaseHelper(menuActivity.this);
 
-
             int response = dataBaseHelper.clearTables();
+
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                     .callTimeout(3, TimeUnit.MINUTES)
                     .connectTimeout(3, TimeUnit.MINUTES)
@@ -247,6 +248,7 @@ public class menuActivity extends AppCompatActivity {
                     Toast.makeText(menuActivity.this, "Remolque Error " + t.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
+
         }else{
             Toast.makeText(menuActivity.this, "SIN RED " , Toast.LENGTH_LONG).show();
         }
@@ -271,25 +273,37 @@ public class menuActivity extends AppCompatActivity {
             }
         });
 
-       DataBaseHelper dataBaseHelper = new DataBaseHelper(menuActivity.this);
 
-        List<CPopulateList> intercambioSelect = dataBaseHelper.selectIntercambioAbierto();
 
-        if(intercambioSelect == null|| intercambioSelect.isEmpty()){
+        int TIME = 4000;
 
-            sinIntercambios.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-        }else {
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(menuActivity.this);
 
-            if (widthScreen > 480) {
-                list2Adapter = new list2Adapter(getApplicationContext(),R.layout.mlist_item2,intercambioSelect);
-            }else{
-                list2Adapter = new list2Adapter(getApplicationContext(),R.layout.mlist_item2_cel,intercambioSelect);
+                List<CPopulateList> intercambioSelect = dataBaseHelper.selectIntercambioAbierto();
+
+                if(intercambioSelect == null|| intercambioSelect.isEmpty()){
+
+                    sinIntercambios.setVisibility(View.VISIBLE);
+
+                }else {
+
+                    if (widthScreen > 480) {
+                        list2Adapter = new list2Adapter(getApplicationContext(),R.layout.mlist_item2,intercambioSelect);
+                    }else{
+                        list2Adapter = new list2Adapter(getApplicationContext(),R.layout.mlist_item2_cel,intercambioSelect);
+                    }
+
+
+                    listView.setAdapter(list2Adapter);
+                }
+
             }
+        }, TIME);
 
-
-            listView.setAdapter(list2Adapter);
-        }
 
 
 
@@ -318,15 +332,15 @@ public class menuActivity extends AppCompatActivity {
                 try {
                     NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                     if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-                        Log.i("update_statut", "Network is available : true");
+                        //Log.i("update_statut", "Network is available : true");
                         return true;
                     }
                 } catch (Exception e) {
-                    Log.i("update_statut", "" + e.getMessage());
+                    //Log.i("update_statut", "" + e.getMessage());
                 }
             }
         }
-        Log.i("update_statut","Network is available : FALSE ");
+        //Log.i("update_statut","Network is available : FALSE ");
         return false;
     }
 

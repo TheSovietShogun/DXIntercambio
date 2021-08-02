@@ -1,6 +1,9 @@
 package com.dx.dxintercambio;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +44,7 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
         this.mCtx = mCtx;
         this.resource = resource;
         this.intercambioList = intercambioList;
+
     }
 
     @NonNull
@@ -54,19 +58,30 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
 
 
         ImageView send = view.findViewById(R.id.imageView3);
-        ImageView okSend = view.findViewById(R.id.imageView26)  ;
+        ImageView okSend = view.findViewById(R.id.imageView26);
+        ImageView delete = view.findViewById(R.id.imageView80);
         ProgressBar progressBar = view.findViewById(R.id.progressBar3);
         send.setImageResource(R.drawable.ic_subir);
         okSend.setImageResource(R.drawable.ic_ok);
+        delete.setImageResource(R.drawable.ic_delete_forever_black_24dp);
 
         okSend.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
 
 
         TextView usuario = view.findViewById(R.id.t5);
-
         TextView fecha = view.findViewById(R.id.t2);
 
+        String checkEnviado = intercambioList.get(position).getEstatus();
+
+
+        if(checkEnviado.contains("1000")){
+            okSend.setImageResource(R.drawable.ic_ok);
+            okSend.setVisibility(View.VISIBLE);
+        }else{
+            send.setEnabled(true);
+            send.setVisibility(View.VISIBLE);
+        }
 
         String folioData = "Folio Interno\n"+intercambioList.get(position).getFolioInterno();
         String fechaData = "Fecha y Hora\n"+intercambioList.get(position).getFechaFin();
@@ -83,7 +98,6 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
         }
 
 
-
         usuario.setText(usuarioData);
         fecha.setText(fechaData);
 
@@ -91,6 +105,8 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
 
         send.setOnClickListener(v -> {
 
+            send.setEnabled(false);
+            okSend.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.VISIBLE);
 
             DataBaseHelper dataBaseHelper = new DataBaseHelper(mCtx);
@@ -268,6 +284,14 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
             String U_remolqueDerDano4FotoUrl= intercambio.get(0).getRemolqueDerDano4FotoUrl() ;
             String U_firmaOperadorUrl= intercambio.get(0).getFirmaOperadorUrl() ;
             String U_firmaIntercambistaUrl= intercambio.get(0).getFirmaIntercambistaUrl() ;
+
+            String U_interiorUrl = intercambio.get(0).getInteriorUrl() ;
+            String U_empaquePuertas = intercambio.get(0).getEmpaquePuertas() ;
+            String U_cintaReflejante= intercambio.get(0).getCintaReflejante() ;
+            String U_herrajes= intercambio.get(0).getHerrajes() ;
+            String U_lucesFrenado= intercambio.get(0).getLucesFrenado() ;
+            String U_lucesIntermitentes= intercambio.get(0).getLucesIntermitentes() ;
+
             String U_fechaFin= intercambio.get(0).getFechaFin() ;
 
             if(U_idOperador == null||U_idOperador.contains("") ){
@@ -328,6 +352,10 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                 U_remolqueDerDano4FotoUrl =  "" ;
             }
 
+            if( U_interiorUrl == null){
+                U_interiorUrl =  "" ;
+            }
+           
 
             if( U_remolqueSello3FotoUrl == null){
                 U_remolqueSello3FotoUrl =  "" ;
@@ -509,7 +537,13 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
             U_remolqueDerDano4FotoUrl,
             U_firmaOperadorUrl,
             U_firmaIntercambistaUrl,
-            U_fechaFin
+                    U_interiorUrl,
+                    U_empaquePuertas,
+                    U_cintaReflejante,
+                    U_herrajes,
+                    U_lucesFrenado,
+                    U_lucesIntermitentes,
+                    U_fechaFin
             );
 
              DxApi dxApi;
@@ -531,9 +565,9 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
 
             Call<List<CEnvio3>> sendIntercambio = dxApi.sendIntercambio(electronicoSend);
 
-            Toast.makeText(mCtx, "THE GAME", Toast.LENGTH_LONG).show();
 
-            sendIntercambio.enqueue(new Callback<List<CEnvio3>>() {
+
+          sendIntercambio.enqueue(new Callback<List<CEnvio3>>() {
                 @Override
                 public void onResponse(Call<List<CEnvio3>> call, Response<List<CEnvio3>> response) {
                     if(!response.isSuccessful()){
@@ -542,7 +576,8 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                         okSend.setImageResource(R.drawable.ic_baseline_error_24);
                         okSend.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.INVISIBLE);
-
+                        sendIntercambio.cancel();
+                        send.setEnabled(true);
 
                     } else {
 
@@ -551,6 +586,7 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                         File mydir = mCtx.getDir("intercambios", Context.MODE_PRIVATE);
                         String dirPath = mydir.getPath()+"/"+Ufolio;
                         File folder = new File(dirPath);
+
                         if(folder.exists()) {
 
 
@@ -558,15 +594,18 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                     (dir, name) -> (name.endsWith(".jpg")));
 
 
+                            int i = 0;
+
+
                             for (File file : allFiles) {
+
+                                 i = i +1;
 
                                 RequestBody requestBody = RequestBody.create( file,MediaType.parse("multipart/form-data"));
                                 MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
                                 RequestBody carpeta = RequestBody.create( Ufolio ,MediaType.parse("text/plain"));
 
-
                                 Call<String> sendImg = dxApi.imgMulipart(carpeta,fileToUpload);
-
 
                                 sendImg.enqueue(new CallbackWithRetry<String>() {
 
@@ -578,14 +617,12 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                             okSend.setImageResource(R.drawable.ic_baseline_error_24);
                                             okSend.setVisibility(View.VISIBLE);
                                             progressBar.setVisibility(View.INVISIBLE);
-
+                                            sendIntercambio.cancel();
+                                            send.setEnabled(true);
 
                                         }else{
 
                                             String r = response.message();
-                                            if(r.contains("OK")){
-                                               //file.delete();
-                                            }
 
 
 
@@ -601,22 +638,28 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                         okSend.setImageResource(R.drawable.ic_baseline_error_24);
                                         okSend.setVisibility(View.VISIBLE);
                                         progressBar.setVisibility(View.INVISIBLE);
+                                        sendIntercambio.cancel();
+                                        send.setEnabled(true);
 
 
 
                                     }
                                 });
 
+                                if(i == allFiles.length ){
+
+                                    long responseSetEnviado = dataBaseHelper.setEnviado(U_folio);
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    okSend.setImageResource(R.drawable.ic_ok);
+                                    okSend.setVisibility(View.VISIBLE);
+                                    send.setVisibility(View.INVISIBLE);
+                                    send.setEnabled(true);
+
+                                }
+
                             }
 
-                            progressBar.setVisibility(View.INVISIBLE);
-                            okSend.setImageResource(R.drawable.ic_ok);
-                            okSend.setVisibility(View.VISIBLE);
-                            send.setEnabled(false);
-                            send.setVisibility(View.INVISIBLE);
 
-
-                           // long resp = dataBaseHelper.deleteIntercambio(Ufolio);
 
                         }else{
 
@@ -624,7 +667,8 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                             okSend.setImageResource(R.drawable.ic_baseline_error_24);
                             okSend.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.INVISIBLE);
-
+                            sendIntercambio.cancel();
+                            send.setEnabled(true);
 
 
                         }
@@ -638,13 +682,66 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                     okSend.setImageResource(R.drawable.ic_baseline_error_24);
                     okSend.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-
+                    sendIntercambio.cancel();
+                    send.setEnabled(true);
 
                 }
             });
+
+
         });
 
 
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                delete.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
+                send.setEnabled(false);
+
+                File mydir = mCtx.getDir("intercambios", Context.MODE_PRIVATE);
+                String dirPath = mydir.getPath()+"/"+Ufolio;
+                File folder = new File(dirPath);
+                if(folder.exists()) {
+
+                    File[] allFiles = folder.listFiles(
+                            (dir, name) -> (name.endsWith(".jpg")));
+
+                    for (File file : allFiles) {
+                        file.delete();
+                    }
+
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(mCtx);
+
+                    long deleteIntercambio = dataBaseHelper.deleteIntercambio(Ufolio);
+
+                    if( deleteIntercambio != -1){
+
+                        Toast.makeText(mCtx, "Exito al Eliminar", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        okSend.setImageResource(R.drawable.ic_ok);
+                        okSend.setVisibility(View.VISIBLE);
+                        send.setEnabled(false);
+                        send.setVisibility(View.INVISIBLE);
+                        delete.setEnabled(true);
+                        delete.setVisibility(View.INVISIBLE);
+
+
+                    }else{
+
+                        Toast.makeText(mCtx, "Error al Eliminar", Toast.LENGTH_LONG).show();
+                        okSend.setImageResource(R.drawable.ic_baseline_error_24);
+                        okSend.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        delete.setEnabled(true);
+
+                    }
+                }
+
+
+            }
+        });
 
         return view;
     }

@@ -26,15 +26,20 @@ import java.io.IOException;
 
 public class etapa5_Activity extends AppCompatActivity {
 
-    private CheckBox bisagras , defensaTrasera , luzGabildoTrasera ,plafonesDerechos , plafonesIzquierdos ,  luzPlaca , sello1 , sello2 , sello1Alta , sello2Alta , vvt , escotilla;
+    private CheckBox bisagras , defensaTrasera , luzGabildoTrasera ,plafonesDerechos , plafonesIzquierdos ,  luzPlaca , sello1 , sello2 , sello1Alta , sello2Alta , vvt , escotilla , placaCheck,
+    empaquePuertas, cintaReflejante,herrajes,lucesFrenado,lucesIntermitentes
+            ;
     private Boolean check_bisagras = true, check_defensaTrasera = true, check_luzGabildoTrasera= true ,check_plafonesDerechos= true , check_plafonesIzquierdos = true, check_luzPlaca= true,
-                    check_sello1 = true, check_sello2 = true, check_sello1Alta = true,check_sello2Alta = true, check_vvt = true, check_escotilla = true;
+                    check_sello1 = true, check_sello2 = true, check_sello1Alta = true,check_sello2Alta = true, check_vvt = true, check_escotilla = true , check_placaCheck= true ,
+                    check_empaquePuertas = true ,check_cintaReflejante = true ,check_herraje = true ,check_lucesFrenado = true ,check_lucesIntermitentes = true ;
     private String path ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,string_plafonesIzquierdos ,string_luzPlaca,
-            string_sello1 , string_sello2 , string_sello1Alta ,string_sello2Alta , string_vvt , string_escotilla ;
+            string_sello1 , string_sello2 , string_sello1Alta ,string_sello2Alta , string_vvt , string_escotilla ,string_placaCheck ,
+            string_empaquePuertas, string_cintaReflejante,string_herraje,string_lucesFrenado,string_lucesIntermitentes ;
 
-    private ImageView IV_puertas , IV_placas , IV_sello1 ,IV_sello2 , IV_sello3 , daño1,daño2,daño3,daño4;
-    private Bitmap actual_puertas , actual_placas , actual_sello1 ,actual_sello2 , actual_sello3,actual_daño1,actual_daño2,actual_daño3,actual_daño4;
+    private ImageView IV_puertas , IV_placas , IV_sello1 ,IV_sello2 , IV_sello3 ,IV_interiorRemolque , daño1,daño2,daño3,daño4;
+    private Bitmap actual_puertas , actual_placas , actual_sello1 ,actual_sello2 , actual_sello3,actual_daño1,actual_daño2,actual_daño3,actual_daño4 , actual_interior;
     private Button btnEtapa5 ;
+    public static final int REQUEST_INTERIOR = 90;
     public static final int REQUEST_PUERTAS = 100;
     public static final int REQUEST_PLACAS = 101;
     public static final int REQUEST_SELLO1 = 102;
@@ -51,7 +56,8 @@ public class etapa5_Activity extends AppCompatActivity {
     private String  imageFileName , folio;
     private EditText comentarios , numeroPlaca  , numeroSello1, numeroSello2 , numeroSello3 ;
     private String usuario;
-
+    private DataBaseHelper dataBaseHelper;
+    private String responseEstatusRemolque ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +81,13 @@ public class etapa5_Activity extends AppCompatActivity {
         sello2Alta = (CheckBox) findViewById(R.id.CB_sello2Alta);
         vvt = (CheckBox) findViewById(R.id.CB_vvt);
         escotilla = (CheckBox) findViewById(R.id.CB_escotilla);
+        placaCheck  = (CheckBox) findViewById(R.id.CB_luzPlaca2);
 
+        empaquePuertas  = (CheckBox) findViewById(R.id.checkBox2);
+        cintaReflejante  = (CheckBox) findViewById(R.id.checkBox6);
+        herrajes  = (CheckBox) findViewById(R.id.checkBox12);
+        lucesFrenado  = (CheckBox) findViewById(R.id.checkBox30);
+        lucesIntermitentes  = (CheckBox) findViewById(R.id.checkBox31);
 
         IV_puertas = (ImageView) findViewById(R.id.IV_puertas);
         IV_placas = (ImageView) findViewById(R.id.IV_placas);
@@ -86,6 +98,9 @@ public class etapa5_Activity extends AppCompatActivity {
         daño2 = (ImageView) findViewById(R.id.IV_dañoTrasero2);
         daño3 = (ImageView) findViewById(R.id.IV_dañoTrasero3);
         daño4 = (ImageView) findViewById(R.id.IV_dañoTrasero4);
+
+        IV_interiorRemolque = (ImageView) findViewById(R.id.IV_interiorRemolque);
+
 
         IV_puertas.setClipToOutline(true);
         IV_placas.setClipToOutline(true);
@@ -104,8 +119,36 @@ public class etapa5_Activity extends AppCompatActivity {
         numeroSello3 = (EditText) findViewById(R.id.editTextTextPersonName5);
 
         comentarios = (EditText) findViewById(R.id.editTextTextMultiLine2);
-
         btnEtapa5 =  (Button) findViewById(R.id.btn_etapa5);
+
+
+        dataBaseHelper = new DataBaseHelper(etapa5_Activity.this);
+         responseEstatusRemolque = dataBaseHelper.checkVacio(folio);
+
+        if (responseEstatusRemolque.contains("0")){
+            IV_interiorRemolque.setEnabled(true);
+            empaquePuertas.setEnabled(true);
+            cintaReflejante.setEnabled(true);
+            herrajes.setEnabled(true);
+            lucesFrenado.setEnabled(true);
+            lucesIntermitentes.setEnabled(true);
+        }else{
+            IV_interiorRemolque.setEnabled(false);
+            empaquePuertas.setEnabled(false);
+            cintaReflejante.setEnabled(false);
+            herrajes.setEnabled(false);
+            lucesFrenado.setEnabled(false);
+            lucesIntermitentes.setEnabled(false);
+        }
+
+
+
+
+        placaCheck.setOnClickListener(view -> {
+
+            check_placaCheck = ((CheckBox) view).isChecked();
+
+        });
 
         bisagras.setOnClickListener(view -> {
 
@@ -177,6 +220,57 @@ public class etapa5_Activity extends AppCompatActivity {
 
             check_escotilla = ((CheckBox) view).isChecked();
 
+        });
+
+
+        empaquePuertas.setOnClickListener(view -> {
+
+            check_empaquePuertas = ((CheckBox) view).isChecked();
+
+        });
+
+        cintaReflejante.setOnClickListener(view -> {
+
+            check_cintaReflejante = ((CheckBox) view).isChecked();
+
+        });
+
+        herrajes.setOnClickListener(view -> {
+
+            check_herraje = ((CheckBox) view).isChecked();
+
+        });
+
+        lucesFrenado.setOnClickListener(view -> {
+
+            check_lucesFrenado = ((CheckBox) view).isChecked();
+
+        });
+
+        lucesIntermitentes.setOnClickListener(view -> {
+
+            check_lucesIntermitentes = ((CheckBox) view).isChecked();
+
+        });
+
+        IV_interiorRemolque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IV_interiorRemolque.setEnabled(false);
+                IV_interiorRemolque.setClickable(false);
+                int TIME = 5000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        IV_interiorRemolque.setEnabled(true);
+                        IV_interiorRemolque.setClickable(true);
+
+                    }
+                }, TIME);
+                imgClick("interiorRemolque", REQUEST_INTERIOR);
+
+            }
         });
 
         IV_puertas.setOnClickListener(new View.OnClickListener() {
@@ -447,6 +541,46 @@ public class etapa5_Activity extends AppCompatActivity {
                     string_escotilla = "0";
                 }
 
+                if (check_placaCheck) {
+                    string_placaCheck = "1";
+                }else{
+                    string_placaCheck = "0";
+                }
+
+                ////////////////
+
+                if (check_empaquePuertas) {
+                    string_empaquePuertas = "1";
+                }else{
+                    string_empaquePuertas = "0";
+                }
+
+                if (check_cintaReflejante) {
+                    string_cintaReflejante = "1";
+                }else{
+                    string_cintaReflejante = "0";
+                }
+
+                if (check_herraje) {
+                    string_herraje = "1";
+                }else{
+                    string_herraje = "0";
+                }
+
+                if (check_lucesFrenado) {
+                    string_lucesFrenado = "1";
+                }else{
+                    string_lucesFrenado = "0";
+                }
+
+                if (check_lucesIntermitentes) {
+                    string_lucesIntermitentes = "1";
+                }else{
+                    string_lucesIntermitentes = "0";
+                }
+
+
+
                 String observacioens  = comentarios.getText().toString();
 
                 String placa = numeroPlaca.getText().toString();
@@ -480,71 +614,153 @@ public class etapa5_Activity extends AppCompatActivity {
                     S3 = "remolqueSello3FotoUrl-"+folio;
                 }
 
-                if(actual_puertas == null || actual_placas == null || actual_sello1 == null || actual_sello2 == null ||
-                    placa.isEmpty() || sello1.isEmpty() || sello2.isEmpty()) {
 
-                    Toast.makeText(etapa5_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
-                } else {
+                if(responseEstatusRemolque.contains("0")){
+                    if(actual_puertas == null || actual_placas == null || actual_sello1 == null || actual_sello2 == null || actual_interior == null ||
+                            placa.isEmpty() || sello1.isEmpty() || sello2.isEmpty()) {
 
-                    DataBaseHelper dataBaseHelper = new DataBaseHelper(etapa5_Activity.this);
+                        Toast.makeText(etapa5_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
+                    } else {
 
-                    long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico5(
-                            "remolquePuertasFotoUrl-"+folio,
-                            "remolquePlacasFotoUrl-"+folio,
-                            "remolqueSello1FotoUrl-"+folio,
-                            "remolqueSello2FotoUrl-"+folio,
-                            S3,
-                            D1,
-                            D2,
-                            D3,
-                            D4,
-                            "6",folio,observacioens,placa,sello1,sello2,sello3
-                            ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,
-                            string_plafonesIzquierdos,string_luzPlaca,"",string_sello1,string_sello1Alta,
-                    string_escotilla,string_sello2,string_sello2Alta,string_vvt);
+                        long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico5(
+                                "remolquePuertasFotoUrl-"+folio,
+                                "remolquePlacasFotoUrl-"+folio,
+                                "remolqueSello1FotoUrl-"+folio,
+                                "remolqueSello2FotoUrl-"+folio,
+                                S3,
+                                D1,
+                                D2,
+                                D3,
+                                D4,
+                                "6",folio,observacioens,placa,sello1,sello2,sello3
+                                ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,
+                                string_plafonesIzquierdos,string_luzPlaca,string_placaCheck,string_sello1,string_sello1Alta,
+                                string_escotilla,string_sello2,string_sello2Alta,string_vvt,
+                                "interiorUrl-"+folio,
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                        );
 
-                    if(insertIntercambio1 == -1){
-                        Toast.makeText(etapa5_Activity.this, "Error insertIntercambio5", Toast.LENGTH_LONG).show();
-                    }else {
-                        if(createDirectoryAndSaveFile( actual_puertas,  "remolquePuertasFotoUrl-"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_placas,  "remolquePlacasFotoUrl-"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_sello1,  "remolqueSello1FotoUrl-"+folio+".jpg", path) &&
-                                createDirectoryAndSaveFile( actual_sello2,  "remolqueSello2FotoUrl-"+folio+".jpg", path)
-                        )
-                        {
+                        if(insertIntercambio1 == -1){
+                            Toast.makeText(etapa5_Activity.this, "Error insertIntercambio5", Toast.LENGTH_LONG).show();
+                        }else {
+                            if(createDirectoryAndSaveFile( actual_puertas,  "remolquePuertasFotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_placas,  "remolquePlacasFotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_sello1,  "remolqueSello1FotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_sello2,  "remolqueSello2FotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_interior,  "interiorUrl-"+folio+".jpg", path)
+                            )
+                            {
 
-                            if(actual_daño1 != null){
-                                createDirectoryAndSaveFile(actual_daño1, "remolqueTraseroDano1FotoUrl-" + folio + ".jpg", path);
+                                if(actual_daño1 != null){
+                                    createDirectoryAndSaveFile(actual_daño1, "remolqueTraseroDano1FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_daño2 != null){
+                                    createDirectoryAndSaveFile(actual_daño2, "remolqueTraseroDano2FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_daño3 != null){
+                                    createDirectoryAndSaveFile(actual_daño3, "remolqueTraseroDano3FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_daño4 != null){
+                                    createDirectoryAndSaveFile(actual_daño4, "remolqueTraseroDano4FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_sello3 != null){
+                                    createDirectoryAndSaveFile(actual_sello3, "remolqueSello3FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                Intent i = new Intent(etapa5_Activity.this, etapa6_Activity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                i.putExtra("folio", folio);
+                                i.putExtra("path", path);
+                                i.putExtra("idUsuario", usuario);
+                                startActivity(i);
+
+                            }else{
+                                Toast.makeText(etapa5_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
                             }
+                        }
+                    }
+                }else {
+                    if(actual_puertas == null || actual_placas == null || actual_sello1 == null || actual_sello2 == null ||
+                            placa.isEmpty() || sello1.isEmpty() || sello2.isEmpty()) {
 
-                            if(actual_daño2 != null){
-                                createDirectoryAndSaveFile(actual_daño2, "remolqueTraseroDano2FotoUrl-" + folio + ".jpg", path);
+                        Toast.makeText(etapa5_Activity.this, "Datos Incompletos", Toast.LENGTH_LONG).show();
+                    } else {
+
+                        long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico5(
+                                "remolquePuertasFotoUrl-"+folio,
+                                "remolquePlacasFotoUrl-"+folio,
+                                "remolqueSello1FotoUrl-"+folio,
+                                "remolqueSello2FotoUrl-"+folio,
+                                S3,
+                                D1,
+                                D2,
+                                D3,
+                                D4,
+                                "6",folio,observacioens,placa,sello1,sello2,sello3
+                                ,string_bisagras,string_defensaTrasera,string_luzGabildoTrasera,string_plafonesDerechos,
+                                string_plafonesIzquierdos,string_luzPlaca,string_placaCheck,string_sello1,string_sello1Alta,
+                                string_escotilla,string_sello2,string_sello2Alta,string_vvt,
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                        );
+
+                        if(insertIntercambio1 == -1){
+                            Toast.makeText(etapa5_Activity.this, "Error insertIntercambio5", Toast.LENGTH_LONG).show();
+                        }else {
+                            if(createDirectoryAndSaveFile( actual_puertas,  "remolquePuertasFotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_placas,  "remolquePlacasFotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_sello1,  "remolqueSello1FotoUrl-"+folio+".jpg", path) &&
+                                    createDirectoryAndSaveFile( actual_sello2,  "remolqueSello2FotoUrl-"+folio+".jpg", path)
+                            )
+                            {
+
+                                if(actual_daño1 != null){
+                                    createDirectoryAndSaveFile(actual_daño1, "remolqueTraseroDano1FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_daño2 != null){
+                                    createDirectoryAndSaveFile(actual_daño2, "remolqueTraseroDano2FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_daño3 != null){
+                                    createDirectoryAndSaveFile(actual_daño3, "remolqueTraseroDano3FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_daño4 != null){
+                                    createDirectoryAndSaveFile(actual_daño4, "remolqueTraseroDano4FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                if(actual_sello3 != null){
+                                    createDirectoryAndSaveFile(actual_sello3, "remolqueSello3FotoUrl-" + folio + ".jpg", path);
+                                }
+
+                                Intent i = new Intent(etapa5_Activity.this, etapa6_Activity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                i.putExtra("folio", folio);
+                                i.putExtra("path", path);
+                                i.putExtra("idUsuario", usuario);
+                                startActivity(i);
+
+                            }else{
+                                Toast.makeText(etapa5_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
                             }
-
-                            if(actual_daño3 != null){
-                                createDirectoryAndSaveFile(actual_daño3, "remolqueTraseroDano3FotoUrl-" + folio + ".jpg", path);
-                            }
-
-                            if(actual_daño4 != null){
-                                createDirectoryAndSaveFile(actual_daño4, "remolqueTraseroDano4FotoUrl-" + folio + ".jpg", path);
-                            }
-
-                            if(actual_sello3 != null){
-                                createDirectoryAndSaveFile(actual_sello3, "remolqueSello3FotoUrl-" + folio + ".jpg", path);
-                            }
-
-                            Intent i = new Intent(etapa5_Activity.this, etapa6_Activity.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            i.putExtra("folio", folio);
-                            i.putExtra("path", path);
-                            i.putExtra("idUsuario", usuario);
-                            startActivity(i);
-
-                        }else{
-                            Toast.makeText(etapa5_Activity.this, "Error al guardar imagen", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
+
+
 
             }
         });
@@ -724,10 +940,26 @@ public class etapa5_Activity extends AppCompatActivity {
                     }
                 }
                 break;
+            case REQUEST_INTERIOR:
+                if (resultCode == RESULT_OK ) {
+                    try {
+
+                        actual_interior = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+                        Bitmap thumbImage = ThumbnailUtils.extractThumbnail(actual_interior,
+                                THUMBSIZE,
+                                THUMBSIZE);
+                        IV_interiorRemolque.setImageBitmap(thumbImage);
+
+
+                    } catch (IOException e) {
+                        IV_interiorRemolque.setImageResource(R.drawable.ic_baseline_error_24);
+                    }
+                }
+                break;
+
         }
         super.onActivityResult(requestCode, resultCode, resultData);
     }
-
 
 
     private boolean createDirectoryAndSaveFile(Bitmap imageToSave, String fileName, String path) {

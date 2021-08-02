@@ -610,6 +610,14 @@ public class etapa1_Activity extends AppCompatActivity {
                             String UidRemolque, String UidLinea, String UestatusRemolque, String Ucomentario, String Ufolio, String UtipoMovimiento,
                             String Upatio , String UnombreOperador ,String UnombreUniad , String UnombreRemolque) {
 
+        if(UnombreUniad.isEmpty()){
+            UnombreUniad = "Otro";
+        }
+
+        if(UnombreRemolque.isEmpty()){
+            UnombreRemolque = "Otro";
+        }
+
         DataBaseHelper dataBaseHelper =  new DataBaseHelper(etapa1_Activity.this);
 
         long insertIntercambio1 = dataBaseHelper.insertIntercambioElectronico1("licenciaUrl-"+folio,"2",Ufolio,"",UidUsuario,UtipoOperacion,UtipoMovimiento,UestatusRemolque,Ucomentario,UnombreOperador,

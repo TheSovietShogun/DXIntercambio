@@ -77,6 +77,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
         String createTableIntercambioElectronico = "CREATE TABLE IntercambioElectronico (" +
+                "enviado    TEXT , " +
                 "estatus  TEXT , " +
                 "folio    TEXT , " +
                 "terminal  TEXT , " +
@@ -271,6 +272,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "firmaOperadorUrl TEXT , " +
                 "firmaIntercambistaUrl TEXT , " +
 
+                "interiorUrl TEXT , " +
+                "empaquePuertas TEXT , " +
+                "cintaReflejante TEXT , " +
+                "herrajes TEXT , " +
+                "lucesFrenado TEXT , " +
+                "lucesIntermitentes TEXT , " +
 
                 "fechaFin   TEXT )";
 
@@ -709,7 +716,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("remolque",remolque);
         cv.put("idRemolque",idRemolque);
         cv.put("fechaInicio",fechaInicio);
-
+        cv.put("enviado","0");
 
 
         long insert = db.insert(TABLE_INTERCAMBIO,null,cv);
@@ -866,7 +873,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                                                String Sello3,String remolquePuertasBisagrasTornillos, String remolquePuertasDefensa,String remolquePuertasLuzGaliboSupTraseras,
                                                String remolquePuertasPlafonDerecho,String remolquePuertasPlafonIzquierdo, String remolquePlacasLuzPlaca,String remolquePlacasPlaca,
                                                String remolqueSello1Sello,String remolqueSello1Seguridad, String remolqueSello2Escotilla,String remolqueSello2Sello,
-                                               String remolqueSello2Seguridad,String remolqueSello2Vvtt ){
+                                               String remolqueSello2Seguridad,String remolqueSello2Vvtt ,
+                                               String interiorUrl,String empaquePuertas ,String cintaReflejante,String herrajes,String lucesFrenado,String lucesIntermitentes
+    ){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -901,6 +910,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("remolqueSello2Seguridad",remolqueSello2Seguridad);
         cv.put("remolqueSello2Vvtt",remolqueSello2Vvtt);
 
+        cv.put("interiorUrl",interiorUrl);
+        cv.put("empaquePuertas",empaquePuertas);
+        cv.put("cintaReflejante",cintaReflejante);
+        cv.put("herrajes",herrajes);
+        cv.put("lucesFrenado",lucesFrenado);
+        cv.put("lucesIntermitentes",lucesIntermitentes);
 
 
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
@@ -963,6 +978,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("remolqueChasisFrontalDerGavilan",remolqueChasisFrontalDerGavilan);
         cv.put("remolqueChasisFrontalDerMuelle",remolqueChasisFrontalDerMuelle);
         cv.put("remolqueChasisFrontalDerRotachamber",remolqueChasisFrontalDerRotachamber);
+
 
 
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
@@ -1044,9 +1060,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         List<CPopulateList> returnList = new ArrayList<>();
 
-        String queryString = "SELECT i.folio,i.fechaFin,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin  " +
+        String queryString = "SELECT i.folio,i.fechaFin,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin,i.enviado  " +
                 "FROM " + TABLE_INTERCAMBIO + " i LEFT JOIN unidad u ON u.idUnidad = i.idUnidad LEFT JOIN usuario us ON us.idUsuario = i.idUsuario LEFT JOIN remolque r ON r.idRemolque = i.idRemolque "
-                + " WHERE i.estatus = " + "'" + 500 + "'" ;
+                + " WHERE i.fechaFin IS NOT null ";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -1062,6 +1078,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String claveRemolque  = cursor.getString(4);
                 String estatus  = cursor.getString(5);
                 String fechaFin  = cursor.getString(6);
+                String enviado  = cursor.getString(7);
 
                 CPopulateList cPopulateList = new CPopulateList ( folio  ,
                         fechaInicio ,
@@ -1069,7 +1086,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         login  ,
                         claveUnidad ,
                         estatus,
-                        fechaFin
+                        fechaFin,
+                        enviado
                 );
 
                 returnList.add(cPopulateList);
@@ -1099,182 +1117,193 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do {
 
-                String estatus  = cursor.getString(0);
-                String folio  = cursor.getString(1);
-                String terminal  = cursor.getString(2);
-                String idUsuario  = cursor.getString(3);
-                String tipoOperacion  = cursor.getString(4);
-                String tipoMovimiento  = cursor.getString(5);
-                String estatusRemolque  = cursor.getString(6);
-                String comentario2  = cursor.getString(7);
-                String nombreOperador  = cursor.getString(8);
-                String idOperador  = cursor.getString(9);
-                String idTransportista  = cursor.getString(10);
-                String unidad  = cursor.getString(11);
-                String idUnidad  = cursor.getString(12);
-                String idLinea  = cursor.getString(13);
-                String remolque  = cursor.getString(14);
-                String idRemolque  = cursor.getString(15);
-                String fechaInicio  = cursor.getString(16);
-                String tractoDefensa  = cursor.getString(17);
-                String tractoCabina  = cursor.getString(18);
-                String tractoQuintaRueda  = cursor.getString(19);
-                String tractoTuboEscape  = cursor.getString(20);
-                String tractoBaseRemolque  = cursor.getString(21);
-                String tractoTechos  = cursor.getString(22);
-                String tractoLlantas  = cursor.getString(23);
-                String tractoTanqueDiesel  = cursor.getString(24);
-                String tractoTanqueAire  = cursor.getString(25);
-                String tractoEjeTransmision  = cursor.getString(26);
-                String tractoMotor  = cursor.getString(27);
-                String remolqueInspeccionMecanica  = cursor.getString(28);
-                String remolqueLucesIzquierda  = cursor.getString(29);
-                String remolqueLucesGaliboIzqFrontalSup  = cursor.getString(30);
-                String remolqueManitasIzq  = cursor.getString(31);
-                String remolqueManivelaIzq  = cursor.getString(32);
-                String remolquePatinIzquierdo  = cursor.getString(33);
-                String remolqueCuartoLadoIzq  = cursor.getString(34);
-                String LoderaIzq  = cursor.getString(35);
-                String remolqueLucesIzqP  = cursor.getString(36);
-                String LuzAbsIzq  = cursor.getString(37);
-                String luzBarcoIzq  = cursor.getString(38);
-                String rompevientosIzq  = cursor.getString(39);
-                String remolqueLlantaIzqJumbo  = cursor.getString(40);
-                String remolqueLlantaIzqEje1Posicion1Marca  = cursor.getString(41);
-                String remolqueLlantaIzqEje1Posicion1Estatus  = cursor.getString(42);
-                String remolqueLlantaIzqEje1Posicion2Marca  = cursor.getString(43);
-                String remolqueLlantaIzqEje1Posicion2Estatus  = cursor.getString(44);
-                String remolqueLlantaIzqEje1BrilosPivote  = cursor.getString(45);
-                String remolqueLlantaIzqEje1Posicion1  = cursor.getString(46);
-                String remolqueLlantaIzqEje1Posicion2  = cursor.getString(47);
-                String remolqueLlantaIzqEje1MesaYoyo  = cursor.getString(48);
-                String remolqueLlantaIzqEje1Rin  = cursor.getString(49);
-                String remolqueLlantaIzqEje1Lodera  = cursor.getString(50);
-                String remolqueLlantaIzqEje2Posicion5Marca  = cursor.getString(51);
-                String remolqueLlantaIzqEje2Posicion5Estatus  = cursor.getString(52);
-                String remolqueLlantaIzqEje2Posicion6Marca  = cursor.getString(53);
-                String remolqueLlantaIzqEje2Posicion6Estatus  = cursor.getString(54);
-                String remolqueLlantaIzqEje2BrilosPivote  = cursor.getString(55);
-                String remolqueLlantaIzqEje2Posicion5  = cursor.getString(56);
-                String remolqueLlantaIzqEje2Posicion6  = cursor.getString(57);
-                String remolqueLlantaIzqEje2MesaYoyo  = cursor.getString(58);
-                String remolqueLlantaIzqEje2Rin  = cursor.getString(59);
-                String remolqueLlantaIzqEje2Lodera  = cursor.getString(60);
-                String remolqueChasisFrontalIzqAmortiguador  = cursor.getString(61);
-                String remolqueChasisFrontalIzqBolsaAire  = cursor.getString(62);
-                String remolqueChasisFrontalIzqGavilan  = cursor.getString(63);
-                String remolqueChasisFrontalIzqMuelle  = cursor.getString(64);
-                String remolqueChasisFrontalIzqRotachamber  = cursor.getString(65);
-                String remolqueChasisTraseroIzqAmortiguador  = cursor.getString(66);
-                String remolqueChasisTraseroIzqBolsaAire  = cursor.getString(67);
-                String remolqueChasisTraseroIzqGavilan  = cursor.getString(68);
-                String remolqueChasisTraseroIzqMuelle  = cursor.getString(69);
-                String remolqueChasisTraseroIzqRotachamber  = cursor.getString(70);
-                String remolqueIzqObservaciones  = cursor.getString(71);
-                String Placas  = cursor.getString(72);
-                String Sello1  = cursor.getString(73);
-                String Sello2  = cursor.getString(74);
-                String Sello3  = cursor.getString(75);
-                String remolquePuertasBisagrasTornillos  = cursor.getString(76);
-                String remolquePuertasDefensa  = cursor.getString(77);
-                String remolquePuertasLuzGaliboSupTraseras  = cursor.getString(78);
-                String remolquePuertasPlafonDerecho  = cursor.getString(79);
-                String remolquePuertasPlafonIzquierdo  = cursor.getString(80);
-                String remolquePlacasLuzPlaca  = cursor.getString(81);
-                String remolquePlacasPlaca  = cursor.getString(82);
-                String remolqueSello1Sello  = cursor.getString(83);
-                String remolqueSello1Seguridad  = cursor.getString(84);
-                String remolqueSello2Escotilla  = cursor.getString(85);
-                String remolqueSello2Sello  = cursor.getString(86);
-                String remolqueSello2Seguridad  = cursor.getString(87);
-                String remolqueSello2Vvtt  = cursor.getString(88);
-                String remolqueTraseraObservaciones  = cursor.getString(89);
-                String remolqueChasisTraseroDerAmortiguador  = cursor.getString(90);
-                String remolqueChasisTraseroDerBolsaAire  = cursor.getString(91);
-                String remolqueChasisTraseroDerGavilan  = cursor.getString(92);
-                String remolqueChasisTraseroDerMuelle  = cursor.getString(93);
-                String remolqueChasisTraseroDerRotachamber  = cursor.getString(94);
-                String remolqueLlantaDerEje2BrilosPivote  = cursor.getString(95);
-                String remolqueLlantaDerEje2Posicion7Marca  = cursor.getString(96);
-                String remolqueLlantaDerEje2Posicion7Estatus  = cursor.getString(97);
-                String remolqueLlantaDerEje2Posicion8Marca  = cursor.getString(98);
-                String remolqueLlantaDerEje2Posicion8Estatus  = cursor.getString(99);
-                String remolqueLlantaDerEje2Posicion7  = cursor.getString(100);
-                String remolqueLlantaDerEje2Posicion8  = cursor.getString(101);
-                String remolqueLlantaDerEje2MasaYoyo  = cursor.getString(102);
-                String remolqueLlantaDerEje2Rin  = cursor.getString(103);
-                String remolqueLlantaDerEje2Lodera  = cursor.getString(104);
-                String remolqueLlantaDerEje1BrilosPivote  = cursor.getString(105);
-                String remolqueLlantaDerEje1Posicion3Marca  = cursor.getString(106);
-                String remolqueLlantaDerEje1Posicion3Estatus  = cursor.getString(107);
-                String remolqueLlantaDerEje1Posicion4Marca  = cursor.getString(108);
-                String remolqueLlantaDerEje1Posicion4Estatus  = cursor.getString(109);
-                String remolqueLlantaDerEje1Posicion3  = cursor.getString(110);
-                String remolqueLlantaDerEje1Posicion4  = cursor.getString(111);
-                String remolqueLlantaDerEje1MasaYoyo  = cursor.getString(112);
-                String remolqueLlantaDerEje1Rin  = cursor.getString(113);
-                String remolqueLlantaDerEje1Lodera  = cursor.getString(114);
-                String remolqueChasisFrontalDerAmortiguador  = cursor.getString(115);
-                String remolqueChasisFrontalDerBolsaAire  = cursor.getString(116);
-                String remolqueChasisFrontalDerGavilan  = cursor.getString(117);
-                String remolqueChasisFrontalDerMuelle  = cursor.getString(118);
-                String remolqueChasisFrontalDerRotachamber  = cursor.getString(119);
-                String remolquePisoPLagas  = cursor.getString(120);
-                String remolqueTechoPlagas  = cursor.getString(121);
-                String remolqueDerLuces  = cursor.getString(122);
-                String remolqueDerGaliboFrontal  = cursor.getString(123);
-                String remolqueDerParedPlagas  = cursor.getString(124);
-                String remolqueDerIzqParedPlagas  = cursor.getString(125);
-                String remolqueDerPatin  = cursor.getString(126);
-                String remolqueCuartoLadoDer  = cursor.getString(127);
-                String LoderaDer  = cursor.getString(128);
-                String remolqueLucesDerP2  = cursor.getString(129);
-                String luzBarcoDer  = cursor.getString(130);
-                String rompevientosDer  = cursor.getString(131);
-                String remolqueLlantaDerJumbo  = cursor.getString(132);
-                String remolqueDerObservaciones  = cursor.getString(133);
-                String licenciaUrl= cursor.getString(134);
-                String tractoIzqUrl = cursor.getString(135);
-                String tractoFrenteUrl = cursor.getString(136);
-                String tractoDerUrl = cursor.getString(137);
-                String noEcoUrl = cursor.getString(138);
-                String vinUrl = cursor.getString(139);
-                String remolqueCostadoTraseroIzqUrl = cursor.getString(140);
-                String remolqueCostadoFrenteIzquierdoUrl = cursor.getString(141);
-                String remolqueLlantaIzqEje1FotoUrl = cursor.getString(142);
-                String remolqueLlantaIzqEje2FotoUrl = cursor.getString(143);
-                String remolqueChasisFrontalIzqFotoUrl = cursor.getString(144);
-                String remolqueChasisTraseroIzqFotoUrl = cursor.getString(145);
-                String remolqueIzqDano1FotoUrl = cursor.getString(146);
-                String remolqueIzqDano2FotoUrl = cursor.getString(147);
-                String remolqueIzqDano3FotoUrl = cursor.getString(148);
-                String remolqueIzqDano4FotoUrl = cursor.getString(149);
-                String remolquePuertasFotoUrl = cursor.getString(150);
-                String remolquePlacasFotoUrl = cursor.getString(151);
-                String remolqueSello1FotoUrl = cursor.getString(152);
-                String remolqueSello2FotoUrl = cursor.getString(153);
-                String remolqueSello3FotoUrl = cursor.getString(154);
-                String remolqueTraseroDano1FotoUrl = cursor.getString(155);
-                String remolqueTraseroDano2FotoUrl = cursor.getString(156);
-                String remolqueTraseroDano3FotoUrl = cursor.getString(157);
-                String remolqueTraseroDano4FotoUrl = cursor.getString(158);
-                String remolqueCostadoTraseroDerUrl = cursor.getString(159);
-                String remolqueCostadoFrenteDerechoUrl = cursor.getString(160);
-                String remolqueLlantaDerEje1FotoUrl = cursor.getString(161);
-                String remolqueLlantaDerEje2FotoUrl = cursor.getString(162);
-                String remolqueChasisFrontalDerFotoUrl = cursor.getString(163);
-                String remolqueChasisTraseroDerFotoUrl = cursor.getString(164);
-                String remolqueDerDano1FotoUrl = cursor.getString(165);
-                String remolqueDerDano2FotoUrl = cursor.getString(166);
-                String remolqueDerDano3FotoUrl = cursor.getString(167);
-                String remolqueDerDano4FotoUrl = cursor.getString(168);
-                String firmaOperadorUrl = cursor.getString(169);
-                String firmaIntercambistaUrl = cursor.getString(170);
-                String fechaFin  = cursor.getString(171);
+                String enviado  = cursor.getString(0);
+                String estatus  = cursor.getString(1);
+                String folio  = cursor.getString(2);
+                String terminal  = cursor.getString(3);
+                String idUsuario  = cursor.getString(4);
+                String tipoOperacion  = cursor.getString(5);
+                String tipoMovimiento  = cursor.getString(6);
+                String estatusRemolque  = cursor.getString(7);
+                String comentario2  = cursor.getString(8);
+                String nombreOperador  = cursor.getString(9);
+                String idOperador  = cursor.getString(10);
+                String idTransportista  = cursor.getString(11);
+                String unidad  = cursor.getString(12);
+                String idUnidad  = cursor.getString(13);
+                String idLinea  = cursor.getString(14);
+                String remolque  = cursor.getString(15);
+                String idRemolque  = cursor.getString(16);
+                String fechaInicio  = cursor.getString(17);
+                String tractoDefensa  = cursor.getString(18);
+                String tractoCabina  = cursor.getString(19);
+                String tractoQuintaRueda  = cursor.getString(20);
+                String tractoTuboEscape  = cursor.getString(21);
+                String tractoBaseRemolque  = cursor.getString(22);
+                String tractoTechos  = cursor.getString(23);
+                String tractoLlantas  = cursor.getString(24);
+                String tractoTanqueDiesel  = cursor.getString(25);
+                String tractoTanqueAire  = cursor.getString(26);
+                String tractoEjeTransmision  = cursor.getString(27);
+                String tractoMotor  = cursor.getString(28);
+                String remolqueInspeccionMecanica  = cursor.getString(29);
+                String remolqueLucesIzquierda  = cursor.getString(30);
+                String remolqueLucesGaliboIzqFrontalSup  = cursor.getString(31);
+                String remolqueManitasIzq  = cursor.getString(32);
+                String remolqueManivelaIzq  = cursor.getString(33);
+                String remolquePatinIzquierdo  = cursor.getString(34);
+                String remolqueCuartoLadoIzq  = cursor.getString(35);
+                String LoderaIzq  = cursor.getString(36);
+                String remolqueLucesIzqP  = cursor.getString(37);
+                String LuzAbsIzq  = cursor.getString(38);
+                String luzBarcoIzq  = cursor.getString(39);
+                String rompevientosIzq  = cursor.getString(40);
+                String remolqueLlantaIzqJumbo  = cursor.getString(41);
+                String remolqueLlantaIzqEje1Posicion1Marca  = cursor.getString(42);
+                String remolqueLlantaIzqEje1Posicion1Estatus  = cursor.getString(43);
+                String remolqueLlantaIzqEje1Posicion2Marca  = cursor.getString(44);
+                String remolqueLlantaIzqEje1Posicion2Estatus  = cursor.getString(45);
+                String remolqueLlantaIzqEje1BrilosPivote  = cursor.getString(46);
+                String remolqueLlantaIzqEje1Posicion1  = cursor.getString(47);
+                String remolqueLlantaIzqEje1Posicion2  = cursor.getString(48);
+                String remolqueLlantaIzqEje1MesaYoyo  = cursor.getString(49);
+                String remolqueLlantaIzqEje1Rin  = cursor.getString(50);
+                String remolqueLlantaIzqEje1Lodera  = cursor.getString(51);
+                String remolqueLlantaIzqEje2Posicion5Marca  = cursor.getString(52);
+                String remolqueLlantaIzqEje2Posicion5Estatus  = cursor.getString(53);
+                String remolqueLlantaIzqEje2Posicion6Marca  = cursor.getString(54);
+                String remolqueLlantaIzqEje2Posicion6Estatus  = cursor.getString(55);
+                String remolqueLlantaIzqEje2BrilosPivote  = cursor.getString(56);
+                String remolqueLlantaIzqEje2Posicion5  = cursor.getString(57);
+                String remolqueLlantaIzqEje2Posicion6  = cursor.getString(58);
+                String remolqueLlantaIzqEje2MesaYoyo  = cursor.getString(59);
+                String remolqueLlantaIzqEje2Rin  = cursor.getString(60);
+                String remolqueLlantaIzqEje2Lodera  = cursor.getString(61);
+                String remolqueChasisFrontalIzqAmortiguador  = cursor.getString(62);
+                String remolqueChasisFrontalIzqBolsaAire  = cursor.getString(63);
+                String remolqueChasisFrontalIzqGavilan  = cursor.getString(64);
+                String remolqueChasisFrontalIzqMuelle  = cursor.getString(65);
+                String remolqueChasisFrontalIzqRotachamber  = cursor.getString(66);
+                String remolqueChasisTraseroIzqAmortiguador  = cursor.getString(67);
+                String remolqueChasisTraseroIzqBolsaAire  = cursor.getString(68);
+                String remolqueChasisTraseroIzqGavilan  = cursor.getString(69);
+                String remolqueChasisTraseroIzqMuelle  = cursor.getString(70);
+                String remolqueChasisTraseroIzqRotachamber  = cursor.getString(71);
+                String remolqueIzqObservaciones  = cursor.getString(72);
+                String Placas  = cursor.getString(73);
+                String Sello1  = cursor.getString(74);
+                String Sello2  = cursor.getString(75);
+                String Sello3  = cursor.getString(76);
+                String remolquePuertasBisagrasTornillos  = cursor.getString(77);
+                String remolquePuertasDefensa  = cursor.getString(78);
+                String remolquePuertasLuzGaliboSupTraseras  = cursor.getString(79);
+                String remolquePuertasPlafonDerecho  = cursor.getString(80);
+                String remolquePuertasPlafonIzquierdo  = cursor.getString(81);
+                String remolquePlacasLuzPlaca  = cursor.getString(82);
+                String remolquePlacasPlaca  = cursor.getString(83);
+                String remolqueSello1Sello  = cursor.getString(84);
+                String remolqueSello1Seguridad  = cursor.getString(85);
+                String remolqueSello2Escotilla  = cursor.getString(86);
+                String remolqueSello2Sello  = cursor.getString(87);
+                String remolqueSello2Seguridad  = cursor.getString(88);
+                String remolqueSello2Vvtt  = cursor.getString(89);
+                String remolqueTraseraObservaciones  = cursor.getString(90);
+                String remolqueChasisTraseroDerAmortiguador  = cursor.getString(91);
+                String remolqueChasisTraseroDerBolsaAire  = cursor.getString(92);
+                String remolqueChasisTraseroDerGavilan  = cursor.getString(93);
+                String remolqueChasisTraseroDerMuelle  = cursor.getString(94);
+                String remolqueChasisTraseroDerRotachamber  = cursor.getString(95);
+                String remolqueLlantaDerEje2BrilosPivote  = cursor.getString(96);
+                String remolqueLlantaDerEje2Posicion7Marca  = cursor.getString(97);
+                String remolqueLlantaDerEje2Posicion7Estatus  = cursor.getString(98);
+                String remolqueLlantaDerEje2Posicion8Marca  = cursor.getString(99);
+                String remolqueLlantaDerEje2Posicion8Estatus  = cursor.getString(100);
+                String remolqueLlantaDerEje2Posicion7  = cursor.getString(101);
+                String remolqueLlantaDerEje2Posicion8  = cursor.getString(102);
+                String remolqueLlantaDerEje2MasaYoyo  = cursor.getString(103);
+                String remolqueLlantaDerEje2Rin  = cursor.getString(104);
+                String remolqueLlantaDerEje2Lodera  = cursor.getString(105);
+                String remolqueLlantaDerEje1BrilosPivote  = cursor.getString(106);
+                String remolqueLlantaDerEje1Posicion3Marca  = cursor.getString(107);
+                String remolqueLlantaDerEje1Posicion3Estatus  = cursor.getString(108);
+                String remolqueLlantaDerEje1Posicion4Marca  = cursor.getString(109);
+                String remolqueLlantaDerEje1Posicion4Estatus  = cursor.getString(110);
+                String remolqueLlantaDerEje1Posicion3  = cursor.getString(111);
+                String remolqueLlantaDerEje1Posicion4  = cursor.getString(112);
+                String remolqueLlantaDerEje1MasaYoyo  = cursor.getString(113);
+                String remolqueLlantaDerEje1Rin  = cursor.getString(114);
+                String remolqueLlantaDerEje1Lodera  = cursor.getString(115);
+                String remolqueChasisFrontalDerAmortiguador  = cursor.getString(116);
+                String remolqueChasisFrontalDerBolsaAire  = cursor.getString(117);
+                String remolqueChasisFrontalDerGavilan  = cursor.getString(118);
+                String remolqueChasisFrontalDerMuelle  = cursor.getString(119);
+                String remolqueChasisFrontalDerRotachamber  = cursor.getString(120);
+                String remolquePisoPLagas  = cursor.getString(121);
+                String remolqueTechoPlagas  = cursor.getString(122);
+                String remolqueDerLuces  = cursor.getString(123);
+                String remolqueDerGaliboFrontal  = cursor.getString(124);
+                String remolqueDerParedPlagas  = cursor.getString(125);
+                String remolqueDerIzqParedPlagas  = cursor.getString(126);
+                String remolqueDerPatin  = cursor.getString(127);
+                String remolqueCuartoLadoDer  = cursor.getString(128);
+                String LoderaDer  = cursor.getString(129);
+                String remolqueLucesDerP2  = cursor.getString(130);
+                String luzBarcoDer  = cursor.getString(131);
+                String rompevientosDer  = cursor.getString(132);
+                String remolqueLlantaDerJumbo  = cursor.getString(133);
+                String remolqueDerObservaciones  = cursor.getString(134);
+                String licenciaUrl= cursor.getString(135);
+                String tractoIzqUrl = cursor.getString(136);
+                String tractoFrenteUrl = cursor.getString(137);
+                String tractoDerUrl = cursor.getString(138);
+                String noEcoUrl = cursor.getString(139);
+                String vinUrl = cursor.getString(140);
+                String remolqueCostadoTraseroIzqUrl = cursor.getString(141);
+                String remolqueCostadoFrenteIzquierdoUrl = cursor.getString(142);
+                String remolqueLlantaIzqEje1FotoUrl = cursor.getString(143);
+                String remolqueLlantaIzqEje2FotoUrl = cursor.getString(144);
+                String remolqueChasisFrontalIzqFotoUrl = cursor.getString(145);
+                String remolqueChasisTraseroIzqFotoUrl = cursor.getString(146);
+                String remolqueIzqDano1FotoUrl = cursor.getString(147);
+                String remolqueIzqDano2FotoUrl = cursor.getString(148);
+                String remolqueIzqDano3FotoUrl = cursor.getString(149);
+                String remolqueIzqDano4FotoUrl = cursor.getString(150);
+                String remolquePuertasFotoUrl = cursor.getString(151);
+                String remolquePlacasFotoUrl = cursor.getString(152);
+                String remolqueSello1FotoUrl = cursor.getString(153);
+                String remolqueSello2FotoUrl = cursor.getString(154);
+                String remolqueSello3FotoUrl = cursor.getString(155);
+                String remolqueTraseroDano1FotoUrl = cursor.getString(156);
+                String remolqueTraseroDano2FotoUrl = cursor.getString(157);
+                String remolqueTraseroDano3FotoUrl = cursor.getString(158);
+                String remolqueTraseroDano4FotoUrl = cursor.getString(159);
+                String remolqueCostadoTraseroDerUrl = cursor.getString(160);
+                String remolqueCostadoFrenteDerechoUrl = cursor.getString(161);
+                String remolqueLlantaDerEje1FotoUrl = cursor.getString(162);
+                String remolqueLlantaDerEje2FotoUrl = cursor.getString(163);
+                String remolqueChasisFrontalDerFotoUrl = cursor.getString(164);
+                String remolqueChasisTraseroDerFotoUrl = cursor.getString(165);
+                String remolqueDerDano1FotoUrl = cursor.getString(166);
+                String remolqueDerDano2FotoUrl = cursor.getString(167);
+                String remolqueDerDano3FotoUrl = cursor.getString(168);
+                String remolqueDerDano4FotoUrl = cursor.getString(169);
+                String firmaOperadorUrl = cursor.getString(170);
+                String firmaIntercambistaUrl = cursor.getString(171);
+
+                String interiorUrl = cursor.getString(172);
+                String empaquePuertas = cursor.getString(173);
+                String cintaReflejante = cursor.getString(174);
+                String herrajes = cursor.getString(175);
+                String lucesFrenado = cursor.getString(176);
+                String lucesIntermitentes = cursor.getString(177);
+
+                String fechaFin  = cursor.getString(178);
 
 
 
-                CintercambioElectronico cintercambioElectronico = new CintercambioElectronico ( estatus  ,
+                CintercambioElectronico cintercambioElectronico = new CintercambioElectronico (
+                        enviado,
+                        estatus  ,
                         folio  ,
                         terminal  ,
                         idUsuario  ,
@@ -1445,6 +1474,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                       remolqueDerDano4FotoUrl ,
                       firmaOperadorUrl ,
                       firmaIntercambistaUrl ,
+                        interiorUrl,
+                        empaquePuertas,
+                        cintaReflejante,
+                        herrajes,
+                        lucesFrenado,
+                        lucesIntermitentes,
                         fechaFin   );
 
 
@@ -1466,7 +1501,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         List<CPopulateList> returnList = new ArrayList<>();
 
-        String queryString = "SELECT i.folio,i.fechaInicio,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin " +
+        String queryString = "SELECT i.folio,i.fechaInicio,u.claveUnidad,us.login,r.claveRemolque,i.estatus,i.fechaFin,i.enviado " +
                 "FROM " + TABLE_INTERCAMBIO + " i LEFT JOIN unidad u ON u.idUnidad = i.idUnidad LEFT JOIN usuario us ON us.idUsuario = i.idUsuario LEFT JOIN remolque r ON r.idRemolque = i.idRemolque "
                 + " WHERE i.fechaFin IS null ";
 
@@ -1484,6 +1519,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String claveRemolque  = cursor.getString(4);
                 String estatus  = cursor.getString(5);
                 String fechaFin =  cursor.getString(6);
+                String enviado =  cursor.getString(7);
 
                 CPopulateList cPopulateList = new CPopulateList ( folio  ,
                         fechaInicio ,
@@ -1491,7 +1527,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         login  ,
                         claveUnidad ,
                         estatus,
-                        fechaFin
+                        fechaFin,
+                        enviado
                 );
 
                 returnList.add(cPopulateList);
@@ -1539,6 +1576,53 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+
+
+        long delete = db.delete(TABLE_INTERCAMBIO,"folio = ?",new String[]{folio});
+
+
+        if(delete == -1){
+            db.close();
+            return -1;
+        }else{
+            db.close();
+            return delete;
+        }
+
+    }
+
+    public String checkVacio( String folio) {
+
+        String queryString = "SELECT estatusRemolque" +
+                " FROM " + TABLE_INTERCAMBIO
+                + " WHERE folio = " + folio;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString,null);
+
+        String estatusRemolque = "-1";
+
+        if(cursor.moveToFirst()){
+            do {
+                 estatusRemolque  = cursor.getString(0);
+
+            }while (cursor.moveToNext());
+        }
+        else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return estatusRemolque;
+    }
+
+    public long setEnviado( String folio ){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
         cv.put("estatus","1000");
 
         long update = db.update(TABLE_INTERCAMBIO,cv,"folio = ?",new String[]{folio});
@@ -1550,9 +1634,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             db.close();
             return update;
         }
-
     }
-
-
 
 }
