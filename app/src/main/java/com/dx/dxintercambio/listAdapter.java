@@ -604,8 +604,9 @@ public class listAdapter extends ArrayAdapter<CPopulateList> {
                                 RequestBody requestBody = RequestBody.create( file,MediaType.parse("multipart/form-data"));
                                 MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
                                 RequestBody carpeta = RequestBody.create( Ufolio ,MediaType.parse("text/plain"));
+                                RequestBody nombreImg = RequestBody.create( file.getName() ,MediaType.parse("text/plain"));
 
-                                Call<String> sendImg = dxApi.imgMulipart(carpeta,fileToUpload);
+                                Call<String> sendImg = dxApi.imgMulipart(carpeta,nombreImg,fileToUpload);
 
                                 sendImg.enqueue(new CallbackWithRetry<String>() {
 

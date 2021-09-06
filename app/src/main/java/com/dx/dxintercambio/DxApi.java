@@ -68,6 +68,7 @@ public interface DxApi {
  @Multipart
     @POST("ImageTest/UploadFile")
     Call<String> imgMulipart(@Part("carpeta") RequestBody carpeta,
+                             @Part("nombreImg") RequestBody nombreImg,
                              @Part MultipartBody.Part image );
 
 }
